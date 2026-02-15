@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "BEcon 6243 - Introduction to Programming"
+  navbar:
+    left:
+      - text: "Week 1"
+        menu:
+          - text: "Introduction"
+            href: course_materials/week_01/01a_introduction.html
+          - text: "Getting Started"
+            href: course_materials/week_01/01b_gettingstarted.html
+
+format:
+  revealjs:
+    theme: default
+    self-contained: true
+    slide-number: true
+    transition: slide
+    background-transition: fade
+
+  html:
+    toc: true
+    code-fold: true
