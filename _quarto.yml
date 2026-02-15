@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "BEcon 6243 - Introduction to Programming"
+  title: "BEcon 6222 - Introduction to Programming"
   navbar:
     left:
       - text: "Week 1"
@@ -12,15 +12,32 @@ website:
             href: course_materials/week_01/01a_introduction.html
           - text: "Getting Started"
             href: course_materials/week_01/01b_gettingstarted.html
+          - text: "Exercise 1: Getting Started"
+            file: exercise_sessions/week_01/Ex01_gettingstarted.qmd
+      - text: "Admin"
+        menu:
+          - text: "Syllabus"
+            file: admin/source/syllabus_v1.pdf
 
 format:
   revealjs:
-    theme: default
+    template-partials:
+      - assets/style/title-slide.html
+    width: 1280
+    height: 720
+    smaller: true
+    embed-resources: true
     self-contained: true
-    slide-number: true
-    transition: slide
-    background-transition: fade
+    slide-number: c
+    theme: assets/style/hsgtheme.scss
+    highlight-style: dracula
+    code-line-numbers: false
 
   html:
+    theme:
+      - flatly
+      - assets/style/hsgtheme.scss
     toc: true
-    code-fold: true
+    toc-location: right
+    code-line-numbers: false
+    highlight-style: dracula
