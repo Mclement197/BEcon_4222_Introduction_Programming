@@ -163,14 +163,14 @@
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
     "href": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
-    "title": "6,243 Introduction to Programming",
-    "section": "Goals for today",
-    "text": "Goals for today\nIn this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic in git\ninstall and prepare git\n\n\n\nIn the next lecture, we will\n\ncreate a github account\ncollaborate on git"
+    "title": "6,222 Introduction to Programming",
+    "section": "",
+    "text": "In this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic commands in git\n\n\n\nIn the next lecture, we will\n\ncreate a github account\nlearn how to collaborate with a remote repository with git and GitHub"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#vision",
     "href": "course_materials/week_02/02_versioncontrol.html#vision",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Vision",
     "text": "Vision\nTrack your work. Collaborate on programming/data science projects."
   },
@@ -184,247 +184,247 @@
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-1",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-1",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-2",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-2",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-3",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-3",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#what-is-git-1",
     "href": "course_materials/week_02/02_versioncontrol.html#what-is-git-1",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "What is git?",
-    "text": "What is git?\nVersion Control System (VCS)\n\nLooks at the changes in your files\nRecords all changes over time to give you a full history\nSimilar to “track changes” in Microsoft Word\n\nGit only looks at and tracks the changes in a file"
+    "text": "What is git?\n\nVersion Control System (VCS)\n\nLooks at the changes in your files\nRecords all changes over time to give you a full history\nSimilar to “track changes” in Microsoft Word\n\n\n\nGit only looks at and tracks the changes in a file"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#why-should-we-learn-git",
     "href": "course_materials/week_02/02_versioncontrol.html#why-should-we-learn-git",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Why should we learn git?",
     "text": "Why should we learn git?\n\nVery hard to lose files with git\nGreat for collaboration\nHistory allows you to go back and understand changes or revert when there are problems\nReproducibility\nIn demand for any data science job"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#git-and-the-command-line-interface-cli",
     "href": "course_materials/week_02/02_versioncontrol.html#git-and-the-command-line-interface-cli",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Git and the Command Line Interface (CLI)",
-    "text": "Git and the Command Line Interface (CLI)\nGit is usually used from a CLI (like a terminal)\n\nLearn git commands and use them in a terminal.\nVery flexible, but a bit unintuitive\n\nBut also from Graphical User Interface (GUI)\n\nMost applications nowadays: GitHub Desktop, VSCode extension, RStudio\nOften easier to use and no commands needed.\nEasier to visualize the steps."
+    "text": "Git and the Command Line Interface (CLI)\n\nGit is usually used from a CLI (like a terminal)\n\nLearn git commands and use them in a terminal.\nVery flexible, but a bit unintuitive\n\n\n\nBut also from Graphical User Interface (GUI)\n\nMost applications nowadays: GitHub Desktop, VSCode extension, RStudio\nOften easier to use and no commands needed.\nEasier to visualize the steps."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#in-this-course",
     "href": "course_materials/week_02/02_versioncontrol.html#in-this-course",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "In this course",
     "text": "In this course\n\n\n\nWe will learn the basic commands of git in a CLI, and we will use the GUI in VSCode\nAll the commands we will learn are available in the official Git Cheat Sheet. Please download the sheet."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#setting-up-git",
     "href": "course_materials/week_02/02_versioncontrol.html#setting-up-git",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Setting up git",
-    "text": "Setting up git\nFrom the cli:\n\nOn windows, open Git Bash (start menu -&gt; Git Bash). Make sure you’ve installed git beforehand.\nOn MacOS, open the Terminal app.\nOn Linux, open your distribution’s (or any other) terminal emulator.\nLet’s do this together now!"
+    "text": "Setting up git\n\nFrom the cli:\n\nIn VSCode, open a terminal and select git bash (Windows) or bash (Linux/MacOS).\n\nOR:\n\nOn Windows, open Git Bash (start menu -&gt; Git Bash). Make sure you’ve installed git beforehand.\nOn MacOS, open the Terminal app.\nOn Linux, open your distribution’s (or any other) terminal emulator.\nLet’s do this together now!"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#setting-up-git-1",
     "href": "course_materials/week_02/02_versioncontrol.html#setting-up-git-1",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Setting up git",
-    "text": "Setting up git\nRun the following commands in your terminal to correctly configure git on your computer.\n\n# Add your name\ngit config --global user.name \"Your Name\"\n\n# Add your email address\ngit config --global user.email \"your.email@unisg.ch\"\n\n# Use modern main branch name\ngit config --global init.defaultbranch main\n\nA detail (you only need to do this once at config, not to remember for the course):\n\n# For Linux/Mac:\ngit config --global core.autocrlf input\n\n# For Windows:\ngit config --global core.autocrlf true\n\nWhy? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF \\n, Windows: CRLF \\r\\n). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts."
+    "text": "Setting up git\nRun the following commands in your terminal to correctly configure git on your computer.\n\n# Add your name\ngit config --global user.name \"Your Name\"\n\n# Add your email address\ngit config --global user.email \"your.email@unisg.ch\"\n\n# Use modern main branch name\ngit config --global init.defaultbranch main\n\n\nA detail (you only need to do this once at config, not to remember for the course):\n\n# For Linux/Mac:\ngit config --global core.autocrlf input\n\n# For Windows:\ngit config --global core.autocrlf true\n\nWhy? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF \\n, Windows: CRLF \\r\\n). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#initialize-a-git-repository",
     "href": "course_materials/week_02/02_versioncontrol.html#initialize-a-git-repository",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Initialize a git repository",
-    "text": "Initialize a git repository\nA project in git is called a repository (or repo for short) and it always corresponds to a directory on your machine. This is usually where you save your project.\nRemember our folder structure:\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the git repo in week 3\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\nWe will initialize a repo in the exercises folder. You will have to initialize another repo in your group_project folder."
+    "text": "Initialize a git repository\nRemember our folder structure:\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the git repo in week 3\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\nWe will initialize a repo in the exercises folder. You will have to initialize another repo in your group_project folder."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#initialize-a-repo",
     "href": "course_materials/week_02/02_versioncontrol.html#initialize-a-repo",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Initialize a repo",
     "text": "Initialize a repo\nThis is done via the init command.\nIn your terminal from VSCode, navigate to your cd Introduction_to_programming/exercises. Then:\ngit init\n# Initialized empty Git repository in /Users/Introduction_to_programming/exercises\nWith git init we turn the directory into a repository.\nAt this point, 🗂️ tracking has started!"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#see-whats-happening-git-status",
     "href": "course_materials/week_02/02_versioncontrol.html#see-whats-happening-git-status",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "See what’s happening: git status",
     "text": "See what’s happening: git status\nTo see the current status of a git repository you can run the status command.\ngit status\n# On branch main\n# No commits yet\n# nothing to commit (create/copy files and use \"git add\" to track)"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit",
     "href": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Process in git: edit, select, commit",
     "text": "Process in git: edit, select, commit\n\n\nThe local repository is everything on your own computer.\nNothing here is shared with others yet.\nGit always works locally first."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-1",
     "href": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-1",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Process in git: edit, select, commit",
     "text": "Process in git: edit, select, commit\n\n\nThe working directory is where you write code, edit files, run scripts, etc.\nFiles here may be untracked, modified or unfinished\nSaving a file only affects the working directory. Git does nothing yet."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-2",
     "href": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-2",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Process in git: edit, select, commit",
     "text": "Process in git: edit, select, commit\n\n\nUse git add to select your files in the staging area.\nThe staging area is a selection step.\nHere, you decide which files or which changes will be part of the next commit."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-3",
     "href": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-3",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Process in git: edit, select, commit",
     "text": "Process in git: edit, select, commit\n\n\nThe staging area is a list of changes you are about to record.\nIt is not a folder and not a backup.\nYou can stage edits that logically belong together."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-4",
     "href": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-4",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Process in git: edit, select, commit",
     "text": "Process in git: edit, select, commit\n\n\nUse git commit to record the staged changes and creates a snapshot in time.\nIt adds a message explaining why the change was made.\n! Commits are: permanent, ordered, traceable, attributable to a person"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-5",
     "href": "course_materials/week_02/02_versioncontrol.html#process-in-git-edit-select-commit-5",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Process in git: edit, select, commit",
     "text": "Process in git: edit, select, commit\n\n\nGit repository is the history of your project.\nIt contains all commits, who changed what, when and why.\nThis is what enables undoing mistakes, collaboration, branching, merging"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#summary",
     "href": "course_materials/week_02/02_versioncontrol.html#summary",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Summary",
     "text": "Summary\nThree levels: changes can be either unstaged, staged or commited.\n\nWhen we first make a change it is unstaged\nOnce we add the change to the staging area it is staged\nWe can then commit all staged changes\n\nFiles are added to the staging area with git add &lt;path to file or directory&gt;\nAll files in the staging area are commited with git commit"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#illustration",
     "href": "course_materials/week_02/02_versioncontrol.html#illustration",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Illustration",
     "text": "Illustration\nLet’s write a text file “example.txt” using our terminal.\n#| eval = false\necho \"first steps in git\" &gt; example.txt\n# verify\ncat example.txt\ngit status\n# Untracked files:\n#   (use \"git add &lt;file&gt;...\" to include in what will be committed)\n#   example.txt\nAdd example.txt to the staging area. Changes are added to the staging area with git add .\ngit add example.txt\n\ngit status\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#   new file:   example.txt\n\nYou can use git add . to add all unstaged changes in the current directory to the staging area\nYou can also use * to represent any sort of filename e.g. add all .txt files via *.txt"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#tracking-changes-git-commit",
     "href": "course_materials/week_02/02_versioncontrol.html#tracking-changes-git-commit",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Tracking Changes: git commit",
-    "text": "Tracking Changes: git commit\nAll changes in the staging area are commited with git commit. Every commit needs a message!\ngit status\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#   new file:   example.txt\nLet’s commit the new change\ngit commit -m \"Creating example.txt\"\n# [main (root-commit) ed61bb5] Adding example.txt\n#  1 file changed, 1 insertion(+)\n#  create mode 100644 example.txt\n\ngit status\n# On branch main\n# nothing to commit, working tree clean\nOnce a change is commited it becomes significantly harder to remove it."
+    "text": "Tracking Changes: git commit\nAll changes in the staging area are commited with git commit. Every commit needs a message!\nLet’s commit the new change\ngit commit -m \"Creating example.txt\"\n# [main (root-commit) ed61bb5] Adding example.txt\n#  1 file changed, 1 insertion(+)\n#  create mode 100644 example.txt\n\ngit status\n# On branch main\n# nothing to commit, working tree clean\nOnce a change is commited it becomes significantly harder to remove it."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#seeing-changes-git-status",
     "href": "course_materials/week_02/02_versioncontrol.html#seeing-changes-git-status",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Seeing Changes: git status 👀",
-    "text": "Seeing Changes: git status 👀\nYou can see the high-level changes and what is about to happen with git status\nLet’s change the content of example.txt. Save it. Then run:\ngit status\n# On branch main\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#         modified:   example.txt\n\n# no changes added to commit (use \"git add\" and/or \"git commit -a\")"
+    "text": "Seeing Changes: git status 👀\nYou can see the high-level changes and what is about to happen with git status\ngit status\n# On branch main\n# No commits yet\n# nothing to commit (create/copy files and use \"git add\" to track)\nLet’s change the content of example.txt. Save it. Then run:\ngit status\n# On branch main\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#         modified:   example.txt\n\n# no changes added to commit (use \"git add\" and/or \"git commit -a\")"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#additional-commands",
     "href": "course_materials/week_02/02_versioncontrol.html#additional-commands",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Additional commands",
     "text": "Additional commands\n\ngit diff: see the actual unstaged changes to files which have already been commited before line by line\ngit reset: reset your staging area (use git reset &lt;filename/directory&gt; for specific files)\ngit restore: undo any changes to files (go back to last commit stage). It allows you to just go ahead and change your files without wasting time having to create backups. 💪"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#the-anatomy-of-a-git-command",
     "href": "course_materials/week_02/02_versioncontrol.html#the-anatomy-of-a-git-command",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "The anatomy of a git command 🔍️",
     "text": "The anatomy of a git command 🔍️\nGit commands, like many other CLI tools follow a certain structure:\ngit status\ngit commit -m \"Adding example.txt\"\ngit config --global user.name \"Your Name\"\nWith -h you can get help on any git command 🚨\ngit status -h\ngit commit -h"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#lessons-dos-and-donts",
     "href": "course_materials/week_02/02_versioncontrol.html#lessons-dos-and-donts",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Lessons, Do’s and don’ts",
     "text": "Lessons, Do’s and don’ts\n\nCan be a bit complicated to use (esp. at first)\nHistory takes up file space (but only little)\nStruggles with large files\nDo not store data!\nYou do need to explicitly use it i.e. it doesn’t just work in the background\n\nNow you need to know almost everything you need (except branching, which will come)."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-git-ignore",
     "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-git-ignore",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Ignoring the ignorable: git ignore",
-    "text": "Ignoring the ignorable: git ignore\nBy default, git will track all the files in your repository.\n\nIf you want it to ignore certain files or filetypes, you have to tell it so explicitly.\nFor instance, you might save outputs that can be re-generated by your code in gitignore (intermediary data sets (csv), pdf reports that are automatically computed, graphs).\nYou also want to ignore .venv/: this directory is machine-specific (environment realization). However, you must track pyproject.tomland uv.lock (environment definition).\n\nYou can do this by using a file called .gitignore\n\nEvery file will be compared against the list in .gitignore and if it matches, git will ignore the file\n(The .gitignore file itself is tracked just like any other file)\n\nClassic examples\n# Ignore every file called data_countries.csv\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx"
+    "text": "Ignoring the ignorable: git ignore\n\nBy default, git will track all the files in your repository.\n\nIf you want it to ignore certain files or filetypes, you have to tell it so explicitly.\nFor instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, .DS_Store files on MacOS.\nYou also want to ignore .venv/: this directory is machine-specific (environment realization). However, you must track pyproject.tomland uv.lock (environment definition).\n\n\n\nYou can do this by using a file called .gitignore\n\nEvery file will be compared against the list in .gitignore and if it matches, git will ignore the file\n(The .gitignore file itself is tracked just like any other file)\n\n\n\nClassic example of a .gitignore file\n# Ignore every file called data_countries.csv\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#further-notes-on-gitignore",
     "href": "course_materials/week_02/02_versioncontrol.html#further-notes-on-gitignore",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Further notes on gitignore",
     "text": "Further notes on gitignore\nThere can be multiple different .gitignore files at different levels (one global, different local ones at the repo level). The .gitignore applies only within the directory.\nOnce a file is tracked by git, adding it to the .gitignore will not do anything. You’ll have to remove it from git (delete, and commit again).\n\nWe can see the history of our committed changes, called commits using git log.\nYou can move up and down with the arrow keys and leave the log view by pressing q."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#what-are-git-branches",
     "href": "course_materials/week_02/02_versioncontrol.html#what-are-git-branches",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "What are git branches? 🌳",
     "text": "What are git branches? 🌳\n\nBranches are alternate realities: they allow you to have different versions of your code within the same repository next to each other\nYou can switch back and forth between branches\nIn the end you can merge your changes back into your main branch"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#create-a-new-branch",
     "href": "course_materials/week_02/02_versioncontrol.html#create-a-new-branch",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Create a new branch",
     "text": "Create a new branch\n\nUse git checkout -b my-branch: creates a branch and checks it out (you are leaving main and working on your new branch)\nYou can work on your new branch as usual.\nUse git status to be aware on which branch you are on.\nUse git checkout my-branch to switch branches."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merging",
     "href": "course_materials/week_02/02_versioncontrol.html#merging",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Merging",
     "text": "Merging\n\nYou can combine two different branches by merging them with each other using git merge my-branch\nYou will merge the branch that you name in the command into the one you are currently on\nIn most cases you will want to be on the main branch when using git merge (but not always!)\nMerging will create a new “merge” commit"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#going-back-through-time",
     "href": "course_materials/week_02/02_versioncontrol.html#going-back-through-time",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Going back through time",
     "text": "Going back through time\ngit checkout You can go back to any previous commit (and many other things!) with git checkout.\n\neach commit has a “hash” (a commit id). You can go back to the a particular commit by referencing the hash.\ncheckout sends you out of a branch, i.e. detached head. You need to explicitly switch to main (or to any other branch)\n\ngit checkout 795780d"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merge-conflicts",
     "href": "course_materials/week_02/02_versioncontrol.html#merge-conflicts",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Merge conflicts",
-    "text": "Merge conflicts\nMerge conflcits occur when there are edits to the same file (and at the same location) on two different branches\n\nwhen combining changes from two branches, there is not always a clear solution.\nIf git doesn’t know how to merge the two branches, we get a merge conflict\nMerge conflicts have to be manually resolved (by us)\n\nIf you merge your branches / edits before making more changes, you can avoid conflicts"
+    "text": "Merge conflicts\n\nMerge conflicts occur when there are edits to the same file (and at the same location) on two different branches\n\nwhen combining changes from two branches, there is not always a clear solution.\nIf git doesn’t know how to merge the two branches, we get a merge conflict\nMerge conflicts have to be manually resolved (by us)\n\nIf you merge your branches / edits before making more changes, you can avoid conflicts"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#illustration-for-merge-conflicts",
     "href": "course_materials/week_02/02_versioncontrol.html#illustration-for-merge-conflicts",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Illustration for merge conflicts",
     "text": "Illustration for merge conflicts\nprint screen."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#resolving-merge-conflicts",
     "href": "course_materials/week_02/02_versioncontrol.html#resolving-merge-conflicts",
-    "title": "6,243 Introduction to Programming",
+    "title": "6,222 Introduction to Programming",
     "section": "Resolving merge conflicts",
-    "text": "Resolving merge conflicts\n\nTo resolve a merge conflict, we will have to pick one of the two versions\nOnce a solution is picked for every conflict you can commit the solution and the merge continues / finishes\nPicking a solution is easiest to do by using GUI tools\n\nDownloading a repository: git clone Alternatively, we can download a repository from the internet using the clone command. This will create a new repository on our machine and fill it with the remote repository’s contents.\ngit clone https://github.com/open-teaching/git-murder-mystery.git"
+    "text": "Resolving merge conflicts\n\nTo resolve a merge conflict, we will have to pick one of the two versions\nOnce a solution is picked for every conflict you can commit the solution and the merge continues / finishes\nPicking a solution is easiest to do by using GUI tools"
   },
   {
     "objectID": "course_materials/week_01/01b_gettingstarted.html#goals-for-today",
@@ -633,50 +633,50 @@
     "objectID": "course_materials/week_01/01a_introduction.html#the-reality-of-economics-research-and-work",
     "href": "course_materials/week_01/01a_introduction.html#the-reality-of-economics-research-and-work",
     "title": "4,222 Introduction to Programming",
-    "section": "The reality of economics research and work",
-    "text": "The reality of economics research and work\n\n\n\nWhether you’re working with data or with economic models, …\n\nYou will write code and documents on your own machine.\nYou will collaborate with colleagues, for your thesis, research projects, and in industry.\nYou will share, publish and reuse your code.\n\n… and …\n\nSomeone else will need to run your code, understand it, and build on it."
+    "section": "",
+    "text": "You will write code and documents on your own machine.\nYou will collaborate with colleagues, for your thesis, research projects, and in industry.\nYou will share, publish and reuse your code.\n\n\n\n\n\nSomeone else will need to run your code, understand it, and build on it."
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#this-course-is-about-programming",
     "href": "course_materials/week_01/01a_introduction.html#this-course-is-about-programming",
     "title": "4,222 Introduction to Programming",
-    "section": "This course is about programming",
-    "text": "This course is about programming\n\n\n\nLearning to program has become comparatively easy\n\n\n\n\nLearn a programming language like R or Python,\nWrite code that works on your machine,\nSolve problems with models or data\n\n… are now the A-B-C of an economist’s toolkit."
+    "section": "",
+    "text": "Learn a programming language like R or Python,\nWrite code that works on your machine,\nSolve problems with models or data"
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#and-programming-with-reproducibility",
     "href": "course_materials/week_01/01a_introduction.html#and-programming-with-reproducibility",
     "title": "4,222 Introduction to Programming",
-    "section": "… and programming with reproducibility",
-    "text": "… and programming with reproducibility\n\n\n\nLearning to program in a way that is reproducible, reusable and collaborative is harder\n\n\n\n\n\n\n\n\n\nDesign and execute projects in a systematic and reproducible way.\nWrite code that is reusable, maintainable and easy to share.\nApply collaborative code development practices."
+    "section": "",
+    "text": "Design and execute projects in a systematic and reproducible way.\nWrite code that is reusable, maintainable and easy to share.\nApply collaborative code development practices."
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#skills-youll-develop-in-this-course",
     "href": "course_materials/week_01/01a_introduction.html#skills-youll-develop-in-this-course",
     "title": "4,222 Introduction to Programming",
-    "section": "Skills you’ll develop in this course",
-    "text": "Skills you’ll develop in this course\n\nWrite modular code, document functions, implement error handling.\nCollaborate using Git and version control, manage shared code.\nStructure data in relational databases and query with SQL for systematic data workflows.\nProduce code that works not just on your machine, but in settings that reflect real work in research and industry."
+    "section": "",
+    "text": "Write modular code, document functions, implement error handling.\nCollaborate using Git and version control, manage shared code.\nStructure data in relational databases and query with SQL for systematic data workflows.\nProduce code that works not just on your machine, but in settings that reflect real work in research and industry."
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#lets-get-to-work",
     "href": "course_materials/week_01/01a_introduction.html#lets-get-to-work",
     "title": "4,222 Introduction to Programming",
-    "section": "Let’s get to work!",
-    "text": "Let’s get to work!\n\nLearn essential programming practices in Python.\nBuild tools using object oriented programming.\nLearn git and github.\nLearn SQL and relational databases.\n\n\n\n\nAt the end of this course, you will be able to produce structured and impactful work as an economist."
+    "section": "",
+    "text": "Learn essential programming practices in Python.\nBuild tools using object oriented programming.\nLearn git and github.\nLearn SQL and relational databases."
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#this-course-is-introductory-and-it-is-not",
     "href": "course_materials/week_01/01a_introduction.html#this-course-is-introductory-and-it-is-not",
     "title": "4,222 Introduction to Programming",
-    "section": "This course is introductory, and it is not…",
-    "text": "This course is introductory, and it is not…\n\n\n\nIntroductory yes ✅, but not in the traditional sense of the term ❌.\n\n\n\n\nAs said, learning a new programming language (Python) has become comparatively easier.\nWe will cover the basics of Python, but always with the goal of learning to program in a way that is reproducible, reusable and collaborative.\nAll of you know R because of Data Handling, many of you did DSF, you are learning Econometrics this semester: an introduction to programming is beyond the point.\n\n\n\n\n\nWe want you to develop a mindset!"
+    "section": "",
+    "text": "As said, learning a new programming language (Python) has become comparatively easier.\nWe will cover the basics of Python, but always with the goal of learning to program in a way that is reproducible, reusable and collaborative.\nAll of you know R because of Data Handling, many of you did DSF, you are learning Econometrics this semester: an introduction to programming is beyond the point.\n\n\n\n\n\nWe want you to develop a mindset!"
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#warning-on-the-course",
     "href": "course_materials/week_01/01a_introduction.html#warning-on-the-course",
     "title": "4,222 Introduction to Programming",
-    "section": "Warning on the course",
-    "text": "Warning on the course\n\nThis is the first time we give this course.\nThe materials are new, the syllabus is new.\nWe will be learning and improving the course together with you."
+    "section": "",
+    "text": "This is the first time we give this course.\nThe materials are new, the syllabus is new.\nWe will be learning and improving the course together with you."
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#about-us-1",
@@ -704,28 +704,28 @@
     "href": "course_materials/week_01/01a_introduction.html#course-structure-part-1",
     "title": "4,222 Introduction to Programming",
     "section": "Course structure: part 1",
-    "text": "Course structure: part 1\n\n\n\nSet up your environment, learn to work together with version control and git.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLecture 1\n\n\nThe big picture. Set up your environment.\n\n\nAurélien & Franziska\n\n\n20.02.2026\n\n\n\n\nLecture 2\n\n\nWorking together: intro to version control and git\n\n\nAurélien\n\n\n27.02.2026\n\n\n\n\nLecture 3\n\n\nWorking together: more about version control and git\n\n\nAurélien\n\n\n06.03.2026\n\n\n\n\n\n\n\n\n\nExercises:\n\nSession 1: 20.02.2026\nSession 2: 06.03.2026\nSession 3: 20.03.2026"
+    "text": "Course structure: part 1\n\n\n\n\nSet up your environment, learn to work together with version control and git.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLecture\n\n\nTopic\n\n\nInstructor\n\n\nDate\n\n\nDate Exercise\n\n\n\n\n\n\nLecture 1\n\n\nThe big picture. Set up your environment.\n\n\nAurélien & Franziska\n\n\n20.02.2026\n\n\n20.02.2026\n\n\n\n\nLecture 2\n\n\nWorking together: intro to version control and git\n\n\nAurélien\n\n\n27.02.2026\n\n\n27.02.2026\n\n\n\n\nLecture 3\n\n\nWorking together: more about version control and git\n\n\nAurélien\n\n\n06.03.2026\n\n\n06.03.2026"
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#course-structure-part-2",
     "href": "course_materials/week_01/01a_introduction.html#course-structure-part-2",
     "title": "4,222 Introduction to Programming",
     "section": "Course structure: part 2",
-    "text": "Course structure: part 2\n\n\n\nLearn Python from basics to classes, error handling, documentation, and debugging.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLecture 4\n\n\nIntro to python\n\n\nFranziska\n\n\n13.03.2026\n\n\n\n\nLecture 5\n\n\nPython for Data: Pandas and Matplotlib\n\n\nFranziska\n\n\n20.03.2026\n\n\n\n\nLecture 6\n\n\nPython for Data: Pandas and Matplotlib\n\n\nFranziska\n\n\n27.03.2026\n\n\n\n\nBreak\n\n\n\n\nLecture 7\n\n\nPython: Introduction to Classes (OOP)\n\n\nFranziska\n\n\n17.04.2026\n\n\n\n\n  Publication of group project, deadline for group formation\n\n\n\n\n20.04.2026\n\n\n\n\nLecture 8\n\n\nError Handling, Documentation, Debugging\n\n\nFranziska\n\n\n24.04.2026\n\n\n\n\n\n\n\n\n\nExercises:\n\nSession 4: 13.03.2026\nSession 5: 20.03.2026\nSession 6: 27.03.2026\nSession 7: 17.04.2026"
+    "text": "Course structure: part 2\n\n\n\n\nLearn Python from basics to classes, error handling, documentation, and debugging.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLecture\n\n\nTopic\n\n\nInstructor\n\n\nDate\n\n\nDate Exercise\n\n\n\n\n\n\nLecture 4\n\n\nIntro to python\n\n\nFranziska\n\n\n13.03.2026\n\n\n13.03.2026\n\n\n\n\nLecture 5\n\n\nPython for Data: Pandas and Matplotlib\n\n\nFranziska\n\n\n20.03.2026\n\n\n20.03.2026\n\n\n\n\nLecture 6\n\n\nPython for Data: Pandas and Matplotlib\n\n\nFranziska\n\n\n27.03.2026\n\n\n27.03.2026\n\n\n\n\nBreak\n\n\n\n\nLecture 7\n\n\nPython: Introduction to Classes (OOP)\n\n\nFranziska\n\n\n17.04.2026\n\n\n17.04.2026\n\n\n\n\n  Publication of group project, deadline for group formation\n\n\n20.04.2026\n\n\n\n\n\n\nLecture 8\n\n\nError Handling, Documentation, Debugging\n\n\nFranziska\n\n\n24.04.2026\n\n\n24.04.2026"
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#course-structure-part-3",
     "href": "course_materials/week_01/01a_introduction.html#course-structure-part-3",
     "title": "4,222 Introduction to Programming",
     "section": "Course structure: part 3",
-    "text": "Course structure: part 3\n\n\n\nLearn about databases, SQL, and DevOps practices.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLecture 9\n\n\nShort overview of databases and relational database management systems\n\n\nAurélien\n\n\n01.05.2026\n\n\n\n\nLecture 10\n\n\nDevops, Continuous Integration\n\n\nAurélien\n\n\n08.05.2026\n\n\n\n\nLecture 11\n\n\nConclusion, Q&A, Case Study\n\n\nAurélien & Franziska\n\n\n15.05.2026\n\n\n\n\n  Submission Group Project\n\n\n\n\n20.05.2026, 23:59\n\n\n\n\nLecture 12\n\n\nExam\n\n\nAurélien & Franziska\n\n\n22.05.2026\n\n\n\n\n\n\n\n\n\nExercises:\n\nSession 8: 01.05.2026\nQ&A session 1: 08.05.2026\nQ&A session 2: 15.05.2026\nNo exercise session on 22.05.2026."
+    "text": "Course structure: part 3\n\n\n\n\nLearn about databases, SQL, and DevOps practices.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLecture\n\n\nTopic\n\n\nInstructor\n\n\nDate\n\n\nDate Exercise\n\n\n\n\n\n\nLecture 9\n\n\nShort overview of databases and relational database management systems\n\n\nAurélien\n\n\n01.05.2026\n\n\n01.05.2026\n\n\n\n\nLecture 10\n\n\nDevops, Continuous Integration\n\n\nAurélien\n\n\n08.05.2026\n\n\nQ&A Session, 08.05.2026\n\n\n\n\nLecture 11\n\n\nConclusion, Q&A, Case Study\n\n\nAurélien & Franziska\n\n\n15.05.2026\n\n\nQ&A Session, 15.05.2026\n\n\n\n\n  Submission Group Project\n\n\n\n\n20.05.2026, 23:59\n\n\n\n\nLecture 12\n\n\nExam\n\n\nAurélien & Franziska\n\n\n22.05.2026\n\n\nNo Exercise session"
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#exam-information-group-project",
     "href": "course_materials/week_01/01a_introduction.html#exam-information-group-project",
     "title": "4,222 Introduction to Programming",
     "section": "Exam information: group project",
-    "text": "Exam information: group project\nGoals\n\nUse real-world data in a project to practice and reinforce the concepts covered in the course.\n\nProject timeline\n\nMay 20th, 23:59: Submission.\nApril 20th: Project.\nApril 20TH: Deadline fro group formation. Group of five people."
+    "text": "Exam information: group project\n\nGoals\n\nUse real-world data in a project to practice and reinforce the concepts covered in the course.\n\n\n\nProject timeline\n\nMay 20th, 23:59: Submission.\nApril 20th: Project.\nApril 20TH: Deadline fro group formation. Group of five people."
   },
   {
     "objectID": "course_materials/week_01/01a_introduction.html#exam",
@@ -1040,7 +1040,7 @@
     "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#install-git-and-the-vscode-extension-git-graph",
     "title": "4,222 Introduction to Programming",
     "section": "Install git and the VSCode extension Git Graph",
-    "text": "Install git and the VSCode extension Git Graph\nThis step has to be done before the exercise session. Please follow the instructions on the git website: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git\nFor Windows users, we recommend installing git via the Git for Windows installer: https://git-scm.com/download/win. For Mac users, git is often already installed. On Mavericks (10.9) or above you can do this simply by trying to run git from the Terminal the very first time.\n$ git --version\nIf you don’t have it installed already, it will prompt you to install it. If you want a more up to date version, you can also install it via a binary installer. A macOS Git installer is maintained and available for download at the Git website, at https://git-scm.com/download/mac."
+    "text": "Install git and the VSCode extension Git Graph\nThis step has to be done before the exercise session. Please follow the instructions on the git website: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git\nFor Windows users, we recommend installing git via the Git for Windows installer: https://git-scm.com/download/win. For Mac users, git is often already installed. On Mavericks (10.9) or above you can do this simply by trying to run git from the Terminal the very first time.\n$ git --version\nIf you don’t have it installed already, it will prompt you to install it. If you want a more up to date version, you can also install it via a binary installer. A macOS Git installer is maintained and available for download at the Git website, at https://git-scm.com/download/mac.\nIf you haven’t done it from the course, download the Git Cheat Sheet and save it in /week02"
   },
   {
     "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#configurate-git-on-your-machine",
@@ -1054,28 +1054,28 @@
     "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#initialize-a-git-repository",
     "title": "4,222 Introduction to Programming",
     "section": "Initialize a git repository",
-    "text": "Initialize a git repository\nWe will work with our folder structure:\nBECON_6243_Introduction_programming/\n├── materials/              # is empty for now, you will clone the git repo in week 3\n├── exercises/              # Student's own work\n│   ├── week01/\n│   ├── week02/\n│   ├── ...\n│   ├── week12/\n├── group_project/\n│   ├── ...\n\n\nIdentify the filepath of the directory BECON_6243_Introduction_programming_exercises/exercises.\nIn the terminal of your VSCode, navigate to the directory.\nNavigate back to exercises. There, initialize a git repository using git init. Check your git repo using git status.\n\n\nSolution:\nIn your terminal from VSCode, navigate to your cd BECON_6243_Introduction_programming/exercises. Then:\ngit init\n# Initialized empty Git repository in /Users/BECON_6243_Introduction_programming/exercises"
+    "text": "Initialize a git repository\nWe will work with our folder structure:\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the git repo in week 3\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\n\nIdentify the filepath of the directory Introduction_to_programming/exercises/week_02.\nIn the terminal, navigate to the directory.\nThere, initialize a git repository using git init. Check your git repo using git status.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nIn your terminal from VSCode, navigate to your cd Introduction_to_programming/exercises/week_02. Then:\ngit init\n# Initialized empty Git repository in /Users/Introduction_to_programming/exercises/week_02"
   },
   {
     "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#first-tracking-and-commit",
     "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#first-tracking-and-commit",
     "title": "4,222 Introduction to Programming",
     "section": "First tracking and commit",
-    "text": "First tracking and commit\n\nNavigate to week02. There, create a text file named humorforprogrammers.txt containing the sentence “Code is like humor. When you have to explain it, it’s bad.” using your terminal or simply using VSCode (new file -&gt; save)\nObserve what happens with git status. Check git log.\nAdd the file to the staging area. Check with git status.\nCreate your first commit. Commit the new file with the commit message “text file created”. Check with git status.\nChange the text in humorforprogrammers.txt to “Code is absolutely not like humor.” and save. Use git diff to see the actual unstaged changes.\nAdd the file to the staging area and commit the new file with the commit message “text file modified”. Check with git status and with git log.\nLook at your sidebar in VSCode. You’ll notice the git GUI. Now create a new file hello.txt containing “hello world!”. Observe the sidebar. Using the GUI, add and commit, using a nice commit message.\nDelete hello.txt and restore it.\n\n\nSolution:\n#| eval = false\necho \"Code is like humor. When you have to explain it, it’s bad.\" &gt; humorforprogrammers.txt\n\n# verify\ncat humorforprogrammers.txt\ngit add humorforprogrammers.txt\ngit status\ngit commit -m \"text file created\"\necho \"*Code is absolutely not like humor.*\" &gt; humorforprogrammers.txt\ngit add humorforprogrammers.txt\ngit status\ngit commit -m \"text file modified\""
+    "text": "First tracking and commit\n\nIn week_02, create a text file named humorforprogrammers.txt containing the sentence “Code is like humor. When you have to explain it, it’s bad.” using your terminal or simply using VSCode (new file -&gt; save)\nObserve what happens with git status. Check git log.\nAdd the file to the staging area. Check with git status.\nCreate your first commit. Commit the new file with the commit message “text file created”. Check with git status.\nChange the text in humorforprogrammers.txt to “Code is absolutely not like humor.” and save. Use git diff to see the actual unstaged changes.\nAdd the file to the staging area and commit the new file with the commit message “text file modified because disagreement”. Check with git status and with git log.\nLook at your sidebar in VSCode. You’ll notice the git GUI. Now create a new file hello.txt containing “hello world!”. Observe the sidebar. Using the GUI, add hello.txt and commit, using a nice commit message.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n#| eval = false\necho \"Code is like humor. When you have to explain it, it’s bad.\" &gt; humorforprogrammers.txt\n\n# verify\ncat humorforprogrammers.txt\ngit add humorforprogrammers.txt\ngit status\ngit commit -m \"text file created\"\necho \"*Code is absolutely not like humor.*\" &gt; humorforprogrammers.txt\ngit add humorforprogrammers.txt\ngit status\ngit commit -m \"text file modified because disagreement\"\nThen use the GUI to add and commit hello.txt with a nice commit message."
   },
   {
     "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#ignore-some-files",
     "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#ignore-some-files",
     "title": "4,222 Introduction to Programming",
     "section": "Ignore some files",
-    "text": "Ignore some files\n\nNavigate to your repo in exercises.\nIf you haven’t done it from the course, download the Git Cheat Sheet and save it in /week02\nCreate a new .gitignore file to ignore only this cheatsheet\nCommit the .gitignore file. Notice what’s happening.\nChange the .gitignore file to the following file. Explain what the new .gitignore file does. Commit.\n\n# Data and generated outputs\n*.csv\n*.tsv\n*.xlsx\n*.pdf\n*.png\n*.jpg\n*.html\n\n# Python\n__pycache__/\n*.pyc\n\n# Virtual environment (uv)\n.venv/\n\n# Editor / OS files\n.DS_Store # typical for macOS!\n.vscode/"
+    "text": "Ignore some files\n\nNavigate to your repo /week_02 in exercises.\nIf you haven’t done it from the course, download the Git Cheat Sheet and save it in /week_02\nCreate a new .gitignore file to ignore only this cheatsheet.\nAdd all the files to your repo and commit. Notice what’s happening.\nChange the .gitignore file to the following file. Explain what the new .gitignore file does. Commit.\n\n# Data and generated outputs\n*.csv\n*.tsv\n*.xlsx\n*.pdf\n*.png\n*.jpg\n*.html\n\n# Python\n__pycache__/\n*.pyc\n\n# Virtual environment (uv)\n.venv/\n\n# Editor / OS files\n.DS_Store # typical for macOS!\n.vscode/"
   },
   {
     "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#time-travel",
     "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#time-travel",
     "title": "4,222 Introduction to Programming",
     "section": "Time-Travel ⏱️",
-    "text": "Time-Travel ⏱️\n\nGo back to your Terminal\nOpen the git log of your respository or call it with git log. From the log, identify the commit hash (identifier) of your first commit. Note that HEAD is used to reference commits relatively, with HEAD being the current commit, HEAD~1 the previous commit, HEAD~2 the commit two commits ago, and so on.\nCheckout the previous commit using the git checkout function. As seen in the course, you can checkout to a git commit using the commit identifier. Or, you can use the following syntax: checkout HEAD~1.\nGo back to your main branch using git checkout.\n\n\nSolution\nTutors, explain briefly what a detached head is."
+    "text": "Time-Travel ⏱️\n\nGo back to your directory /week_02 in exercises.\nOpen the git log of your respository or call it with git log. From the log, identify the commit hash (identifier) of your first commit. Note that HEAD is used to reference commits relatively, with HEAD being the current commit, HEAD~1 the previous commit, HEAD~2 the commit two commits ago, and so on.\nCheckout the previous commit using the git checkout function. As seen in the course, you can checkout to a git commit using the commit identifier. Or, you can use the following syntax: checkout HEAD~1.\nGo back to your main branch using git checkout.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nPlease complete. Make sure you are ready to explain what a detached head is and how to get back to the main branch."
   },
   {
     "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#option",
@@ -1132,5 +1132,124 @@
     "title": "Exercise 3",
     "section": "Optional Practical: Collaboration",
     "text": "Optional Practical: Collaboration\n\nForm pairs\nOne person adds the other to their git-intro-example repository\n\nVia the GitHub UI (write privileges)\n\nEach, add a new entry to the library.txt\nTry to provoke a merge conflict"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#prerequisites-for-today",
+    "href": "course_materials/week_02/02_versioncontrol.html#prerequisites-for-today",
+    "title": "6,222 Introduction to Programming",
+    "section": "Prerequisites for today",
+    "text": "Prerequisites for today\n\nYou have installed git on your computer\nYou have installed VSCode and the git extension (part of the data science profile)\n\n\nGit feels complicated at first!!!\nI am trying to give you a good intuition for how it works and what it does. You will need to practice to get used to it. Don’t worry if you don’t understand everything at first, just try to get the general idea and we will practice in the exercises."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-repository",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-repository",
+    "title": "6,222 Introduction to Programming",
+    "section": "We start from a local repository",
+    "text": "We start from a local repository\n\n\nA project in git is called a repository (or repo for short) and it always corresponds to a directory on your machine. This is usually where you save your project.\nNothing here is shared with others yet.\nGit always works locally first."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#working-in-your-directory-as-usual-same-different-day",
+    "href": "course_materials/week_02/02_versioncontrol.html#working-in-your-directory-as-usual-same-different-day",
+    "title": "6,222 Introduction to Programming",
+    "section": "Working in your directory as usual (same *, different day)",
+    "text": "Working in your directory as usual (same *, different day)\n\n\nThe working directory is where you write code, edit files, run scripts, etc.\nFiles here may be untracked, modified or unfinished\nSaving a file only affects the working directory. Git does nothing yet."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-select-files-to-be-tracked",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-select-files-to-be-tracked",
+    "title": "6,222 Introduction to Programming",
+    "section": "We select files to be tracked",
+    "text": "We select files to be tracked\n\n\nUse git add to select the files that you want to include in your project history, that you want to track, and that you want to share with others."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-add-files-to-the-staging-area",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-add-files-to-the-staging-area",
+    "title": "6,222 Introduction to Programming",
+    "section": "We add files to the staging area",
+    "text": "We add files to the staging area\n\n\nThe staging area is a list of changes you are about to record.\nIt is not a folder and not a backup.\nYou can stage edits that logically belong together."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-commit-the-staged-changes",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-commit-the-staged-changes",
+    "title": "6,222 Introduction to Programming",
+    "section": "We commit the staged changes",
+    "text": "We commit the staged changes\n\n\nUse git commit to record the staged changes and creates a snapshot in time.\nIt adds a message explaining why the change was made.\n! Commits are: permanent, ordered, traceable, attributable to a person"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-now-have-a-git-repository-with-a-history-of-our-project",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-now-have-a-git-repository-with-a-history-of-our-project",
+    "title": "6,222 Introduction to Programming",
+    "section": "We now have a git repository with a history of our project",
+    "text": "We now have a git repository with a history of our project\n\n\nGit repository is the history of your project.\nIt contains all commits, who changed what, when and why.\nThis is what enables undoing mistakes, collaboration, branching, merging"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-can-then-share-our-repository-with-others",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-can-then-share-our-repository-with-others",
+    "title": "6,222 Introduction to Programming",
+    "section": "We can then share our repository with others",
+    "text": "We can then share our repository with others\n\n\nFor next week."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-directory",
+    "href": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-directory",
+    "title": "6,222 Introduction to Programming",
+    "section": "We start from a local directory",
+    "text": "We start from a local directory\n\n\nA project in git is called a repository (or repo for short) and it always corresponds to a directory on your machine. This is usually where you save your project.\nNothing here is shared with others yet.\nGit always works locally first."
+  },
+  {
+    "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#on",
+    "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#on",
+    "title": "4,222 Introduction to Programming",
+    "section": "On 🪵, 🌲",
+    "text": "On 🪵, 🌲\n\nNavigate to your repo in /week_02 in exercises.\nCreate a new branch called fixCode. Checkout the new branch. Make sure you’re on the right branch using git status. Check the different branches of your repo with git branch.\nAdd a new file fix.txt containing “I fixed the code!” and save. Add and commit the change on the new branch.\nGo back to the main branch. Check the content of the directory. Do you see the new file? Why not?\nMerge the fixCode branch into main\nRepeat all the above steps (with a different branch name & commit) using the GUI on VSCode (self-study)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nPlease complete"
+  },
+  {
+    "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#on-merge-conflicts",
+    "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#on-merge-conflicts",
+    "title": "4,222 Introduction to Programming",
+    "section": "On merge conflicts",
+    "text": "On merge conflicts\n\nCreate a new branch called conflictBranch. Checkout the new branch.\nChange the text in humorforprogrammers.txt to “Code is like humor. When you have to explain it, it’s really really bad.” and save. Add and commit the change.\nGo back to main and merge conflictBranch into main. Resolve the merge conflict and commit the merge.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nPlease complete.\nMake sure you are ready to explain how to deal with “forced” commit messages in the terminal (vim or nano) and in the GUI of VSCode."
+  },
+  {
+    "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#reference",
+    "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit.html#reference",
+    "title": "4,222 Introduction to Programming",
+    "section": "Reference",
+    "text": "Reference\nLearn git with learngitbranching.js.org."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html",
+    "href": "course_materials/week_02/02_versioncontrol.html",
+    "title": "6,222 Introduction to Programming",
+    "section": "",
+    "text": "In this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic commands in git\n\n\n\nIn the next lecture, we will\n\ncreate a github account\nlearn how to collaborate with a remote repository with git and GitHub"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#add-a-file-to-the-staging-area",
+    "href": "course_materials/week_02/02_versioncontrol.html#add-a-file-to-the-staging-area",
+    "title": "6,222 Introduction to Programming",
+    "section": "Add a file to the staging area",
+    "text": "Add a file to the staging area\nLet’s write a text file “example.txt” using our terminal.\n#| eval = false\necho \"first steps in git\" &gt; example.txt\n# verify\ncat example.txt\nAdd example.txt to the staging area. Changes are added to the staging area with git add .\ngit add example.txt\n\nYou can use git add . to add all unstaged changes in the current directory to the staging area\nYou can also use * to represent any sort of filename e.g. add all .txt files via *.txt"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#additional-git-commands",
+    "href": "course_materials/week_02/02_versioncontrol.html#additional-git-commands",
+    "title": "6,222 Introduction to Programming",
+    "section": "Additional git commands",
+    "text": "Additional git commands\n\ngit diff: see the actual unstaged changes to files which have already been commited before line by line\ngit reset: reset your staging area (use git reset &lt;filename/directory&gt; for specific files)\ngit restore: undo any changes to files (go back to last commit stage). It allows you to just go ahead and change your files without wasting time having to create backups. 💪\ngit log: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing q."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#going-back-through-time-with-git-checkout",
+    "href": "course_materials/week_02/02_versioncontrol.html#going-back-through-time-with-git-checkout",
+    "title": "6,222 Introduction to Programming",
+    "section": "Going back through time with git checkout",
+    "text": "Going back through time with git checkout\nYou can go back to any previous commit (and many other things!) with git checkout.\n\neach commit has a “hash” (a commit id). You can go back to the a particular commit by referencing the hash.\ncheckout sends you out of a branch, i.e. detached head. You need to explicitly switch to main (or to any other branch)\n\ngit checkout 795780d"
+  },
+  {
+    "objectID": "course_materials/week_01/01a_introduction.html",
+    "href": "course_materials/week_01/01a_introduction.html",
+    "title": "4,222 Introduction to Programming",
+    "section": "",
+    "text": "You will write code and documents on your own machine.\nYou will collaborate with colleagues, for your thesis, research projects, and in industry.\nYou will share, publish and reuse your code.\n\n\n\n\n\nSomeone else will need to run your code, understand it, and build on it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLearn a programming language like R or Python,\nWrite code that works on your machine,\nSolve problems with models or data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesign and execute projects in a systematic and reproducible way.\nWrite code that is reusable, maintainable and easy to share.\nApply collaborative code development practices.\n\n\n\n\n\n\n\n\n\n\nWrite modular code, document functions, implement error handling.\nCollaborate using Git and version control, manage shared code.\nStructure data in relational databases and query with SQL for systematic data workflows.\nProduce code that works not just on your machine, but in settings that reflect real work in research and industry.\n\n\n\n\n\nLearn essential programming practices in Python.\nBuild tools using object oriented programming.\nLearn git and github.\nLearn SQL and relational databases.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAs said, learning a new programming language (Python) has become comparatively easier.\nWe will cover the basics of Python, but always with the goal of learning to program in a way that is reproducible, reusable and collaborative.\nAll of you know R because of Data Handling, many of you did DSF, you are learning Econometrics this semester: an introduction to programming is beyond the point.\n\n\n\n\n\nWe want you to develop a mindset!\n\n\n\n\n\n\nThis is the first time we give this course.\nThe materials are new, the syllabus is new.\nWe will be learning and improving the course together with you."
   }
 ]

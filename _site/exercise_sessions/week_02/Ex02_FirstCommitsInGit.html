@@ -4809,21 +4809,13 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#install-git-and-the-vscode-extension-git-graph" id="toc-install-git-and-the-vscode-extension-git-graph" class="nav-link active" data-scroll-target="#install-git-and-the-vscode-extension-git-graph">Install <code>git</code> and the VSCode extension <code>Git Graph</code></a></li>
   <li><a href="#configurate-git-on-your-machine" id="toc-configurate-git-on-your-machine" class="nav-link" data-scroll-target="#configurate-git-on-your-machine">Configurate git on your machine</a></li>
-  <li><a href="#initialize-a-git-repository" id="toc-initialize-a-git-repository" class="nav-link" data-scroll-target="#initialize-a-git-repository">Initialize a <code>git</code> repository</a>
-  <ul class="collapse">
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution:</a></li>
-  </ul></li>
-  <li><a href="#first-tracking-and-commit" id="toc-first-tracking-and-commit" class="nav-link" data-scroll-target="#first-tracking-and-commit">First tracking and commit</a>
-  <ul class="collapse">
-  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution:</a></li>
-  </ul></li>
+  <li><a href="#initialize-a-git-repository" id="toc-initialize-a-git-repository" class="nav-link" data-scroll-target="#initialize-a-git-repository">Initialize a <code>git</code> repository</a></li>
+  <li><a href="#first-tracking-and-commit" id="toc-first-tracking-and-commit" class="nav-link" data-scroll-target="#first-tracking-and-commit">First tracking and commit</a></li>
   <li><a href="#ignore-some-files" id="toc-ignore-some-files" class="nav-link" data-scroll-target="#ignore-some-files">Ignore some files</a></li>
-  <li><a href="#time-travel" id="toc-time-travel" class="nav-link" data-scroll-target="#time-travel">Time-Travel ⏱️</a>
-  <ul class="collapse">
-  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2">Solution</a></li>
-  </ul></li>
-  <li><a href="#option" id="toc-option" class="nav-link" data-scroll-target="#option">Option:</a></li>
-  <li><a href="#on-and" id="toc-on-and" class="nav-link" data-scroll-target="#on-and">On 🪵, 🌲 and 💥</a></li>
+  <li><a href="#time-travel" id="toc-time-travel" class="nav-link" data-scroll-target="#time-travel">Time-Travel ⏱️</a></li>
+  <li><a href="#on" id="toc-on" class="nav-link" data-scroll-target="#on">On 🪵, 🌲</a></li>
+  <li><a href="#on-merge-conflicts" id="toc-on-merge-conflicts" class="nav-link" data-scroll-target="#on-merge-conflicts">On merge conflicts</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul>
 </nav>
     </div>
@@ -4869,6 +4861,7 @@ vertical-align: -.125em;
 <p>For Windows users, we recommend installing git via the Git for Windows installer: https://git-scm.com/download/win. For Mac users, git is often already installed. On Mavericks (10.9) or above you can do this simply by trying to run git from the Terminal the very first time.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you don’t have it installed already, it will prompt you to install it. If you want a more up to date version, you can also install it via a binary installer. A macOS Git installer is maintained and available for download at the Git website, at https://git-scm.com/download/mac.</p>
+<p>If you haven’t done it from the course, download the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> and save it in /week02</p>
 <p><br></p>
 </section>
 <section id="configurate-git-on-your-machine" class="level2">
@@ -4892,43 +4885,63 @@ vertical-align: -.125em;
 <section id="initialize-a-git-repository" class="level2">
 <h2 class="anchored" data-anchor-id="initialize-a-git-repository">Initialize a <code>git</code> repository</h2>
 <p>We will work with our folder structure:</p>
-<pre><code>BECON_6243_Introduction_programming/
-├── materials/              # is empty for now, you will clone the git repo in week 3
-├── exercises/              # Student&#39;s own work
-│   ├── week01/
-│   ├── week02/
+<pre><code>Introduction_to_programming/
+├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── exercises/               # Student&#39;s own work
+│   ├── week_01/
+│   ├── week_02/
 │   ├── ...
-│   ├── week12/
+│   ├── week_12/
 ├── group_project/
-│   ├── ...
-</code></pre>
+│   ├── ...</code></pre>
 <ol type="1">
-<li>Identify the filepath of the directory BECON_6243_Introduction_programming_exercises/exercises.</li>
-<li>In the terminal of your VSCode, navigate to the directory.</li>
-<li>Navigate back to exercises. There, initialize a git repository using <code>git init</code>. Check your git repo using <code>git status</code>.</li>
+<li>Identify the filepath of the directory Introduction_to_programming/exercises/week_02.</li>
+<li>In the terminal, navigate to the directory.</li>
+<li>There, initialize a git repository using <code>git init</code>. Check your git repo using <code>git status</code>.</li>
 </ol>
-<section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution:</h3>
-<p>In your terminal from VSCode, navigate to your cd BECON_6243_Introduction_programming/exercises. Then:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In your terminal from VSCode, navigate to your cd Introduction_to_programming/exercises/week_02. Then:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialized empty Git repository in /Users/BECON_6243_Introduction_programming/exercises</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialized empty Git repository in /Users/Introduction_to_programming/exercises/week_02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 <p><br></p>
-</section>
 </section>
 <section id="first-tracking-and-commit" class="level2">
 <h2 class="anchored" data-anchor-id="first-tracking-and-commit">First tracking and commit</h2>
 <ol type="1">
-<li>Navigate to week02. There, create a text file named <code>humorforprogrammers.txt</code> containing the sentence “<em>Code is like humor. When you have to explain it, it’s bad.</em>” using your terminal or simply using VSCode (new file -&gt; save)</li>
+<li>In <code>week_02</code>, create a text file named <code>humorforprogrammers.txt</code> containing the sentence “<em>Code is like humor. When you have to explain it, it’s bad.</em>” using your terminal or simply using VSCode (new file -&gt; save)</li>
 <li>Observe what happens with <code>git status</code>. Check <code>git log</code>.</li>
 <li>Add the file to the staging area. Check with <code>git status</code>.</li>
 <li>Create your first commit. Commit the new file with the commit message “text file created”. Check with <code>git status</code>.</li>
 <li>Change the text in <code>humorforprogrammers.txt</code> to “<em>Code is absolutely not like humor.</em>” and save. Use <code>git diff</code> to see the actual unstaged changes.</li>
-<li>Add the file to the staging area and commit the new file with the commit message “text file modified”. Check with <code>git status</code> and with <code>git log</code>.</li>
-<li>Look at your sidebar in VSCode. You’ll notice the <code>git</code> GUI. Now create a new file <code>hello.txt</code> containing “hello world!”. Observe the sidebar. Using the GUI, add and commit, using a nice commit message.</li>
-<li>Delete <code>hello.txt</code> and restore it.</li>
+<li>Add the file to the staging area and commit the new file with the commit message “text file modified because disagreement”. Check with <code>git status</code> and with <code>git log</code>.</li>
+<li>Look at your sidebar in VSCode. You’ll notice the <code>git</code> GUI. Now create a new file <code>hello.txt</code> containing “hello world!”. Observe the sidebar. Using the GUI, add <code>hello.txt</code> and commit, using a nice commit message.</li>
 </ol>
-<section id="solution-1" class="level3">
-<h3 class="anchored" data-anchor-id="solution-1">Solution:</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval = false</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Code is like humor. When you have to explain it, it’s bad.&quot;</span> <span class="op">&gt;</span> humorforprogrammers.txt</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -4940,17 +4953,20 @@ vertical-align: -.125em;
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;*Code is absolutely not like humor.*&quot;</span> <span class="op">&gt;</span> humorforprogrammers.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add humorforprogrammers.txt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file modified&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file modified because disagreement&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then use the GUI to add and commit <code>hello.txt</code> with a nice commit message.</p>
+</div>
+</div>
+</div>
 <p><br></p>
-</section>
 </section>
 <section id="ignore-some-files" class="level2">
 <h2 class="anchored" data-anchor-id="ignore-some-files">Ignore some files</h2>
 <ol type="1">
-<li>Navigate to your repo in exercises.</li>
-<li>If you haven’t done it from the course, download the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> and save it in /week02</li>
-<li>Create a new .gitignore file to ignore only this cheatsheet</li>
-<li>Commit the .gitignore file. Notice what’s happening.</li>
+<li>Navigate to your repo <code>/week_02</code> in exercises.</li>
+<li>If you haven’t done it from the course, download the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> and save it in <code>/week_02</code></li>
+<li>Create a new .gitignore file to ignore only this cheatsheet.</li>
+<li>Add all the files to your repo and commit. Notice what’s happening.</li>
 <li>Change the .gitignore file to the following file. Explain what the new .gitignore file does. Commit.</li>
 </ol>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and generated outputs</span></span>
@@ -4977,32 +4993,86 @@ vertical-align: -.125em;
 <section id="time-travel" class="level2">
 <h2 class="anchored" data-anchor-id="time-travel">Time-Travel ⏱️</h2>
 <ul>
-<li>Go back to your Terminal</li>
+<li>Go back to your directory <code>/week_02</code> in exercises.</li>
 <li>Open the git log of your respository or call it with <code>git log</code>. From the log, identify the commit hash (identifier) of your first commit. Note that <code>HEAD</code> is used to reference commits relatively, with <code>HEAD</code> being the current commit, <code>HEAD~1</code> the previous commit, <code>HEAD~2</code> the commit two commits ago, and so on.</li>
 <li>Checkout the previous commit using the <code>git checkout</code> function. As seen in the course, you can checkout to a git commit using the commit identifier. Or, you can use the following syntax: <code>checkout HEAD~1</code>.</li>
 <li>Go back to your main branch using <code>git checkout</code>.</li>
 </ul>
-<section id="solution-2" class="level3">
-<h3 class="anchored" data-anchor-id="solution-2">Solution</h3>
-<p>Tutors, explain briefly what a detached head is.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Please complete. Make sure you are ready to explain what a detached head is and how to get back to the main branch.</p>
+</div>
+</div>
+</div>
 <p><br></p>
 </section>
-</section>
-<section id="option" class="level2">
-<h2 class="anchored" data-anchor-id="option">Option:</h2>
-<p>Demo: learngitbranching.js.org</p>
-<p><br></p>
-</section>
-<section id="on-and" class="level2">
-<h2 class="anchored" data-anchor-id="on-and">On 🪵, 🌲 and 💥</h2>
+<section id="on" class="level2">
+<h2 class="anchored" data-anchor-id="on">On 🪵, 🌲</h2>
 <ul>
-<li>Go back to your Terminal and navigate to your repo</li>
-<li>Create a new branch called fixCode. Checkout the new branch. Make sure you’re on the right branch using <code>git status</code>.</li>
-<li>Add a commit on that new branch</li>
-<li>Go back to main</li>
-<li>Merge the new-feature branch into main</li>
-<li>Repeat all the above steps (with a different branch name &amp; commit) using the GUI on VSCode.</li>
+<li>Navigate to your repo in <code>/week_02</code> in exercises.</li>
+<li>Create a new branch called <code>fixCode</code>. Checkout the new branch. Make sure you’re on the right branch using <code>git status</code>. Check the different branches of your repo with <code>git branch</code>.</li>
+<li>Add a new file <code>fix.txt</code> containing “I fixed the code!” and save. Add and commit the change on the new branch.</li>
+<li>Go back to the main branch. Check the content of the directory. Do you see the new file? Why not?</li>
+<li>Merge the <code>fixCode</code> branch into main</li>
+<li>Repeat all the above steps (with a different branch name &amp; commit) using the GUI on VSCode (<em>self-study</em>)</li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Please complete</p>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="on-merge-conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="on-merge-conflicts">On merge conflicts</h2>
+<ul>
+<li>Create a new branch called <code>conflictBranch</code>. Checkout the new branch.</li>
+<li>Change the text in <code>humorforprogrammers.txt</code> to “<em>Code is like humor. When you have to explain it, it’s really really bad.</em>” and save. Add and commit the change.</li>
+<li>Go back to main and merge <code>conflictBranch</code> into main. Resolve the merge conflict and commit the merge.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Please complete.</p>
+<p>Make sure you are ready to explain how to deal with “forced” commit messages in the terminal (vim or nano) and in the GUI of VSCode.</p>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<p>Learn <code>git</code> with <a href="https://learngitbranching.js.org/">learngitbranching.js.org</a>.</p>
 
 
 </section>
@@ -5100,7 +5170,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/ASallin\.github\.io\/BEcon_4222_Introduction_Programming\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

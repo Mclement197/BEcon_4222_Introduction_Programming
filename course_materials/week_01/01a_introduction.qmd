@@ -221,16 +221,27 @@ library(purrr)
     thead th { padding: 0.8em 0.4em !important; }
   </style>
   <colgroup>
+    <col style="width: 15%">
+    <col style="width: 38%">
     <col style="width: 18%">
-    <col style="width: 40%">
-    <col style="width: 20%">
-    <col style="width: 22%">
+    <col style="width: 15%">
+    <col style="width: 14%">
   </colgroup>
+  <thead>
+    <tr style="border-bottom: 2px solid black;">
+      <th style="text-align: left;">Lecture</th>
+      <th style="text-align: left;">Topic</th>
+      <th style="text-align: left;">Instructor</th>
+      <th style="text-align: left;">Date</th>
+      <th style="text-align: left;">Date Exercise</th>
+    </tr>
+  </thead>
   <tbody>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 1</strong></td>
       <td>The big picture. Set up your environment.</td>
       <td>Aurélien & Franziska</td>
+      <td>20.02.2026</td>
       <td>20.02.2026</td>
     </tr>
     <tr>
@@ -238,24 +249,17 @@ library(purrr)
       <td>Working together: intro to version control and git</td>
       <td>Aurélien</td>
       <td>27.02.2026</td>
+      <td>27.02.2026</td>
     </tr>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 3</strong></td>
       <td>Working together: more about version control and git</td>
       <td>Aurélien</td>
       <td>06.03.2026</td>
+      <td>06.03.2026</td>
     </tr>
   </tbody>
 </table>
-
-<div style="margin-top: 3em;"></div>
-
-<div style="font-size: 0.85em; width: 100%;">
-- Exercises:
-  - Session 1: **20.02.2026**
-  - Session 2: **06.03.2026**
-  - Session 3: **20.03.2026**
-</div>
 
 
 
@@ -274,16 +278,27 @@ library(purrr)
     thead th { padding: 0.8em 0.4em !important; }
   </style>
   <colgroup>
+    <col style="width: 15%">
+    <col style="width: 38%">
     <col style="width: 18%">
-    <col style="width: 40%">
-    <col style="width: 20%">
-    <col style="width: 22%">
+    <col style="width: 15%">
+    <col style="width: 14%">
   </colgroup>
+  <thead>
+    <tr style="border-bottom: 2px solid black;">
+      <th style="text-align: left;">Lecture</th>
+      <th style="text-align: left;">Topic</th>
+      <th style="text-align: left;">Instructor</th>
+      <th style="text-align: left;">Date</th>
+      <th style="text-align: left;">Date Exercise</th>
+    </tr>
+  </thead>
   <tbody>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 4</strong></td>
       <td>Intro to python</td>
       <td>Franziska</td>
+      <td>13.03.2026</td>
       <td>13.03.2026</td>
     </tr>
     <tr>
@@ -291,46 +306,39 @@ library(purrr)
       <td>Python for Data: Pandas and Matplotlib</td>
       <td>Franziska</td>
       <td>20.03.2026</td>
+      <td>20.03.2026</td>
     </tr>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 6</strong></td>
       <td>Python for Data: Pandas and Matplotlib</td>
       <td>Franziska</td>
       <td>27.03.2026</td>
+      <td>27.03.2026</td>
     </tr>
     <tr>
-      <td colspan="4" style="text-align: center; padding: 0.8em !important;"><em>Break</em></td>
+      <td colspan="5" style="text-align: center; padding: 0.8em !important;"><em>Break</em></td>
     </tr>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 7</strong></td>
       <td>Python: Introduction to Classes (OOP)</td>
       <td>Franziska</td>
       <td>17.04.2026</td>
+      <td>17.04.2026</td>
     </tr>
     <tr>
-      <td colspan="2" style="color: #DC143C; font-style: italic; padding-left: 1.5em;">&nbsp;&nbsp;Publication of group project, deadline for group formation</td>
-      <td></td>
+      <td colspan="3" style="color: #DC143C; font-weight: bold; font-style: italic;">&nbsp;&nbsp;Publication of group project, deadline for group formation</td>
       <td style="color: #DC143C; font-weight: bold;">20.04.2026</td>
+      <td></td>
     </tr>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 8</strong></td>
       <td>Error Handling, Documentation, Debugging</td>
       <td>Franziska</td>
       <td>24.04.2026</td>
+      <td>24.04.2026</td>
     </tr>
   </tbody>
 </table>
-
-
-<div style="margin-top: 2em;"></div>
-
-<div style="font-size: 0.85em; width: 100%;">
-- Exercises:
-  - Session 4: **13.03.2026**
-  - Session 5: **20.03.2026**
-  - Session 6: **27.03.2026**
-  - Session 7: **17.04.2026**
-</div>
 
 
 ## Course structure: part 3
@@ -348,16 +356,27 @@ library(purrr)
     thead th { padding: 0.8em 0.4em !important; }
   </style>
   <colgroup>
+    <col style="width: 15%">
+    <col style="width: 38%">
     <col style="width: 18%">
-    <col style="width: 40%">
-    <col style="width: 20%">
-    <col style="width: 22%">
+    <col style="width: 15%">
+    <col style="width: 14%">
   </colgroup>
+  <thead>
+    <tr style="border-bottom: 2px solid black;">
+      <th style="text-align: left;">Lecture</th>
+      <th style="text-align: left;">Topic</th>
+      <th style="text-align: left;">Instructor</th>
+      <th style="text-align: left;">Date</th>
+      <th style="text-align: left;">Date Exercise</th>
+    </tr>
+  </thead>
   <tbody>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 9</strong></td>
       <td>Short overview of databases and relational database management systems</td>
       <td>Aurélien</td>
+      <td>01.05.2026</td>
       <td>01.05.2026</td>
     </tr>
     <tr>
@@ -365,37 +384,29 @@ library(purrr)
       <td>Devops, Continuous Integration</td>
       <td>Aurélien</td>
       <td>08.05.2026</td>
+     <td style="color: #2c640b; font-style: italic; padding-left: 1.5em;">Q&A Session, 08.05.2026</td>
     </tr>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 11</strong></td>
       <td>Conclusion, Q&A, Case Study</td>
       <td>Aurélien & Franziska</td>
       <td>15.05.2026</td>
+      <td style="color: #2c640b; font-style: italic; padding-left: 1.5em;">Q&A Session, 15.05.2026</td>
     </tr>
     <tr>
       <td colspan="2" style="color: #DC143C; font-style: italic; padding-left: 1.5em;">&nbsp;&nbsp;Submission Group Project</td>
       <td></td>
-      <td style="color: #DC143C; font-weight: bold;">20.05.2026, 23:59</td>
+      <td colspan="2" style="color: #DC143C; font-weight: bold;">20.05.2026, 23:59</td>
     </tr>
     <tr style="background-color: #F0F0F0;">
       <td><strong>Lecture 12</strong></td>
       <td>Exam</td>
       <td>Aurélien & Franziska</td>
       <td>22.05.2026</td>
+      <td style="color: #2c640b; font-style: italic; padding-left: 1.5em;">No Exercise session</td>
     </tr>
   </tbody>
 </table>
-
-
-<div style="margin-top: 3em;"></div>
-
-<div style="font-size: 0.85em; width: 100%;">
-- Exercises:
-  - Session 8: **01.05.2026**
-  - Q&A session 1: **08.05.2026**
-  - Q&A session 2: **15.05.2026**
-  - No exercise session on 22.05.2026.
-</div>
 
 
 

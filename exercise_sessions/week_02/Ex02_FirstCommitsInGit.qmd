@@ -1,7 +1,7 @@
 ---
 title: '4,222 Introduction to Programming'
-subtitle: 'Exercise Week 2: First commits in git'
-author: "Aurélien Sallin"
+subtitle: 'Exercise Week 2: First commands in `git`'
+author: "Aurélien Sallin, Lea Tschan, Valentina Sontheim"
 date: "2025-02-27"
 code-line-numbers: false
 format:
@@ -12,7 +12,7 @@ format:
     embed-resources: true
     self-contained: true
     slide-number: c
-    # theme: ../../style/hsgtheme.scss
+    theme: ../../assets/style/hsgtheme.scss
 highlight-style: dracula
 cache: false
 echo: false
@@ -34,6 +34,8 @@ $ git --version
 ```
 
 If you don’t have it installed already, it will prompt you to install it. If you want a more up to date version, you can also install it via a binary installer. A macOS Git installer is maintained and available for download at the Git website, at https://git-scm.com/download/mac.
+
+If you haven't done it from the course, download the [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf) and save it in /week02
 
 <br>
 
@@ -68,45 +70,46 @@ git config --global core.autocrlf true
 We will work with our folder structure:
 
 ```
-BECON_6243_Introduction_programming/
-├── materials/              # is empty for now, you will clone the git repo in week 3
-├── exercises/              # Student's own work
-│   ├── week01/
-│   ├── week02/
+Introduction_to_programming/
+├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── exercises/               # Student's own work
+│   ├── week_01/
+│   ├── week_02/
 │   ├── ...
-│   ├── week12/
+│   ├── week_12/
 ├── group_project/
 │   ├── ...
-
 ```
 
-1. Identify the filepath of the directory BECON_6243_Introduction_programming_exercises/exercises.
-2. In the terminal of your VSCode, navigate to the directory.
-3. Navigate back to exercises. There, initialize a git repository using `git init`. Check your git repo using `git status`.
+1. Identify the filepath of the directory Introduction_to_programming/exercises/week_02.
+2. In the terminal, navigate to the directory.
+3. There, initialize a git repository using `git init`. Check your git repo using `git status`.
 
-
-### Solution:
-In your terminal from VSCode, navigate to your cd BECON_6243_Introduction_programming/exercises. Then:
+::: {.callout-tip collapse="true"}
+#### Solution
+In your terminal from VSCode, navigate to your cd Introduction_to_programming/exercises/week_02. Then:
 
 ```bash
 git init
-# Initialized empty Git repository in /Users/BECON_6243_Introduction_programming/exercises
+# Initialized empty Git repository in /Users/Introduction_to_programming/exercises/week_02
 ```
+:::
 
 <br>
 
 ## First tracking and commit
 
-1. Navigate to week02. There, create a text file named `humorforprogrammers.txt` containing the sentence "*Code is like humor. When you have to explain it, it’s bad.*" using your terminal or simply using VSCode (new file -> save)
+1. In `week_02`, create a text file named `humorforprogrammers.txt` containing the sentence "*Code is like humor. When you have to explain it, it’s bad.*" using your terminal or simply using VSCode (new file -> save)
 2. Observe what happens with `git status`. Check `git log`.
 3. Add the file to the staging area. Check with `git status`.
 4. Create your first commit. Commit the new file with the commit message "text file created". Check with `git status`.
 5. Change the text in `humorforprogrammers.txt` to "*Code is absolutely not like humor.*" and save. Use `git diff` to see the actual unstaged changes.
-6. Add the file to the staging area and commit the new file with the commit message "text file modified".  Check with `git status` and with `git log`.
-7. Look at your sidebar in VSCode. You'll notice the `git` GUI. Now create a new file `hello.txt` containing "hello world!". Observe the sidebar. Using the GUI, add and commit, using a nice commit message.
-8. Delete `hello.txt` and restore it.
+6. Add the file to the staging area and commit the new file with the commit message "text file modified because disagreement".  Check with `git status` and with `git log`.
+7. Look at your sidebar in VSCode. You'll notice the `git` GUI. Now create a new file `hello.txt` containing "hello world!". Observe the sidebar. Using the GUI, add `hello.txt` and commit, using a nice commit message.
 
-### Solution:
+
+::: {.callout-tip collapse="true"}
+#### Solution
 
 ```bash
 #| eval = false
@@ -129,18 +132,21 @@ echo "*Code is absolutely not like humor.*" > humorforprogrammers.txt
 ```bash
 git add humorforprogrammers.txt
 git status
-git commit -m "text file modified"
+git commit -m "text file modified because disagreement"
 ```
+
+Then use the GUI to add and commit `hello.txt` with a nice commit message.
+:::
 
 
 <br>
 
 ## Ignore some files
 
-1. Navigate to your repo in exercises.
-2. If you haven't done it from the course, download the [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf) and save it in /week02
-4. Create a new .gitignore file to ignore only this cheatsheet
-5. Commit the .gitignore file. Notice what's happening.
+1. Navigate to your repo `/week_02` in exercises.
+2. If you haven't done it from the course, download the [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf) and save it in `/week_02`
+2. Create a new .gitignore file to ignore only this cheatsheet.
+5. Add all the files to your repo and commit. Notice what's happening.
 6. Change the .gitignore file to the following file. Explain what the new .gitignore file does. Commit.
 
 ```bash
@@ -169,30 +175,49 @@ __pycache__/
 
 ## Time-Travel ⏱️
 
-- Go back to your Terminal
+- Go back to your directory `/week_02` in exercises.
 - Open the git log of your respository or call it with `git log`. From the log, identify the commit hash (identifier) of your first commit. Note that `HEAD` is used to reference commits relatively, with `HEAD` being the current commit, `HEAD~1` the previous commit, `HEAD~2` the commit two commits ago, and so on.
 - Checkout the previous commit using the `git checkout` function. As seen in the course, you can checkout to a git commit using the commit identifier. Or, you can use the following syntax: `checkout HEAD~1`.
 - Go back to your main branch using `git checkout`.
 
-### Solution
-Tutors, explain briefly what a detached head is.
+::: {.callout-tip collapse="true"}
+#### Solution
+Please complete. Make sure you are ready to explain what a detached head is and how to get back to the main branch.
+:::
 
 
 <br>
 
-## Option:
-Demo: learngitbranching.js.org
+## On 🪵, 🌲
 
+- Navigate to your repo in `/week_02` in exercises.
+- Create a new branch called `fixCode`. Checkout the new branch. Make sure you're on the right branch using `git status`. Check the different branches of your repo with `git branch`.
+- Add a new file `fix.txt` containing "I fixed the code!" and save. Add and commit the change on the new branch.
+- Go back to the main branch. Check the content of the directory. Do you see the new file? Why not?
+- Merge the `fixCode` branch into main
+- Repeat all the above steps (with a different branch name & commit) using the GUI on VSCode (*self-study*)
+
+::: {.callout-tip collapse="true"}
+#### Solution
+Please complete
+:::
 
 <br>
 
-## On 🪵, 🌲 and 💥
 
-- Go back to your Terminal and navigate to your repo
-- Create a new branch called fixCode. Checkout the new branch. Make sure you're on the right branch using `git status`.
-- Add a commit on that new branch
-- Go back to main
-- Merge the new-feature branch into main
-- Repeat all the above steps (with a different branch name & commit) using the GUI on VSCode.
+## On merge conflicts
+- Create a new branch called `conflictBranch`. Checkout the new branch.
+- Change the text in `humorforprogrammers.txt` to "*Code is like humor. When you have to explain it, it’s really really bad.*" and save. Add and commit the change.
+- Go back to main and merge `conflictBranch` into main. Resolve the merge conflict and commit the merge.
 
+::: {.callout-tip collapse="true"}
+#### Solution
+Please complete.
 
+Make sure you are ready to explain how to deal with "forced" commit messages in the terminal (vim or nano) and in the GUI of VSCode.
+:::
+
+<br>
+
+## Reference
+Learn `git` with [learngitbranching.js.org](https://learngitbranching.js.org/).

@@ -1,8 +1,8 @@
 ---
-title: '6,243 Introduction to Programming'
-subtitle: 'Lecture 2: Getting Started'
-author: "Dr. Franziska Bender, Dr. Aurélien Sallin"
-date: "2025-09-16"
+title: '6,222 Introduction to Programming'
+subtitle: 'Lecture 2: Introduction to git'
+author: "Dr. Aurélien Sallin"
+date: "2026-02-27"
 code-line-numbers: false
 format:
   revealjs:
@@ -34,15 +34,14 @@ library(purrr)
 In this lecture, we will:
 
 - understand what is **version control** to collaborate
-- know basic in `git`
-- install and prepare `git`
+- know basic commands in `git`
 
 \
 
 In the next lecture, we will
 
 - create a github account
-- collaborate on git
+- learn how to collaborate with a remote repository with `git` and GitHub
 
 
 
@@ -51,12 +50,14 @@ In the next lecture, we will
 Track your work. Collaborate on programming/data science projects.
 
 
-## Prerequisites and foreword
+## Prerequisites for today
 
-- git: The tool itself
-- VS Code with the git extension
+- You have installed `git` on your computer
+- You have installed VSCode and the `git` extension (part of the data science profile)
 
-##### Git is complicated at first!!! I am trying to give you a good intuition for how it works and what it does. You will need to practice a lot to get used to it. Don't worry if you don't understand everything at first, just try to get the general idea and we will practice a lot in the exercises.
+##### Git feels complicated at first!!!
+
+I am trying to give you a good intuition for how it works and what it does. You will need to practice to get used to it. Don't worry if you don't understand everything at first, just try to get the general idea and we will practice in the exercises.
 
 
 # What is git?
@@ -140,7 +141,11 @@ All the commands we will learn are available in the official [Git Cheat Sheet](h
 
 ##### From the cli:
 
-  - On windows, open Git Bash (start menu -> Git Bash). Make sure you've installed git beforehand.
+  - In VSCode, open a terminal and select `git bash` (Windows) or `bash` (Linux/MacOS).
+
+OR:
+
+  - On Windows, open Git Bash (start menu -> Git Bash). Make sure you've installed git beforehand.
   - On MacOS, open the Terminal app.
   - On Linux, open your distribution’s (or any other) terminal emulator.
   - Let’s do this together now!
@@ -174,11 +179,85 @@ git config --global core.autocrlf true
 Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF `\n`, Windows: CRLF `\r\n`). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts.
 
 
+
+# Git: intuition
+
+## We start from a local directory
+
+![](../../assets/img/git_process0.png){width="640px"}
+
+- A project in git is called a **repository** (or **repo** for short) and it always corresponds to a directory on your machine. This is usually where you save your project.
+- Nothing here is shared with others yet.
+- Git always works locally first.
+
+
+## Working in your directory as usual (same *, different day)
+
+![](../../assets/img/git_process1.png){width="640px"}
+
+- The working directory is where you write code, edit files, run scripts, etc.
+- Files here may be untracked, modified or unfinished
+- Saving a file only affects the working directory. `Git` does nothing yet.
+
+
+## We select files to be tracked
+
+![](../../assets/img/git_process2.png){width="640px"}
+
+- Use `git add` to select the files that you want to include in your project history, that you want to track, and that you want to share with others.
+
+
+## We *add* files to the staging area
+
+![](../../assets/img/git_process3.png){width="640px"}
+
+- The staging area is a **list of changes** you are about to record.
+- It is not a folder and not a backup.
+- You can stage edits that logically belong together.
+
+
+## We *commit* the staged changes
+
+![](../../assets/img/git_process4.png){width="640px"}
+
+- Use `git commit` to record the staged changes and creates a **snapshot in time**.
+- It adds a message explaining why the change was made.
+- ! Commits are: permanent, ordered, traceable, attributable to a person
+
+
+## We now have a git repository with a history of our project
+
+![](../../assets/img/git_process5.png){width="640px"}
+
+- Git repository is the history of your project.
+- It contains all commits, who changed what, when and why.
+- This is what enables undoing mistakes, collaboration, branching, merging
+
+
+## We can then share our repository with others
+
+![](../../assets/img/git_process6.png){width="640px"}
+
+- For next week.
+
+
+## Summary
+
+Three levels: changes can be either **unstaged**, **staged** or **commited**.
+
+  - When we first make a change it is unstaged
+  - Once we **add** the change to the staging area it is **staged**
+  - We can then **commit** all staged changes
+
+Files are added to the staging area with `git add <path to file or directory>`
+
+All files in the staging area are commited with `git commit`
+
+
+
 # Let's start
 
 ## Initialize a git repository
-
-A project in git is called a **repository** (or **repo** for short) and it always corresponds to a directory on your machine. This is usually where you save your project.
 
 Remember our folder structure:
 
@@ -213,88 +292,7 @@ With git init we turn the directory into a repository.
 At this point, 🗂️ **tracking has started!**
 
 
-
-## See what’s happening: `git status`
-
-To see the current status of a git repository you can run the status command.
-
-```bash
-git status
-# On branch main
-# No commits yet
-# nothing to commit (create/copy files and use "git add" to track)
-```
-
-## Process in git: edit, select, commit
-
-![](../../assets/img/git_process0.png){fig-alt="Git cheatsheet" width="640px"}
-
-- The local repository is everything on your own computer.
-- Nothing here is shared with others yet.
-- Git always works locally first.
-
-
-## Process in git: edit, select, commit
-
-![](../../assets/img/git_process1.png){fig-alt="Git cheatsheet" width="640px"}
-
-- The working directory is where you write code, edit files, run scripts, etc.
-- Files here may be untracked, modified or unfinished
-- Saving a file only affects the working directory. Git does nothing yet.
-
-
-## Process in git: edit, select, commit
-
-![](../../assets/img/git_process2.png){fig-alt="Git cheatsheet" width="640px"}
-
-- Use `git add` to select your files in the staging area.
-- The staging area is a selection step.
-- Here, you decide which files or which changes will be part of the next commit.
-
-
-## Process in git: edit, select, commit
-
-![](../../assets/img/git_process3.png){fig-alt="Git cheatsheet" width="640px"}
-
-- The staging area is a **list of changes** you are about to record.
-- It is not a folder and not a backup.
-- You can stage edits that logically belong together.
-
-
-## Process in git: edit, select, commit
-
-![](../../assets/img/git_process4.png){fig-alt="Git cheatsheet" width="640px"}
-
-- Use `git commit` to record the staged changes and creates a snapshot in time.
-- It adds a message explaining why the change was made.
-- ! Commits are: permanent, ordered, traceable, attributable to a person
-
-
-## Process in git: edit, select, commit
-
-![](../../assets/img/git_process5.png){fig-alt="Git cheatsheet" width="640px"}
-
-- Git repository is the history of your project.
-- It contains all commits, who changed what, when and why.
-- This is what enables undoing mistakes, collaboration, branching, merging
-
-
-
-## Summary
-
-Three levels: changes can be either **unstaged**, **staged** or **commited**.
-
-  - When we first make a change it is unstaged
-  - Once we **add** the change to the staging area it is **staged**
-  - We can then **commit** all staged changes
-
-Files are added to the staging area with `git add <path to file or directory>`
-
-All files in the staging area are commited with `git commit`
-
-
-
-## Illustration
+## Add a file to the staging area
 
 Let's write a text file "example.txt" using our terminal.
 
@@ -304,38 +302,45 @@ echo "first steps in git" > example.txt
 # verify
 cat example.txt
 ```
-```bash
-git status
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#   example.txt
-```
 
-Add example.txt to the staging area. Changes are added to the staging area with
-git add <path to file or directory>.
+Add `example.txt` to the staging area. Changes are added to the staging area with git add <path to file or directory>.
 
 ```bash
 git add example.txt
-
-git status
-# Changes to be committed:
-#   (use "git rm --cached <file>..." to unstage)
-#   new file:   example.txt
 ```
 
 - You can use git add . to add all unstaged changes in the current directory to the staging area
 - You can also use * to represent any sort of filename e.g. add all .txt files via *.txt
 
 
-## Tracking Changes: git commit
-All changes in the staging area are commited with `git commit`. Every commit needs a message!
+
+## Seeing Changes: git status 👀
+You can see the high-level changes and what is about to happen with `git status`
 
 ```bash
 git status
-# Changes to be committed:
-#   (use "git rm --cached <file>..." to unstage)
-#   new file:   example.txt
+# On branch main
+# No commits yet
+# nothing to commit (create/copy files and use "git add" to track)
 ```
+
+Let's change the content of example.txt. Save it. Then run:
+
+```bash
+git status
+# On branch main
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git restore <file>..." to discard changes in working directory)
+#         modified:   example.txt
+
+# no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+
+
+## Tracking Changes: git commit
+All changes in the staging area are commited with `git commit`. Every commit needs a message!
 
 Let’s commit the new change
 
@@ -370,28 +375,12 @@ The default editor in git is (usually) vim
 -->
 
 
-## Seeing Changes: git status 👀
-You can see the high-level changes and what is about to happen with
-`git status`
-
-Let's change the content of example.txt. Save it. Then run:
-
-```bash
-git status
-# On branch main
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git restore <file>..." to discard changes in working directory)
-#         modified:   example.txt
-
-# no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-## Additional commands
+## Additional `git` commands
 
 - `git diff`: see the actual unstaged changes to files which have already been commited before line by line
 - `git reset`: reset your staging area (use `git reset <filename/directory>` for specific files)
 - `git restore`: undo any changes to files (go back to last commit stage). It allows you to just go ahead and change your files without wasting time having to create backups. 💪
+- `git log`: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing q.
 
 
 ## The anatomy of a git command 🔍️
@@ -411,36 +400,21 @@ git commit -h
 ```
 
 
-## Lessons, Do's and don'ts
-
-- Can be a bit complicated to use (esp. at first)
-- History takes up file space (but only little)
-- Struggles with large files
-- Do not store data!
-- You do need to explicitly use it i.e. it doesn’t just work in the background
-
-
-Now you need to know almost everything you need (except branching, which will come).
-
-
-
-# Part 2
-
 ## Ignoring the ignorable: `git ignore`
 
 #### By default, git will track all the files in your repository.
 
 - If you want it to ignore certain files or filetypes, you have to tell it so explicitly.
-- For instance, you might save outputs that can be re-generated by your code in gitignore (intermediary data sets (csv),  pdf reports that are automatically computed, graphs).
+- For instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, `.DS_Store` files on MacOS.
 - You also want to ignore `.venv/`: this directory is machine-specific (*environment realization*). However, you must track `pyproject.toml`and `uv.lock` (*environment definition*).
 
-#### You can do this by using a file called .gitignore
+#### You can do this by using a file called `.gitignore`
 
-- Every file will be compared against the list in .gitignore and if it matches, git will ignore the file
-- (The .gitignore file itself is tracked just like any other file)
+- Every file will be compared against the list in `.gitignore` and if it matches, git will ignore the file
+- (The `.gitignore` file itself is tracked just like any other file)
 
 
-#### Classic examples
+#### Classic example of a `.gitignore` file
 
 ```bash
 # Ignore every file called data_countries.csv
@@ -455,35 +429,26 @@ myfile.pdf
 ```
 
 
-
-
-## Further notes on gitignore
-
-There can be multiple different .gitignore files at different levels (one global, different local ones at the repo level). The .gitignore applies only within the directory.
-
-Once a file is tracked by git, adding it to the .gitignore will not do anything. You'll have to remove it from git (delete, and commit again).
-
 <!--
+## Further notes on `.gitignore`
+
+There can be multiple different `.gitignore` files at different levels (one global, different local ones at the repo level). The `.gitignore` applies only within the directory.
+
+Once a file is tracked by git, adding it to the `.gitignore` will not do anything. You'll have to remove it from git (delete, and commit again).
+
 .gitignore: global vs. local 🫥
 
-There can be multiple different .gitignore files at different levels
-There’s one global .gitignore, that will work across your whole computer
-There are local gitignore files within your repositories
-You can even have a gitignore file in a directory within your repository and it will apply only within that directory
-You can find a list of very useful templates for local.gitignore files at https://github.com/github/gitignore.
-A classic example for files to ignore globally are .DS_Store files on macOS.
+There can be multiple different `.gitignore` files at different levels
+There’s one global `.gitignore`, that will work across your whole computer
+There are local `.gitignore` files within your repositories
+You can even have a `.gitignore` file in a directory within your repository and it will apply only within that directory
+You can find a list of very useful templates for local `.gitignore` files at https://github.com/github/gitignore.
+A classic example for files to ignore globally are `.DS_Store` files on macOS.
 -->
-
-
-We can see the history of our committed changes, called commits using git log.
-
-You can move up and down with the arrow keys and leave the log view by pressing q.
-
 
 
 
 # Branches and merging
-
 
 ## What are git branches? 🌳
 
@@ -499,7 +464,6 @@ You can move up and down with the arrow keys and leave the log view by pressing 
 - Use `git checkout my-branch` to switch branches.
 
 
-
 ## Merging
 
 - You can combine two different branches by merging them with each other using `git merge my-branch`
@@ -508,10 +472,9 @@ You can move up and down with the arrow keys and leave the log view by pressing 
 - Merging will create a new “merge” commit
 
 
-## Going back through time
+## Going back through time with `git checkout`
 
-git checkout
-You can go back to any previous commit (and many other things!) with git checkout.
+You can go back to any previous commit (and many other things!) with `git checkout`.
 
 - each commit has a "hash" (a commit id). You can go back to the a particular commit by referencing the hash.
 - checkout sends you out of a branch, i.e. detached head. You need to explicitly switch to main (or to any other branch)
@@ -522,7 +485,7 @@ git checkout 795780d
 
 ## Merge conflicts
 
-#### Merge conflcits occur when there are edits to the same file (and at the same location) on two different branches
+#### Merge conflicts occur when there are edits to the same file (and at the same location) on two different branches
 
 - when combining changes from two branches, there is not always a clear solution.
 - If git doesn’t know how to merge the two branches, we get a merge conflict
@@ -530,15 +493,30 @@ git checkout 795780d
 
 If you merge your branches / edits before making more changes, you can avoid conflicts
 
+
+
 ## Illustration for merge conflicts
 
 print screen.
+
 
 ## Resolving merge conflicts
 
 - To resolve a merge conflict, we will have to pick one of the two versions
 - Once a solution is picked for every conflict you can commit the solution and the merge continues / finishes
 - Picking a solution is easiest to do by using GUI tools
+
+
+# Lessons, Do's and don'ts
+
+- Can be a bit complicated to use (esp. at first)
+- History takes up file space (but only little)
+- Struggles with large files
+- Do not store data!
+- You do need to explicitly use it i.e. it doesn’t just work in the background
+
+
+Now you need to know almost everything you need (except branching, which will come).
 
 
 
