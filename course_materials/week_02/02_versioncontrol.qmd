@@ -45,11 +45,6 @@ In the next lecture, we will
 
 
 
-## Vision
-
-Track your work. Collaborate on programming/data science projects.
-
-
 ## Prerequisites for today
 
 - You have installed `git` on your computer
@@ -57,7 +52,9 @@ Track your work. Collaborate on programming/data science projects.
 
 ##### Git feels complicated at first!!!
 
-I am trying to give you a good intuition for how it works and what it does. You will need to practice to get used to it. Don't worry if you don't understand everything at first, just try to get the general idea and we will practice in the exercises.
+- I am trying to give you a good intuition for how it works and what it does.
+- You will need to practice to get used to it.
+- Don't worry if you don't understand everything at first, just try to get the general idea and we will practice in the exercises.
 
 
 # What is git?
@@ -155,7 +152,7 @@ OR:
 
 Run the following commands in your terminal to correctly configure git on your computer.
 
-```{bash}
+```bash
 # Add your name
 git config --global user.name "Your Name"
 
@@ -163,12 +160,12 @@ git config --global user.name "Your Name"
 git config --global user.email "your.email@unisg.ch"
 
 # Use modern main branch name
-git config --global init.defaultbranch main
+git config --global init.defaultBranch main
 ```
 
 
 #### A detail (you only need to do this once at config, not to remember for the course):
-```{bash}
+```bash
 # For Linux/Mac:
 git config --global core.autocrlf input
 
@@ -191,7 +188,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 - Git always works locally first.
 
 
-## Working in your directory as usual (same *, different day)
+## Working in your directory as usual
 
 ![](../../assets/img/git_process1.png){width="640px"}
 
@@ -213,7 +210,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 - The staging area is a **list of changes** you are about to record.
 - It is not a folder and not a backup.
-- You can stage edits that logically belong together.
+- You can stage edits that logically belong together. Example: You edited 5 files but only 2 are ready.
 
 
 ## We *commit* the staged changes
@@ -225,7 +222,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 - ! Commits are: permanent, ordered, traceable, attributable to a person
 
 
-## We now have a git repository with a history of our project
+## We now have a git repository
 
 ![](../../assets/img/git_process5.png){width="640px"}
 
@@ -238,12 +235,12 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ![](../../assets/img/git_process6.png){width="640px"}
 
-- For next week.
+- For next week!
 
 
 ## Summary
 
-Three levels: changes can be either **unstaged**, **staged** or **commited**.
+Three levels: changes can be either **unstaged**, **staged** or **committed**.
 
   - When we first make a change it is unstaged
   - Once we **add** the change to the staging area it is **staged**
@@ -251,7 +248,7 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
 
 Files are added to the staging area with `git add <path to file or directory>`
 
-All files in the staging area are commited with `git commit`
+All files in the staging area are committed with `git commit`
 
 
 
@@ -297,10 +294,11 @@ At this point, 🗂️ **tracking has started!**
 Let's write a text file "example.txt" using our terminal.
 
 ```bash
-#| eval = false
 echo "first steps in git" > example.txt
+
 # verify
-cat example.txt
+cat example.txt #OR
+type example.txt
 ```
 
 Add `example.txt` to the staging area. Changes are added to the staging area with git add <path to file or directory>.
@@ -309,7 +307,7 @@ Add `example.txt` to the staging area. Changes are added to the staging area wit
 git add example.txt
 ```
 
-- You can use git add . to add all unstaged changes in the current directory to the staging area
+- You can use git add . to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)
 - You can also use * to represent any sort of filename e.g. add all .txt files via *.txt
 
 
@@ -321,32 +319,38 @@ You can see the high-level changes and what is about to happen with `git status`
 git status
 # On branch main
 # No commits yet
-# nothing to commit (create/copy files and use "git add" to track)
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#         new file:   example.txt
 ```
 
 Let's change the content of example.txt. Save it. Then run:
 
 ```bash
 git status
-# On branch main
+# No commits yet
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#         new file:   example.txt
+#
 # Changes not staged for commit:
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git restore <file>..." to discard changes in working directory)
 #         modified:   example.txt
-
-# no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 
 
 ## Tracking Changes: git commit
-All changes in the staging area are commited with `git commit`. Every commit needs a message!
+All changes in the staging area are committed with `git commit`. Every commit needs a message!
 
-Let’s commit the new change
+Let’s add and then commit the new change
 
 ```bash
+git add example.txt
 git commit -m "Creating example.txt"
-# [main (root-commit) ed61bb5] Adding example.txt
+# [main (root-commit) fc0372c] Creating example.txt
 #  1 file changed, 1 insertion(+)
 #  create mode 100644 example.txt
 
@@ -355,11 +359,313 @@ git status
 # nothing to commit, working tree clean
 ```
 
-Once a change is commited it becomes significantly harder to remove it.
+Once a change is committed it becomes significantly harder to remove it.
 <!--
-The classic way to undo a commited change in git would be to make another commit with the reverse change.
+The classic way to undo a committed change in git would be to make another commit with the reverse change.
 Modifying a commit is possible, but you should now what you are doing. Typically this is called “changing history” and is (esp. in collaborative settings) frowned upon.
 -->
+
+
+
+## Ignoring the ignorable: `.gitignore`
+
+#### By default, git will track all the files in your repository.
+
+- If you want it to ignore certain files or filetypes, you have to tell it so explicitly.
+- For instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, `.DS_Store` files on MacOS.
+- You also want to ignore `.venv/`: this directory is machine-specific (*environment realization*). However, you must track `pyproject.toml`and `uv.lock` (*environment definition*).
+
+#### You can do this by using a file called `.gitignore`
+
+- Every file will be compared against the list in `.gitignore` and if it matches, git will ignore the file
+- (The `.gitignore` file itself is tracked just like any other file)
+
+
+## Ignoring the ignorable: `.gitignore`
+
+#### Classic example of a `.gitignore` file
+
+```bash
+# Ignore every file calledmyfile.pdf
+myfile.pdf
+
+# Ignore the file called data_countries.csv in the folder data at the root of your repository
+/data/data_countries.csv
+
+# Ignore all data and generated outputs
+*.csv
+*.xlsx
+```
+
+**Do not store data on `git` -> `.gitignore`**
+
+
+<!--
+## Further notes on `.gitignore`
+
+There can be multiple different `.gitignore` files at different levels (one global, different local ones at the repo level). The `.gitignore` applies only within the directory.
+
+Once a file is tracked by git, adding it to the `.gitignore` will not do anything. You'll have to remove it from git (delete, and commit again).
+
+You can find a list of very useful templates for local `.gitignore` files at https://github.com/github/gitignore.
+A classic example for files to ignore globally are `.DS_Store` files on macOS.
+-->
+
+
+
+# Branches and merging
+
+## A project becomes a series of commits {.top}
+
+![](../../assets/img/git_commit_2.png){width=740px fig-align="center"}
+
+- Git repository is the history of your project and contains all commits.
+- Each commit is identified with a unique commit id (a hash), which is 40 hexadecimal characters long. The short form typically shown is 7 characters.
+
+
+## Going back through time with `git checkout` {.top}
+
+![](../../assets/img/git_commit_3.png){width=740px fig-align="center"}
+
+- You can go to any commit with `git checkout` by referencing the hash, i.e. `git checkout a3f7b2c`
+- `checkout` sends you **out of a branch**, i.e. detached head. You need to explicitly switch to main (or to any other branch). *Note*: We will explain detached heads in the exercises.
+
+<!-- you can go to any commit, past or future -->
+
+
+## What are git branches? 🌳 {.top}
+
+![](../../assets/img/git_commit_4.png){width=740px fig-align="center"}
+
+- Branches are **alternate realities**: they allow you to have different versions of your code within the same repository next to each other
+- You can switch back and forth between branches
+
+
+
+## Create a new branch 🌳 {.top}
+
+- Use `git checkout -b my-branch`: creates a branch and checks it out (you are leaving `main` and working on your new branch)
+- You can work on your new branch as usual.
+- Use `git status` to be aware on which branch you are on.
+- Use `git branch` to check the existing branches.
+- Use `git branch -d <branch-name>` to safely delete (`-d`) a branch after it's merged.
+- Use `git checkout my-branch` to switch branches.
+
+::: {.absolute bottom=10}
+[Since Git 2.23, `git switch` is the recommended alternative to `git checkout` for switching branches. We use `checkout` here because you'll find it everywhere online, but know that `git switch` is the modern equivalent.]{style="font-size: 0.7em; color: gray;"}
+:::
+
+
+## Why would you ever want to branch?
+
+::: {.fragment}
+**Some answers:**
+
+- **Experiment safely:** try new ideas without risking the working version of your code
+- **Work in parallel:** multiple people can work on different features at the same time without stepping on each other's toes
+- **Isolate changes:** keep unfinished work separate from the stable main branch
+- **Review before merging:** branches enable pull requests, where others can review your code before it's integrated
+
+*Analogy: branching is like making a copy of your essay draft to try a different conclusion. If it works, you keep it; if not, you throw the copy away and your original is untouched.*
+:::
+
+
+
+## Merging 🔀
+
+![](../../assets/img/git_commit_5.png){width=740px fig-align="center"}
+
+- In the end you can merge your changes back into your main branch
+- You can combine two different branches by merging them with each other using `git merge my-branch`
+
+
+## Merging 🔀
+
+![](../../assets/img/git_commit_6.png){width=740px fig-align="center"}
+
+- `git merge <branch>` merges the named branch into your current branch (usually `main`)
+- Merging will create a new "merge" commit
+
+
+## Merge conflicts ⚔️
+
+![](../../assets/img/git_merge.gif){fig-align="center"}
+
+
+## Merge conflicts ⚔️
+
+<div style="margin-top: 1em;"></div>
+
+#### Merge conflicts occur when there are edits to the same file (and at the same location) on two different branches
+
+<div style="margin-top: 1em;"></div>
+
+- When combining changes from two branches, there is not always a clear solution.
+- If git doesn’t know how to merge the two branches, we get a merge conflict
+- Merge conflicts have to be **manually resolved**
+- **DON'T PANIC**
+
+<div style="margin-top: 1em;"></div>
+
+If you merge your branches / edits before making more changes, you can avoid conflicts
+
+
+
+## Illustration for merge conflicts
+
+![](../../assets/img/git_merge.png){width=740px fig-align="center"}
+
+
+## Resolving merge conflicts
+
+- To resolve a merge conflict, you will have to go through changes one by one and pick one of the two versions
+- Determine which files are in conflict with `git status`
+- Once a solution is picked for every conflict you can add the file, commit the solution and the merge continues / finishes
+- Picking a solution is easiest to do by using GUI tools
+
+
+## Example of a merge conflict {.top}
+
+::: {.columns}
+::: {.column width="40%"}
+
+<div style="margin-top: 1em;"></div>
+
+```bash
+<<<<<<< HEAD
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> branch
+```
+:::
+::: {.column width="60%"}
+[In this conflict, the lines between `<<<<<< HEAD:index.html` and `======` are the content from the branch you are currently on.]{style="font-size: 0.9em;"}
+
+[The lines between `=======` and `>>>>>>> issue-5:index.html` are from the feature branch we are merging.]{style="font-size: 0.9em;"}
+:::
+:::
+
+<div style="margin-top: 1em;"></div>
+
+::: {.columns}
+::: {.column width="40%"}
+
+<div style="margin-top: 1em;"></div>
+
+```bash
+<div id="footer">
+please contact us at email.support@github.com
+</div>
+```
+:::
+::: {.column width="60%"}
+[To resolve the conflict, edit the whole section until it reflects the state you want in the merged result. Remove the conflict markers `<<<<<<`, `======` and `>>>>>>>`.]{style="font-size: 0.9em;"}
+
+[Then run `git add index.html` and `git commit` to finalize the merge. CONFLICTS RESOLVED.]{style="font-size: 0.9em;"}
+:::
+:::
+
+::: {.absolute bottom=10}
+[Example from [Happy Git with R](https://happygitwithr.com/git-branches)]{style="font-size: 0.7em;"}
+:::
+
+
+## Abort
+
+If, during the merge, you get confused about the state of things or make a mistake:
+
+- use `git merge --abort` to abort the merge and go back to the state prior to running `git merge`.
+- Then try to complete the merge again.
+
+
+# Last words
+
+## Self-study
+
+Once you've recovered from the lecture, please read the next three slides.
+
+- Additional `git` commands [link🔗](#additional-git-commands)
+- The anatomy of a git command 🔍️ [link🔗](#the-anatomy-of-a-git-command)
+- Stuck in an editor? Breaking free ⛓️‍💥 [link🔗](#stuck-in-an-editor-breaking-free)
+
+
+## Thanks for your attention
+
+![](../../assets/img/git_outofthere.gif){fig-align="center"}
+
+
+
+
+## Sources
+
+- Jan Simson, [Intro to git](https://simson.io/intro-to-git/)
+- Jennifer Bryan, [Happy Git and GitHub for the useR](https://happygitwithr.com/git-branches)
+
+
+
+# Self-study
+
+## Self-study
+
+Once you've recovered from the lecture, please read the next three slides.
+
+
+
+## Additional `git` commands
+
+- `git diff`: changes between your working directory and staging area (unstaged changes)
+- `git diff --staged`: changes between your staging area and the last commit (what will be committed next)
+- `git reset`: reset your staging area (use `git reset <filename/directory>` for specific files)
+- `git restore --staged <file>`: used to undo the effects of `git add` (unstage a certain file and undo a previous git add)
+- `git restore <file>`: discard local changes in a file, restoring its last committed state. Undo any changes to files (go back to last commit stage). Cannot be undone 💪
+- `git log`: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing `q`. Use  `git log --oneline` to see the log in a compact way.
+
+
+## The anatomy of a git command 🔍️
+Git commands, like many other CLI tools follow a certain structure:
+
+```bash
+git <command> [flags/options] [arguments]
+
+git status
+git commit -m "Adding example.txt" # -m for message
+git config --global user.name "Your Name"  # --global for setting the configuration globally
+```
+
+With -h you can get help on any git command 🚨
+
+```bash
+git status -h
+git commit -h
+```
+
+
+## Stuck in an editor? Breaking free ⛓️‍💥
+
+Git sometimes opens a text editor (for merge commits, rebases, etc.), and you might be stuck in it (it happens to me all the time). Here's how to escape:
+
+#### If you're in **vim** (the default):
+
+1. Press `Esc` (make sure you're in normal mode)
+2. Type `:wq` then `Enter` → **save and quit**
+3. Or type `:q!` then `Enter` → **quit without saving**
+
+#### If you're in **nano**:
+
+1. `Ctrl + O` then `Enter` → **save**
+2. `Ctrl + X` → **exit**
+
+#### Avoid this altogether:
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+This tells Git to use VS Code instead of vim/nano.
+
 
 <!--
 Stuck in an Editor 🛗
@@ -375,152 +681,11 @@ The default editor in git is (usually) vim
 -->
 
 
-## Additional `git` commands
+## Questions from students
 
-- `git diff`: see the actual unstaged changes to files which have already been commited before line by line
-- `git reset`: reset your staging area (use `git reset <filename/directory>` for specific files)
-- `git restore`: undo any changes to files (go back to last commit stage). It allows you to just go ahead and change your files without wasting time having to create backups. 💪
-- `git log`: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing q.
-
-
-## The anatomy of a git command 🔍️
-Git commands, like many other CLI tools follow a certain structure:
-
-```bash
-git status
-git commit -m "Adding example.txt"
-git config --global user.name "Your Name"
-```
-
-With -h you can get help on any git command 🚨
-
-```bash
-git status -h
-git commit -h
-```
-
-
-## Ignoring the ignorable: `git ignore`
-
-#### By default, git will track all the files in your repository.
-
-- If you want it to ignore certain files or filetypes, you have to tell it so explicitly.
-- For instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, `.DS_Store` files on MacOS.
-- You also want to ignore `.venv/`: this directory is machine-specific (*environment realization*). However, you must track `pyproject.toml`and `uv.lock` (*environment definition*).
-
-#### You can do this by using a file called `.gitignore`
-
-- Every file will be compared against the list in `.gitignore` and if it matches, git will ignore the file
-- (The `.gitignore` file itself is tracked just like any other file)
-
-
-#### Classic example of a `.gitignore` file
-
-```bash
-# Ignore every file called data_countries.csv
-myfile.pdf
-
-# Ignore the file called data_countries.csv in the folder data at the root of your repository
-/data/data_countries.csv
-
-# Ignore all data and generated outputs
-*.csv
-*.xlsx
-```
-
-
-<!--
-## Further notes on `.gitignore`
-
-There can be multiple different `.gitignore` files at different levels (one global, different local ones at the repo level). The `.gitignore` applies only within the directory.
-
-Once a file is tracked by git, adding it to the `.gitignore` will not do anything. You'll have to remove it from git (delete, and commit again).
-
-.gitignore: global vs. local 🫥
-
-There can be multiple different `.gitignore` files at different levels
-There’s one global `.gitignore`, that will work across your whole computer
-There are local `.gitignore` files within your repositories
-You can even have a `.gitignore` file in a directory within your repository and it will apply only within that directory
-You can find a list of very useful templates for local `.gitignore` files at https://github.com/github/gitignore.
-A classic example for files to ignore globally are `.DS_Store` files on macOS.
--->
-
-
-
-# Branches and merging
-
-## What are git branches? 🌳
-
-- Branches are **alternate realities**: they allow you to have different versions of your code within the same repository next to each other
-- You can switch back and forth between branches
-- In the end you can merge your changes back into your main branch
-
-## Create a new branch
-
-- Use `git checkout -b my-branch`: creates a branch and checks it out (you are leaving `main` and working on your new branch)
-- You can work on your new branch as usual.
-- Use `git status` to be aware on which branch you are on.
-- Use `git checkout my-branch` to switch branches.
-
-
-## Merging
-
-- You can combine two different branches by merging them with each other using `git merge my-branch`
-- You will merge the branch that you name in the command into the one you are currently on
-- In most cases you will want to be on the main branch when using git merge (but not always!)
-- Merging will create a new “merge” commit
-
-
-## Going back through time with `git checkout`
-
-You can go back to any previous commit (and many other things!) with `git checkout`.
-
-- each commit has a "hash" (a commit id). You can go back to the a particular commit by referencing the hash.
-- checkout sends you out of a branch, i.e. detached head. You need to explicitly switch to main (or to any other branch)
-
-```bash
-git checkout 795780d
-```
-
-## Merge conflicts
-
-#### Merge conflicts occur when there are edits to the same file (and at the same location) on two different branches
-
-- when combining changes from two branches, there is not always a clear solution.
-- If git doesn’t know how to merge the two branches, we get a merge conflict
-- Merge conflicts have to be manually resolved (by us)
-
-If you merge your branches / edits before making more changes, you can avoid conflicts
-
-
-
-## Illustration for merge conflicts
-
-print screen.
-
-
-## Resolving merge conflicts
-
-- To resolve a merge conflict, we will have to pick one of the two versions
-- Once a solution is picked for every conflict you can commit the solution and the merge continues / finishes
-- Picking a solution is easiest to do by using GUI tools
-
-
-# Lessons, Do's and don'ts
-
-- Can be a bit complicated to use (esp. at first)
-- History takes up file space (but only little)
-- Struggles with large files
-- Do not store data!
-- You do need to explicitly use it i.e. it doesn’t just work in the background
-
-
-Now you need to know almost everything you need (except branching, which will come).
-
-
-
-Downloading a repository: git clone
-Alternatively, we can download a repository from the internet using the clone command. This will create a new repository on our machine and fill it with the remote repository’s contents.
-
-git clone https://github.com/open-teaching/git-murder-mystery.git
+Why can't I just commit directly without staging?
+If I git add then edit again, does the commit include the new edits?
+How often should I commit?
+When I create a branch, does it copy all my files?
+How do I avoid merge conflicts in group projects?
+Is there a way to practice safely where I can't break anything?

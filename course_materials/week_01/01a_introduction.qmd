@@ -414,17 +414,17 @@ library(purrr)
 
 ## Exam information: group project
 
-
-
 #### Goals
-- Use real-world data in a project to practice and reinforce the concepts covered in the course.
+The goal of this project is to move beyond simple scripts and build a reusable Python tool for economic analysis. Working in groups, you will identify an economic question, source a relevant dataset, and build a Python class that automates the cleaning, analysis, and visualization of that data.
+
+You will be submitting a collaborative Git repository including the tool you developed and two Quarto (`.qmd`) documents: A **Research Brief** (the results) and a **User Manual** (the instructions) so that anyone can pick up your tool and use it instantly.
+
+*You will get more Information on what we expect throughout the course, and a fact sheet on April, 20th*
 
 #### Project timeline
 
+- **April 20th**: Deadline for group formation. Group of five people (groups are created on Canvas, you can create your own groups, and incomplete groups will be reassigned and/or filled by the instructors if needed).
 - **May 20th, 23:59**: Submission.
-- **April 20th**: Project.
-- **April 20TH**: Deadline fro group formation. Group of five people.
-
 
 
 
@@ -448,9 +448,7 @@ library(purrr)
 
 ## Contact for personal questions only!
 
-Aurélien : until Break
-
-Franziska: after break.
-
-Do not contact the assistants.
+- Aurélien : until Break
+- Franziska: after break.
+- Do not contact the assistants regarding organisational questions.
 
