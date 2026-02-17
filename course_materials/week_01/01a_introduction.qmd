@@ -128,10 +128,10 @@ library(purrr)
 - We want you to develop a **mindset**!
 
 
-## Warning on the course
+## Fair warning
 
-- This is the first time we give this course.
-- The materials are new, the syllabus is new.
+- Version `1.0` of this course. This is the first time we give this course.
+- Materials and syllabus are brand new.
 - We will be learning and improving the course together with you.
 
 
@@ -145,7 +145,7 @@ library(purrr)
 
 | | | | | | |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| <img src="../../assets/img/aureliensallin.jpg" height="225"/> | <img height="225"/> | <img src="../../assets/img/leatschan.jpg" height="225"/> | <img height="225"/> | <img height="225"/> | <img height="225"/> |
+| <img src="../../assets/img/aureliensallin.jpg" height="225"/> | <img height="225"/> | <img src="../../assets/img/leatschan.jpg" height="225"/> | <img src= "../../assets/img/valentinasontheim.jpg" height="225"/> | <img src="../../assets/img/andrijalukovic.jpg" height="225"/> | <img src="../../assets/img/johannescordier.jpg" height="225"/> |
 | <span style="font-size: 0.8em;">Aurélien<br>Sallin</span> | <span style="font-size: 0.8em;">Franziska<br>Bender</span> | <span style="font-size: 0.8em;">Lea<br>Tschan</span> | <span style="font-size: 0.8em;">Valentina<br>Sontheim</span> | <span style="font-size: 0.8em;">Andrija<br>Lukovic</span> | <span style="font-size: 0.8em;">Johannes<br>Cordier</span> |
 
 </div>
@@ -412,7 +412,7 @@ library(purrr)
 
 # Examination
 
-## Exam information: group project
+## Exam information: Group project
 
 #### Goals
 The goal of this project is to move beyond simple scripts and build a reusable Python tool for economic analysis. Working in groups, you will identify an economic question, source a relevant dataset, and build a Python class that automates the cleaning, analysis, and visualization of that data.
@@ -421,7 +421,11 @@ You will be submitting a collaborative Git repository including the tool you dev
 
 *You will get more Information on what we expect throughout the course, and a fact sheet on April, 20th*
 
-#### Project timeline
+
+
+## Exam information: Project timeline
+
+<div style="margin-top: 1em;"></div>
 
 - **April 20th**: Deadline for group formation. Group of five people (groups are created on Canvas, you can create your own groups, and incomplete groups will be reassigned and/or filled by the instructors if needed).
 - **May 20th, 23:59**: Submission.
@@ -442,7 +446,7 @@ You will be submitting a collaborative Git repository including the tool you dev
 
 - Everything on Canvas, then on github
 - Only one Canvas page
-- Questions only through Canvas forum!
+- Questions only through the Canvas forum!
 
 
 

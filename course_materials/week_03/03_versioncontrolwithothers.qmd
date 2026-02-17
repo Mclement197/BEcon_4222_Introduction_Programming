@@ -1,8 +1,8 @@
 ---
-title: '6,243 Introduction to Programming'
-subtitle: 'Lecture 3: Git with others'
+title: '6,222 Introduction to Programming'
+subtitle: 'Lecture 3: Git and GitHub for collaboration'
 author: "Dr. Franziska Bender, Dr. Aurélien Sallin"
-date: "2025-09-16"
+date: "2026-03-06"
 code-line-numbers: false
 format:
   revealjs:
@@ -37,45 +37,83 @@ In this lecture and exercise session, we will:
 - set up a collaborative project on git
 
 
+# Short Recap
 
-## Vision
-
-Collaborate on programming/data science projects.
-
-
-
-## You have been working locally, what now?
+## Git is a Version Control System
 
 ![](../../assets/img/git_process5.png)
 
+**Basic workflow:**
+`git init` → `git add` → `git commit`
+
+**Key concepts:**
+Working directory → Staging area → Repository
+
+Use `.gitignore` to exclude files you don't want to track.
+
+<!--
 Three levels: changes can be either **unstaged**, **staged** or **commited**.
 
   - When we first make a change it is unstaged
   - Once we **add** the change to the staging area it is **staged**
   - We can then **commit** all staged changes
+-->
 
 
-## `push` and `pull` to communicate with the world
+## Recap: Branches and merging
+
+![](../../assets/img/git_commit_6.png)
+
+**Branches** let you work on features without breaking main code.
+
+`git branch feature` → `git checkout feature` → make changes → `git commit`
+
+**Merging** brings changes from one branch into another.
+
+`git checkout main` → `git merge feature`
+
+**Merge conflicts** happen when changes overlap. Resolve manually, then commit.
+
+
+
+
+# Remotes 🌐️
+
+## Communicate and collaborate via remotes
 
 ![](../../assets/img/git_process6.png)
 
+- To collaborate with others we need a remote
+- GitHub is the de facto standard with a big community
 
 
+## Remotes 🌐️
 
+- A **remote** is a version of your repository stored on a website like GitHub.
 
-## What is GitHub?
+#### What is GitHub?
 
 - GitHub is a website to host git repositories
 - By having your git repository online, you can easily collaborate with others
-- Similar, alternative websites like Bitbucket or GitLab
+- There are alternative hosts like Bitbucket or GitLab
 
 
 ## Why having your code on GitHub?
 
+::: {.columns}
+::: {.column width="30%"}
+![](../../assets/img/github.png){width=80% fig-align="center"}
+:::
+::: {.column width="70%"}
+
+<div style="margin-top: 1em;"></div>
+
 - Backup of your project (you can work from different machines)
 - Collaboration in groups and also with people you don't know
 - Free and Open-Source Software (FOSS)
-- Visibility as Coder (your porfolio - GitHub fulfills some function of a social network for programmers)
+- Visibility as a Programmer (your porfolio - GitHub fulfills some function of a social network for programmers)
+:::
+:::
 
 
 ## Github.com: a demo
@@ -84,6 +122,101 @@ Check some interesting **GitHub repositories**: [PaddleOCR](https://github.com/P
 
 Or **GitHub pages**, like [the GitHub profile of the World Bank](https://github.com/worldbank) or [build your own](https://github.com/codecrafters-io/build-your-own-x) page with "build-your-own" projects.
 
+
+# Working with remotes
+
+## Four basic commands to work with remotes
+
+![](../../assets/img/git_process7.png)
+
+- `git clone`, `git remote`
+- `git pull`, `git push`
+- The main remote is usually called `origin`.
+- Remotes also have branches, just like your local repository.
+
+
+## Adding a remote from an existing repository
+
+When you want to add an **existing** repository to GitHub, you will have to add the remote yourself
+
+```bash
+git remote add <remote name> <remote URL>
+```
+
+<br>
+
+It only works if you are not in a repo which has already been linked to a remote.
+
+```bash
+git remote add origin git@github.com:asallin/BECON_4222_Introduction_Programming.git
+```
+
+<br>
+
+To learn about all possible commands for remotes use `-h`
+
+```bash
+git remote -h
+```
+
+
+## Cloning a repository
+
+- You can download repositories from GitHub (and anywhere else), by **cloning** them
+- For public repositories, `git clone` just works, for private ones you will need to be authenticated
+- If you use `git clone`, the remote named `origin` is set up for you automatically.
+- `git clone <remote URL>`
+
+
+## Syncing Changes: overview
+
+![](../../assets/img/git_process7.png)
+
+You first `pull` the latest changes from the remote and then `push` your own changes.
+
+
+## Getting Changes: `git pull`
+
+- To get the newest updates from GitHub, type `git pull` in your terminal.
+- This command downloads any changes from the online repository and adds them to your current work.
+- Usually, your branch is already set up to follow the matching branch on GitHub.
+  - If it isn't, Git will show you a warning and tell you what to do.
+
+```bash
+# Pull from the tracked remote branch
+git pull
+
+# Pull from a specific branch
+git pull <remote> <branch>
+```
+
+## Getting Changes: `git pull`
+
+- `git pull` does does things under the hood: it *fetches* the latest changes and merges them into the current branch.
+- (You can also run `git fetch` to fetch the latest changes and then `git merge <remote>/branch` to merge them)
+- When you run `git pull` for the first time, you will need to choose a default *merge strategy*
+- When you receive the message, just copy this line of code (or the one you prefer)
+
+```bash
+# Default to merge
+git config pull.rebase false
+```
+
+
+## Pushing Your Changes: `git push`
+
+- You can send *your* changes to github by running `git push`
+- This only works if there are no new changes at the remote
+  - If there have been changes since your last `pull` you need to `pull` again
+
+```bash
+# Push to the tracked remote branch
+git push
+
+# Push a branch to the remote for the first time
+# -u is short for --set-upstream
+git push -u <remote> <branch>
+```
 
 
 # Connecting git and github
@@ -114,12 +247,6 @@ ssh -T git@github.com
 ```
 
 
-## Cloning a Repository
-
-- You can download repositories from GitHub (and anywhere else), by **cloning** them
-- For public repositories, `git clone` just works, for private ones you will need to be authenticated
-- `git clone <remote URL>`
-
 
 ## Cloning the course repository
 
@@ -141,6 +268,7 @@ BECON_4222_Introduction_programming/
 ```
 
 
+# Cloning a repository
 
 ## Cloning the course repository
 
@@ -186,96 +314,55 @@ BECON_4222_Introduction_programming/
 
 Every week, you can refresh the course content with `git pull`.
 
+# Create a repo
+
+## Creating a GitHub repository
+
+#### Click **New repository** on GitHub
+
+- Choose a **name** (e.g., `my-project`)
+- Set **visibility**: Public (anyone can see) or Private (only you and collaborators)
+- Check **Add a README file**
 
 
-# Remotes
+## The README.md
 
-## Remotes
-
-- A **remote** is a version of your repository stored on a website like GitHub.
-- Remotes also have branches, just like your local repository.
-- The main remote is usually called `origin`.
-  - If you use `git clone`, the remote named `origin` is set up for you automatically.
+- First thing visitors see when they open your repo
+- Written in Markdown
+- Should describe: what the project is, how to install/run it, how to contribute
+- A good README makes your project accessible and professional
 
 
-## Adding a Remote
-
-When you want to add an **existing** repository to GitHub, you will have to add the remote yourself
-
-```bash
-git remote add <remote name> <remote URL>
-```
-
-<br>
-
-It only works if you are not in a repo which has already been linked to a remote.
+## Clone it and start working
 
 ```bash
-git remote add origin git@github.com:asallin/BECON_4222_Introduction_Programming.git
-```
-
-<br>
-
-To learn about all possible commands for remotes use `-h`
-
-```bash
-git remote -h
+git clone git@github.com:yourusername/my-project.git
 ```
 
 
+## Pull Requests
 
-# Syncing Changes
+A **pull request** (PR) is a request to merge changes from one branch into another.
 
-## Syncing Changes: Overview
+#### Why?
 
-You first `pull` the latest changes from the remote and then `push` your own changes.
+- You don't push directly to `main` — you work on a branch, then ask for your changes to be reviewed and merged
+- PRs are the standard way to collaborate on GitHub
 
-![](../../assets/img/git_process7.png)
+#### Workflow
 
+1. Create a branch and make your changes
+2. Push the branch to GitHub: `git push -u origin my-branch`
+3. On GitHub, open a **Pull Request** from `my-branch` → `main`
+4. Collaborators review, comment, request changes
+5. Once approved, **merge** the PR
 
-## Getting Changes: `git pull`
-
-- To get the newest updates from GitHub, type `git pull` in your terminal.
-- This command downloads any changes from the online repository and adds them to your current work.
-- Usually, your branch is already set up to follow the matching branch on GitHub.
-  - If it isn't, Git will show you a warning and tell you what to do.
-
-```bash
-# Pull from the tracked remote branch
-git pull
-
-# Pull from a specific branch
-git pull <remote> <branch>
-```
-
-- `git pull` does does things under the hood: it fetches the latest changes and merges them into the current branch.
-- (You can also run `git fetch` to fetch the latest changes and then `git merge <remote>/branch` to merge them)
+PRs keep the `main` branch clean and give the team a chance to review code before it's integrated.
 
 
+## Sources
 
-## Note on Getting Changes: `git pull`
+https://smonsays.github.io/git-workshop/#/iv.-collaboration
 
-- When you run `git pull` for the first time, you will need to choose a default *merge strategy*
-- When you receive the message, just copy this line of code (or the one you prefer)
-
-```bash
-# Default to merge
-git config pull.rebase false
-```
-
-
-## Pushing Your Changes: `git push`
-
-- You can send *your* changes to github by running `git push`
-- This only works if there are no new changes at the remote
-  - If there have been changes since your last `pull` you need to `pull` again
-
-```bash
-# Push to the tracked remote branch
-git push
-
-# Push a branch to the remote for the first time
-# -u is short for --set-upstream
-git push -u <remote> <branch>
-```
+Jan Simon
 
