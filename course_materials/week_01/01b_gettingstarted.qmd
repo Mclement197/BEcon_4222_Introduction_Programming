@@ -158,7 +158,7 @@ From the terminal, you can use shortcuts instead of absolute paths.
 
 `..`&nbsp;&nbsp;&nbsp;&nbsp;parent directory
 
-`~`&nbsp;&nbsp;&nbsp;&nbsp;your home directory
+`~`&nbsp;&nbsp;&nbsp;&nbsp;your home directory (bash)
 </div>
 
 #### Examples:
@@ -169,7 +169,7 @@ From the terminal, you can use shortcuts instead of absolute paths.
 
 ## Main terminal commands
 
-When you first open Terminal you typically are placed in your **home directory**.
+When you first open Terminal, you typically are placed in your **home directory**.
 
 ##### Main commands:
 
@@ -210,64 +210,9 @@ When you first open Terminal you typically are placed in your **home directory**
   </tbody>
 </table>
 
-#####  Tips:
+#####  Tips and additional commands:
 
-- Running `cd` without arguments takes you to `~`
-- Use Tab for auto-completion
-- Use arrow keys to browse command history
-- All these commands work from wherever your shell is currently pointing
-- Look at Brad Traversy's [Common Terminal Commands](https://gist.github.com/bradtraversy/cc180de0edee05075a6139e42d5f28ce)
-
-
-## Working with files in a terminal
-<table style="width:100%; table-layout:fixed; font-size:0.75em;">
-  <colgroup>
-    <col style="width:30%;">
-    <col style="width:35%;">
-    <col style="width:35%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>bash/macOS</th>
-      <th>Command Prompt (Windows)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Create an empty file</td>
-      <td><code>touch hello.txt</code></td>
-      <td><code>echo. &gt; hello.txt</code></td>
-    </tr>
-    <tr>
-      <td>Delete a file</td>
-      <td><code>rm hello.txt</code></td>
-      <td><code>del hello.txt</code></td>
-    </tr>
-    <tr>
-      <td>Print file contents</td>
-      <td><code>cat hello.txt</code></td>
-      <td><code>type hello.txt</code></td>
-    </tr>
-    <tr>
-      <td>Edit a file</td>
-      <td><code>nano hello.txt</code></td>
-      <td><code>notepad hello.txt</code></td>
-    </tr>
-    <tr>
-      <td>Copy a file</td>
-      <td><code>cp hello.txt hello_copy.txt</code></td>
-      <td><code>copy hello.txt hello_copy.txt</code></td>
-    </tr>
-    <tr>
-      <td>Move/rename a file</td>
-      <td><code>mv hello.txt goodbye.txt</code></td>
-      <td><code>move hello.txt goodbye.txt</code></td>
-    </tr>
-  </tbody>
-</table>
-
-MacOS and Linux (`bash`, `zsh`) are unix systems. That's why Mac and Linux use the same terminal commands (ls, cat, etc.), while Windows uses different ones (dir, type, etc.).
+Check the tips and experiment with additional commands in the [self-study part](#self-study) (relevant for the exam).
 
 
 ## Naming Conventions
@@ -281,9 +226,9 @@ MacOS and Linux (`bash`, `zsh`) are unix systems. That's why Mac and Linux use t
 
 #### Don'ts:
 
-  - **Do not use spaces** in folder or file names! Never.
-  - Avoid special characters (remember Data Handling and encoding nightmares).
-  - Make sure to **not switch styles** within a project.
+- **Do not use spaces** in folder or file names! Never.
+- Avoid **special characters** (remember Data Handling and encoding nightmares).
+- Make sure to **not switch styles** within a project.
 
 
 
@@ -305,12 +250,12 @@ An **IDE** (**I**ntegrated **D**evelopment **E**nvironment) is a tool designed t
 
 Compared to a basic text editor, an IDE typically provides:
 
-  - syntax highlighting
-  - code completion and suggestions
-  - error detection
-  - integrated terminal
-  - debugging tools
-  - version control integration (e.g. Git)
+- syntax highlighting
+- code completion and suggestions
+- error detection
+- integrated terminal
+- debugging tools
+- version control integration (e.g. Git)
 
 These features reduce errors and make programming more structured and productive.
 
@@ -392,15 +337,15 @@ Python is a good first (and second...) programming language.
 
 
 
-## Python in the shell or in a .py file
+## Python in the shell or in a .py file {visibility="hidden"}
 
 You can use Python in different ways:
 
 - interactively in the terminal
-- by writing code in .py files
-- by writing code in .ipynb Jupyter or .qmd Quarto notebooks
+- by writing code in `.py` files
+- by writing code in `.ipynb` Jupyter or `.qmd` Quarto notebooks
 
-We will mainly work with .py files inside projects.
+We will mainly work with `.py` files inside projects.
 
 ```{python}
 #| eval: false
@@ -425,7 +370,7 @@ If you know R (which you do...), Python will feel familiar, but not identical.
 
 
 
-## Indentation
+## Indentation {visibility="hidden"}
 
 In Python, indentation defines the structure of your code.
 
@@ -449,7 +394,7 @@ print("outside the block")
 -->
 
 
-## Counting starts at 0
+## Counting starts at 0 {visibility="hidden"}
 
 In Python, many things start counting at 0 (**zero-based indexing**).
 
@@ -525,13 +470,13 @@ Think of each project as having its own **kitchen**:
 ::: {.columns}
 ::: {.column width="50%"}
 <div style="text-align: center;">
-  <img src="https://images.unsplash.com/photo-1602028915047-37269d1a73f7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="280px" />
+  <img src="https://images.unsplash.com/photo-1602028915047-37269d1a73f7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="260px" />
 </div>
 :::
 
 ::: {.column width="50%"}
 <div style="text-align: center;">
-  <img src="https://images.unsplash.com/photo-1556910096-6f5e72db6803?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="280px" />
+  <img src="https://images.unsplash.com/photo-1556910096-6f5e72db6803?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="260px" />
 </div>
 :::
 :::
@@ -607,13 +552,89 @@ uv run main.py
 `uv` will store in each environment the version of the interpreter, the packages, and will "lock" each package version for the project in a `lock` file.
 
 
-# Until next time
+# Until next time!
 
 
 ## For next time
 
-- install git: we will start using version control from the next lecture.
+- install `git`: we will start using version control from the next lecture.
 
+
+# Self study
+
+## A note on self-study
+
+The self-study part contains additional materials that are difficult to cover in the main lecture. We expect you to go through these materials on your own time, and we will ask questions about them in the exam.
+
+
+
+## Additional useful commands to work with files in a terminal
+
+<table style="width:100%; table-layout:fixed; font-size:0.75em;">
+  <colgroup>
+    <col style="width:30%;">
+    <col style="width:35%;">
+    <col style="width:35%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>bash/macOS</th>
+      <th>Command Prompt (Windows)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create an empty file</td>
+      <td><code>touch hello.txt</code></td>
+      <td><code>echo. &gt; hello.txt</code></td>
+    </tr>
+    <tr>
+      <td>Delete a file</td>
+      <td><code>rm hello.txt</code></td>
+      <td><code>del hello.txt</code></td>
+    </tr>
+    <tr>
+      <td>Print file contents</td>
+      <td><code>cat hello.txt</code></td>
+      <td><code>type hello.txt</code></td>
+    </tr>
+    <tr>
+      <td>Edit a file</td>
+      <td><code>nano hello.txt</code></td>
+      <td><code>notepad hello.txt</code></td>
+    </tr>
+    <tr>
+      <td>Copy a file</td>
+      <td><code>cp hello.txt hello_copy.txt</code></td>
+      <td><code>copy hello.txt hello_copy.txt</code></td>
+    </tr>
+    <tr>
+      <td>Move/rename a file</td>
+      <td><code>mv hello.txt goodbye.txt</code></td>
+      <td><code>move hello.txt goodbye.txt</code></td>
+    </tr>
+  </tbody>
+</table>
+
+MacOS and Linux (`bash`, `zsh`) are unix systems. That's why Mac and Linux use the same terminal commands (`ls`, `cat`, etc.), while Windows uses different ones (`dir`, `type`, etc.).
+
+
+## Tips when using the terminal
+
+#### Some tips to work efficiently in the terminal:
+
+- Running `cd` without arguments takes you to `~`
+- Use Tab for auto-completion of file and directory names
+- Use arrow keys to browse command history
+- All terminal commands work from wherever your shell is currently pointing, so you can navigate to the right directory and then run commands without worrying about paths
+- Look at Brad Traversy's [Common Terminal Commands](https://gist.github.com/bradtraversy/cc180de0edee05075a6139e42d5f28ce)
+
+
+Experiment with these tips and additional commands in the terminal to get comfortable with it!
+
+
+# References and further reading
 
 ## References:
 
