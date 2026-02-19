@@ -31,7 +31,7 @@ library(purrr)
 
 
 
-# Welcome to Introduction to Programming!
+# Welcome!
 
 
 ## The reality of economics research and work
@@ -49,26 +49,23 @@ library(purrr)
   - **Someone else** will need to run your code, understand it, and build on it.
 
 
-## This course is about programming
+## This course is about programming...
 
 <div style="margin-top: 3em;"></div>
 
-##### Learning to program has become comparatively easy
 
-<div style="margin-top: 1em;"></div>
+  - Learning a programming language like **Python**,
+  - Writing code that works on your machine,
+  - Solving problems with models or data
 
-  - Learn a programming language like **R** or **Python**,
-  - Write code that works on your machine,
-  - Solve problems with models or data
-
-#### ... are now the A-B-C of an economist's toolkit.
+##### ... are the A-B-C of an economist's toolkit.
 
 
-## ... and programming with reproducibility
+## ... and programming the right way
 
 <div style="margin-top: 3em;"></div>
 
-##### Learning to program in a way that is reproducible, reusable and collaborative is harder
+##### Learning to program in a way that is reproducible, reusable and collaborative is the next step
 
 <div style="margin-top: 1em;"></div>
 
@@ -91,10 +88,12 @@ library(purrr)
 
 ## Skills you'll develop in this course
 
+<div style="margin-top: 1em;"></div>
+
 - Write **modular code**, **document functions**, implement **error handling**.
 - Collaborate using **Git** and **version control**, manage shared code.
 - Structure data in **relational databases** and query with **SQL** for systematic data workflows.
-- Produce code that works not just on your machine, but in settings that reflect real work in research and industry.
+- Produce code that works not just on your machine, but in settings like a research team or industry data job.
 
 
 
@@ -119,7 +118,7 @@ library(purrr)
 
 <div style="margin-top: 1em;"></div>
 
-- As said, learning a new programming language (Python) has become comparatively easier.
+- Learning a new programming language (Python) has become comparatively easier.
 - We will cover the basics of Python, but always with the goal of learning to program in a way that is reproducible, reusable and collaborative.
 - All of you know R because of Data Handling, many of you did DSF, you are learning Econometrics this semester: an introduction to programming is beyond the point.
 
@@ -138,15 +137,15 @@ library(purrr)
 # About us
 
 
-## About us
+## The team - here for your learning
 <br>
 
 <div class="custom-table">
 
 | | | | | | |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| <img src="../../assets/img/aureliensallin.jpg" height="225"/> | <img height="225"/> | <img src="../../assets/img/leatschan.jpg" height="225"/> | <img src= "../../assets/img/valentinasontheim.jpg" height="225"/> | <img src="../../assets/img/andrijalukovic.jpg" height="225"/> | <img src="../../assets/img/johannescordier.jpg" height="225"/> |
-| <span style="font-size: 0.8em;">Aurélien<br>Sallin</span> | <span style="font-size: 0.8em;">Franziska<br>Bender</span> | <span style="font-size: 0.8em;">Lea<br>Tschan</span> | <span style="font-size: 0.8em;">Valentina<br>Sontheim</span> | <span style="font-size: 0.8em;">Andrija<br>Lukovic</span> | <span style="font-size: 0.8em;">Johannes<br>Cordier</span> |
+| <img src="../../assets/img/franziskabender.jpg" height="225"/> | <img src="../../assets/img/aureliensallin.jpg" height="225"/> | <img src="../../assets/img/leatschan.jpg" height="225"/> | <img src="../../assets/img/andrijalukovic.jpg" height="225"/> | <img src= "../../assets/img/valentinasontheim.jpg" height="225"/> |<img src="../../assets/img/johannescordier.jpg" height="225"/> |
+| <span style="font-size: 0.8em;">Franziska<br>Bender</span> | <span style="font-size: 0.8em;">Aurélien<br>Sallin</span> |  <span style="font-size: 0.8em;">Lea<br>Tschan</span> | <span style="font-size: 0.8em;">Andrija<br>Lukovic</span> | <span style="font-size: 0.8em;">Valentina<br>Sontheim</span> | <span style="font-size: 0.8em;">Johannes<br>Cordier</span> |
 
 </div>
 <style>
@@ -185,11 +184,11 @@ library(purrr)
 
 
 
-# Course structure and Syllabus
+# Course structure and syllabus
 
 ## Course concept: lectures
 
-- 11 Lectures (Friday morning)
+- 11 Lectures + Exam (Friday morning)
   - Background/Concepts
   - Some classes will be focused on programming together, others will be more theoretical.
 
@@ -394,7 +393,7 @@ library(purrr)
       <td style="color: #2c640b; font-style: italic; padding-left: 1.5em;">Q&A Session, 15.05.2026</td>
     </tr>
     <tr>
-      <td colspan="2" style="color: #DC143C; font-style: italic; padding-left: 1.5em;">&nbsp;&nbsp;Submission Group Project</td>
+      <td colspan="2" style="color: #DC143C; font-weight: bold; padding-left: 1.5em;">&nbsp;&nbsp;Submission Group Project</td>
       <td></td>
       <td colspan="2" style="color: #DC143C; font-weight: bold;">20.05.2026, 23:59</td>
     </tr>
@@ -403,7 +402,7 @@ library(purrr)
       <td>Exam</td>
       <td>Aurélien & Franziska</td>
       <td>22.05.2026</td>
-      <td style="color: #2c640b; font-style: italic; padding-left: 1.5em;">No Exercise session</td>
+      <td style="color: #2c640b; font-style: italic; padding-left: 1.5em;">No exercise session</td>
     </tr>
   </tbody>
 </table>
@@ -452,7 +451,9 @@ You will be submitting a collaborative Git repository including the tool you dev
 
 ## Contact for personal questions only!
 
-- Aurélien : until Break
-- Franziska: after break.
+- Aurélien: until the break
+- Franziska: after the break.
 - Do not contact the assistants regarding organisational questions.
 
+
+# Let's start!
