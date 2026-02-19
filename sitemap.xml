@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/index.html</loc>
-    <lastmod>2026-02-15T14:27:29.742Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_03/Ex03_GitHub.html</loc>
-    <lastmod>2026-02-15T14:27:29.736Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_01/Ex01_gettingstarted.html</loc>
-    <lastmod>2026-02-15T14:27:29.731Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_02/02_versioncontrol.html</loc>
-    <lastmod>2026-02-15T14:27:29.656Z</lastmod>
-  </url>
-  <url>
     <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_01/01b_gettingstarted.html</loc>
-    <lastmod>2026-02-15T14:27:29.653Z</lastmod>
+    <lastmod>2026-02-19T17:08:13.129Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_03/03_versioncontrolwithothers.html</loc>
+    <lastmod>2026-02-17T20:01:23.400Z</lastmod>
   </url>
   <url>
     <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_01/01a_introduction.html</loc>
-    <lastmod>2026-02-15T14:27:29.652Z</lastmod>
+    <lastmod>2026-02-19T16:18:36.605Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_03/Ex03_GitHub_old.html</loc>
+    <lastmod>2026-02-15T14:27:29.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_01/Ex01_gettingstarted.html</loc>
+    <lastmod>2026-02-19T16:18:52.400Z</lastmod>
   </url>
   <url>
     <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_01/CommonTerminalCommands_BradTraversy.html</loc>
     <lastmod>2026-02-15T14:27:29.653Z</lastmod>
   </url>
   <url>
-    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_03/03_versioncontrolwithothers.html</loc>
-    <lastmod>2026-02-15T14:27:29.660Z</lastmod>
-  </url>
-  <url>
     <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_02/Ex02_FirstCommitsInGit.html</loc>
-    <lastmod>2026-02-15T14:27:29.733Z</lastmod>
+    <lastmod>2026-02-16T20:22:52.243Z</lastmod>
   </url>
   <url>
-    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_03/Ex03_GitHub_old.html</loc>
-    <lastmod>2026-02-15T14:27:29.738Z</lastmod>
+    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/index.html</loc>
+    <lastmod>2026-02-16T20:22:52.245Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/course_materials/week_02/02_versioncontrol.html</loc>
+    <lastmod>2026-02-16T20:22:52.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ASallin.github.io/BEcon_4222_Introduction_Programming/exercise_sessions/week_03/Ex03_GitHub.html</loc>
+    <lastmod>2026-02-18T20:20:11.112Z</lastmod>
   </url>
 </urlset>

@@ -1347,7 +1347,7 @@ margin-right: 0; }
 <div style="font-family: monospace;">
 <p><code>.</code>    current directory</p>
 <p><code>..</code>    parent directory</p>
-<p><code>~</code>    your home directory</p>
+<p><code>~</code>    your home directory (bash)</p>
 </div>
 <h4 id="examples">Examples:</h4>
 <ul>
@@ -1357,7 +1357,7 @@ margin-right: 0; }
 </section>
 <section id="main-terminal-commands" class="slide level2">
 <h2>Main terminal commands</h2>
-<p>When you first open Terminal you typically are placed in your <strong>home directory</strong>.</p>
+<p>When you first open Terminal, you typically are placed in your <strong>home directory</strong>.</p>
 <h5 id="main-commands">Main commands:</h5>
 <table style="width:100%; table-layout:fixed; font-size:0.75em;">
 <colgroup>
@@ -1425,106 +1425,8 @@ Create a directory (<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>e
 </tr>
 </tbody>
 </table>
-<h5 id="tips">Tips:</h5>
-<ul>
-<li>Running <code>cd</code> without arguments takes you to <code>~</code></li>
-<li>Use Tab for auto-completion</li>
-<li>Use arrow keys to browse command history</li>
-<li>All these commands work from wherever your shell is currently pointing</li>
-<li>Look at Brad Traversy’s <a href="https://gist.github.com/bradtraversy/cc180de0edee05075a6139e42d5f28ce">Common Terminal Commands</a></li>
-</ul>
-</section>
-<section id="working-with-files-in-a-terminal" class="slide level2">
-<h2>Working with files in a terminal</h2>
-<table style="width:100%; table-layout:fixed; font-size:0.75em;">
-<colgroup>
-<col style="width:30%;">
-<col style="width:35%;">
-<col style="width:35%;">
-</colgroup>
-<thead>
-<tr>
-<th>
-Description
-</th>
-<th>
-bash/macOS
-</th>
-<th>
-Command Prompt (Windows)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Create an empty file
-</td>
-<td>
-<code>touch hello.txt</code>
-</td>
-<td>
-<code>echo. &gt; hello.txt</code>
-</td>
-</tr>
-<tr>
-<td>
-Delete a file
-</td>
-<td>
-<code>rm hello.txt</code>
-</td>
-<td>
-<code>del hello.txt</code>
-</td>
-</tr>
-<tr>
-<td>
-Print file contents
-</td>
-<td>
-<code>cat hello.txt</code>
-</td>
-<td>
-<code>type hello.txt</code>
-</td>
-</tr>
-<tr>
-<td>
-Edit a file
-</td>
-<td>
-<code>nano hello.txt</code>
-</td>
-<td>
-<code>notepad hello.txt</code>
-</td>
-</tr>
-<tr>
-<td>
-Copy a file
-</td>
-<td>
-<code>cp hello.txt hello_copy.txt</code>
-</td>
-<td>
-<code>copy hello.txt hello_copy.txt</code>
-</td>
-</tr>
-<tr>
-<td>
-Move/rename a file
-</td>
-<td>
-<code>mv hello.txt goodbye.txt</code>
-</td>
-<td>
-<code>move hello.txt goodbye.txt</code>
-</td>
-</tr>
-</tbody>
-</table>
-<p>MacOS and Linux (<code>bash</code>, <code>zsh</code>) are unix systems. That’s why Mac and Linux use the same terminal commands (ls, cat, etc.), while Windows uses different ones (dir, type, etc.).</p>
+<h5 id="tips-and-additional-commands">Tips and additional commands:</h5>
+<p>Check the tips and experiment with additional commands in the <a href="#/self-study">self-study part</a> (relevant for the exam).</p>
 </section>
 <section id="naming-conventions" class="slide level2">
 <h2>Naming Conventions</h2>
@@ -1536,11 +1438,9 @@ Move/rename a file
 </ul>
 <h4 id="donts">Don’ts:</h4>
 <ul>
-<li><strong>Do not use spaces</strong> in folder or file names! Never.
-<ul>
-<li>Avoid special characters (remember Data Handling and encoding nightmares).</li>
+<li><strong>Do not use spaces</strong> in folder or file names! Never.</li>
+<li>Avoid <strong>special characters</strong> (remember Data Handling and encoding nightmares).</li>
 <li>Make sure to <strong>not switch styles</strong> within a project.</li>
-</ul></li>
 </ul>
 </section>
 <section id="naming-conventions-or" class="slide level2">
@@ -1560,14 +1460,12 @@ Move/rename a file
 <p>An <strong>IDE</strong> (<strong>I</strong>ntegrated <strong>D</strong>evelopment <strong>E</strong>nvironment) is a tool designed to help you write, run, and manage code efficiently.</p>
 <p>Compared to a basic text editor, an IDE typically provides:</p>
 <ul>
-<li>syntax highlighting
-<ul>
+<li>syntax highlighting</li>
 <li>code completion and suggestions</li>
 <li>error detection</li>
 <li>integrated terminal</li>
 <li>debugging tools</li>
 <li>version control integration (e.g. Git)</li>
-</ul></li>
 </ul>
 <p>These features reduce errors and make programming more structured and productive.</p>
 <p><strong>Examples</strong>: VSCode, Pycharm, RStudio, Posit</p>
@@ -1635,30 +1533,7 @@ No, and no ;-)  I'll see with Franziska if she'll introduce it.
 <h4 id="python-or-r">Python or R?</h4>
 <p>“<strong>It simply does not matter</strong>. If you stick around in data science long enough, you will eventually get in touch with both languages and, in turn, learn both. There is a huge overlap of what you can do with either of those languages. The point is, if you just start doing analytics using a programming language, both languages are guaranteed to carry you a long way. There is no way to tell for sure which one will be the more dominant language 10 years from now, or whether both will be around holding their ground the way they do now.” – Matthias Bannert, “Research Software Engineering”</p>
 </section>
-<section id="python-in-the-shell-or-in-a-.py-file" class="slide level2">
-<h2>Python in the shell or in a .py file</h2>
-<p>You can use Python in different ways:</p>
-<ul>
-<li>interactively in the terminal</li>
-<li>by writing code in .py files</li>
-<li>by writing code in .ipynb Jupyter or .qmd Quarto notebooks</li>
-</ul>
-<p>We will mainly work with .py files inside projects.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Hello World&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hello World</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)             <span class="co"># addition(+)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">-</span> <span class="dv">1</span>)             <span class="co"># subtraction(-)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2</code></pre>
-</div>
-</div>
-</section>
+
 <section id="coming-from-r" class="slide level2">
 <h2>Coming from R</h2>
 <p>If you know R (which you do…), Python will feel familiar, but not identical.</p>
@@ -1670,35 +1545,8 @@ No, and no ;-)  I'll see with Franziska if she'll introduce it.
 </ul>
 <!-- here we're going more into details, but too much for students now. Python has less "weird" things than R, for instance in recycling vectors, or coercion, or compact writing loops with `apply` functions, etc. -->
 </section>
-<section id="indentation" class="slide level2">
-<h2>Indentation</h2>
-<p>In Python, indentation defines the structure of your code.</p>
-<p>Blocks of code are created by indentation, not by curly braces {} like in many other languages.</p>
-<ul>
-<li>indentation is mandatory</li>
-<li>inconsistent indentation will break your code</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;positive&quot;</span>)</span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;still inside the block&quot;</span>)</span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;outside the block&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<!--
-@Aurelien - Can enforce automatic indentation (at least in PyCharm) via Ctrl+alt+I
--->
+
 </section>
-<section id="counting-starts-at-0" class="slide level2">
-<h2>Counting starts at 0</h2>
-<p>In Python, many things start counting at 0 (<strong>zero-based indexing</strong>).</p>
-<h4 id="example">Example:</h4>
-<ul>
-<li>the first element has index 0</li>
-<li>the second element has index 1</li>
-</ul>
-<p>Common in programming, even if it feels unintuitive at first.</p>
-</section></section>
 <section>
 <section id="managing-python-projects" class="title-slide slide level1 center">
 <h1>Managing Python Projects</h1>
@@ -1802,31 +1650,149 @@ No, and no ;-)  I'll see with Franziska if she'll introduce it.
 <section id="getting-started-using-uv" class="slide level2">
 <h2>Getting started using <code>uv</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize a new project with its own environment</span></span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>uv init my_project</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>cd my_project</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Add dependencies (creates/updates pyproject.toml)</span></span>
-<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>uv add rich pandas</span>
-<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="co"># When joining an existing project: install from lock file</span></span>
-<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a>uv sync</span>
-<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Run code (automatically uses the project&#39;s venv)</span></span>
-<span id="cb8-12"><a aria-hidden="true" tabindex="-1"></a>uv run main.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize a new project with its own environment</span></span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>uv init my_project</span>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>cd my_project</span>
+<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Add dependencies (creates/updates pyproject.toml)</span></span>
+<span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a>uv add rich pandas</span>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a><span class="co"># When joining an existing project: install from lock file</span></span>
+<span id="cb3-9"><a aria-hidden="true" tabindex="-1"></a>uv sync</span>
+<span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Run code (automatically uses the project&#39;s venv)</span></span>
+<span id="cb3-12"><a aria-hidden="true" tabindex="-1"></a>uv run main.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>uv</code> will store in each environment the version of the interpreter, the packages, and will “lock” each package version for the project in a <code>lock</code> file.</p>
 </section></section>
 <section>
 <section id="until-next-time" class="title-slide slide level1 center">
-<h1>Until next time</h1>
+<h1>Until next time!</h1>
 
 </section>
 <section id="for-next-time" class="slide level2">
 <h2>For next time</h2>
 <ul>
-<li>install git: we will start using version control from the next lecture.</li>
+<li>install <code>git</code>: we will start using version control from the next lecture.</li>
 </ul>
+</section></section>
+<section>
+<section id="self-study" class="title-slide slide level1 center">
+<h1>Self study</h1>
+
+</section>
+<section id="a-note-on-self-study" class="slide level2">
+<h2>A note on self-study</h2>
+<p>The self-study part contains additional materials that are difficult to cover in the main lecture. We expect you to go through these materials on your own time, and we will ask questions about them in the exam.</p>
+</section>
+<section id="additional-useful-commands-to-work-with-files-in-a-terminal" class="slide level2">
+<h2>Additional useful commands to work with files in a terminal</h2>
+<table style="width:100%; table-layout:fixed; font-size:0.75em;">
+<colgroup>
+<col style="width:30%;">
+<col style="width:35%;">
+<col style="width:35%;">
+</colgroup>
+<thead>
+<tr>
+<th>
+Description
+</th>
+<th>
+bash/macOS
+</th>
+<th>
+Command Prompt (Windows)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Create an empty file
+</td>
+<td>
+<code>touch hello.txt</code>
+</td>
+<td>
+<code>echo. &gt; hello.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+Delete a file
+</td>
+<td>
+<code>rm hello.txt</code>
+</td>
+<td>
+<code>del hello.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+Print file contents
+</td>
+<td>
+<code>cat hello.txt</code>
+</td>
+<td>
+<code>type hello.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+Edit a file
+</td>
+<td>
+<code>nano hello.txt</code>
+</td>
+<td>
+<code>notepad hello.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+Copy a file
+</td>
+<td>
+<code>cp hello.txt hello_copy.txt</code>
+</td>
+<td>
+<code>copy hello.txt hello_copy.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+Move/rename a file
+</td>
+<td>
+<code>mv hello.txt goodbye.txt</code>
+</td>
+<td>
+<code>move hello.txt goodbye.txt</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p>MacOS and Linux (<code>bash</code>, <code>zsh</code>) are unix systems. That’s why Mac and Linux use the same terminal commands (<code>ls</code>, <code>cat</code>, etc.), while Windows uses different ones (<code>dir</code>, <code>type</code>, etc.).</p>
+</section>
+<section id="tips-when-using-the-terminal" class="slide level2">
+<h2>Tips when using the terminal</h2>
+<h4 id="some-tips-to-work-efficiently-in-the-terminal">Some tips to work efficiently in the terminal:</h4>
+<ul>
+<li>Running <code>cd</code> without arguments takes you to <code>~</code></li>
+<li>Use Tab for auto-completion of file and directory names</li>
+<li>Use arrow keys to browse command history</li>
+<li>All terminal commands work from wherever your shell is currently pointing, so you can navigate to the right directory and then run commands without worrying about paths</li>
+<li>Look at Brad Traversy’s <a href="https://gist.github.com/bradtraversy/cc180de0edee05075a6139e42d5f28ce">Common Terminal Commands</a></li>
+</ul>
+<p>Experiment with these tips and additional commands in the terminal to get comfortable with it!</p>
+</section></section>
+<section>
+<section id="references-and-further-reading" class="title-slide slide level1 center">
+<h1>References and further reading</h1>
+
 </section>
 <section id="references" class="slide level2">
 <h2>References:</h2>
