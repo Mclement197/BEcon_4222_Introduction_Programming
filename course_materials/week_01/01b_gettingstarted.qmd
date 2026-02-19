@@ -403,6 +403,8 @@ You can use Python in different ways:
 We will mainly work with .py files inside projects.
 
 ```{python}
+#| eval: false
+#| echo: true
 print('Hello World')
 print(2 + 3)             # addition(+)
 print(3 - 1)             # subtraction(-)

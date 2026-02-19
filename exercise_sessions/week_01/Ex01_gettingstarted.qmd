@@ -26,7 +26,7 @@ execute:
 
 Create a directory for the course on your computer: `Introduction_to_programming` using the terminal. This directory will be your local directory containing your exercises, course materials, and group project. We suggest that we all work with the same directory names to make collaboration and debugging easier.
 
-To create the directory, use command prompt or powershell to first navigate to the path you want to create the directory using `cd`,  then create the directory using `mkdir`.
+To create the directory, use bash, command prompt or powershell to first navigate to the path you want to create the directory using `cd`,  then create the directory using `mkdir`.
 
 We will have the following folder structure throughout the course. Notice our personal preference for snake case.
 
@@ -49,7 +49,7 @@ where `Introduction_to_programming` is the main folder, `github_course_materials
 ::: {.callout-tip collapse="true"}
 #### Solution
 
-For instance, in Powershell, starting from my home directory `~`, which is `C:/Users/aurel`:
+For instance, in command prompt, starting from my home directory `~`, which is `C:/Users/aurel`:
 
 ```bash
 C:\Users\aurel>cd OneDrive/Documents
