@@ -1,0 +1,149 @@
+---
+title: '4,222 Introduction to Programming'
+subtitle: 'Exercise Week 1: Getting started'
+author: "Aurélien Sallin"
+date: "2025-02-23"
+code-line-numbers: false
+project:
+  type: default
+format:
+  html:
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+    theme: ../../assets/style/hsgtheme.scss
+highlight-style: dracula
+cache: false
+echo: false
+execute:
+  echo: true
+  eval: false
+---
+
+
+# Exercise 1: Navigate with the terminal
+
+Without using any graphical file explorer, complete the following tasks using only the terminal:
+
+  1. From your home directory (`~`), navigate to `Introduction_to_programming/exercises/week_01`
+  2. Go back to the parent directory (`exercises/`)
+  3. List the contents of the `exercises/` directory
+  4. Navigate back to `Introduction_to_programming` using a relative path
+  5. Print your current working directory to confirm you are in the right place
+
+:::: {.callout-tip collapse="true"}
+#### Solution
+
+::: {.panel-tabset}
+
+##### Windows (command prompt)
+```bash
+cd exercises\week_01
+cd ..
+dir
+cd ..
+cd
+```
+
+##### Mac (bash)
+```bash
+cd ~/Documents/Introduction_to_programming/exercises/week_01
+cd ..
+ls
+cd ..
+pwd
+```
+
+:::
+
+::::
+
+<br>
+
+# Exercise 2: Understand your environment
+
+Answer the following questions by inspecting files and using the terminal. No coding required.
+
+  1. Open the `pyproject.toml` file in VS Code (the one created in Exercise 1). What Python version is specified? What dependencies are listed?
+  2. Where is the Python interpreter located in your `.venv` folder? Give the full path.
+  3. What does `uv add pandas` do?
+  4. If you delete the `.venv` folder, how would you recreate the environment? (Hint: think about which files `uv` uses to know what to install.)
+
+
+:::: {.callout-tip collapse="true"}
+#### Solution
+
+1. Open `pyproject.toml` in VS Code. Under `[project]`, you should see `requires-python = ">=3.14.1"`. Under `dependencies`, you should see `ipykernel`, `pandas`, and `numpy`.
+
+2. The Python interpreter path:
+
+::: {.panel-tabset}
+
+##### Windows
+```
+Introduction_to_programming\exercises\week_01\.venv\Scripts\python.exe
+```
+
+##### Mac
+```
+Introduction_to_programming/exercises/week_01/.venv/bin/python
+```
+
+:::
+
+3. `uv add pandas` installs the package **inside the project's virtual environment** and records it in `pyproject.toml` and `uv.lock`.
+
+4. You can recreate the environment by running `uv sync` in the project directory. `uv` reads `pyproject.toml` and `uv.lock` to reinstall the exact same packages and Python version.
+
+::::
+
+<br>
+
+# Exercise 3: Create a project for week 2
+
+Navigate to `exercises/week_02/` (create the folder if it doesn't exist yet). Initialize a `uv` project with Python 3.14.1 and add the `ipykernel` package. Then answer:
+
+  1. Does this project share the same `.venv` as your `week_01` project? Check by looking at the `.venv` folders.
+  2. Run `uv run python -c "import pandas; print(pandas.__version__)"` inside `week_02`. What happens and why?
+  3. Now go back to `week_01` and run the same command. What happens and why?
+
+:::: {.callout-tip collapse="true"}
+#### Solution
+
+::: {.panel-tabset}
+
+##### Windows (command prompt)
+```bash
+cd exercises\week_02
+uv init --python 3.14.1
+uv add ipykernel
+
+uv run python -c "import pandas; print(pandas.__version__)"
+
+cd ..\week_01
+uv run python -c "import pandas; print(pandas.__version__)"
+```
+
+##### Mac (bash)
+```bash
+cd ~/Documents/Introduction_to_programming/exercises/week_02
+uv init --python 3.14.1
+uv add ipykernel
+
+uv run python -c "import pandas; print(pandas.__version__)"
+
+cd ../week_01
+uv run python -c "import pandas; print(pandas.__version__)"
+```
+
+:::
+
+1. No. Each project has its own `.venv` folder. `week_02/.venv` and `week_01/.venv` are separate, isolated environments.
+
+2. Inside `week_02`, the command fails with `ModuleNotFoundError: No module named 'pandas'`. We only added `ipykernel` to this project, not `pandas`.
+
+3. Back in `week_01`, the command prints the version of `pandas` (e.g., `2.2.3`). We added `pandas` to `week_01` in the previous exercise session. **This demonstrates why virtual environments exist: each project is isolated and only has the packages you explicitly added to it.**
+
+::::
+

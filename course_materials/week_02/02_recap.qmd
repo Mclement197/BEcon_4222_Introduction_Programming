@@ -1,0 +1,80 @@
+---
+title: '4,222 Introduction to Programming'
+subtitle: 'Lecture 2: Summary'
+author: "Dr. Franziska Bender, Dr. Aurélien Sallin"
+date: "2026-02-20"
+code-line-numbers: false
+format:
+  revealjs:
+    template-partials:
+      - ../../assets/style/title-slide.html
+    width: 1280
+    height: 720
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+    theme: ../../assets/style/hsgtheme.scss
+highlight-style: dracula
+cache: false
+echo: false
+---
+
+## Summary: Key Concepts
+
+#### The Terminal
+
+- A text-based interface to interact with your computer
+- Mac uses **bash/zsh** (Terminal), Windows uses **Command Prompt** or **PowerShell**
+
+<table style="width:95%; font-size:0.7em;">
+  <thead>
+    <tr><th>Action</th><th>bash (Mac)</th><th>Command Prompt (Windows)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Show current directory</td><td><code>pwd</code></td><td><code>cd</code> (without arguments)</td></tr>
+    <tr><td>List files</td><td><code>ls</code></td><td><code>dir</code></td></tr>
+    <tr><td>Navigate</td><td><code>cd &lt;path&gt;</code></td><td><code>cd &lt;path&gt;</code></td></tr>
+    <tr><td>Create directory</td><td><code>mkdir</code></td><td><code>mkdir</code></td></tr>
+    <tr><td>Home shortcut</td><td><code>~</code> (e.g. <code>cd ~/Documents</code>)</td><td>No <code>~</code> — use <code></code></td></tr>
+  </tbody>
+</table>
+
+- Paths: **absolute** (`C:\Users\Bilbo\Documents\`) vs **relative** (`../Documents/`)
+- Shortcuts: `.` (current directory), `..` (parent directory)
+
+## Using Visual Code
+
+#### The IDE
+
+- **VS Code** is our IDE: code editor + terminal + extensions in one tool
+- Always open VS Code **from your project directory** (`code .`)
+- Install extensions: Python, Pylance, Ruff, Jupyter
+
+
+## Python & Environments
+
+#### Why Python?
+
+- Readable, versatile, widely used in data science, economics, and AI
+- Coming from R: watch out for **0-based indexing** and **indentation**
+
+
+## Python & Environments
+
+#### Virtual Environments with `uv`
+
+- Each project gets its own **isolated environment** (its own "kitchen")
+- Never install packages globally — always use environments!
+- Key commands:
+
+<table style="width:80%; font-size:0.8em;">
+  <tbody>
+    <tr><td><code>uv init --python 3.14.1</code></td><td>Create a new project</td></tr>
+    <tr><td><code>uv add pandas numpy</code></td><td>Add packages</td></tr>
+    <tr><td><code>uv run main.py</code></td><td>Run a script in the environment</td></tr>
+    <tr><td><code>uv sync</code></td><td>Install dependencies from lock file</td></tr>
+  </tbody>
+</table>
+
+- Key files: `.python-version`, `pyproject.toml`, `uv.lock`, `.venv/`

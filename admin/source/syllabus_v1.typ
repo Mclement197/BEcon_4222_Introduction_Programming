@@ -92,7 +92,7 @@
 
 *Structure of the course:*
 - 12 units of 90' for the main lecture;
-- 10 units of 90' for the exercises (week 1, 2, 3, 4, 6, 8, 9, 10, 11, 12);
+- 10 units of 90' for the exercises (weeks 1, 2, 3, 4, 6, 8, 9, 10, 11, 12);
 
 #v(1em)
 
@@ -158,14 +158,15 @@ The student assessment consists of two main components:
 
 == Lecture 1: The Big Picture. Set up your environment _F, A_
 
-Lecture 1 defines the objectives of the course and motivates why programming and programming in a shareable, reproducible way is crucial for Economists. Lecture 1 also introduces students to Python and shows them how to set up their working environment.
+Lecture 1 defines the objectives of the course and motivates why programming in a shareable, reproducible way is crucial for Economists. The first part presents the course structure, the team, the examination format, and the group project expectations.
 
-Students will install python, learn about tooling and package management with #link("https://docs.astral.sh/uv/")[UV] (as a replacement for pip), install and work with Visual Studio Code, and CLI (Command-Line Interface) to install everything. Students also learn about how to organize files and write file names correctly.
+The second part (01b) introduces the tools students will use throughout the course. Students learn what a terminal is, how to navigate the file system using the command line (bash on Mac, Command Prompt on Windows), and how to work with files and paths. Students are introduced to Visual Studio Code as their IDE, and to Python as the main programming language. The lecture explains why Python projects require isolated virtual environments (unlike R's global library approach) and introduces #link("https://docs.astral.sh/uv/")[uv] as the tool for managing Python versions, packages, and project environments.
 
-*Exercise week 1*: Students will have time to set up their environment and be ready for the lecture. They will also install git and create a github account.
+*Exercise week 1*: Students set up their course directory structure, install VS Code and extensions, install `uv`, create their first Python project with a virtual environment, and run their first Python script. They also install git for the next lecture.
 
 *Sources:*
-- #link("https://rse-book.github.io/")["Research Software Engineering", Matt Bannert]
+- #link("https://rse-book.github.io/interaction.html")["Research Software Engineering", Matt Bannert]
+- #link("https://compenv.phys.ethz.ch/python/ecosystem_1/00_overview/")["Basics of Computing Environments for Scientists", Physics department of ETH Zurich]
 
 #v(1em)
 

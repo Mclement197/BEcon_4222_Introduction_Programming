@@ -2,7 +2,7 @@
 title: '4,222 Introduction to Programming'
 subtitle: 'Exercise Week 1: Getting started'
 author: "Aurélien Sallin"
-date: "2025-02-20"
+date: "2025-02-20, updated on 2025-02-21"
 code-line-numbers: false
 project:
   type: default
@@ -46,10 +46,14 @@ Introduction_to_programming/
 where `Introduction_to_programming` is the main folder, `github_course_materials` will be created next week with git, and `group_project` will contain students' own work.
 
 
-::: {.callout-tip collapse="true"}
+:::: {.callout-tip collapse="true"}
 #### Solution
 
-For instance, in command prompt, starting from my home directory `~`, which is `C:/Users/aurel`:
+::: {.panel-tabset}
+
+##### Windows
+
+In command prompt, starting from your home directory `~` (e.g., `C:/Users/aurel`):
 
 ```bash
 C:\Users\aurel>cd OneDrive/Documents
@@ -71,20 +75,38 @@ C:\Users\aurel\OneDrive\Documents\Introduction_to_programming\exercises>mkdir we
 C:\Users\aurel\OneDrive\Documents\Introduction_to_programming\exercises>cd ..
 
 C:\Users\aurel\OneDrive\Documents\Introduction_to_programming>dir
- Volume in drive C is Windows-SSD
- Volume Serial Number is 2E13-E362
+```
 
- Directory of C:\Users\aurel\OneDrive\Documents\Introduction_to_programming
+##### Mac
 
-14/02/2026  10:28    <DIR>          .
-14/02/2026  10:27    <DIR>          ..
-14/02/2026  10:28    <DIR>          exercises
-14/02/2026  10:28    <DIR>          github_course_materials
-               0 File(s)              0 bytes
-               4 Dir(s)  304’672’137’216 bytes free
+In Terminal, starting from your home directory `~` (e.g., `/Users/yourname`):
+
+```bash
+~ $ cd Documents
+
+~/Documents $ mkdir Introduction_to_programming
+
+~/Documents $ cd Introduction_to_programming
+
+~/Documents/Introduction_to_programming $ mkdir github_course_materials
+
+~/Documents/Introduction_to_programming $ mkdir exercises
+
+~/Documents/Introduction_to_programming $ cd exercises
+
+~/Documents/Introduction_to_programming/exercises $ mkdir week_01
+
+~/Documents/Introduction_to_programming/exercises $ mkdir week_02
+
+~/Documents/Introduction_to_programming/exercises $ cd ..
+
+~/Documents/Introduction_to_programming $ ls
+exercises               github_course_materials
 ```
 
 :::
+
+::::
 
 <br>
 
@@ -146,26 +168,39 @@ The solution to this exercise will be shown during the exercise session.
 
 Using your terminal, create a file "hello.txt" in the `exercises/week_01` folder. Remove the file "hello.txt". After this, move your working directory back to `Introduction_to_programming`.
 
-::: {.callout-tip collapse="true"}
+:::: {.callout-tip collapse="true"}
 #### Solution
 
-```bash
-C:/Users/aurel/OneDrive/Documents/Introduction_to_programming> cd exercises/week_01
+::: {.panel-tabset}
 
-# Solution 1 for bash users (git bash or MacOS): create the file hello.txt
-C:/Users/aurel/OneDrive/Documents/Introduction_to_programming/exercises/week_01> touch hello.txt
-C:/Users/aurel/OneDrive/Documents/Introduction_to_programming/exercises/week_01> rm hello.txt
+##### Windows (command prompt)
+```bash
+# Navigate to week_01 (you should be in Introduction_to_programming)
+> cd exercises/week_01
 
 # Solution 2 for Command Prompt users in Windows: create the file hello.txt
-C:/Users/aurel/OneDrive/Documents/Introduction_to_programming/exercises/week_01> echo. > hello.txt
-C:/Users/aurel/OneDrive/Documents/Introduction_to_programming/exercises/week_01> del hello.txt
+> echo. > hello.txt
+> del hello.txt
 
 # Move back to Introduction_to_programming
-C:/Users/aurel/OneDrive/Documents/Introduction_to_programming/exercises/week_01> cd ../..
+> cd ../..
 ```
 
+##### Mac (bash)
+```bash
+# Navigate to week_01
+cd ~/Documents/Introduction_to_programming/exercises/week_01
+
+# Solution for Mac users: create the file hello.txt
+touch hello.txt
+rm hello.txt
+
+# Move back to Introduction_to_programming
+cd ../..
+```
 :::
 
+::::
 
 <br>
 
@@ -179,6 +214,10 @@ You can use the following commands in your terminal to set everything up. Rememb
 ::: {.panel-tabset}
 
 ### Windows
+
+In Windows, we use powershell to install `uv`.
+
+**Note:**Pay attention to the fact that we are using powershell to install `uv` because it is the way the company that wrote `uv` recommends, but that we are using command prompt for the rest of the course. You can also use powershell for the rest of the course if you prefer, but we will use command prompt in the exercise sessions to make sure everyone is on the same page.
 
 ```powershell
 # Install uv using standalone installer
@@ -250,13 +289,26 @@ We will use Python 3.
 
 Remember, in the lecture we mentioned the importance of "closed environments" for Python. This is different than in R. We will create a new environment for each exercise session. To create a closed environment, we use a project with `uv`, which will manage our python version and our packages.
 
-In the terminal, make sure you are in your working directory `~/Introduction_to_programming/exercises/week_01`. Use `uv init` to initialize your project. Then specify the version of python we will use in this environment. We will use python 3.14.1 (for this course, it does not matter much).
+In the terminal, make sure you are in your working directory `Introduction_to_programming/exercises/week_01`. Use `uv init` to initialize your project. Then specify the version of python we will use in this environment. We will use python 3.14.1 (for this course, it does not matter much).
 
+::: {.panel-tabset}
+
+#### Windows
 
 ```bash
-cd ~/OneDrive/Documents/Introduction_to_programming/exercises/week_01
+# Navigate to week_01 (you should be in Introduction_to_programming)
+cd exercises/week_01
 uv init --python 3.14.1
 ```
+
+#### Mac
+
+```bash
+cd ~/Documents/Introduction_to_programming/exercises/week_01
+uv init --python 3.14.1
+```
+
+:::
 
 You should observe the creation of different files:
 
@@ -265,7 +317,7 @@ Introduction_to_programming/exercises/week_01/
 ├── .python-version          # Specifies Python version (3.14.1) for this project
 ├── pyproject.toml           # Project configuration file. Defines project dependencies and settings
 ├── .gitignore               # Instructions for git. We will see this next week.
-├── README.md                #  README text file that contains your basic project documentation. Feel free to add some information. The syntax is `markdown` (`md`) syntax.
+├── README.md                # README text file that contains your basic project documentation. Feel free to add some information. The syntax is `markdown` (`md`) syntax.
 └── main.py                  # Example Python script, can be erased
 ```
 
@@ -280,6 +332,17 @@ You should observe different things happening:
   - the creation of a `.venv` folder, which contains your isolated Python environment
   - the creation of a `uv.lock` file, which "locks" the exact versions of all dependencies
   - your file `pyproject.toml` being updated under "dependencies"`[^1]
+
+::: {.callout-note}
+#### The `.venv` folder structure differs between Windows and Mac
+
+The `.venv` folder contains your Python interpreter, but the internal layout is different depending on your operating system:
+
+- **Windows:** `.venv/Scripts/python.exe`
+- **Mac:** `.venv/bin/python`
+
+This matters when you need to manually select the Python interpreter in VS Code (see Exercise 3.5).
+:::
 
 
 
@@ -315,7 +378,10 @@ Once in `Introduction_to_programming/exercises/week_01`, open the `main.py`. The
 
 - In VS Code, use CTRL/CMD + SHIFT + P to open the palette. Then write "Select Python Interpreter". There will be a list of available Python interpreters. Chose the one corresponding to Python 3.14.1 in your `venv` (tagged "Workspace" by VS Code).
 
-*Note*: it could be that VSCode does not detect your interpreter right away. In this case, first try to refresh VSCode using CTRL/CMD + SHIFT + P and then "Developer: Reload Window". Otherwise, select "Enter interpreter path" and navigate to the `venv` folder in your project, then select the `python.exe` file in this folder.
+*Note*: it could be that VSCode does not detect your interpreter right away. In this case, first try to refresh VSCode using CTRL/CMD + SHIFT + P and then "Developer: Reload Window". Otherwise, select "Enter interpreter path" and navigate to the `.venv` folder in your project, then select the Python executable:
+
+  - **Windows:** `.venv/Scripts/python.exe`
+  - **Mac:** `.venv/bin/python`
 
 ::: {.callout-tip collapse="true"}
 #### Solution
