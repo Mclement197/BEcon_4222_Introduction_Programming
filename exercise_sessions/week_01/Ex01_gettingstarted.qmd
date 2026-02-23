@@ -127,7 +127,7 @@ You should always make VS Code start from the directory your are working in. You
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to open VS Code from the terminal:
 
-![](../../assets/img/open_vscode.gif){width="700px"}
+![](../../assets/img/ex_01/open_vscode.gif){width="700px"}
 :::
 
 
@@ -142,7 +142,7 @@ In VS Code, open a terminal. Notice that you can choose between powershell or co
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to open a terminal in VS Code:
 
-![](../../assets/img/open_terminal_vscode.gif){width="600px"}
+![](../../assets/img/ex_01/open_terminal_vscode.gif){width="600px"}
 :::
 
 
@@ -351,8 +351,8 @@ This matters when you need to manually select the Python interpreter in VS Code 
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to init uv and add dependencies:
 
-![](../../assets/img/init_uv.gif){width="800px"}
-![](../../assets/img/add_uv.gif){width="800px"}
+![](../../assets/img/ex_01/init_uv.gif){width="800px"}
+![](../../assets/img/ex_01/add_uv.gif){width="800px"}
 :::
 
 <br>
@@ -366,7 +366,7 @@ Open python with your terminal using `uv run python`.
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to run python in your `uv` environment:
 
-![](../../assets/img/runpython_uv.gif){width="800px"}
+![](../../assets/img/ex_01/runpython_uv.gif){width="800px"}
 :::
 
 
@@ -388,7 +388,7 @@ Once in `Introduction_to_programming/exercises/week_01`, open the `main.py`. The
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to select the right python interpreter in VS Code:
 
-![](../../assets/img/select_python_interpreter.png){width="640px"}
+![](../../assets/img/ex_01/select_python_interpreter.png){width="640px"}
 
 :::
 
@@ -400,7 +400,7 @@ The solution to this exercise will be shown during the exercise session. Here is
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to select the right python interpreter in VS Code:
 
-![](../../assets/img/select_python_interpreter_bottomright.png){width="640px"}
+![](../../assets/img/ex_01/select_python_interpreter_bottomright.png){width="640px"}
 
 :::
 
@@ -423,7 +423,7 @@ In the python file, right click and select "Run in Interactive Window". You've r
 
 ## Using the terminal be like
 
-![](../../assets/img/terminal_meme.jpg){width="440px"}
+![](../../assets/img/ex_01/terminal_meme.jpg){width="440px"}
 
 
 [^1]: Note that `uv.lock` + `pyproject.toml` replace the traditional `requirements.txt` in `pip`. You can generate a requirements.txt file from uv using `uv pip freeze > requirements.txt`.

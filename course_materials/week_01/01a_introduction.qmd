@@ -80,7 +80,7 @@ library(purrr)
 
 :::
 ::: {.column width="40%"}
-![](../../assets/img/meme_one_does_not.jpg)
+![](../../assets/img/lecture_01a/meme_one_does_not.jpg)
 :::
 :::
 
@@ -144,7 +144,7 @@ library(purrr)
 
 | | | | | | |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| <img src="../../assets/img/franziskabender.jpg" height="225"/> | <img src="../../assets/img/aureliensallin.jpg" height="225"/> | <img src="../../assets/img/leatschan.jpg" height="225"/> | <img src="../../assets/img/andrijalukovic.jpg" height="225"/> | <img src= "../../assets/img/valentinasontheim.jpg" height="225"/> |<img src="../../assets/img/johannescordier.jpg" height="225"/> |
+| <img src="../../assets/img/lecture_01a/franziskabender.jpg" height="225"/> | <img src="../../assets/img/lecture_01a/aureliensallin.jpg" height="225"/> | <img src="../../assets/img/lecture_01a/leatschan.jpg" height="225"/> | <img src="../../assets/img/lecture_01a/andrijalukovic.jpg" height="225"/> | <img src= "../../assets/img/lecture_01a/valentinasontheim.jpg" height="225"/> |<img src="../../assets/img/lecture_01a/johannescordier.jpg" height="225"/> |
 | <span style="font-size: 0.8em;">Franziska<br>Bender</span> | <span style="font-size: 0.8em;">Aurélien<br>Sallin</span> |  <span style="font-size: 0.8em;">Lea<br>Tschan</span> | <span style="font-size: 0.8em;">Andrija<br>Lukovic</span> | <span style="font-size: 0.8em;">Valentina<br>Sontheim</span> | <span style="font-size: 0.8em;">Johannes<br>Cordier</span> |
 
 </div>

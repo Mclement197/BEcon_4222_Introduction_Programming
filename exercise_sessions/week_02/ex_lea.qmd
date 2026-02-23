@@ -101,6 +101,9 @@ Important: Git commands (`git status`, `git add`, etc.) work in all of them as l
 
 <br>
 
+
+
+
 ## 1. Configurate git on your machine
 
 Follow the step here to configurate your git installation.

@@ -61,19 +61,19 @@ In the next lecture, we will
 
 ## A daily situation...
 
-![](../../assets/img/git_story1.png){fig-alt="Git story" width="100%" fig-align="center" }
+![](../../assets/img/lecture_02_versioncontrol/git_story1.png){fig-alt="Git story" width="100%" fig-align="center" }
 
 ## A daily situation...
 
-![](../../assets/img/git_story2.png){fig-alt="Git story" width="100%" fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_story2.png){fig-alt="Git story" width="100%" fig-align="center"}
 
 ## A daily situation...
 
-![](../../assets/img/git_story3.png){fig-alt="Git story" width="100%" fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_story3.png){fig-alt="Git story" width="100%" fig-align="center"}
 
 ## A daily situation...
 
-![](../../assets/img/git_story4.png){fig-alt="Git story" width="100%" fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_story4.png){fig-alt="Git story" width="100%" fig-align="center"}
 
 
 
@@ -88,7 +88,7 @@ In the next lecture, we will
 
 #### Git only looks at and tracks the changes in a file
 
-![](../../assets/img/git_changes.png){fig-alt="Git story" width="100%" fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_changes.png){fig-alt="Git story" width="100%" fig-align="center"}
 
 
 ## Why should we learn git?
@@ -129,7 +129,7 @@ All the commands we will learn are available in the official [Git Cheat Sheet](h
 :::
 
 ::: {.column width="40%"}
-![](../../assets/img/git_cheatsheet.png){fig-alt="Git cheatsheet" width="100%"}
+![](../../assets/img/lecture_02_versioncontrol/git_cheatsheet.png){fig-alt="Git cheatsheet" width="100%"}
 :::
 ::::
 
@@ -181,7 +181,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We start from a local directory
 
-![](../../assets/img/git_process0.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process0.png){width="640px"}
 
 - A project in git is called a **repository** (or **repo** for short) and it always corresponds to a directory on your machine. This is usually where you save your project.
 - Nothing here is shared with others yet.
@@ -190,7 +190,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## Working in your directory as usual
 
-![](../../assets/img/git_process1.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process1.png){width="640px"}
 
 - The working directory is where you write code, edit files, run scripts, etc.
 - Files here may be untracked, modified or unfinished
@@ -199,14 +199,14 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We select files to be tracked
 
-![](../../assets/img/git_process2.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process2.png){width="640px"}
 
 - Use `git add` to select the files that you want to include in your project history, that you want to track, and that you want to share with others.
 
 
 ## We *add* files to the staging area
 
-![](../../assets/img/git_process3.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process3.png){width="640px"}
 
 - The staging area is a **list of changes** you are about to record.
 - It is not a folder and not a backup.
@@ -215,7 +215,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We *commit* the staged changes
 
-![](../../assets/img/git_process4.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process4.png){width="640px"}
 
 - Use `git commit` to record the staged changes and creates a **snapshot in time**.
 - It adds a message explaining why the change was made.
@@ -224,7 +224,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We now have a git repository
 
-![](../../assets/img/git_process5.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process5.png){width="640px"}
 
 - Git repository is the history of your project.
 - It contains all commits, who changed what, when and why.
@@ -233,7 +233,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We can then share our repository with others
 
-![](../../assets/img/git_process6.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process6.png){width="640px"}
 
 - For next week!
 
@@ -417,7 +417,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## A project becomes a series of commits {.top}
 
-![](../../assets/img/git_commit_2.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_2.png){width=740px fig-align="center"}
 
 - Git repository is the history of your project and contains all commits.
 - Each commit is identified with a unique commit id (a hash), which is 40 hexadecimal characters long. The short form typically shown is 7 characters.
@@ -425,7 +425,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## Going back through time with `git checkout` {.top}
 
-![](../../assets/img/git_commit_3.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_3.png){width=740px fig-align="center"}
 
 - You can go to any commit with `git checkout` by referencing the hash, i.e. `git checkout a3f7b2c`
 - `checkout` sends you **out of a branch**, i.e. detached head. You need to explicitly switch to main (or to any other branch). *Note*: We will explain detached heads in the exercises.
@@ -435,7 +435,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## What are git branches? 🌳 {.top}
 
-![](../../assets/img/git_commit_4.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_4.png){width=740px fig-align="center"}
 
 - Branches are **alternate realities**: they allow you to have different versions of your code within the same repository next to each other
 - You can switch back and forth between branches
@@ -473,7 +473,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## Merging 🔀
 
-![](../../assets/img/git_commit_5.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_5.png){width=740px fig-align="center"}
 
 - In the end you can merge your changes back into your main branch
 - You can combine two different branches by merging them with each other using `git merge my-branch`
@@ -481,7 +481,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## Merging 🔀
 
-![](../../assets/img/git_commit_6.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_6.png){width=740px fig-align="center"}
 
 - `git merge <branch>` merges the named branch into your current branch (usually `main`)
 - Merging will create a new "merge" commit
@@ -489,7 +489,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## Merge conflicts ⚔️
 
-![](../../assets/img/git_merge.gif){fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_merge.gif){fig-align="center"}
 
 
 ## Merge conflicts ⚔️
@@ -513,7 +513,7 @@ If you merge your branches / edits before making more changes, you can avoid con
 
 ## Illustration for merge conflicts
 
-![](../../assets/img/git_merge.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_merge.png){width=740px fig-align="center"}
 
 
 ## Resolving merge conflicts
@@ -594,7 +594,7 @@ Once you've recovered from the lecture, please read the next three slides.
 
 ## Thanks for your attention
 
-![](../../assets/img/git_outofthere.gif){fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_outofthere.gif){fig-align="center"}
 
 
 

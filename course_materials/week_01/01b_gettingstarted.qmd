@@ -115,7 +115,7 @@ For this course: Use Command Prompt in Windows Terminal.
 ## Opening your terminal
 
 <div style="text-align: center;">
-  <img src="../../assets/img/terminal.png" alt="Terminal" width="500px" />
+  <img src="../../assets/img/lecture_01b/terminal.png" alt="Terminal" width="500px" />
 </div>
 
 When you first open Terminal you typically are placed in your **home directory**. You can navigate to other directories (folders) using terminal commands.
@@ -235,7 +235,7 @@ Check the tips and experiment with additional commands in the [self-study part](
 ## Naming Conventions: 🐍, 🐫 or 🍢
 
 <div style="text-align: center;">
-  <img src="../../assets/img/userId_cases.jpeg" width="380px" />
+  <img src="../../assets/img/lecture_01b/userId_cases.jpeg" width="380px" />
 </div>
 
 Following an established convention will not make you look like a complete novice. 😎🆒
@@ -299,7 +299,7 @@ Visual Studio Code (VS Code) is a lightweight but powerful code editor that beha
 <br>
 
 <div style="text-align: center;">
-  <img src="../../assets/img/vscode_logo.jpg" width="30%" />
+  <img src="../../assets/img/lecture_01b/vscode_logo.jpg" width="30%" />
 </div>
 
 :::
@@ -523,7 +523,7 @@ Think of each project as having its own **kitchen**:
 ::: {.column width="50%"}
 
 <div style="text-align: center;">
-  <img src="../../assets/img/uv_projects.png" width="80%" />
+  <img src="../../assets/img/lecture_01b/uv_projects.png" width="80%" />
 </div>
 
 :::

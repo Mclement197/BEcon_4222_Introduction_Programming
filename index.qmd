@@ -23,24 +23,41 @@ Hands-on exercises to practice programming concepts.
 ### Administration
 Course syllabus, schedule, and administrative information.
 
-## Quick Links
+## Course Content
 
 ::: {.grid}
 
 ::: {.g-col-6}
-### 🎯 Current Week
-**Week 1: Getting Started**
+### 📘 Week 1: Getting Started
 
-- [Lecture 1: Introduction](course_materials/week_01/01a_introduction.qmd)
-- [Lecture 2: Getting Started](course_materials/week_01/01b_gettingstarted.qmd)
+**Lectures:**
+- [Lecture 1a: Introduction](course_materials/week_01/01a_introduction.qmd)
+- [Lecture 1b: Getting Started](course_materials/week_01/01b_gettingstarted.qmd)
+
+**Exercises:**
+- [Exercise 1: Getting Started](exercise_sessions/week_01/Ex01_gettingstarted.qmd)
+- [Recap Quiz 1 (non-graded)](examination/recap_quizzes/01b_recap.qmd)
+
+**Resources:**
 - [Common Terminal Commands](course_materials/week_01/CommontTerminalCommands_BradTraversy.qmd)
 :::
 
 ::: {.g-col-6}
-### 🔧 Setup Required
-**Before our first class:**
+### 📗 Week 2: Version Control with Git
 
+**Lectures:**
+- [Lecture 2a: Recap Week 1](course_materials/week_02/02_recap.qmd)
+- [Lecture 2b: Version Control](course_materials/week_02/02_versioncontrol.qmd)
 
+**Exercises:**
+- [Exercise 2: First Commands in Git](exercise_sessions/week_02/Ex02_FirstCommitsInGit_v2.qmd)
+
+**Resources:**
+- [Git Cheat Sheet (PDF)](course_materials/week_02/git-cheat-sheet-education.pdf)
+
+**Setup:**
+- Install Git ([instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))
+- Install VSCode extension: **Git Graph**
 :::
 
 :::
@@ -54,7 +71,3 @@ By the end of this course, you will be able to:
 - Work with data using Python libraries
 - Use Git and GitHub for version control
 - Apply programming concepts to economic problems
-
----
-
-*Last updated: `{r} Sys.Date()`*
