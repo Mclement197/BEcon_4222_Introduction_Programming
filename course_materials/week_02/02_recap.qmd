@@ -25,7 +25,7 @@ echo: false
 #### The Terminal
 
 - A text-based interface to interact with your computer
-- Mac uses **bash/zsh** (Terminal), Windows uses **Command Prompt** or **PowerShell**
+- Mac uses **bash** (Terminal), Windows uses **Command Prompt** or **PowerShell**. In this course, we focus on **bash** and **command prompt** commands.
 
 <table style="width:95%; font-size:0.7em;">
   <thead>
@@ -36,12 +36,15 @@ echo: false
     <tr><td>List files</td><td><code>ls</code></td><td><code>dir</code></td></tr>
     <tr><td>Navigate</td><td><code>cd &lt;path&gt;</code></td><td><code>cd &lt;path&gt;</code></td></tr>
     <tr><td>Create directory</td><td><code>mkdir</code></td><td><code>mkdir</code></td></tr>
-    <tr><td>Home shortcut</td><td><code>~</code> (e.g. <code>cd ~/Documents</code>)</td><td>No <code>~</code> — use <code></code></td></tr>
+    <tr><td>Write text to file</td><td><code>echo "text" &gt; file</code></td><td><code>echo text &gt; file</code></td></tr>
+    <tr><td>Home shortcut</td><td><code>~</code> (e.g. <code>cd ~/Documents</code>)</td><td>-</td></tr>
+    <tr><td>Current directory shortcut</td><td><code>.</code></td><td><code>.</code></td></tr>
+    <tr><td>Parent directory shortcut</td><td><code>..</code></td><td><code>..</code></td></tr>
   </tbody>
 </table>
 
-- Paths: **absolute** (`C:\Users\Bilbo\Documents\`) vs **relative** (`../Documents/`)
-- Shortcuts: `.` (current directory), `..` (parent directory)
+- **Important:** All commands operate relative to your current working directory. Always know where you are!
+- Paths: **absolute** (`C:/Users/Bilbo/Documents/`) vs **relative** (`../Documents/`)
 
 ## Using Visual Code
 
@@ -65,7 +68,7 @@ echo: false
 #### Virtual Environments with `uv`
 
 - Each project gets its own **isolated environment** (its own "kitchen")
-- Never install packages globally — always use environments!
+- Never install packages globally, always use environments!
 - Key commands:
 
 <table style="width:80%; font-size:0.8em;">

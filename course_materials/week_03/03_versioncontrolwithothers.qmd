@@ -1,7 +1,7 @@
 ---
 title: '6,222 Introduction to Programming'
 subtitle: 'Lecture 3: Git and GitHub for collaboration'
-author: "Dr. Franziska Bender, Dr. Aurélien Sallin"
+author: "Dr. Aurélien Sallin"
 date: "2026-03-06"
 code-line-numbers: false
 format:
@@ -129,8 +129,8 @@ Or **GitHub pages**, like [the GitHub profile of the World Bank](https://github.
 
 ![](../../assets/img/git_process7.png)
 
-- `git clone`, `git remote`
-- `git pull`, `git push`
+- `git clone` / `git remote`
+- `git pull` / `git push`
 - The main remote is usually called `origin`.
 - Remotes also have branches, just like your local repository.
 
@@ -223,6 +223,10 @@ git push -u <remote> <branch>
 
 ## Authenticating with GitHub 🗝️
 
+... some patience is required there...
+
+## Authenticating with GitHub 🗝️
+
 #### Authentication when pushing and pulling
 
 - When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
@@ -248,27 +252,27 @@ ssh -T git@github.com
 
 
 
+
+
+# Cloning a repository
+
 ## Cloning the course repository
 
-#### 1. Navigate to your course directory `BECON_4222_Introduction_programming_exercises` using the terminal.
+#### 1. Navigate to your course directory [Introduction_to_programming]{.path} using the terminal.
 
 Remember our course structure:
 
 ```
-BECON_4222_Introduction_programming/
-├── materials/              # is empty for now, you will clone the git repo in week 3
-├── exercises/              # Student's own work
-│   ├── week01/
-│   ├── week02/
+Introduction_to_programming/
+├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── exercises/               # Student's own work
+│   ├── week_01/
+│   ├── week_02/
 │   ├── ...
-│   ├── week12/
+│   ├── week_12/
 ├── group_project/
 │   ├── ...
-
 ```
-
-
-# Cloning a repository
 
 ## Cloning the course repository
 
@@ -282,7 +286,7 @@ Go on [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://g
 
 ##### 3. Clone the course repository.
 
-The course is public, so cloning via HTTPS will work without an SSH key; cloning via the SSH URL requires a configured SSH key.
+The course is public, so cloning via HTTPS will work without a SSH key. However, cloning via the SSH URL requires a configured SSH key.
 
 
 ```bash
@@ -297,28 +301,29 @@ git clone git@github.com:ASallin/BECON_4222_Introduction_Programming.git
 
 ## Cloning the course repository
 
-Now you've cloned the course repository in your directory. You'll have a new folder called "BECON_4222_Introduction_Programming". You can remove the "materials" folder.
+Now you've cloned the course repository in your directory. You'll have a new folder called [BECON_4222_Introduction_Programming]{.path}. You can remove the [materials]{.path} folder.
 
 ```
-BECON_4222_Introduction_programming/
-├── BECON_4222_Introduction_Programming/
-├── exercises/              # Student's own work
-│   ├── week01/
-│   ├── week02/
+Introduction_to_programming/
+├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── exercises/               # Student's own work
+│   ├── week_01/
+│   ├── week_02/
 │   ├── ...
-│   ├── week12/
+│   ├── week_12/
 ├── group_project/
 │   ├── ...
-
 ```
 
 Every week, you can refresh the course content with `git pull`.
+
+
 
 # Create a repo
 
 ## Creating a GitHub repository
 
-#### Click **New repository** on GitHub
+#### On your GitHub account, click **New repository**
 
 - Choose a **name** (e.g., `my-project`)
 - Set **visibility**: Public (anyone can see) or Private (only you and collaborators)
@@ -328,7 +333,7 @@ Every week, you can refresh the course content with `git pull`.
 ## The README.md
 
 - First thing visitors see when they open your repo
-- Written in Markdown
+- Written in Markdown (you know Markdown already from Data Handling, same as Quarto)
 - Should describe: what the project is, how to install/run it, how to contribute
 - A good README makes your project accessible and professional
 
@@ -358,6 +363,11 @@ A **pull request** (PR) is a request to merge changes from one branch into anoth
 5. Once approved, **merge** the PR
 
 PRs keep the `main` branch clean and give the team a chance to review code before it's integrated.
+
+
+## Collaborators
+
+
 
 
 ## Sources

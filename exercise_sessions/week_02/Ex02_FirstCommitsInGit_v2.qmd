@@ -1,6 +1,6 @@
 ---
 title: '4,222 Introduction to Programming'
-subtitle: 'Exercise Week 2: First commands in `git`'
+subtitle: 'Exercise Week 2: First commands in Git'
 author: "Aurélien Sallin, Lea Tschan, Valentina Sontheim"
 date: "2025-02-27"
 code-line-numbers: false
@@ -1088,26 +1088,4 @@ macOS and Linux users (who set `core.autocrlf=input`) typically do not see this 
 
 ## Appendix 3: What happens if you forget the `-m` flag in `git commit`?
 
-If you run `git commit` without the `-m` option, Git will open a text editor in the current terminal so you can write the commit message manually.
-
-![](../../assets/img/ex_02/ex02_merge_conflict_branch.png)
-
-Git uses a terminal-based editor by default. On many systems this is Vim, on others it may be Nano. Both are command-line text editors.
-
-**If Vim opens**
-
-Vim starts in *normal mode*, where you cannot type immediately.
-
-1.  Press `i` to enter *insert mode*.
-2.  Type your commit message.
-3.  Press `Esc` to leave insert mode.
-4.  Type `:wq` and press `Enter` to save and quit.
-
-If you want to exit without saving, type `:q!` instead.
-
-**If Nano opens**
-
-Nano is simpler: - Just start typing your message.
-- Press `Ctrl + O` to save.
-- Press `Enter` to confirm.
-- Press `Ctrl + X` to exit.
+See slides lecture 2.

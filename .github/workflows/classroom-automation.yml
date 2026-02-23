@@ -1,0 +1,83 @@
+name: GitHub Classroom Automation
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  auto-modify:
+    # Prevent infinite loop - don't run on bot's own commits
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Determine modification stage
+        id: stage
+        run: |
+          # Check if test block already exists
+          if grep -q "# Test block" some_arithmetic.py; then
+            echo "test_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "test_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+          # Check if variable b has been modified by bot
+          if grep -q "# Modified by automation" some_arithmetic.py; then
+            echo "b_modified=true" >> $GITHUB_OUTPUT
+          else
+            echo "b_modified=false" >> $GITHUB_OUTPUT
+          fi
+
+      # STAGE 1: Add test block after student's first push
+      - name: Stage 1 - Add test block
+        if: steps.stage.outputs.test_exists == 'false'
+        run: |
+          cat >> some_arithmetic.py << 'EOF'
+
+          # Test block
+          if a == b == c:
+              print("✓ All values are equal to 42!")
+          else:
+              print("✗ Not all values are 42 yet")
+          EOF
+
+      # STAGE 2: Modify variable b after student's second push (creates future conflict)
+      - name: Stage 2 - Modify variable b
+        if: steps.stage.outputs.test_exists == 'true' && steps.stage.outputs.b_modified == 'false'
+        run: |
+          python3 << 'PYTHON'
+          with open('some_arithmetic.py', 'r') as f:
+              lines = f.readlines()
+
+          with open('some_arithmetic.py', 'w') as f:
+              for line in lines:
+                  if line.startswith('b = '):
+                      f.write('b = 21 * 2  # Modified by automation\n')
+                  else:
+                      f.write(line)
+          PYTHON
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add some_arithmetic.py
+
+          # Different commit messages for different stages
+          if [ "${{ steps.stage.outputs.test_exists }}" == "false" ]; then
+            git commit -m "🤖 Add test block to check your work"
+          elif [ "${{ steps.stage.outputs.b_modified }}" == "false" ]; then
+            git commit -m "🤖 Update variable b calculation"
+          else
+            echo "No changes needed"
+            exit 0
+          fi
+
+          git push

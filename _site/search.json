@@ -704,7 +704,7 @@
     "href": "course_materials/week_02/02_recap.html#summary-key-concepts",
     "title": "4,222 Introduction to Programming",
     "section": "Summary: Key Concepts",
-    "text": "Summary: Key Concepts\nThe Terminal\n\nA text-based interface to interact with your computer\nMac uses bash/zsh (Terminal), Windows uses Command Prompt or PowerShell\n\n\n\n\n\nAction\n\n\nbash (Mac)\n\n\nCommand Prompt (Windows)\n\n\n\n\n\n\nShow current directory\n\n\npwd\n\n\ncd (without arguments)\n\n\n\n\nList files\n\n\nls\n\n\ndir\n\n\n\n\nNavigate\n\n\ncd &lt;path&gt;\n\n\ncd &lt;path&gt;\n\n\n\n\nCreate directory\n\n\nmkdir\n\n\nmkdir\n\n\n\n\nHome shortcut\n\n\n~ (e.g. cd ~/Documents)\n\n\nNo ~ — use \n\n\n\n\n\nPaths: absolute (C:\\Users\\Bilbo\\Documents\\) vs relative (../Documents/)\nShortcuts: . (current directory), .. (parent directory)"
+    "text": "Summary: Key Concepts\nThe Terminal\n\nA text-based interface to interact with your computer\nMac uses bash (Terminal), Windows uses Command Prompt or PowerShell. In this course, we focus on bash and command prompt commands.\n\n\n\n\n\nAction\n\n\nbash (Mac)\n\n\nCommand Prompt (Windows)\n\n\n\n\n\n\nShow current directory\n\n\npwd\n\n\ncd (without arguments)\n\n\n\n\nList files\n\n\nls\n\n\ndir\n\n\n\n\nNavigate\n\n\ncd &lt;path&gt;\n\n\ncd &lt;path&gt;\n\n\n\n\nCreate directory\n\n\nmkdir\n\n\nmkdir\n\n\n\n\nWrite text to file\n\n\necho “text” &gt; file\n\n\necho text &gt; file\n\n\n\n\nHome shortcut\n\n\n~ (e.g. cd ~/Documents)\n\n\n-\n\n\n\n\nCurrent directory shortcut\n\n\n.\n\n\n.\n\n\n\n\nParent directory shortcut\n\n\n..\n\n\n..\n\n\n\n\n\nImportant: All commands operate relative to your current working directory — always know where you are!\nPaths: absolute (C:/Users/Bilbo/Documents/) vs relative (../Documents/)"
   },
   {
     "objectID": "course_materials/week_02/02_recap.html#using-visual-code",
@@ -975,196 +975,196 @@
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
     "href": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Goals for today",
-    "text": "Goals for today\nIn this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic commands in git\n\n\n\nIn the next lecture, we will\n\ncreate a github account\nlearn how to collaborate with a remote repository with git and GitHub"
+    "text": "Goals for today\nIn this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic commands in Git\n\n\n\nIn the next lecture, we will\n\ncreate a GitHub account\nlearn how to collaborate with a remote repository with Git and GitHub"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#prerequisites-for-today",
     "href": "course_materials/week_02/02_versioncontrol.html#prerequisites-for-today",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Prerequisites for today",
-    "text": "Prerequisites for today\n\nYou have installed git on your computer\nYou have installed VSCode and the git extension (part of the data science profile)\n\nGit feels complicated at first!!!\n\nI am trying to give you a good intuition for how it works and what it does.\nYou will need to practice to get used to it.\nDon’t worry if you don’t understand everything at first, just try to get the general idea and we will practice in the exercises."
+    "text": "Prerequisites for today\n\nYou have installed Git on your computer\nYou have installed VSCode and the Git extension (part of the data science profile)\n\nGit feels complicated at first!!!\n\nI am trying to give you a good intuition for how it works and what it does.\nYou will need to practice to get used to it.\nDon’t worry if you don’t understand everything at first, just try to get the general idea and we will practice in the exercises."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-1",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-1",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-2",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-2",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-3",
     "href": "course_materials/week_02/02_versioncontrol.html#a-daily-situation-3",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "A daily situation…",
     "text": "A daily situation…"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#what-is-git-1",
     "href": "course_materials/week_02/02_versioncontrol.html#what-is-git-1",
-    "title": "6,222 Introduction to Programming",
-    "section": "What is git?",
-    "text": "What is git?\nVersion Control System (VCS)\n\nLooks at the changes in your files\nRecords all changes over time to give you a full history\nSimilar to “track changes” in Microsoft Word\n\nGit only looks at and tracks the changes in a file"
+    "title": "4,222 Introduction to Programming",
+    "section": "What is Git?",
+    "text": "What is Git?\nVersion Control System (VCS)\n\nLooks at the changes in your files\nRecords all changes over time to give you a full history\nSimilar to “track changes” in Microsoft Word\n\nGit only looks at and tracks the changes in a file"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#why-should-we-learn-git",
     "href": "course_materials/week_02/02_versioncontrol.html#why-should-we-learn-git",
-    "title": "6,222 Introduction to Programming",
-    "section": "Why should we learn git?",
-    "text": "Why should we learn git?\n\nVery hard to lose files with git\nGreat for collaboration\nHistory allows you to go back and understand changes or revert when there are problems\nReproducibility\nIn demand for any data science job"
+    "title": "4,222 Introduction to Programming",
+    "section": "Why should we learn Git?",
+    "text": "Why should we learn Git?\n\nVery hard to lose files with Git\nGreat for collaboration\nHistory allows you to go back and understand changes or revert when there are problems\nReproducibility\nIn demand for any data science job"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#git-and-the-command-line-interface-cli",
     "href": "course_materials/week_02/02_versioncontrol.html#git-and-the-command-line-interface-cli",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Git and the Command Line Interface (CLI)",
-    "text": "Git and the Command Line Interface (CLI)\nGit is usually used from a CLI (like a terminal)\n\nLearn git commands and use them in a terminal.\nVery flexible, but a bit unintuitive\n\nBut also from Graphical User Interface (GUI)\n\nMost applications nowadays: GitHub Desktop, VSCode extension, RStudio\nOften easier to use and no commands needed.\nEasier to visualize the steps."
+    "text": "Git and the Command Line Interface (CLI)\nGit is usually used from a CLI (like a terminal)\n\nLearn Git commands and use them in a terminal.\nVery flexible, but a bit unintuitive\n\nBut also from Graphical User Interface (GUI)\n\nMost applications nowadays: GitHub Desktop, VSCode extension, RStudio\nOften easier to use and no commands needed.\nEasier to visualize the steps."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#in-this-course",
     "href": "course_materials/week_02/02_versioncontrol.html#in-this-course",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "In this course",
-    "text": "In this course\n\n\n\nWe will learn the basic commands of git in a CLI, and we will use the GUI in VSCode\nAll the commands we will learn are available in the official Git Cheat Sheet. Please download the sheet."
+    "text": "In this course\n\n\n\nWe will learn the basic commands of Git in a CLI, and we will use the GUI in VSCode\nAll the commands we will learn are available in the official Git Cheat Sheet. Please download the sheet."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#setting-up-git",
     "href": "course_materials/week_02/02_versioncontrol.html#setting-up-git",
-    "title": "6,222 Introduction to Programming",
-    "section": "Setting up git",
-    "text": "Setting up git\nFrom the cli:\n\nIn VSCode, open a terminal and select git bash (Windows) or bash (Linux/MacOS).\n\nOR:\n\nOn Windows, open Git Bash (start menu -&gt; Git Bash). Make sure you’ve installed git beforehand.\nOn MacOS, open the Terminal app.\nOn Linux, open your distribution’s (or any other) terminal emulator.\nLet’s do this together now!"
+    "title": "4,222 Introduction to Programming",
+    "section": "Setting up Git",
+    "text": "Setting up Git\nFrom the CLI:\n\nIn VSCode, open a terminal and select Git Bash (Windows) or bash (Linux/MacOS).\n\nOR:\n\nOn Windows, open Git Bash (start menu -&gt; Git Bash). Make sure you’ve installed Git beforehand.\nOn MacOS, open the Terminal app.\nLet’s do this together now!"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#setting-up-git-1",
     "href": "course_materials/week_02/02_versioncontrol.html#setting-up-git-1",
-    "title": "6,222 Introduction to Programming",
-    "section": "Setting up git",
-    "text": "Setting up git\nRun the following commands in your terminal to correctly configure git on your computer.\n# Add your name\ngit config --global user.name \"Your Name\"\n\n# Add your email address\ngit config --global user.email \"your.email@unisg.ch\"\n\n# Use modern main branch name\ngit config --global init.defaultBranch main\nA detail (you only need to do this once at config, not to remember for the course):\n# For Linux/Mac:\ngit config --global core.autocrlf input\n\n# For Windows:\ngit config --global core.autocrlf true\nWhy? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF \\n, Windows: CRLF \\r\\n). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts."
+    "title": "4,222 Introduction to Programming",
+    "section": "Setting up Git",
+    "text": "Setting up Git\nRun the following commands in your terminal to correctly configure Git on your computer.\n# Add your name\ngit config --global user.name \"Your Name\"\n\n# Add your email address\ngit config --global user.email \"your.email@unisg.ch\"\n\n# Use modern main branch name\ngit config --global init.defaultBranch main\nA detail (you only need to do this once at config, not to remember for the course):\n# For Linux/Mac:\ngit config --global core.autocrlf input\n\n# For Windows:\ngit config --global core.autocrlf true\nWhy? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF \\n, Windows: CRLF \\r\\n). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-directory",
     "href": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-directory",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "We start from a local directory",
-    "text": "We start from a local directory\n\n\nA project in git is called a repository (or repo for short) and it always corresponds to a directory on your machine. This is usually where you save your project.\nNothing here is shared with others yet.\nGit always works locally first."
+    "text": "We start from a local directory\n\n\nA project in Git is called a repository (or repo for short) and it always corresponds to a directory on your machine. This is usually where you save your project.\nGit always works locally first (nothing shared)."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#working-in-your-directory-as-usual",
     "href": "course_materials/week_02/02_versioncontrol.html#working-in-your-directory-as-usual",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Working in your directory as usual",
     "text": "Working in your directory as usual\n\n\nThe working directory is where you write code, edit files, run scripts, etc.\nFiles here may be untracked, modified or unfinished\nSaving a file only affects the working directory. Git does nothing yet."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-select-files-to-be-tracked",
     "href": "course_materials/week_02/02_versioncontrol.html#we-select-files-to-be-tracked",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "We select files to be tracked",
     "text": "We select files to be tracked\n\n\nUse git add to select the files that you want to include in your project history, that you want to track, and that you want to share with others."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-add-files-to-the-staging-area",
     "href": "course_materials/week_02/02_versioncontrol.html#we-add-files-to-the-staging-area",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "We add files to the staging area",
     "text": "We add files to the staging area\n\n\nThe staging area is a list of changes you are about to record.\nIt is not a folder and not a backup.\nYou can stage edits that logically belong together. Example: You edited 5 files but only 2 are ready."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-commit-the-staged-changes",
     "href": "course_materials/week_02/02_versioncontrol.html#we-commit-the-staged-changes",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "We commit the staged changes",
     "text": "We commit the staged changes\n\n\nUse git commit to record the staged changes and creates a snapshot in time.\nIt adds a message explaining why the change was made.\n! Commits are: permanent, ordered, traceable, attributable to a person"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-now-have-a-git-repository",
     "href": "course_materials/week_02/02_versioncontrol.html#we-now-have-a-git-repository",
-    "title": "6,222 Introduction to Programming",
-    "section": "We now have a git repository",
-    "text": "We now have a git repository\n\n\nGit repository is the history of your project.\nIt contains all commits, who changed what, when and why.\nThis is what enables undoing mistakes, collaboration, branching, merging"
+    "title": "4,222 Introduction to Programming",
+    "section": "We now have a Git repository",
+    "text": "We now have a Git repository\n\n\nA Git repository is the history of your project.\nIt contains all commits, who changed what, when and why.\nThis is what enables undoing mistakes, collaboration, branching, merging"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-can-then-share-our-repository-with-others",
     "href": "course_materials/week_02/02_versioncontrol.html#we-can-then-share-our-repository-with-others",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "We can then share our repository with others",
     "text": "We can then share our repository with others\n\n\nFor next week!"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#summary",
     "href": "course_materials/week_02/02_versioncontrol.html#summary",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Summary",
     "text": "Summary\nThree levels: changes can be either unstaged, staged or committed.\n\nWhen we first make a change it is unstaged\nOnce we add the change to the staging area it is staged\nWe can then commit all staged changes\n\nFiles are added to the staging area with git add &lt;path to file or directory&gt;\nAll files in the staging area are committed with git commit"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#initialize-a-git-repository",
     "href": "course_materials/week_02/02_versioncontrol.html#initialize-a-git-repository",
-    "title": "6,222 Introduction to Programming",
-    "section": "Initialize a git repository",
-    "text": "Initialize a git repository\nRemember our folder structure:\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the git repo in week 3\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\nWe will initialize a repo in the exercises folder. You will have to initialize another repo in your group_project folder."
+    "title": "4,222 Introduction to Programming",
+    "section": "Initialize a Git repository",
+    "text": "Initialize a Git repository\nRemember our folder structure:\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the Git repo in week 3\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\nWe will initialize a repo in the exercises folder. You will have to initialize another repo in your group_project folder."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#initialize-a-repo",
     "href": "course_materials/week_02/02_versioncontrol.html#initialize-a-repo",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Initialize a repo",
     "text": "Initialize a repo\nThis is done via the init command.\nIn your terminal from VSCode, navigate to your cd Introduction_to_programming/exercises. Then:\ngit init\n# Initialized empty Git repository in /Users/Introduction_to_programming/exercises\nWith git init we turn the directory into a repository.\nAt this point, 🗂️ tracking has started!"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#add-a-file-to-the-staging-area",
     "href": "course_materials/week_02/02_versioncontrol.html#add-a-file-to-the-staging-area",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Add a file to the staging area",
-    "text": "Add a file to the staging area\nLet’s write a text file “example.txt” using our terminal.\necho \"first steps in git\" &gt; example.txt\n\n# verify\ncat example.txt #OR\ntype example.txt\nAdd example.txt to the staging area. Changes are added to the staging area with git add .\ngit add example.txt\n\nYou can use git add . to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)\nYou can also use * to represent any sort of filename e.g. add all .txt files via *.txt"
+    "text": "Add a file to the staging area\nLet’s write a text file example.txt using our terminal.\necho first steps in git &gt; example.txt # Windowns (cmd)\necho \"first steps in git\" &gt; example.txt # Mac/Linux (bash)\nBoth create the same file content. Verify:\ncat example.txt # Mac/Linux\ntype example.txt # Windows\nAdd example.txt to the staging area. Changes are added to the staging area with git add &lt;path to file or directory&gt;.\ngit add example.txt\n\nYou can use git add . to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)\nYou can also use * to represent any sort of filename e.g. add all .txt files via *.txt"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#seeing-changes-git-status",
     "href": "course_materials/week_02/02_versioncontrol.html#seeing-changes-git-status",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Seeing Changes: git status 👀",
-    "text": "Seeing Changes: git status 👀\nYou can see the high-level changes and what is about to happen with git status\ngit status\n# On branch main\n# No commits yet\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\nLet’s change the content of example.txt. Save it. Then run:\ngit status\n# No commits yet\n#\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\n#\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#         modified:   example.txt"
+    "text": "Seeing Changes: git status 👀\nYou can see the high-level changes and what is about to happen with git status\ngit status\n# On branch main\n# No commits yet\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\nLet’s change the content of “example.txt”. Save it, then run:\ngit status\n# No commits yet\n#\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\n#\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#         modified:   example.txt"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#tracking-changes-git-commit",
     "href": "course_materials/week_02/02_versioncontrol.html#tracking-changes-git-commit",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Tracking Changes: git commit",
     "text": "Tracking Changes: git commit\nAll changes in the staging area are committed with git commit. Every commit needs a message!\nLet’s add and then commit the new change\ngit add example.txt\ngit commit -m \"Creating example.txt\"\n# [main (root-commit) fc0372c] Creating example.txt\n#  1 file changed, 1 insertion(+)\n#  create mode 100644 example.txt\n\ngit status\n# On branch main\n# nothing to commit, working tree clean\nOnce a change is committed it becomes significantly harder to remove it."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore",
     "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Ignoring the ignorable: .gitignore",
-    "text": "Ignoring the ignorable: .gitignore\nBy default, git will track all the files in your repository.\n\nIf you want it to ignore certain files or filetypes, you have to tell it so explicitly.\nFor instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, .DS_Store files on MacOS.\nYou also want to ignore .venv/: this directory is machine-specific (environment realization). However, you must track pyproject.tomland uv.lock (environment definition).\n\nYou can do this by using a file called .gitignore\n\nEvery file will be compared against the list in .gitignore and if it matches, git will ignore the file\n(The .gitignore file itself is tracked just like any other file)"
+    "text": "Ignoring the ignorable: .gitignore\nBy default, Git will track all the files in your repository.\n\nIf you want it to ignore certain files or filetypes, you have to tell it so explicitly.\nFor instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, .DS_Store files on MacOS.\nYou also want to ignore .venv/: this directory is machine-specific (environment realization). However, you must track pyproject.tomland uv.lock (environment definition).\n\nYou can do this by using a file called .gitignore\n\nEvery file will be compared against the list in .gitignore and if it matches, Git will ignore the file\n(The .gitignore file itself is tracked just like any other file)"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore-1",
     "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore-1",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Ignoring the ignorable: .gitignore",
-    "text": "Ignoring the ignorable: .gitignore\nClassic example of a .gitignore file\n# Ignore every file calledmyfile.pdf\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx\nDo not store data on git -&gt; .gitignore"
+    "text": "Ignoring the ignorable: .gitignore\nClassic example of a .gitignore file\n# Ignore every file called myfile.pdf\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx\nDo not store data on Git -&gt; .gitignore"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-project-becomes-a-series-of-commits",
     "href": "course_materials/week_02/02_versioncontrol.html#a-project-becomes-a-series-of-commits",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "A project becomes a series of commits",
     "text": "A project becomes a series of commits\n\n\nGit repository is the history of your project and contains all commits.\nEach commit is identified with a unique commit id (a hash), which is 40 hexadecimal characters long. The short form typically shown is 7 characters."
   },
@@ -1173,133 +1173,133 @@
     "href": "course_materials/week_02/02_versioncontrol.html#going-back-through-time-with-git-checkout",
     "title": "6,222 Introduction to Programming",
     "section": "Going back through time with git checkout",
-    "text": "Going back through time with git checkout\n\n\nYou can go to any commit with git checkout by referencing the hash, i.e. git checkout a3f7b2c\ncheckout sends you out of a branch, i.e. detached head. You need to explicitly switch to main (or to any other branch). Note: We will explain detached heads in the exercises."
+    "text": "Going back through time with git checkout\n\n\nGo to any commit with git checkout by referencing the hash: git checkout a3f7b2c\ncheckout sends you out of a branch, i.e. detached head. You need to explicitly switch to main (or to any other branch)."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#what-are-git-branches",
     "href": "course_materials/week_02/02_versioncontrol.html#what-are-git-branches",
-    "title": "6,222 Introduction to Programming",
-    "section": "What are git branches? 🌳",
-    "text": "What are git branches? 🌳\n\n\nBranches are alternate realities: they allow you to have different versions of your code within the same repository next to each other\nYou can switch back and forth between branches"
+    "title": "4,222 Introduction to Programming",
+    "section": "What are Git branches? 🌳",
+    "text": "What are Git branches? 🌳\n\n\nBranches are alternate realities: they allow you to have different versions of your code within the same repository next to each other\nYou can switch back and forth between branches"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#create-a-new-branch",
     "href": "course_materials/week_02/02_versioncontrol.html#create-a-new-branch",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Create a new branch 🌳",
-    "text": "Create a new branch 🌳\n\nUse git checkout -b my-branch: creates a branch and checks it out (you are leaving main and working on your new branch)\nYou can work on your new branch as usual.\nUse git status to be aware on which branch you are on.\nUse git branch to check the existing branches.\nUse git branch -d &lt;branch-name&gt; to safely delete (-d) a branch after it’s merged.\nUse git checkout my-branch to switch branches.\n\n\nSince Git 2.23, git switch is the recommended alternative to git checkout for switching branches. We use checkout here because you’ll find it everywhere online, but know that git switch is the modern equivalent."
+    "text": "Create a new branch 🌳\n\nUse git switch -c my-branch: creates a branch and checks it out (you are leaving main and working on your new branch)\nYou can work on your new branch as usual.\nUse git status to be aware on which branch you are on.\nUse git branch to check the existing branches.\nUse git branch -d &lt;branch-name&gt; to safely delete (-d) a branch after it’s merged.\nUse git switch my-branch to switch branches.\n\n\nSince Git 2.23, git switch is the recommended alternative to git checkout for switching branches."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#why-would-you-ever-want-to-branch",
     "href": "course_materials/week_02/02_versioncontrol.html#why-would-you-ever-want-to-branch",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Why would you ever want to branch?",
     "text": "Why would you ever want to branch?\n\nSome answers:\n\nExperiment safely: try new ideas without risking the working version of your code\nWork in parallel: multiple people can work on different features at the same time without stepping on each other’s toes\nIsolate changes: keep unfinished work separate from the stable main branch\nReview before merging: branches enable pull requests, where others can review your code before it’s integrated\n\nAnalogy: branching is like making a copy of your essay draft to try a different conclusion. If it works, you keep it; if not, you throw the copy away and your original is untouched."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merging",
     "href": "course_materials/week_02/02_versioncontrol.html#merging",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Merging 🔀",
-    "text": "Merging 🔀\n\n\nIn the end you can merge your changes back into your main branch\nYou can combine two different branches by merging them with each other using git merge my-branch"
+    "text": "Merging 🔀\n\n\nIn the end you can merge your changes back into your main branch\nYou can combine two different branches by merging them using git merge my-branch"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merging-1",
     "href": "course_materials/week_02/02_versioncontrol.html#merging-1",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Merging 🔀",
     "text": "Merging 🔀\n\n\ngit merge &lt;branch&gt; merges the named branch into your current branch (usually main)\nMerging will create a new “merge” commit"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merge-conflicts",
     "href": "course_materials/week_02/02_versioncontrol.html#merge-conflicts",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Merge conflicts ⚔️",
     "text": "Merge conflicts ⚔️"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merge-conflicts-1",
     "href": "course_materials/week_02/02_versioncontrol.html#merge-conflicts-1",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Merge conflicts ⚔️",
-    "text": "Merge conflicts ⚔️\n\n\n\nMerge conflicts occur when there are edits to the same file (and at the same location) on two different branches\n\n\n\n\nWhen combining changes from two branches, there is not always a clear solution.\nIf git doesn’t know how to merge the two branches, we get a merge conflict\nMerge conflicts have to be manually resolved\nDON’T PANIC\n\n\n\n\nIf you merge your branches / edits before making more changes, you can avoid conflicts"
+    "text": "Merge conflicts ⚔️\n\n\n\nMerge conflicts occur when there are edits to the same file (and at the same location) on two different branches\n\n\n\n\nWhen combining changes from two branches, there is not always a clear solution.\nIf Git doesn’t know how to merge the two branches, we get a merge conflict\nMerge conflicts have to be manually resolved\nDON’T PANIC\n\n\n\n\nIf you merge your branches / edits before making more changes, you can avoid conflicts"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#illustration-for-merge-conflicts",
     "href": "course_materials/week_02/02_versioncontrol.html#illustration-for-merge-conflicts",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Illustration for merge conflicts",
     "text": "Illustration for merge conflicts"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#resolving-merge-conflicts",
     "href": "course_materials/week_02/02_versioncontrol.html#resolving-merge-conflicts",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Resolving merge conflicts",
     "text": "Resolving merge conflicts\n\nTo resolve a merge conflict, you will have to go through changes one by one and pick one of the two versions\nDetermine which files are in conflict with git status\nOnce a solution is picked for every conflict you can add the file, commit the solution and the merge continues / finishes\nPicking a solution is easiest to do by using GUI tools"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#example-of-a-merge-conflict",
     "href": "course_materials/week_02/02_versioncontrol.html#example-of-a-merge-conflict",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Example of a merge conflict",
     "text": "Example of a merge conflict\n\n\n\n\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n&lt;div id=\"footer\"&gt;contact : email.support@github.com&lt;/div&gt;\n=======\n&lt;div id=\"footer\"&gt;\n please contact us at support@github.com\n&lt;/div&gt;\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch\n\nIn this conflict, the lines between &lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html and ====== are the content from the branch you are currently on.\nThe lines between ======= and &gt;&gt;&gt;&gt;&gt;&gt;&gt; issue-5:index.html are from the feature branch we are merging.\n\n\n\n\n\n\n\n\n\n&lt;div id=\"footer\"&gt;\nplease contact us at email.support@github.com\n&lt;/div&gt;\n\nTo resolve the conflict, edit the whole section until it reflects the state you want in the merged result. Remove the conflict markers &lt;&lt;&lt;&lt;&lt;&lt;, ====== and &gt;&gt;&gt;&gt;&gt;&gt;&gt;.\nThen run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.\n\n\nExample from Happy Git with R"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#abort",
     "href": "course_materials/week_02/02_versioncontrol.html#abort",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Abort",
     "text": "Abort\nIf, during the merge, you get confused about the state of things or make a mistake:\n\nuse git merge --abort to abort the merge and go back to the state prior to running git merge.\nThen try to complete the merge again."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#self-study",
     "href": "course_materials/week_02/02_versioncontrol.html#self-study",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Self-study",
-    "text": "Self-study\nOnce you’ve recovered from the lecture, please read the next three slides.\n\nAdditional git commands link🔗\nThe anatomy of a git command 🔍️ link🔗\nStuck in an editor? Breaking free ⛓️‍💥 link🔗"
+    "text": "Self-study\nOnce you’ve recovered from the lecture, please read the next three slides.\n\nAdditional Git commands link🔗\nThe anatomy of a Git command 🔍️ link🔗\nStuck in an editor? Breaking free ⛓️‍💥 link🔗"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#thanks-for-your-attention",
     "href": "course_materials/week_02/02_versioncontrol.html#thanks-for-your-attention",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Thanks for your attention",
     "text": "Thanks for your attention"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#sources",
     "href": "course_materials/week_02/02_versioncontrol.html#sources",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Sources",
-    "text": "Sources\n\nJan Simson, Intro to git\nJennifer Bryan, Happy Git and GitHub for the useR"
+    "text": "Sources\n\nJan Simson, Intro to Git\nJennifer Bryan, Happy Git and GitHub for the useR"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#self-study-2",
     "href": "course_materials/week_02/02_versioncontrol.html#self-study-2",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Self-study",
     "text": "Self-study\nOnce you’ve recovered from the lecture, please read the next three slides."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#additional-git-commands",
     "href": "course_materials/week_02/02_versioncontrol.html#additional-git-commands",
-    "title": "6,222 Introduction to Programming",
-    "section": "Additional git commands",
-    "text": "Additional git commands\n\ngit diff: changes between your working directory and staging area (unstaged changes)\ngit diff --staged: changes between your staging area and the last commit (what will be committed next)\ngit reset: reset your staging area (use git reset &lt;filename/directory&gt; for specific files)\ngit restore --staged &lt;file&gt;: used to undo the effects of git add (unstage a certain file and undo a previous git add)\ngit restore &lt;file&gt;: discard local changes in a file, restoring its last committed state. Undo any changes to files (go back to last commit stage). Cannot be undone 💪\ngit log: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing q. Use git log --oneline to see the log in a compact way."
+    "title": "4,222 Introduction to Programming",
+    "section": "Additional Git commands",
+    "text": "Additional Git commands\n\ngit diff: changes between your working directory and staging area (unstaged changes)\ngit diff --staged: changes between your staging area and the last commit (what will be committed next)\ngit reset: reset your staging area (use git reset &lt;filename/directory&gt; for specific files)\ngit restore --staged &lt;file&gt;: used to undo the effects of git add (unstage a certain file and undo a previous git add)\ngit restore &lt;file&gt;: discard local changes in a file, restoring its last committed state. Undo any changes to files (go back to last commit stage). Cannot be undone 💪\ngit log: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing q. Use git log --oneline to see the log in a compact way."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#the-anatomy-of-a-git-command",
     "href": "course_materials/week_02/02_versioncontrol.html#the-anatomy-of-a-git-command",
-    "title": "6,222 Introduction to Programming",
-    "section": "The anatomy of a git command 🔍️",
-    "text": "The anatomy of a git command 🔍️\nGit commands, like many other CLI tools follow a certain structure:\ngit &lt;command&gt; [flags/options] [arguments]\n\ngit status\ngit commit -m \"Adding example.txt\" # -m for message\ngit config --global user.name \"Your Name\"  # --global for setting the configuration globally\nWith -h you can get help on any git command 🚨\ngit status -h\ngit commit -h"
+    "title": "4,222 Introduction to Programming",
+    "section": "The anatomy of a Git command 🔍️",
+    "text": "The anatomy of a Git command 🔍️\nGit commands, like many other CLI tools follow a certain structure:\ngit &lt;command&gt; [flags/options] [arguments]\n\ngit status\ngit commit -m \"Adding example.txt\" # -m for message\ngit config --global user.name \"Your Name\"  # --global for setting the configuration globally\nWith -h you can get help on any Git command 🚨\ngit status -h\ngit commit -h"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#stuck-in-an-editor-breaking-free",
     "href": "course_materials/week_02/02_versioncontrol.html#stuck-in-an-editor-breaking-free",
-    "title": "6,222 Introduction to Programming",
+    "title": "4,222 Introduction to Programming",
     "section": "Stuck in an editor? Breaking free ⛓️‍💥",
-    "text": "Stuck in an editor? Breaking free ⛓️‍💥\nGit sometimes opens a text editor (for merge commits, rebases, etc.), and you might be stuck in it (it happens to me all the time). Here’s how to escape:\nIf you’re in vim (the default):\n\nPress Esc (make sure you’re in normal mode)\nType :wq then Enter → save and quit\nOr type :q! then Enter → quit without saving\n\nIf you’re in nano:\n\nCtrl + O then Enter → save\nCtrl + X → exit\n\nAvoid this altogether:\ngit config --global core.editor \"code --wait\"\nThis tells Git to use VS Code instead of vim/nano."
+    "text": "Stuck in an editor? Breaking free ⛓️‍💥\n\nGit sometimes opens a text editor (for merge commits, etc.), and you might be stuck in it (it happens to me all the time).\nAlso, this happens if you run git commit without the -m option. Every commit needs a message. If you don’t provide one, Git will open a text editor in the current terminal so you can write the commit message manually.\n\nHere’s how to escape:"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#questions-from-students",
@@ -1397,7 +1397,7 @@
     "href": "exercise_sessions/week_02/Ex02_FirstCommitsInGit_v2.html#appendix-3-what-happens-if-you-forget-the--m-flag-in-git-commit",
     "title": "4,222 Introduction to Programming",
     "section": "Appendix 3: What happens if you forget the -m flag in git commit?",
-    "text": "Appendix 3: What happens if you forget the -m flag in git commit?\nIf you run git commit without the -m option, Git will open a text editor in the current terminal so you can write the commit message manually.\n\nGit uses a terminal-based editor by default. On many systems this is Vim, on others it may be Nano. Both are command-line text editors.\nIf Vim opens\nVim starts in normal mode, where you cannot type immediately.\n\nPress i to enter insert mode.\nType your commit message.\nPress Esc to leave insert mode.\nType :wq and press Enter to save and quit.\n\nIf you want to exit without saving, type :q! instead.\nIf Nano opens\nNano is simpler: - Just start typing your message. - Press Ctrl + O to save. - Press Enter to confirm. - Press Ctrl + X to exit."
+    "text": "Appendix 3: What happens if you forget the -m flag in git commit?\nSee slides lecture 2."
   },
   {
     "objectID": "exercise_sessions/week_02/Ex02_FirstCommitsInGit_v2.html#footnotes",
@@ -1409,9 +1409,9 @@
   {
     "objectID": "exercise_sessions/week_03/Ex03_GitHub.html",
     "href": "exercise_sessions/week_03/Ex03_GitHub.html",
-    "title": "Exercise 3",
+    "title": "4,222 Introduction to Programming",
     "section": "",
-    "text": "Clone the course repo as shown in class in your course directory."
+    "text": "Create a Github account if you don’t have one already.\nAuthenticate GitHub by following the instructions in the class slides."
   },
   {
     "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#cloning-a-repository-course-repo",
@@ -1444,15 +1444,92 @@
   {
     "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#branching-and-a-first-merge-conflict",
     "href": "exercise_sessions/week_03/Ex03_GitHub.html#branching-and-a-first-merge-conflict",
-    "title": "Exercise 3",
+    "title": "4,222 Introduction to Programming",
     "section": "Branching and a first merge conflict",
     "text": "Branching and a first merge conflict\n\nCreate a new branch\nCreate and switch to a new branch called answer-42. Check where you are.\nSolution:\ngit checkout -b answer-42\ngit branch\nYou should see answer-42 marked with *.\n\n\nChanges on the branch\nOpen theMeaningOfEverything.py. Find the sentence: “The answer is close to 42 🤖”. Replace it with “The answer is equal to 42 🤖”.\nSave the file and commit with a meaningful commit message.\nSolution:\ngit add `theMeaningOfEverything.py`\ngit commit -m \"Answer the ultimate question\"\n\n\nPush the branch\nPush the branch to GitHub. Open the repository on GitHub. You should now see two branches.\nSolution:\ngit push -u origin answer-42\nYou can now continue to push on your branch. You notice that the text file on exercise contains the merged conflicts. In some way, you are ahead of main with your branch: “This branch is 1 commit ahead of main”.\n\n\nConflicting change (more advanced)\nNow merge both branches, from answer-42 into main.\ngit checkout main\ngit merge answer-42\ngit status\nNotice the message: On branch main- Your branch and ‘origin/main’ have diverged, and have 2 and 1 different commits each, respectively. (use “git pull” if you want to integrate the remote branch with yours).\nIf you try to push, you’ll receive the following message:\nhint: Updates were rejected because the tip of your current branch is behind\nhint: its remote counterpart. If you want to integrate the remote changes,\nhint: use 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.\n\nReflection: what has happened?\n\n\nAction\nAs suggested, pull remote main. Now you’ll have a conflict to solve (The answer is equal to 42 🤖 &lt;-&gt; The answer is close to 42 🤖). Solve the conflict by chosing “The answer is equal to 42 🤖” and push to remote."
   },
   {
     "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#bonus-adding-your-own-repository-to-github",
     "href": "exercise_sessions/week_03/Ex03_GitHub.html#bonus-adding-your-own-repository-to-github",
-    "title": "Exercise 3",
+    "title": "4,222 Introduction to Programming",
     "section": "Bonus Adding your own repository to Github",
     "text": "Bonus Adding your own repository to Github\n\nCreate a new repository on GitHub with the name git-intro-example\n\nMake sure NOT to add a README or any other file when creating it\n\nCreate an empty dir in your week_03 folder.\nAd the just created GitHub repo as a remote\n\ngit remote add origin &lt;URL&gt;\n\nPush you changes so far to GitHub\n\ngit push -u origin main"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#how-often-should-you-branch",
+    "href": "course_materials/week_02/02_versioncontrol.html#how-often-should-you-branch",
+    "title": "4,222 Introduction to Programming",
+    "section": "How often should you branch?",
+    "text": "How often should you branch?\n\n\nIn my experience: branch often\n\nTrying something uncertain (“Will this work?”)\nTesting a new approach, like experimenting with code, or streamlining a function, etc. You can easily discard the branch if it doesn’t work.\nImplementing something new, like a new function or module\nFixing a specific bug, test it, and if it works, merge it back.\n\nOften it depends on the “merging policy” of your team."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#time-travel-git-checkout-for-commits",
+    "href": "course_materials/week_02/02_versioncontrol.html#time-travel-git-checkout-for-commits",
+    "title": "4,222 Introduction to Programming",
+    "section": "Time-travel: git checkout for commits",
+    "text": "Time-travel: git checkout for commits\n\n\nGo to any old commit with git checkout by referencing the hash: git checkout a3f7b2c\nThis is for viewing history, not for switching branches (use git switch for branches!)\ncheckout sends you out of a branch, i.e. detached HEAD. You need to explicitly switch to main (or to any other branch)."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads",
+    "href": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads",
+    "title": "4,222 Introduction to Programming",
+    "section": "A note on detached heads",
+    "text": "A note on detached heads\n\n\nHEAD is Git’s pointer to your current position in the project.\nIt normally points to a branch that moves forward with commits."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads-1",
+    "href": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads-1",
+    "title": "4,222 Introduction to Programming",
+    "section": "A note on detached heads",
+    "text": "A note on detached heads\n\n\nHEAD points to a specific commit, not the main branch! From the commit, you can look around and experiment\nCommits made here won’t be on main. Use git switch main to get back to the main branch."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#stuck-in-an-editor-breaking-free-1",
+    "href": "course_materials/week_02/02_versioncontrol.html#stuck-in-an-editor-breaking-free-1",
+    "title": "4,222 Introduction to Programming",
+    "section": "Stuck in an editor? Breaking free",
+    "text": "Stuck in an editor? Breaking free\nIf you’re in vim (the default):\n\nPress Esc (make sure you’re in normal mode)\nType :wq then Enter → save and quit\nOr type :q! then Enter → quit without saving\n\nIf you’re in nano:\n\nCtrl + O then Enter → save\nCtrl + X → exit\n\nAvoid this altogether:\ngit config --global core.editor \"code --wait\"\nThis tells Git to use VS Code instead of vim/nano."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#commit-messages",
+    "href": "course_materials/week_02/02_versioncontrol.html#commit-messages",
+    "title": "4,222 Introduction to Programming",
+    "section": "Commit messages",
+    "text": "Commit messages\n\n\n\n\n\n\n“Add GDP data cleaning function” ✅\n“Update code” ❌\n“Fix missing values in clean_gdp_data()” 😋\n“small changes” 🤯\n“final final push to main” 😤\n\n\n\n\n\nhttps://xkcd.com/1296/\n\n\n\nA good commit message: “What & Why”\n\nKeep it short and specific (&lt; 50 characters)\nUse imperative mood: “Add”, “Fix”, “Update” (not “Added”, “Fixed”)"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#why-would-you-ever-want-to-branch-and-how-often",
+    "href": "course_materials/week_02/02_versioncontrol.html#why-would-you-ever-want-to-branch-and-how-often",
+    "title": "4,222 Introduction to Programming",
+    "section": "Why would you ever want to branch, and how often?",
+    "text": "Why would you ever want to branch, and how often?\n\n\nWhy branch?\n\nTo experiment: try new ideas without risking the working version of your code\nTo work in parallel: multiple people can work on different features at the same time\nTo isolate changes: keep unfinished work separate from the main branch, e.g., when you are working on a piece of code that is not ready yet.\n\nHow often?\n\nIn my experience: branch often\nOften it depends on the “merging policy” of your team."
+  },
+  {
+    "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#to-do-before-the-exercise-session",
+    "href": "exercise_sessions/week_03/Ex03_GitHub.html#to-do-before-the-exercise-session",
+    "title": "4,222 Introduction to Programming",
+    "section": "",
+    "text": "Create a Github account if you don’t have one already.\nAuthenticate GitHub by following the instructions in the class slides."
+  },
+  {
+    "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#exercise-1-cloning-a-repository-course-repo",
+    "href": "exercise_sessions/week_03/Ex03_GitHub.html#exercise-1-cloning-a-repository-course-repo",
+    "title": "4,222 Introduction to Programming",
+    "section": "Exercise 1: Cloning a repository: course repo",
+    "text": "Exercise 1: Cloning a repository: course repo\n\nNavigate to your course directory Introduction_to_programming using the terminal. Remember our course structure:\n\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the git repo in week 3\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\n\nClone the course repo in your working directory Introduction_to_programming. The address of the repo is https://github.com/ASallin/BECON_4222_Introduction_Programming.\nExplore the repo briefly using git status and call for the log to see the history of commits.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nSee class slides. Go on the repo and click on &lt;&gt;Code. Copy the https-address of the repo.\n\n\n\nYou can find the remote URL by going to a repository on GitHub and clicking the Code button\n\n\nThen test that you are in the right directory and clone the repo using the following command:\npwd\ngit clone https://github.com/ASallin/BECON_4222_Introduction_Programming.git\nYou should observe something like this:\ngit clone https://github.com/ASallin/BECON_4222_Introduction_Programming.git\n/c/Users/aurel/OneDrive/Documents/Introduction_to_programming\nCloning into 'BECON_4222_Introduction_Programming'...\nremote: Enumerating objects: 1070, done.\nremote: Counting objects: 100% (36/36), done.\nremote: Compressing objects: 100% (24/24), done.\nremote: Total 1070 (delta 11), reused 22 (delta 6), pack-reused 1034 (from 1)\nReceiving objects: 100% (1070/1070), 120.89 MiB | 27.81 MiB/s, done.\nResolving deltas: 100% (426/426), done.\nUpdating files: 100% (350/350), done.\nNavigate to the repo and check the status and log. Use --oneline to have a more compact log… if you don’t want to see the full commit messages back to the Ancient Roman times.\ncd BECON_4222_Introduction_Programming\ngit status\ngit log --oneline\nUse Git Graph to visualize the history of commits. You should see the different branches from our contributors.\nFinally, the directory should now look like this:\nIntroduction_to_programming/\n├── github_course_materials/ # is empty for now, you will clone the git repo in week 3\n├── BECON_4222_Introduction_Programming/ # GitHub repo with all course materials\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\nYou can remove the directory github_course_materials if you want, since the repo is now in BECON_4222_Introduction_Programming. Do it in VSCode or in the terminal with rm -r github_course_materials (be careful with this command, it deletes the directory and all its content without asking for confirmation)."
+  },
+  {
+    "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#exercise-2-authenticating-with-github",
+    "href": "exercise_sessions/week_03/Ex03_GitHub.html#exercise-2-authenticating-with-github",
+    "title": "4,222 Introduction to Programming",
+    "section": "Exercise 2: ## Authenticating with GitHub 🗝️",
+    "text": "Exercise 2: ## Authenticating with GitHub 🗝️\nTry to execute these steps before the exercise session. If you have any problem, we will try to solve it together during the session (if time permits)\nWhen you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.\n\nWe’ll use SSH keys: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.\nUsing SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.\n\n\nInstructions\n\nPlease go to this website from LMU Munich and follow the steps to authenticate with GitHub.Credits: Open Science Center at LMU Munich (Mike Croucher & Malika Ihle)\n\n\n\nTest your connection\nTest your connection using the following code.\nssh -T git@github.com\n&gt; Hi ASallin! You've successfully authenticated, but GitHub does not provide shell access."
+  },
+  {
+    "objectID": "exercise_sessions/week_03/Ex03_GitHub.html#exercise-2-cloning-a-repository-on-github-classroom",
+    "href": "exercise_sessions/week_03/Ex03_GitHub.html#exercise-2-cloning-a-repository-on-github-classroom",
+    "title": "4,222 Introduction to Programming",
+    "section": "Exercise 2: Cloning a repository on GitHub Classroom",
+    "text": "Exercise 2: Cloning a repository on GitHub Classroom\nFor this exercise, we’ve prepared a GitHub Classroom. A GitHub Classroom is a special type of repository created for a class, where each student gets their own copy to complete and submit assignments. It simulates real repositories on GitHub, and works like a normal GitHub repository. We will use it for the group project.\n\nConnect to the repo\nWith the following link https://classroom.github.com/a/Gq3_1PtS, accept the invitaton to connect. Once you’ve accepted the invitation, you should see a link to a repository:\n\n\nAnd click on the link to the repository.\n\n\nClone\n\nClone the repository using either HTTPS or SSH in the directory Introduction_to_programming/exercises/week03. If needed, create the directory:\n\nIntroduction_to_programming/\n├── BECON_4222_Introduction_Programming/ # GitHub repo with all course materials\n├── exercises/               # Student's own work\n│   ├── week_01/\n│   ├── week_02/\n│   ├── week_03/ # &lt;- here!\n│   ├── ...\n│   ├── week_12/\n├── group_project/\n│   ├── ...\n\n\n\n\n\n\nSolution\n\n\n\n\n\nSolution:\ncd exercises\nmkdir week_03\ncd week_03\ngit clone https://github.com/&lt;org&gt;/&lt;your_repo&gt;.git\ncd &lt;your_repo&gt;\ngit status\nYou should see something like this (with your name):\n$ ls\ngit-practice-clone-pull-push-ASallin/\n\n\n\n\nCheck that your repo has been downloaded using git status. Observe the content of the remote repository.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe git status should show:\nOn branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\nThe repository contains a python file and a README.md file.\n\n\n\n\n\nPushing and pulling\n\nOpen some_arithmetic.py. Edit the equation in line 6 to define a with your favorite expression. Then push your changes to remote.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nPersonally, I changed the line to\na = 6 * 6\nThen add, commit and push your changes to remote:\ngit status\ngit add some_arithmetic.py\ngit commit -m \"Fill in exercise\"\ngit push\n\n\n\n\n\nCheck changes in remote\n\nAfter your first push, do nothing for a moment. Something changes on GitHub (your colleague pushed a change). GitHub will automatically add a new line to some_arithmetic.py. In this simulated situation, your local files are unchanged but the the remote repository is ahead. After 1 minute, pull again. You should notice the change. Look at git status to follow the difference.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ngit pull\ngit status\nThe pull should show something like this:\nremote: Enumerating objects: 5, done.\nremote: Counting objects: 100% (5/5), done.\nremote: Compressing objects: 100% (1/1), done.\nremote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)\nUnpacking objects: 100% (3/3), 390 bytes | 32.00 KiB/s, done.\nFrom https://github.com/4222-Introduction-to-programming-2026/git-practice-clone-pull-push-ASallin\n   0b58290..7fe4aac  main       -&gt; origin/main\nUpdating 0b58290..7fe4aac\nFast-forward\n some_arithmetic.py | 5 +++++\n 1 file changed, 5 insertions(+)\nA test has been added to the file. Now you should have an some_arithmetic.py file that looks like this:\n\n\"\"\"\nSome Arithmetic\n==========================\n\"\"\"\n\na = 6 * 6\nb = 14 * 3\nc = sum([40, 2])\n\n# Print the results\n\nprint(\"Result for a:\", a)\nprint(\"Result for b:\", b)\nprint(\"Result for c:\", c)\n\n# Test\n\nif a == b == c:\n    print(\"All values are equal to 42!\")\n\nEverything is synchronized. Git would send you the following message: “Your branch is up to date with ‘origin/main’. Nothing to commit, working tree clean”.\n\n\n\n\nCheck if you pass the test on python (you don’t need to execute the code, just looking at it). Since you now know how to pass the test, change your definition of a in some_arithmetic.py and push your changes. Observe your commit tree.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\ngit add some_arithmetic.py\ngit commit -m \"Change the answer to 42\"\ngit push\n\n\n\n\nLet’s simulate another situation in which your local version conflicts with the remote version. Change the definition of b in the file some_arithmetic.py with another number:\n\n\n\"\"\"\nSome Arithmetic\n==========================\n\"\"\"\n\na = 5 * 8 + 2\nb = 15 * 3\nc = sum([40, 2])\n\n# Print the results\n\nprint(\"Result for a:\", a)\nprint(\"Result for b:\", b)\nprint(\"Result for c:\", c)\n\n# Test\n\nif a == b == c:\n    print(\"All values are equal to 42!\")\n\nThen add and commit locally, but do not push.\ngit add some_arithmetic.py\ngit commit -m \"Change the answer of b to 45\"\n\n\nReflection\nBefore running any code, reflect on the situation you are in. What is happening? What could have happened? Use git status to understand what is happening.\nSolution: the danger is that at this moment, it could be that my colleagues have pushed conflicting changes to the repo.\n\n\nAction\nNow pull the remote repo again. You should see a conflict: “CONFLICT (content): Merge conflict in theMeaningOfEverything.py” Explain why. How do you solve the conflict?\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nI agree.\n=======\nyou are now closer to the TRUTH\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; f4b343b02f6bfc29d7fe78f2551a6ba90e2b172d\nThe conflict must be solved. In this case, you can easily choose between the two lines. In longer code, this requires going through each line. For this exercise, please choose “Accept both changes”, and have the following file:\nStep 1:\nAurelien.\n\nStep 2:\nComplete the following sentence: “The answer to everything is 42.”\n\nThe answer is close to 42 🤖\n\nI agree.\nyou are now closer to the TRUTH"
   }
 ]

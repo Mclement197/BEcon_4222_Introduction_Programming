@@ -1,0 +1,250 @@
+## Exercise 2: GitHub Classroom - Push, Pull, and Conflicts
+
+For this exercise, we've prepared a **GitHub Classroom** repository. GitHub Classroom creates a personal copy of a template repository for each student - perfect for practicing collaboration scenarios.
+
+### Part A: Clone and First Push
+
+**1. Accept the invitation and clone**
+
+Visit the classroom invitation link: `https://classroom.github.com/a/YOUR_LINK_HERE`
+
+After accepting, clone your personal repository:
+
+::: {.panel-tabset}
+## Windows
+```bash
+cd ~/OneDrive/Documents/Introduction_to_programming/exercises/week_03
+git clone https://github.com/YOUR_ORG/git-practice-YOUR_USERNAME.git
+cd git-practice-YOUR_USERNAME
+```
+
+## Mac
+```bash
+cd ~/Documents/Introduction_to_programming/exercises/week_03
+git clone https://github.com/YOUR_ORG/git-practice-YOUR_USERNAME.git
+cd git-practice-YOUR_USERNAME
+```
+:::
+
+**2. Examine the initial file**
+
+Open [some_arithmetic.py](some_arithmetic.py) in your editor. You'll see:
+
+```python
+"""
+Some Arithmetic
+===============
+Practice with expressions
+"""
+
+# TODO: Define variable 'a' using an arithmetic expression
+a = None
+
+# Pre-defined variables
+b = 20 + 22
+c = sum([40, 2])
+
+# Print results
+print("Result for a:", a)
+print("Result for b:", b)
+print("Result for c:", c)
+```
+
+**3. Define variable `a` and push**
+
+Replace `a = None` with an arithmetic expression (any expression you like, e.g., `a = 6 * 7`).
+
+```bash
+git status
+git add some_arithmetic.py
+git commit -m "Define variable a"
+git push
+```
+
+::: {.callout-note}
+**What happens next**: After you push, a GitHub Action will automatically run and add a test block to your file. This simulates a teammate pushing changes while you're working.
+:::
+
+---
+
+### Part B: Pulling Changes
+
+**4. Pull the automated changes**
+
+Wait about 30 seconds, then pull:
+
+```bash
+git pull
+```
+
+You should see output like:
+```
+remote: Enumerating objects: 5, done.
+...
+Updating abc1234..def5678
+Fast-forward
+ some_arithmetic.py | 6 ++++++
+ 1 file changed, 6 insertions(+)
+```
+
+**5. Examine the new test block**
+
+Open [some_arithmetic.py](some_arithmetic.py) again. A test block has been added:
+
+```python
+# Test block
+if a == b == c:
+    print("✓ All values are equal to 42!")
+else:
+    print("✗ Not all values are 42 yet")
+```
+
+**6. Make `a` equal 42 and push again**
+
+Looking at the test, all three variables should equal 42. Since `b = 42` and `c = 42` already, change your expression for `a` to also equal 42 (e.g., `a = 6 * 7`).
+
+```bash
+git add some_arithmetic.py
+git commit -m "Fix variable a to equal 42"
+git push
+```
+
+::: {.callout-note}
+**What happens next**: The automation will now modify variable `b` on the remote. This sets up a **merge conflict** scenario.
+:::
+
+---
+
+### Part C: Creating and Resolving a Merge Conflict
+
+This is the most important part - learning to handle conflicts when you and a collaborator modify the same code.
+
+**7. Modify variable `b` locally (don't push yet!)**
+
+Before pulling, modify `b` in your local file to a **different** expression that also equals 42:
+
+```python
+b = 30 + 12  # Or any other expression that equals 42
+```
+
+Commit this change **locally only**:
+
+```bash
+git add some_arithmetic.py
+git commit -m "Change variable b to a different expression"
+```
+
+::: {.callout-warning}
+**Do NOT push yet!** We want to create a conflict scenario.
+:::
+
+**8. Try to pull - encounter the conflict**
+
+Now try to pull the remote changes:
+
+```bash
+git pull
+```
+
+You'll see a **merge conflict**:
+
+```
+Auto-merging some_arithmetic.py
+CONFLICT (content): Merge conflict in some_arithmetic.py
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+**9. Examine the conflict**
+
+Open [some_arithmetic.py](some_arithmetic.py). You'll see conflict markers:
+
+```python
+<<<<<<< HEAD
+b = 30 + 12  # Your local change
+=======
+b = 21 * 2  # Modified by automation
+>>>>>>> abc1234...
+```
+
+**Understanding conflict markers:**
+
+- `<<<<<<< HEAD`: Your local changes start here
+- `=======`: Separator between local and remote changes
+- `>>>>>>> abc1234`: Remote changes end here (commit hash)
+
+**10. Resolve the conflict**
+
+You must choose which version to keep, or create a new one. For this exercise, choose **your local version** (`b = 30 + 12`).
+
+::: {.panel-tabset}
+## Using VS Code
+
+1. Click "Accept Current Change" (keeps your version)
+2. Or manually delete the conflict markers and keep only your line
+3. Save the file
+
+## Manual editing
+
+Delete the conflict markers and remote line:
+
+```python
+# Remove everything and keep only:
+b = 30 + 12
+```
+:::
+
+**11. Complete the merge**
+
+After resolving the conflict:
+
+```bash
+git add some_arithmetic.py
+git commit -m "Resolve merge conflict in variable b"
+git push
+```
+
+Check your commit history:
+
+```bash
+git log --oneline --graph
+```
+
+You should see a merge commit in your history!
+
+---
+
+### Reflection Questions
+
+::: {.callout-tip title="Think about it" collapse="true"}
+1. **Why did the conflict occur?**
+   - Both you and the automation modified the same line (`b = ...`)
+   - Git couldn't automatically decide which version to keep
+
+2. **When do conflicts NOT occur?**
+   - When changes are in different parts of the file
+   - When changes are in different files entirely
+
+3. **Real-world scenario**: When might this happen with actual teammates?
+   - Two people fixing the same bug differently
+   - Refactoring the same function simultaneously
+   - Working on a feature without pulling recent changes
+
+4. **How to avoid conflicts?**
+   - Pull frequently before starting work
+   - Communicate with teammates about who's working on what
+   - Use feature branches (covered in next week's lecture)
+:::
+
+---
+
+### Summary
+
+You've now experienced the complete Git collaboration workflow:
+
+1. ✓ **Clone** a repository
+2. ✓ **Push** your changes
+3. ✓ **Pull** collaborator changes
+4. ✓ **Resolve conflicts** when changes overlap
+5. ✓ **Merge** and continue working
+
+These skills are essential for the group project and real-world software development!

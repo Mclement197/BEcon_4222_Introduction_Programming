@@ -5,6 +5,8 @@ project:
     - "*.qmd"
     - "**/*.qmd"
 
+jupyter: python3
+
 website:
   title: "BEcon 6222 - Introduction to Programming"
   navbar:

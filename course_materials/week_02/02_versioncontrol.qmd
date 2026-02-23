@@ -1,6 +1,6 @@
 ---
-title: '6,222 Introduction to Programming'
-subtitle: 'Lecture 2: Introduction to git'
+title: '4,222 Introduction to Programming'
+subtitle: 'Lecture 2: Introduction to Git'
 author: "Dr. Aurélien Sallin"
 date: "2026-02-27"
 code-line-numbers: false
@@ -34,21 +34,21 @@ library(purrr)
 In this lecture, we will:
 
 - understand what is **version control** to collaborate
-- know basic commands in `git`
+- know basic commands in Git
 
 \
 
 In the next lecture, we will
 
-- create a github account
-- learn how to collaborate with a remote repository with `git` and GitHub
+- create a GitHub account
+- learn how to collaborate with a remote repository with Git and GitHub
 
 
 
 ## Prerequisites for today
 
-- You have installed `git` on your computer
-- You have installed VSCode and the `git` extension (part of the data science profile)
+- You have installed Git on your computer
+- You have installed VSCode and the Git extension (part of the data science profile)
 
 ##### Git feels complicated at first!!!
 
@@ -57,7 +57,7 @@ In the next lecture, we will
 - Don't worry if you don't understand everything at first, just try to get the general idea and we will practice in the exercises.
 
 
-# What is git?
+# What is Git?
 
 ## A daily situation...
 
@@ -77,7 +77,7 @@ In the next lecture, we will
 
 
 
-## What is git?
+## What is Git?
 
 #### Version Control System (VCS)
 
@@ -91,9 +91,9 @@ In the next lecture, we will
 ![](../../assets/img/lecture_02_versioncontrol/git_changes.png){fig-alt="Git story" width="100%" fig-align="center"}
 
 
-## Why should we learn git?
+## Why should we learn Git?
 
-- Very hard to lose files with git
+- Very hard to lose files with Git
 - Great for collaboration
 - History allows you to go back and understand changes or revert when there are problems
 - Reproducibility
@@ -104,7 +104,7 @@ In the next lecture, we will
 
 #### Git is usually used from a CLI (like a terminal)
 
-- Learn git commands and use them in a terminal.
+- Learn Git commands and use them in a terminal.
 - Very flexible, but a bit unintuitive
 
 
@@ -123,7 +123,7 @@ In the next lecture, we will
 
 <br>
 
-We will learn the basic commands of git in a CLI, and we will use the GUI in VSCode
+We will learn the basic commands of Git in a CLI, and we will use the GUI in VSCode
 
 All the commands we will learn are available in the official [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf). Please download the sheet.
 :::
@@ -134,23 +134,22 @@ All the commands we will learn are available in the official [Git Cheat Sheet](h
 ::::
 
 
-## Setting up git
+## Setting up Git
 
-##### From the cli:
+##### From the CLI:
 
-  - In VSCode, open a terminal and select `git bash` (Windows) or `bash` (Linux/MacOS).
+  - In VSCode, open a terminal and select Git Bash (Windows) or bash (Linux/MacOS).
 
 OR:
 
-  - On Windows, open Git Bash (start menu -> Git Bash). Make sure you've installed git beforehand.
+  - On Windows, open Git Bash (start menu -> Git Bash). Make sure you've installed Git beforehand.
   - On MacOS, open the Terminal app.
-  - On Linux, open your distribution’s (or any other) terminal emulator.
   - Let’s do this together now!
 
 
-## Setting up git
+## Setting up Git
 
-Run the following commands in your terminal to correctly configure git on your computer.
+Run the following commands in your terminal to correctly configure Git on your computer.
 
 ```bash
 # Add your name
@@ -183,9 +182,8 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ![](../../assets/img/lecture_02_versioncontrol/git_process0.png){width="640px"}
 
-- A project in git is called a **repository** (or **repo** for short) and it always corresponds to a directory on your machine. This is usually where you save your project.
-- Nothing here is shared with others yet.
-- Git always works locally first.
+- A project in Git is called a **repository** (or **repo** for short) and it always corresponds to a directory on your machine. This is usually where you save your project.
+- Git always works locally first (nothing shared).
 
 
 ## Working in your directory as usual
@@ -194,7 +192,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 - The working directory is where you write code, edit files, run scripts, etc.
 - Files here may be untracked, modified or unfinished
-- Saving a file only affects the working directory. `Git` does nothing yet.
+- Saving a file only affects the working directory. Git does nothing yet.
 
 
 ## We select files to be tracked
@@ -222,11 +220,11 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 - ! Commits are: permanent, ordered, traceable, attributable to a person
 
 
-## We now have a git repository
+## We now have a Git repository
 
 ![](../../assets/img/lecture_02_versioncontrol/git_process5.png){width="640px"}
 
-- Git repository is the history of your project.
+- A Git repository is the history of your project.
 - It contains all commits, who changed what, when and why.
 - This is what enables undoing mistakes, collaboration, branching, merging
 
@@ -254,13 +252,13 @@ All files in the staging area are committed with `git commit`
 
 # Let's start
 
-## Initialize a git repository
+## Initialize a Git repository
 
 Remember our folder structure:
 
 ```
 Introduction_to_programming/
-├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── github_course_materials/ # is empty for now, you will clone the Git repo in week 3
 ├── exercises/               # Student's own work
 │   ├── week_01/
 │   ├── week_02/
@@ -284,31 +282,35 @@ git init
 # Initialized empty Git repository in /Users/Introduction_to_programming/exercises
 ```
 
-With git init we turn the directory into a repository.
+With `git init` we turn the directory into a repository.
 
 At this point, 🗂️ **tracking has started!**
 
 
 ## Add a file to the staging area
 
-Let's write a text file "example.txt" using our terminal.
+Let's write a text file `example.txt` using our terminal.
 
 ```bash
-echo "first steps in git" > example.txt
-
-# verify
-cat example.txt #OR
-type example.txt
+echo first steps in git > example.txt # Windowns (cmd)
+echo "first steps in git" > example.txt # Mac/Linux (bash)
 ```
 
-Add `example.txt` to the staging area. Changes are added to the staging area with git add <path to file or directory>.
+Both create the same file content. Verify:
+
+```bash
+cat example.txt # Mac/Linux
+type example.txt # Windows
+```
+
+Add `example.txt` to the staging area. Changes are added to the staging area with `git add <path to file or directory>`.
 
 ```bash
 git add example.txt
 ```
 
-- You can use git add . to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)
-- You can also use * to represent any sort of filename e.g. add all .txt files via *.txt
+- You can use `git add .` to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)
+- You can also use `*` to represent any sort of filename e.g. add all .txt files via `*.txt`
 
 
 
@@ -324,7 +326,7 @@ git status
 #         new file:   example.txt
 ```
 
-Let's change the content of example.txt. Save it. Then run:
+Let's change the content of "example.txt". Save it, then run:
 
 ```bash
 git status
@@ -342,7 +344,7 @@ git status
 
 
 
-## Tracking Changes: git commit
+## Tracking Changes: `git commit`
 All changes in the staging area are committed with `git commit`. Every commit needs a message!
 
 Let’s add and then commit the new change
@@ -366,10 +368,35 @@ Modifying a commit is possible, but you should now what you are doing. Typically
 -->
 
 
+## Commit messages
+
+:::{.columns style="align-items: flex-start;"}
+::: {.column width="40%"}
+
+<div style="margin-top: 2em;"></div>
+
+  - "Add GDP data cleaning function" ✅
+  - "Update code" ❌
+  - "Fix missing values in `clean_gdp_data()`" 😋
+  - "small changes" 🤯
+  - "final final push to main" 😤
+
+:::
+::: {.column width="60%"}
+![https://xkcd.com/1296/](../../assets/img/lecture_02_versioncontrol/commit_message.png)
+:::
+:::
+
+#### A good commit message: "What & Why"
+
+- Keep it short and specific (< 50 characters)
+- Use imperative mood: "Add", "Fix", "Update" (not "Added", "Fixed")
+
+
 
 ## Ignoring the ignorable: `.gitignore`
 
-#### By default, git will track all the files in your repository.
+#### By default, Git will track all the files in your repository.
 
 - If you want it to ignore certain files or filetypes, you have to tell it so explicitly.
 - For instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, `.DS_Store` files on MacOS.
@@ -377,7 +404,7 @@ Modifying a commit is possible, but you should now what you are doing. Typically
 
 #### You can do this by using a file called `.gitignore`
 
-- Every file will be compared against the list in `.gitignore` and if it matches, git will ignore the file
+- Every file will be compared against the list in `.gitignore` and if it matches, Git will ignore the file
 - (The `.gitignore` file itself is tracked just like any other file)
 
 
@@ -386,7 +413,7 @@ Modifying a commit is possible, but you should now what you are doing. Typically
 #### Classic example of a `.gitignore` file
 
 ```bash
-# Ignore every file calledmyfile.pdf
+# Ignore every file called myfile.pdf
 myfile.pdf
 
 # Ignore the file called data_countries.csv in the folder data at the root of your repository
@@ -397,7 +424,7 @@ myfile.pdf
 *.xlsx
 ```
 
-**Do not store data on `git` -> `.gitignore`**
+**Do not store data on Git -> `.gitignore`**
 
 
 <!--
@@ -423,17 +450,34 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 - Each commit is identified with a unique commit id (a hash), which is 40 hexadecimal characters long. The short form typically shown is 7 characters.
 
 
-## Going back through time with `git checkout` {.top}
+## Time-travel: `git checkout` for commits {.top}
 
 ![](../../assets/img/lecture_02_versioncontrol/git_commit_3.png){width=740px fig-align="center"}
 
-- You can go to any commit with `git checkout` by referencing the hash, i.e. `git checkout a3f7b2c`
-- `checkout` sends you **out of a branch**, i.e. detached head. You need to explicitly switch to main (or to any other branch). *Note*: We will explain detached heads in the exercises.
+- **Go to any old commit** with `git checkout` by referencing the hash: `git checkout a3f7b2c`
+- This is for **viewing history**, not for switching branches (use `git switch` for branches!)
+- `checkout` sends you **out of a branch**, i.e. **detached HEAD**. You need to explicitly switch to main (or to any other branch).
 
 <!-- you can go to any commit, past or future -->
 
 
-## What are git branches? 🌳 {.top}
+## A note on detached heads
+
+![](../../assets/img/lecture_02_versioncontrol/git_commit_3_head.png){width=740px fig-align="center"}
+
+- HEAD is Git's pointer to your current position in the project.
+- It normally points to a branch that moves forward with commits.
+
+
+## A note on detached heads
+
+![](../../assets/img/lecture_02_versioncontrol/git_commit_3_detachedhead.png){width=740px fig-align="center"}
+
+- HEAD points to a specific commit, not the main branch! From the commit, you can look around and experiment
+- Commits made here won't be on main. Use `git switch main` to get back to the main branch.
+
+
+## What are Git branches? 🌳 {.top}
 
 ![](../../assets/img/lecture_02_versioncontrol/git_commit_4.png){width=740px fig-align="center"}
 
@@ -444,29 +488,31 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## Create a new branch 🌳 {.top}
 
-- Use `git checkout -b my-branch`: creates a branch and checks it out (you are leaving `main` and working on your new branch)
+- Use `git switch -c my-branch`: creates a branch and checks it out (you are leaving `main` and working on your new branch)
 - You can work on your new branch as usual.
 - Use `git status` to be aware on which branch you are on.
 - Use `git branch` to check the existing branches.
 - Use `git branch -d <branch-name>` to safely delete (`-d`) a branch after it's merged.
-- Use `git checkout my-branch` to switch branches.
+- Use `git switch my-branch` to switch branches.
 
 ::: {.absolute bottom=10}
-[Since Git 2.23, `git switch` is the recommended alternative to `git checkout` for switching branches. We use `checkout` here because you'll find it everywhere online, but know that `git switch` is the modern equivalent.]{style="font-size: 0.7em; color: gray;"}
+[Since Git 2.23, `git switch` is the recommended alternative to `git checkout` for switching branches.]{style="font-size: 0.7em; color: gray;"}
 :::
 
 
-## Why would you ever want to branch?
+## Why would you ever want to branch, and how often?
 
 ::: {.fragment}
-**Some answers:**
+#### Why branch?
 
-- **Experiment safely:** try new ideas without risking the working version of your code
-- **Work in parallel:** multiple people can work on different features at the same time without stepping on each other's toes
-- **Isolate changes:** keep unfinished work separate from the stable main branch
-- **Review before merging:** branches enable pull requests, where others can review your code before it's integrated
+- **To experiment:** try new ideas without risking the working version of your code
+- **To work in parallel:** multiple people can work on different features at the same time
+- **To isolate changes:** keep unfinished work separate from the main branch, e.g., when you are working on a piece of code that is not ready yet.
 
-*Analogy: branching is like making a copy of your essay draft to try a different conclusion. If it works, you keep it; if not, you throw the copy away and your original is untouched.*
+#### How often?
+
+- In my experience: branch often
+- Often it depends on the "merging policy" of your team.
 :::
 
 
@@ -476,7 +522,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 ![](../../assets/img/lecture_02_versioncontrol/git_commit_5.png){width=740px fig-align="center"}
 
 - In the end you can merge your changes back into your main branch
-- You can combine two different branches by merging them with each other using `git merge my-branch`
+- You can combine two different branches by merging them using `git merge my-branch`
 
 
 ## Merging 🔀
@@ -501,7 +547,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 <div style="margin-top: 1em;"></div>
 
 - When combining changes from two branches, there is not always a clear solution.
-- If git doesn’t know how to merge the two branches, we get a merge conflict
+- If Git doesn’t know how to merge the two branches, we get a merge conflict
 - Merge conflicts have to be **manually resolved**
 - **DON'T PANIC**
 
@@ -587,8 +633,8 @@ If, during the merge, you get confused about the state of things or make a mista
 
 Once you've recovered from the lecture, please read the next three slides.
 
-- Additional `git` commands [link🔗](#additional-git-commands)
-- The anatomy of a git command 🔍️ [link🔗](#the-anatomy-of-a-git-command)
+- Additional Git commands [link🔗](#additional-git-commands)
+- The anatomy of a Git command 🔍️ [link🔗](#the-anatomy-of-a-git-command)
 - Stuck in an editor? Breaking free ⛓️‍💥 [link🔗](#stuck-in-an-editor-breaking-free)
 
 
@@ -601,7 +647,7 @@ Once you've recovered from the lecture, please read the next three slides.
 
 ## Sources
 
-- Jan Simson, [Intro to git](https://simson.io/intro-to-git/)
+- Jan Simson, [Intro to Git](https://simson.io/intro-to-git/)
 - Jennifer Bryan, [Happy Git and GitHub for the useR](https://happygitwithr.com/git-branches)
 
 
@@ -614,7 +660,7 @@ Once you've recovered from the lecture, please read the next three slides.
 
 
 
-## Additional `git` commands
+## Additional Git commands
 
 - `git diff`: changes between your working directory and staging area (unstaged changes)
 - `git diff --staged`: changes between your staging area and the last commit (what will be committed next)
@@ -624,7 +670,7 @@ Once you've recovered from the lecture, please read the next three slides.
 - `git log`: see the history of your commits (who changed what, when and why). You can move up and down with the arrow keys and leave the log view by pressing `q`. Use  `git log --oneline` to see the log in a compact way.
 
 
-## The anatomy of a git command 🔍️
+## The anatomy of a Git command 🔍️
 Git commands, like many other CLI tools follow a certain structure:
 
 ```bash
@@ -635,7 +681,7 @@ git commit -m "Adding example.txt" # -m for message
 git config --global user.name "Your Name"  # --global for setting the configuration globally
 ```
 
-With -h you can get help on any git command 🚨
+With `-h` you can get help on any Git command 🚨
 
 ```bash
 git status -h
@@ -645,7 +691,12 @@ git commit -h
 
 ## Stuck in an editor? Breaking free ⛓️‍💥
 
-Git sometimes opens a text editor (for merge commits, rebases, etc.), and you might be stuck in it (it happens to me all the time). Here's how to escape:
+- Git sometimes opens a text editor (for merge commits, etc.), and you might be stuck in it (it happens to me all the time).
+- Also, this happens if you run `git commit` without the `-m` option. Every commit needs a message. If you don’t provide one, Git will open a text editor in the current terminal so you can write the commit message manually.
+
+
+## Stuck in an editor? Here's how to escape
+
 
 #### If you're in **vim** (the default):
 
@@ -665,27 +716,3 @@ git config --global core.editor "code --wait"
 ```
 
 This tells Git to use VS Code instead of vim/nano.
-
-
-<!--
-Stuck in an Editor 🛗
-Forgot the -m "insightful commit message"?
-
-Every commit needs a message
-If you don’t provide one, git will open an editor for you to write the message in
-This editor may also open itself for other git commands
-Every line with a # at the beginning is a comment and will be ignored by git (usually some helpful extra info)
-Save and close the editor for git to proceed
-Stuck in an Editor: Breaking Free ⛓️‍💥
-The default editor in git is (usually) vim
--->
-
-
-## Questions from students
-
-Why can't I just commit directly without staging?
-If I git add then edit again, does the commit include the new edits?
-How often should I commit?
-When I create a branch, does it copy all my files?
-How do I avoid merge conflicts in group projects?
-Is there a way to practice safely where I can't break anything?
