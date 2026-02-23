@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Aurélien Sallin, Lea Tschan, Valentina Sontheim">
+<meta name="author" content="Aurélien Sallin">
 <meta name="dcterms.date" content="2025-02-27">
 
 <title>4,222 Introduction to Programming – BEcon 6222 - Introduction to Programming</title>
@@ -4778,6 +4778,35 @@ vertical-align: -.125em;
     <a class="dropdown-item" href="../../exercise_sessions/week_01/Ex01_gettingstarted.html">
  <span class="dropdown-text">Exercise 1: Getting Started</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../examination/recap_quizzes/01b_recap.html">
+ <span class="dropdown-text">Recap Quiz Week 1 (non-graded)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Week 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-week-2">    
+        <li>
+    <a class="dropdown-item" href="../../course_materials/week_02/02_recap.html">
+ <span class="dropdown-text">Recap Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../course_materials/week_02/02_versioncontrol.html">
+ <span class="dropdown-text">Version Control</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercise_sessions/week_02/Ex02_FirstCommitsInGit_v2.html">
+ <span class="dropdown-text">Exercise 2: First Commands in Git</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../course_materials/week_02/git-cheat-sheet-education.pdf">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -4808,14 +4837,14 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#install-git-and-the-vscode-extension-git-graph" id="toc-install-git-and-the-vscode-extension-git-graph" class="nav-link active" data-scroll-target="#install-git-and-the-vscode-extension-git-graph">Install <code>git</code> and the VSCode extension <code>Git Graph</code></a></li>
-  <li><a href="#configurate-git-on-your-machine" id="toc-configurate-git-on-your-machine" class="nav-link" data-scroll-target="#configurate-git-on-your-machine">Configurate git on your machine</a></li>
+  <li><a href="#configure-git-on-your-machine" id="toc-configure-git-on-your-machine" class="nav-link" data-scroll-target="#configure-git-on-your-machine">Configure <code>git</code> on your machine</a></li>
   <li><a href="#initialize-a-git-repository" id="toc-initialize-a-git-repository" class="nav-link" data-scroll-target="#initialize-a-git-repository">Initialize a <code>git</code> repository</a></li>
   <li><a href="#first-tracking-and-commit" id="toc-first-tracking-and-commit" class="nav-link" data-scroll-target="#first-tracking-and-commit">First tracking and commit</a></li>
   <li><a href="#ignore-some-files" id="toc-ignore-some-files" class="nav-link" data-scroll-target="#ignore-some-files">Ignore some files</a></li>
   <li><a href="#time-travel" id="toc-time-travel" class="nav-link" data-scroll-target="#time-travel">Time-Travel ⏱️</a></li>
-  <li><a href="#on" id="toc-on" class="nav-link" data-scroll-target="#on">On 🪵, 🌲</a></li>
-  <li><a href="#on-merge-conflicts" id="toc-on-merge-conflicts" class="nav-link" data-scroll-target="#on-merge-conflicts">On merge conflicts</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
+  <li><a href="#on-branches" id="toc-on-branches" class="nav-link" data-scroll-target="#on-branches">On Branches 🪵</a></li>
+  <li><a href="#on-merge-conflicts-if-no-time-live-demo-in-class" id="toc-on-merge-conflicts-if-no-time-live-demo-in-class" class="nav-link" data-scroll-target="#on-merge-conflicts-if-no-time-live-demo-in-class">On merge conflicts (if no time, live demo in class)</a></li>
+  <li><a href="#additional-exercises-self-study" id="toc-additional-exercises-self-study" class="nav-link" data-scroll-target="#additional-exercises-self-study">Additional exercises (self-study)</a></li>
   </ul>
 </nav>
     </div>
@@ -4835,7 +4864,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Aurélien Sallin, Lea Tschan, Valentina Sontheim </p>
+             <p>Aurélien Sallin </p>
           </div>
   </div>
     
@@ -4854,19 +4883,29 @@ vertical-align: -.125em;
 </header>
 
 
-<p><strong>in construction!!</strong></p>
 <section id="install-git-and-the-vscode-extension-git-graph" class="level2">
 <h2 class="anchored" data-anchor-id="install-git-and-the-vscode-extension-git-graph">Install <code>git</code> and the VSCode extension <code>Git Graph</code></h2>
-<p><strong>This step has to be done before the exercise session.</strong> Please follow the instructions on the git website: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</p>
-<p>For Windows users, we recommend installing git via the Git for Windows installer: https://git-scm.com/download/win. For Mac users, git is often already installed. On Mavericks (10.9) or above you can do this simply by trying to run git from the Terminal the very first time.</p>
+<p><strong>This step has to be done before the exercise session.</strong> Please follow the instructions on the git website: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Mac</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>For Windows users, we recommend installing git via the Git for Windows installer: <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>For Mac users, git is often already installed. On Mavericks (10.9) or above you can do this simply by trying to run git from the Terminal the very first time.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you don’t have it installed already, it will prompt you to install it. If you want a more up to date version, you can also install it via a binary installer. A macOS Git installer is maintained and available for download at the Git website, at https://git-scm.com/download/mac.</p>
-<p>If you haven’t done it from the course, download the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> and save it in /week02</p>
+<p>If you don’t have it installed already, it will prompt you to install it. If you want a more up to date version, you can also install it via a binary installer. A macOS Git installer is maintained and available for download at the Git website, at <a href="https://git-scm.com/download/mac">https://git-scm.com/download/mac</a>.</p>
+</div>
+</div>
+</div>
+<p>Install the VSCode extension <code>Git Graph</code> from the VSCode marketplace. This extension allows you to visualize your git repository and perform git operations using a graphical interface. You can also use the built-in <code>git</code> support in VSCode, but we recommend <code>Git Graph</code> for better visualization of branches and commits.</p>
 <p><br></p>
 </section>
-<section id="configurate-git-on-your-machine" class="level2">
-<h2 class="anchored" data-anchor-id="configurate-git-on-your-machine">Configurate git on your machine</h2>
-<p>Follow the step here to configurate your git installation.</p>
+<section id="configure-git-on-your-machine" class="level2">
+<h2 class="anchored" data-anchor-id="configure-git-on-your-machine">Configure <code>git</code> on your machine</h2>
+<p>At this point, you should have <code>git</code> installed on your machine. It does not matter if you are on Windows or Mac, the configuration and the <code>git</code> commands are the same.</p>
+<p>Follow the step below to configure your <code>git</code> installation.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your name</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">&quot;Your Name&quot;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -4884,7 +4923,7 @@ vertical-align: -.125em;
 </section>
 <section id="initialize-a-git-repository" class="level2">
 <h2 class="anchored" data-anchor-id="initialize-a-git-repository">Initialize a <code>git</code> repository</h2>
-<p>We will work with our folder structure:</p>
+<p>We will work with the folder structure established in the first exercise session. Remember, the structure of your <code>Introduction_to_programming</code> directory should look like this:</p>
 <pre><code>Introduction_to_programming/
 ├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
 ├── exercises/               # Student&#39;s own work
@@ -4895,41 +4934,24 @@ vertical-align: -.125em;
 ├── group_project/
 │   ├── ...</code></pre>
 <ol type="1">
-<li>Identify the filepath of the directory Introduction_to_programming/exercises/week_02.</li>
-<li>In the terminal, navigate to the directory.</li>
+<li>Navigate to the exercises folder in the course directory <code>Introduction_to_programming/exercises/</code>. Check if <code>week_02</code> exists (using <code>ls</code> or <code>dir</code>). If <code>week_02</code> does not exist, create it using <code>mkdir week_02</code> in the terminal.</li>
+<li>In the terminal, navigate to the <code>week_02</code> directory.</li>
 <li>There, initialize a git repository using <code>git init</code>. Check your git repo using <code>git status</code>.</li>
 </ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+Using <code>git bash</code> on Windows
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>In your terminal from VSCode, navigate to your cd Introduction_to_programming/exercises/week_02. Then:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialized empty Git repository in /Users/Introduction_to_programming/exercises/week_02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For Windows users: you have now installed <code>git</code>, which installs a terminal called <code>Git Bash</code>. This terminal supports all <code>git</code> commands and <code>bash</code> commands like in Mac. With Git Bash, you can access files and directories in the same way as with <code>command prompt</code>. You can open <code>Git Bash</code> in your VSCode terminal.</p>
+<p>This adds a bit more complexity for Windows users: you now have three options. You can use the <code>cmd prompt</code> terminal, the <code>Git Bash</code> terminal, or powershell. We recommend using <code>Git Bash</code> for all git commands in your vscode terminal, but you can also use <code>cmd prompt</code> with <code>git</code> commands. The important thing is that you are aware of these different shells/terminals.</p>
 </div>
 </div>
-</div>
-<p><br></p>
-</section>
-<section id="first-tracking-and-commit" class="level2">
-<h2 class="anchored" data-anchor-id="first-tracking-and-commit">First tracking and commit</h2>
-<ol type="1">
-<li>In <code>week_02</code>, create a text file named <code>humorforprogrammers.txt</code> containing the sentence “<em>Code is like humor. When you have to explain it, it’s bad.</em>” using your terminal or simply using VSCode (new file -&gt; save)</li>
-<li>Observe what happens with <code>git status</code>. Check <code>git log</code>.</li>
-<li>Add the file to the staging area. Check with <code>git status</code>.</li>
-<li>Create your first commit. Commit the new file with the commit message “text file created”. Check with <code>git status</code>.</li>
-<li>Change the text in <code>humorforprogrammers.txt</code> to “<em>Code is absolutely not like humor.</em>” and save. Use <code>git diff</code> to see the actual unstaged changes.</li>
-<li>Add the file to the staging area and commit the new file with the commit message “text file modified because disagreement”. Check with <code>git status</code> and with <code>git log</code>.</li>
-<li>Look at your sidebar in VSCode. You’ll notice the <code>git</code> GUI. Now create a new file <code>hello.txt</code> containing “hello world!”. Observe the sidebar. Using the GUI, add <code>hello.txt</code> and commit, using a nice commit message.</li>
-</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -4942,62 +4964,65 @@ Solution
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval = false</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Code is like humor. When you have to explain it, it’s bad.&quot;</span> <span class="op">&gt;</span> humorforprogrammers.txt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verify</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> humorforprogrammers.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add humorforprogrammers.txt</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file created&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;*Code is absolutely not like humor.*&quot;</span> <span class="op">&gt;</span> humorforprogrammers.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add humorforprogrammers.txt</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file modified because disagreement&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then use the GUI to add and commit <code>hello.txt</code> with a nice commit message.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Windows (cmd prompt)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Bash (Mac users or with Git Bash)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>In your terminal from VSCode, navigate to your <code>Introduction_to_programming/exercises/week_02</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> exercises</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> week_02</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week_02</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img role="img" src="../../assets/img/Ex02_create_week02_with_cmd.gif" class="img-fluid figure-img"></p>
+<figcaption>Creating week_02 folder with cmd</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> exercises</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> week_02</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week_02</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img role="img" src="../../assets/img/Ex02_create_week02_with_bash.gif" class="img-fluid figure-img"></p>
+<figcaption>Creating week_02 folder with bash</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Then:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialized empty Git repository in /Users/Introduction_to_programming/exercises/week_02</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># On branch main</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># No commits yet</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing to commit (create/copy files and use &quot;git add&quot; to track)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>git init</code> command initializes a new git repository in the current directory. It creates a hidden <code>.git</code> folder that contains all the necessary files and metadata for version control. After running this command, you can start tracking changes to your files and making commits.</p>
+<p><em>Note</em>: you don’t see the <code>.git</code> folder in your file explorer on the left bar of VS code because it is hidden. To see it, right click on the file explorer in VSCode and click on “Reveal in File Explorer”. This will open the folder in your system file explorer, where you can see the hidden <code>.git</code> folder. You can also use the terminal command <code>ls -a</code> to list all files, including hidden ones, to see the <code>.git</code> folder.</p>
 </div>
 </div>
 </div>
 <p><br></p>
 </section>
-<section id="ignore-some-files" class="level2">
-<h2 class="anchored" data-anchor-id="ignore-some-files">Ignore some files</h2>
+<section id="first-tracking-and-commit" class="level2">
+<h2 class="anchored" data-anchor-id="first-tracking-and-commit">First tracking and commit</h2>
 <ol type="1">
-<li>Navigate to your repo <code>/week_02</code> in exercises.</li>
-<li>If you haven’t done it from the course, download the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> and save it in <code>/week_02</code></li>
-<li>Create a new .gitignore file to ignore only this cheatsheet.</li>
-<li>Add all the files to your repo and commit. Notice what’s happening.</li>
-<li>Change the .gitignore file to the following file. Explain what the new .gitignore file does. Commit.</li>
+<li>In <code>week_02</code>, create a text file named <code>humorforprogrammers.txt</code> containing the sentence “Code is like humor. When you have to explain it, it is bad.” using your terminal or simply using VSCode (new file -&gt; save)</li>
+<li>Observe what happens with <code>git status</code>.</li>
+<li>Add the file to the staging area. Check with <code>git status</code>.</li>
+<li>Create your first commit. Commit the new file with the commit message “text file created”. Check with <code>git status</code>.</li>
+<li>Change the text in <code>humorforprogrammers.txt</code> to “Code is absolutely not like humor.” and save. Use <code>git diff</code> to see the actual unstaged changes.</li>
+<li>Add the file to the staging area and commit the new file with the commit message “text file modified because philosophical disagreement”. Check with <code>git status</code>.</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and generated outputs</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*.csv</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">*.tsv</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">*.xlsx</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">*.pdf</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">*.png</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*.jpg</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">*.html</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">__pycache__/</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ex">*.pyc</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Virtual environment (uv)</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Editor / OS files</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ex">.DS_Store</span> <span class="co"># typical for macOS!</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="ex">.vscode/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-</section>
-<section id="time-travel" class="level2">
-<h2 class="anchored" data-anchor-id="time-travel">Time-Travel ⏱️</h2>
-<ul>
-<li>Go back to your directory <code>/week_02</code> in exercises.</li>
-<li>Open the git log of your respository or call it with <code>git log</code>. From the log, identify the commit hash (identifier) of your first commit. Note that <code>HEAD</code> is used to reference commits relatively, with <code>HEAD</code> being the current commit, <code>HEAD~1</code> the previous commit, <code>HEAD~2</code> the commit two commits ago, and so on.</li>
-<li>Checkout the previous commit using the <code>git checkout</code> function. As seen in the course, you can checkout to a git commit using the commit identifier. Or, you can use the following syntax: <code>checkout HEAD~1</code>.</li>
-<li>Go back to your main branch using <code>git checkout</code>.</li>
-</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5010,22 +5035,115 @@ Solution
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Please complete. Make sure you are ready to explain what a detached head is and how to get back to the main branch.</p>
+<p>First, create the text file <code>humorforprogrammers.txt</code> with the following content:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Windows (cmd prompt)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Bash (Mac users or with Git Bash)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Code is like humor. When you have to explain it, it is bad. <span class="op">&gt;</span> humorforprogrammers.txt</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify the content using type</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span> humorforprogrammers.txt</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Code is like humor. When you have to explain it, it is bad.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img role="img" src="../../assets/img/Ex02_create_humorforprogrammers_cmd.gif" class="img-fluid"></p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Code is like humor. When you have to explain it, it is bad. <span class="op">&gt;</span> humorforprogrammers.txt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify the content using cat</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> humorforprogrammers.txt</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Code is like humor. When you have to explain it, it is bad.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img role="img" src="../../assets/img/Ex02_create_humorforprogrammers_bash.gif" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">No</span> commits yet</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Untracked</span> files:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="ex">humorforprogrammers.txt</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> added to commit but untracked files present <span class="er">(</span><span class="ex">use</span> <span class="st">&quot;git add&quot;</span> to track<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, add the file to the staging area and check the status of your git repository.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add humorforprogrammers.txt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">No</span> commits yet</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="ex">new</span> file:   humorforprogrammers.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, commit the change with a nice commit message.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file created&quot;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[main</span> <span class="er">(</span><span class="ex">root-commit</span><span class="kw">)</span> <span class="ex">3326090]</span> text file created</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 1 insertion<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">create</span> mode 100644 humorforprogrammers.txt</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Change the text in <code>humorforprogrammers.txt</code> to “Code is absolutely not like humor.” and save. Use <code>git diff</code> to see the actual unstaged changes.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Code is absolutely not like humor. <span class="op">&gt;</span> humorforprogrammers.txt</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should observe something like this:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> in the working copy of <span class="st">&#39;humorforprogrammers.txt&#39;</span>, LF will be replaced by CRLF the next time Git touches it</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">--git</span> a/humorforprogrammers.txt b/humorforprogrammers.txt</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">index</span> 47e1a11..8e8d1ff 100644</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span> a/humorforprogrammers.txt</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">+++</span> b/humorforprogrammers.txt</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-1</span> +1 @@</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-Code</span> is like humor. When you have to explain it, it is bad.</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="ex">+Code</span> is absolutely not like humor.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add humorforprogrammers.txt</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file modified because philosophical disagreement&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;text file modified because philosophical disagreement&quot;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git restore --staged &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">modified:</span>   humorforprogrammers.txt</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[main</span> 5c0e848] text file modified because philosophical disagreement</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 1 insertion<span class="er">(</span><span class="ex">+</span><span class="kw">)</span><span class="ex">,</span> 1 deletion<span class="er">(</span><span class="ex">-</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p><br></p>
 </section>
-<section id="on" class="level2">
-<h2 class="anchored" data-anchor-id="on">On 🪵, 🌲</h2>
-<ul>
-<li>Navigate to your repo in <code>/week_02</code> in exercises.</li>
-<li>Create a new branch called <code>fixCode</code>. Checkout the new branch. Make sure you’re on the right branch using <code>git status</code>. Check the different branches of your repo with <code>git branch</code>.</li>
-<li>Add a new file <code>fix.txt</code> containing “I fixed the code!” and save. Add and commit the change on the new branch.</li>
-<li>Go back to the main branch. Check the content of the directory. Do you see the new file? Why not?</li>
-<li>Merge the <code>fixCode</code> branch into main</li>
-<li>Repeat all the above steps (with a different branch name &amp; commit) using the GUI on VSCode (<em>self-study</em>)</li>
-</ul>
+<section id="ignore-some-files" class="level2">
+<h2 class="anchored" data-anchor-id="ignore-some-files">Ignore some files</h2>
+<ol type="1">
+<li>If you are not there yet, navigate to your repo <code>/week_02</code> in exercises.</li>
+<li>If you haven’t done it from the course, download the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> and save it in <code>/week_02</code></li>
+<li>Create a new <code>.gitignore</code> file to ignore only this cheatsheet.</li>
+<li>Add all the files to your repo and commit. Notice what’s happening.</li>
+<li>Change the <code>.gitignore</code> file to the file below. Explain what the new <code>.gitignore</code> file does. Commit. (Self-study)</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and generated outputs</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*.csv</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">*.tsv</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">*.xlsx</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">*.pdf</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ex">*.png</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*.jpg</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="ex">*.html</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="ex">__pycache__/</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="ex">*.pyc</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Virtual environment (uv)</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv/</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Editor / OS files</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="ex">.DS_Store</span> <span class="co"># typical for macOS!</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="ex">.vscode/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -5038,18 +5156,26 @@ Solution
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Please complete</p>
+<p>We create a new file called <code>.gitignore</code> in the <code>week_02</code> directory, asking specifically to exclude the Git Cheat Sheet. The <code>.gitignore</code> file is used to specify which files and directories should be ignored by git. This means that any files or directories listed in the <code>.gitignore</code> file will not be tracked by git, and any changes to those files will not be included in commits.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignore the Git Cheat Sheet</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">git-cheat-sheet-education.pdf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img role="img" src="../../assets/img/Ex02_gitignore.gif" class="img-fluid"></p>
+<p>After adding this line to the <code>.gitignore</code> file, we add all files (<code>.</code>) to the staging area and commit:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add .gitignore to ignore the Git Cheat Sheet&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p><br></p>
 </section>
-<section id="on-merge-conflicts" class="level2">
-<h2 class="anchored" data-anchor-id="on-merge-conflicts">On merge conflicts</h2>
+<section id="time-travel" class="level2">
+<h2 class="anchored" data-anchor-id="time-travel">Time-Travel ⏱️</h2>
 <ul>
-<li>Create a new branch called <code>conflictBranch</code>. Checkout the new branch.</li>
-<li>Change the text in <code>humorforprogrammers.txt</code> to “<em>Code is like humor. When you have to explain it, it’s really really bad.</em>” and save. Add and commit the change.</li>
-<li>Go back to main and merge <code>conflictBranch</code> into main. Resolve the merge conflict and commit the merge.</li>
+<li>Go back to your directory <code>/week_02</code> in exercises.</li>
+<li>Open the git log of your respository or call it with <code>git log</code>. From the log, identify the commit hash (identifier) of your first commit. Note that <code>HEAD</code> is used to reference commits relatively, with <code>HEAD</code> being the current commit, <code>HEAD~1</code> the previous commit, <code>HEAD~2</code> the commit two commits ago, and so on.</li>
+<li>Checkout the previous commit using the <code>git checkout</code> function. As seen in the course, you can checkout to a <code>git commit</code> using the commit identifier. Or, you can use the following syntax: <code>git checkout HEAD~1</code>.</li>
+<li>Go back to your main branch using <code>git checkout main</code>.</li>
+<li>Reflect on what we’ve done. In what circumstances would you want to checkout to a previous commit? What are the risks of doing so?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -5063,16 +5189,232 @@ Solution
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Please complete.</p>
-<p>Make sure you are ready to explain how to deal with “forced” commit messages in the terminal (vim or nano) and in the GUI of VSCode.</p>
+<p>To identify the commit hash of the first commit, you can use the command:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which renders the following log (the actual commit hashes will be different on your machine, of course):</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> 9f7fa3a26f61b477033129b4db29954988f3716d <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> main<span class="kw">)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Aurélien Sallin <span class="op">&lt;</span>aurelien.sallin@protonmail.com<span class="op">&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Sat Feb 21 11:58:32 2026 +0100</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Add</span> .gitignore to ignore the Git Cheat Sheet</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> f7b8942c1217bb87c0dd6dc54378dbe57727de88</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Aurélien Sallin <span class="op">&lt;</span>aurelien.sallin@protonmail.com<span class="op">&gt;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Sat Feb 21 11:50:19 2026 +0100</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">text</span> file modified because philosophical disagreement</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> a4fcde82470f03c8d101b10207e1f69c51812dad</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Aurélien Sallin <span class="op">&lt;</span>aurelien.sallin@protonmail.com<span class="op">&gt;</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Sat Feb 21 11:34:55 2026 +0100</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">text</span> file created</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Press <code>q</code> to exit the log. As a practical note, you can also use <code>git log --oneline</code> to get a more concise log, which only shows the first 7 characters of the commit hash and the commit message.</p>
+<p>We observe that the commit hash of our first commit is <code>a4fcde82470f03c8d101b10207e1f69c51812dad</code>. Another way is to use the VSCode GUI to look at the commit history and identify the commit hash of the first commit:</p>
+<p><img role="img" src="../../assets/img/Ex02_gitgui1.gif" class="img-fluid"></p>
+<p>We can checkout to this commit using:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout a4fcde82470f03c8d101b10207e1f69c51812dad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which gives you this:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout a4fcde82470f03c8d101b10207e1f69c51812dad</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Note:</span> switching to <span class="st">&#39;a4fcde82470f03c8d101b10207e1f69c51812dad&#39;</span>.</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> are in <span class="st">&#39;detached HEAD&#39;</span> state. You can look around, make experimental</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="ex">changes</span> and commit them, and you can discard any commits you make in this</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ex">state</span> without impacting any branches by switching back to a branch.</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ex">If</span> you want to create a new branch to retain commits you create, you may</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> <span class="ex">so</span> <span class="er">(</span><span class="ex">now</span> or later<span class="kw">)</span> <span class="ex">by</span> using <span class="at">-c</span> with the switch command. Example:</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>new-branch-name<span class="op">&gt;</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Or</span> undo this operation with:</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">git</span> switch <span class="at">-</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="ex">Turn</span> off this advice by setting config variable advice.detachedHead to false</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="ex">HEAD</span> is now at a4fcde8 text file created</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should observe that the content of the file <code>humorforprogrammers.txt</code> has changed to the original version. This is because we are now in a “detached HEAD” state, meaning that we are not on any branch, but rather on a specific commit. In this state, we can look around and make experimental changes, but any commits we make will not be associated with any branch. To get back to the main branch, we can use:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and our text file will be back to the most recent version.</p>
 </div>
 </div>
 </div>
 <p><br></p>
 </section>
-<section id="reference" class="level2">
-<h2 class="anchored" data-anchor-id="reference">Reference</h2>
-<p>Learn <code>git</code> with <a href="https://learngitbranching.js.org/">learngitbranching.js.org</a>.</p>
+<section id="on-branches" class="level2">
+<h2 class="anchored" data-anchor-id="on-branches">On Branches 🪵</h2>
+<ul>
+<li>Navigate to your repo in <code>/week_02</code> in exercises.</li>
+<li>Create a new branch called <code>fixCode</code>. Checkout the new branch. Make sure you’re on the right branch using <code>git status</code>. Check the different branches of your repo with <code>git branch</code>.</li>
+<li>Add a new file <code>fix.txt</code> containing “I fixed the code!” and save. Add and commit the change on the new branch.</li>
+<li>Pause and reflect on the following questions: in what branch are you now? What is the content of the main branch?</li>
+<li>Go back to the main branch. Check the content of the directory. Do you see the new file? Why not?</li>
+<li>Merge the <code>fixCode</code> branch into main</li>
+<li>Repeat all the above steps (with a different branch name &amp; commit) using the GUI on VSCode (<em>self-study</em>)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Create a new branch called <code>fixCode</code> and checkout the new branch:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> fixCode</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Switched to a new branch &#39;fixCode&#39;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># On branch fixCode</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing to commit, working tree clean</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#* fixCode</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Add a new file <code>fix.txt</code> containing “I fixed the code!” and save. Add and commit the change on the new branch.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> I fixed the code! <span class="op">&gt;</span> fix.txt</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add fix.txt</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add fix.txt with a message about fixing the code&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Go back to the main branch and check the content of the directory:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Switched to branch &#39;main&#39;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># On branch main</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># nothing to commit, working tree clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The file is not visible on <code>main</code> because we created and committed it on the <code>fixCode</code> branch. To see the file on <code>main</code>, we need to merge the <code>fixCode</code> branch into <code>main</code>.</p>
+<p>Merge the <code>fixCode</code> branch into main:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge fixCode</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Updating 9f7fa3a..8926410</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fast-forward</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  fix.txt | 1 +</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  1 file changed, 1 insertion(+)</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  create mode 100644 fix.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The file <code>fix.txt</code> is now part of the <code>main</code> branch after the merge. We were able to merge without conflicts because we only added a new file on the <code>fixCode</code> branch, which did not interfere with any existing files on the <code>main</code> branch.</p>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="on-merge-conflicts-if-no-time-live-demo-in-class" class="level2">
+<h2 class="anchored" data-anchor-id="on-merge-conflicts-if-no-time-live-demo-in-class">On merge conflicts (if no time, live demo in class)</h2>
+<p>Let’s simulate the situation of a merge conflict using a simple Python script. Imagine Peter and Clara are working on a project together. They start with a shared file, then each modifies the same line on a different branch. We will stay in the same repository and directory (<code>week_02</code>) for this exercise for simplicity.</p>
+<section id="setup-create-a-shared-file-on-main" class="level4">
+<h4 class="anchored" data-anchor-id="setup-create-a-shared-file-on-main">Setup: create a shared file on <code>main</code></h4>
+<ol type="1">
+<li>Make sure you are on the <code>main</code> branch.</li>
+<li>Create a Python file called <code>compute.py</code> with the following content. You can create it using VSCode (new file -&gt; save):</li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Add and commit: <code>&quot;Add compute.py with simple addition&quot;</code></li>
+</ol>
+</section>
+<section id="claras-part" class="level4">
+<h4 class="anchored" data-anchor-id="claras-part">Clara’s part:</h4>
+<ul>
+<li>Create a new branch called <code>clara-fix</code>. Checkout the new branch.</li>
+<li>Clara thinks the calculation should be a multiplication. Change the first line of <code>compute.py</code> to <code>result = 2 * 3</code>. Save, add, and commit: <code>&quot;Change operation to multiplication&quot;</code></li>
+</ul>
+</section>
+<section id="peters-part" class="level4">
+<h4 class="anchored" data-anchor-id="peters-part">Peter’s part:</h4>
+<ul>
+<li>Go back to the <code>main</code> branch. Peter thinks we need subtraction instead. Change the first line of <code>compute.py</code> to <code>result = 10 - 4</code>. Save, add, and commit: <code>&quot;Change operation to subtraction&quot;</code></li>
+</ul>
+</section>
+<section id="reflection" class="level4">
+<h4 class="anchored" data-anchor-id="reflection">Reflection:</h4>
+<ul>
+<li>What is the situation right now? Both Peter and Clara changed the <strong>same line</strong> of the <strong>same file</strong>, but on different branches. What do you think will happen when we try to merge?</li>
+</ul>
+</section>
+<section id="merge-conflict" class="level4">
+<h4 class="anchored" data-anchor-id="merge-conflict">Merge conflict:</h4>
+<ul>
+<li>Make sure you are on main. Merge <code>clara-fix</code> into <code>main</code>. Resolve the merge conflict by choosing which version you prefer (or write your own!). Commit the merge.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="setup" class="level5">
+<h5 class="anchored" data-anchor-id="setup">Setup:</h5>
+<p>Make sure you are on <code>main</code> and create <code>compute.py</code>:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create the file <code>compute.py</code> in VSCode with the content <code>result = 2 + 2</code> and <code>print(result)</code>, then:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add compute.py</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add compute.py with simple addition&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="claras-part-1" class="level5">
+<h5 class="anchored" data-anchor-id="claras-part-1">Clara’s part:</h5>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> clara-fix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open <code>compute.py</code> in VSCode and change the first line to <code>result = 2 * 3</code>. Save, then:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add compute.py</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Change operation to multiplication&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="peters-part-1" class="level5">
+<h5 class="anchored" data-anchor-id="peters-part-1">Peter’s part:</h5>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that we are back on the <code>main</code> branch, where the original version of <code>compute.py</code> is still present. Open <code>compute.py</code> in VSCode and change the first line to <code>result = 10 - 4</code>. Save, then:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add compute.py</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Change operation to subtraction&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are now in a situation where <code>main</code> and <code>clara-fix</code> have diverged: both modified the same line of <code>compute.py</code>.</p>
+</section>
+<section id="merge" class="level5">
+<h5 class="anchored" data-anchor-id="merge">Merge:</h5>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge clara-fix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git merge clara-fix</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Auto-merging</span> compute.py</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">CONFLICT</span> <span class="er">(</span><span class="ex">content</span><span class="kw">)</span><span class="bu">:</span> Merge conflict in compute.py</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Automatic</span> merge failed<span class="kw">;</span> <span class="ex">fix</span> conflicts and then commit the result.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Git cannot auto-merge and reports a conflict. Open <code>compute.py</code> in VSCode, and you will see something like this:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">result</span> = 10 <span class="at">-</span> 4</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">=======</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ex">result</span> = 2 <span class="pp">*</span> 3</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> clara-fix</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">result</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Everything between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> is <strong>Peter’s version</strong> (what is currently on <code>main</code>).</li>
+<li>Everything between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; clara-fix</code> is <strong>Clara’s version</strong>.</li>
+</ul>
+<p>To resolve the conflict, delete the conflict markers and keep the version you prefer (or write something new). For example, let’s keep Clara’s multiplication:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Save the file, then:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add compute.py</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Merge clara-fix: keep multiplication&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also resolve the merge conflict using the VSCode GUI. When VSCode detects conflict markers, it shows clickable buttons above the conflict: <strong>“Accept Current Change”</strong> (Peter’s), <strong>“Accept Incoming Change”</strong> (Clara’s), or <strong>“Accept Both Changes”</strong>. This is often easier than editing the markers manually.</p>
+<p>Finally, clean up by deleting the merged branch (<code>-d</code> stands for delete):</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> clara-fix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At the end, your git graph looks like this:</p>
+<p><img role="img" src="../../assets/img/Ex02_merge_end.png" class="img-fluid"></p>
+</section>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="additional-exercises-self-study" class="level2">
+<h2 class="anchored" data-anchor-id="additional-exercises-self-study">Additional exercises (self-study)</h2>
+<p>You can learn <code>git</code> interactively with the website <a href="https://learngitbranching.js.org/">learngitbranching.js.org</a>. This website allows you to practice <code>git</code> commands in an interactive way, with visualizations of the git tree and branches. Note that it goes a step further than what we have seen in the course (and only what we’ve seen in the course and exercises is required for the exam).</p>
 
 
 </section>
