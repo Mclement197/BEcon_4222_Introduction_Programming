@@ -949,7 +949,7 @@
     "href": "index.html",
     "title": "BEcon 4222 - Introduction to Programming",
     "section": "",
-    "text": "This course introduces you to programming fundamentals using Python, with applications in economics and data science.\n\n\n\n\nAccess weekly lecture slides and materials through the navigation menu above.\n\n\n\nHands-on exercises to practice programming concepts.\n\n\n\nCourse syllabus, schedule, and administrative information.\n\n\n\n\n\n\n\nWeek 2: Version Control with Git\n\nLecture: Recap Week 1\nLecture: Version Control\nExercise 2: First Commands in Git\nGit Cheat Sheet\n\n\n\n\nBefore Week 2:\n\nInstall Git (installation instructions)\nInstall VSCode extension: Git Graph\nComplete Exercise 1 if not done yet\nOptional: Recap Quiz Week 1 (available on Canvas, non-graded)\n\n\n\n\n\n\nBy the end of this course, you will be able to:\n\nUse the terminal and command line effectively\nWrite and run Python programs\nWork with data using Python libraries\nUse Git and GitHub for version control\nApply programming concepts to economic problems\n\n\nLast updated: {r} Sys.Date()"
+    "text": "This course introduces you to programming fundamentals using Python, with applications in economics and data science.\n\n\n\n\nAccess weekly lecture slides and materials through the navigation menu above.\n\n\n\nHands-on exercises to practice programming concepts.\n\n\n\nCourse syllabus, schedule, and administrative information.\n\n\n\n\n\n\n\nLectures: - Lecture 1a: Introduction - Lecture 1b: Getting Started\nExercises: - Exercise 1: Getting Started - Recap Quiz 1 (non-graded)\nResources: - Common Terminal Commands\n\n\n\nLectures: - Lecture 2a: Recap Week 1 - Lecture 2b: Version Control\nExercises: - Exercise 2: First Commands in Git\nResources: - Git Cheat Sheet (PDF)\nSetup: - Install Git (instructions) - Install VSCode extension: Git Graph\n\n\n\n\n\nBy the end of this course, you will be able to:\n\nUse the terminal and command line effectively\nWrite and run Python programs\nWork with data using Python libraries\nUse Git and GitHub for version control\nApply programming concepts to economic problems"
   },
   {
     "objectID": "index.html#course-structure",
@@ -959,18 +959,18 @@
     "text": "Access weekly lecture slides and materials through the navigation menu above.\n\n\n\nHands-on exercises to practice programming concepts.\n\n\n\nCourse syllabus, schedule, and administrative information."
   },
   {
-    "objectID": "index.html#quick-links",
-    "href": "index.html#quick-links",
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
     "title": "BEcon 4222 - Introduction to Programming",
     "section": "",
-    "text": "Week 2: Version Control with Git\n\nLecture: Recap Week 1\nLecture: Version Control\nExercise 2: First Commands in Git\nGit Cheat Sheet\n\n\n\n\nBefore Week 2:\n\nInstall Git (installation instructions)\nInstall VSCode extension: Git Graph\nComplete Exercise 1 if not done yet\nOptional: Recap Quiz Week 1 (available on Canvas, non-graded)"
+    "text": "Lectures: - Lecture 1a: Introduction - Lecture 1b: Getting Started\nExercises: - Exercise 1: Getting Started - Recap Quiz 1 (non-graded)\nResources: - Common Terminal Commands\n\n\n\nLectures: - Lecture 2a: Recap Week 1 - Lecture 2b: Version Control\nExercises: - Exercise 2: First Commands in Git\nResources: - Git Cheat Sheet (PDF)\nSetup: - Install Git (instructions) - Install VSCode extension: Git Graph"
   },
   {
     "objectID": "index.html#learning-objectives",
     "href": "index.html#learning-objectives",
     "title": "BEcon 4222 - Introduction to Programming",
     "section": "",
-    "text": "By the end of this course, you will be able to:\n\nUse the terminal and command line effectively\nWrite and run Python programs\nWork with data using Python libraries\nUse Git and GitHub for version control\nApply programming concepts to economic problems\n\n\nLast updated: {r} Sys.Date()"
+    "text": "By the end of this course, you will be able to:\n\nUse the terminal and command line effectively\nWrite and run Python programs\nWork with data using Python libraries\nUse Git and GitHub for version control\nApply programming concepts to economic problems"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
