@@ -1,0 +1,400 @@
+---
+title: '4,222 Introduction to Programming'
+subtitle: 'Exercise Week 23: Remotes and GitHub'
+author: "Aurélien Sallin, Lea Tschan, Valentina Sontheim"
+date: "2026-03-06"
+code-line-numbers: false
+format:
+  html:
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+highlight-style: dracula
+cache: false
+echo: false
+eval: false
+execute:
+  echo: true
+  eval: false
+---
+
+
+## To do before the exercise session:
+
+1. Create a Github account if you don't have one already.
+2. Authenticate GitHub by following the instructions in the class slides.
+
+
+## Exercise 1: Cloning a repository: course repo
+
+1. Navigate to your course directory [Introduction_to_programming]{.path} using the terminal. Remember our course structure:
+```
+Introduction_to_programming/
+├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── exercises/               # Student's own work
+│   ├── week_01/
+│   ├── week_02/
+│   ├── ...
+│   ├── week_12/
+├── group_project/
+│   ├── ...
+```
+2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming).
+3. Explore the repo briefly using `git status` and call for the `log` to see the history of commits.
+
+::: {.callout-tip collapse="true" title="Solution"}
+See class slides. Go on the repo and click on **<>Code**. Copy the https-address of the repo.
+
+![You can find the remote URL by going to a repository on GitHub and clicking the Code button](../../assets/img/clone_repo.png)
+
+Then test that you are in the right directory and clone the repo using the following command:
+
+```bash
+pwd
+git clone https://github.com/ASallin/BECON_4222_Introduction_Programming.git
+```
+
+You should observe something like this:
+
+```sh
+git clone https://github.com/ASallin/BECON_4222_Introduction_Programming.git
+/c/Users/aurel/OneDrive/Documents/Introduction_to_programming
+Cloning into 'BECON_4222_Introduction_Programming'...
+remote: Enumerating objects: 1070, done.
+remote: Counting objects: 100% (36/36), done.
+remote: Compressing objects: 100% (24/24), done.
+remote: Total 1070 (delta 11), reused 22 (delta 6), pack-reused 1034 (from 1)
+Receiving objects: 100% (1070/1070), 120.89 MiB | 27.81 MiB/s, done.
+Resolving deltas: 100% (426/426), done.
+Updating files: 100% (350/350), done.
+```
+
+Navigate to the repo and check the status and log. Use `--oneline` to have a more compact log... if you don't want to see the full commit messages back to the Ancient Roman times.
+
+```bash
+cd BECON_4222_Introduction_Programming
+git status
+git log --oneline
+```
+
+Use Git Graph to visualize the history of commits. You should see the different branches from our contributors.
+
+Finally, the directory should now look like this:
+```
+Introduction_to_programming/
+├── github_course_materials/ # is empty for now, you will clone the git repo in week 3
+├── BECON_4222_Introduction_Programming/ # GitHub repo with all course materials
+├── exercises/               # Student's own work
+│   ├── week_01/
+│   ├── week_02/
+│   ├── ...
+│   ├── week_12/
+├── group_project/
+│   ├── ...
+```
+
+You can remove the directory [github_course_materials]{.path} if you want, since the repo is now in [BECON_4222_Introduction_Programming]{.path}. Do it in VSCode or in the terminal with `rm -r github_course_materials` (be careful with this command, it deletes the directory and all its content without asking for confirmation).
+:::
+
+
+
+
+<!------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+------------------------------------------------->
+
+
+
+<div style="margin-top: 8em;"></div>
+
+
+## Exercise 2: Authenticating with GitHub 🗝️
+
+**Try to execute these steps before the exercise session. If you have any problem, we will try to solve it together during the session (if time permits)**
+
+When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
+
+- We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.
+- Using SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.
+
+### Instructions
+
+- Please go to this [website from LMU Munich](https://lmu-osc.github.io/Introduction-RStudio-Git-GitHub/SSH.html) and follow the steps to authenticate with GitHub.<br>*Credits*: Open Science Center at LMU Munich (Mike Croucher & Malika Ihle)
+
+
+### Test your connection
+
+Test your connection using the following code.
+
+```bash
+ssh -T git@github.com
+> Hi ASallin! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+
+
+
+<!------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+------------------------------------------------->
+
+
+
+<div style="margin-top: 8em;"></div>
+
+
+## Exercise 3: GitHub Classroom - Inflation Forecasting
+
+For this exercise, we've prepared a **GitHub Classroom**. A GitHub Classroom is a special type of repository created for a classroom, where each student gets their own copy to complete and submit assignments. It simulates real repositories on GitHub, and works like a normal GitHub repository. We will use it for the group project.
+
+
+### Accept invitation and clone
+
+**1. Accept the classroom invitation**
+
+Visit the invitation link: [https://classroom.github.com/a/xqcl3xcb](https://classroom.github.com/a/xqcl3xcb)
+
+After accepting, you'll see a link to your personal repository. Click on it.
+
+![](../../assets/img/ex_03/ex03_classroom_welcome.png)
+
+![](../../assets/img/githubclassroom_invitation.png)
+
+
+2. Clone the repository in [Introduction_to_programming/exercises/week_03]{.path}. Create the directory if needed:
+
+```bash
+cd exercises
+mkdir week_03
+cd week_03
+git clone https://github.com/<org>/<your-repo-name>.git
+cd <your-repo-name>
+```
+
+3. Check the initial state of the repo using `git status`. You should see a text file `trivia.txt` and a README file.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git status
+```
+
+```sh
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+
+The file contains a simple trivia game:
+
+```bash
+Learning Remotes in Git
+================================
+
+Answer Questions A, B, and C below, then push your answers.
+
+...
+```
+
+:::
+
+4. Answer the questions in the text file, commit and push your changes to GitHub.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git status
+git add trivia.txt
+git commit -m "Add answers to trivia questions"
+git push
+```
+
+The push should give you output like this:
+```sh
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 328 bytes | 328.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/4222-Introduction-to-programming-2026/git-practice-clone-pull-push-ASallin.git
+   2954ce9..989ec79  main -> main
+```
+:::
+
+6. Wait about 30-60 seconds before pulling the changes again 🥁🥁🥁. (A GitHub Action will run automatically and add the answers to your file. This simulates a colleague pushing changes while you work.)
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git pull
+```
+
+You should see output like:
+```sh
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 668 bytes | 60.00 KiB/s, done.
+From https://github.com/4222-Introduction-to-programming-2026/git-practice-clone-pull-push-ASallin
+   b8a0f6d..ff186cd  main       -> origin/main
+Updating b8a0f6d..ff186cd
+Fast-forward
+ trivia.txt | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+:::
+
+7. Check what changed in the file `trivia.txt`. You should see that the answers to the questions have been added by the automation. Did you get the OLMA-weight right?
+
+
+
+
+<!------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+------------------------------------------------->
+
+
+
+<div style="margin-top: 8em;"></div>
+
+## Exercise 4: Economists Always Disagree
+
+Economists are famous for disagreeing on everything. Let's see how this can lead to conflicts in GitHub.
+
+**Create groups of 2-3 students and work together.**
+
+1. **Student 1**: Create a new repository on GitHub with the name `git-intro-example`. Create a README file as asked by Github. Notice the other options when creating a repository, such as adding a .gitignore file or a license. You can ignore these for now.
+
+In the settings of the repository, make sure to add your colleagues as collaborators, so that they can access the repository and push changes.
+
+::: {.callout-tip collapse="true" title="Solution"}
+![Create a new repository on GitHub](../../assets/img/ex_03/create_repo.png)
+![Add collaborators to the repository](../../assets/img/ex_03/ex03_collaborators_2.png)
+:::
+
+2. **All students**: Clone the repository in your local directory [Introduction_to_programming/exercises/week_03]{.path}.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+cd week_03
+git clone <URL>
+cd git-intro-example
+git status
+```
+:::
+
+3. **Student 1**: Create a new file called `inflation_forecast.py` in the repository and add the following code:
+
+```python
+def forecast_inflation():
+    return "Inflation will be 2% next year in Switzerland."
+
+# Run the function and print the result
+result = forecast_inflation()
+print(result)
+```
+
+Then add and commit your changes. Finally push your changes.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git add inflation_forecast.py
+git commit -m "YOUR COMMIT MESSAGE"
+git status
+git push
+```
+:::
+
+4. **Student 2**: change the README file and add the following line: "This repository contains a simple inflation forecasting model" and the title "## Inflation Forecasting". Then add and commit. Now try to push and observe what happens. Do you get an error message? Why? Then proceed to push.
+
+::: {.callout-tip collapse="true" title="Solution"}
+Open the README file in VSCode, add the following lines and save. Then
+
+```bash
+git add README.md
+git commit -m "YOUR COMMIT MESSAGE"
+git status
+git push
+```
+
+You should get an error message prompting you to pull the changes before pushing.
+:::
+
+5. **Student 1**: pull the changes. All students: observe the commit history and the files changed.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git pull
+```
+:::
+
+6. Now, let's simulate a real-life economist situation:
+
+   - **Student 1**: create a new branch called "forecast revision". Switch to the branch and change the function in the python file with your forecast (do not show it to your colleague). Commit and push. Notice that Git might ask you to add arguments to `git push`, such as `-u origin forecast_revision`.
+   - **Student 2**: similarly, but on main, change the inflation forecast. Commit and push.
+
+::: {.callout-tip collapse="true" title="Solution"}
+**Student 1**:
+
+```bash
+git switch -c forecast_revision
+# Edit inflation_forecast.py - change the forecast
+git add inflation_forecast.py
+git commit -m "YOUR COMMIT MESSAGE"
+git push -u origin forecast_revision
+git status
+```
+:::
+
+7. Now, both students pull the changes from GitHub. They have to find an agreement on the forecast and merge the two branches. To proceed: decide on a common forecast, solve the merge conflict, and push the changes to GitHub. Observe the commit history and the files changed.
+
+::: {.callout-tip collapse="true" title="Solution"}
+Either student can pull the changes and solve the conflict. For example, if student 1 pulls the changes, they will have to merge the main branch into their current branch "forecast_revision". If student 2 pulls the changes, they will have to merge the "forecast_revision" branch into main.
+
+Student 1 (who is on the branch "forecast_revision"):
+
+```bash
+git pull
+git switch main
+git pull
+git merge forecast_revision
+```
+
+Or student 2 (who is on the branch "main"):
+```bash
+git pull
+git merge forecast_revision
+```
+
+Then, solve the conflict in the file `inflation_forecast.py` and push the changes to GitHub.
+:::
+
+8. Now, in the rare case where both students agreed on the forecast, what would have happened? Would there have been a conflict? Why?
+
+<!------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+------------------------------------------------->
+
+
+
+<div style="margin-top: 8em;"></div>
+
+
+## Bonus: Adding your own repository to GitHub
+
+If you finish early, practice creating a repository from scratch.
+
+1. Create a new repository on GitHub with the name `git-intro-example`
+   - Make sure NOT to add a README or any other file when creating it
+2. Create a local Git repository in your week_03 folder
+3. Add the GitHub repo as a remote
+   - `git remote add origin <URL>`
+4. Push your changes to GitHub
+   - `git push -u origin main`
+

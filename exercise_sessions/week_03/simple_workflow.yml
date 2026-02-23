@@ -1,0 +1,66 @@
+name: Add feedback after submission
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'trivia.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  add-feedback:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if answers already revealed
+        id: check
+        run: |
+          # Count how many [YOUR ANSWER HERE] placeholders remain
+          placeholder_count=$(grep -c "\[YOUR ANSWER HERE\]" trivia.txt || echo "0")
+
+          # Skip if answers already added OR if student hasn't filled in any answers yet
+          if grep -q "CORRECT ANSWERS" trivia.txt; then
+            echo "done=true" >> $GITHUB_OUTPUT
+          elif [ "$placeholder_count" -eq 3 ]; then
+            echo "done=true" >> $GITHUB_OUTPUT
+          else
+            echo "done=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Add correct answers
+        if: steps.check.outputs.done == 'false'
+        run: |
+          echo "" >> trivia.txt
+          echo "" >> trivia.txt
+          echo "================================================================================" >> trivia.txt
+          echo "CORRECT ANSWERS" >> trivia.txt
+          echo "================================================================================" >> trivia.txt
+          echo "" >> trivia.txt
+          echo "Question A 🌭: How many grams for an OLMA-Bratwurst?" >> trivia.txt
+          echo "Correct Answer: 160 Gramm" >> trivia.txt
+          echo "Source: https://olmapedia.ch/genussmesse/bratwurst/" >> trivia.txt
+          echo "" >> trivia.txt
+          echo "Question B 💻: Who created Git?" >> trivia.txt
+          echo "Correct Answer: Linus Torvalds" >> trivia.txt
+          echo "Source: https://en.wikipedia.org/wiki/Git" >> trivia.txt
+          echo "" >> trivia.txt
+          echo "Question C 🔮: What percentage of Western Europeans believe in astrology?" >> trivia.txt
+          echo "Correct Answer: 23 percent (median)" >> trivia.txt
+          echo "Source: https://www.pewresearch.org/religion/2018/05/29/attitudes-toward-spirituality-and-religion/" >> trivia.txt
+          echo "" >> trivia.txt
+          echo "" >> trivia.txt
+          echo "================================================================================" >> trivia.txt
+
+      - name: Commit and push
+        if: steps.check.outputs.done == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add trivia.txt
+          git commit -m "Reveal correct answers"
+          git push

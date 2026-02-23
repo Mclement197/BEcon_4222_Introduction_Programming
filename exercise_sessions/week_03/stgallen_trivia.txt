@@ -1,0 +1,13 @@
+Learning Remotes in Git
+================================
+
+Answer Questions A, B, and C below, then push your answers.
+
+Question A 🌭: How many grams for an OLMA-Bratwurst?
+Answer: [YOUR ANSWER HERE]
+
+Question B 💻: Who created Git?
+Answer: [YOUR ANSWER HERE]
+
+Question C 🔮: What percentage of Western Europeans believe in astrology?
+Answer: [YOUR ANSWER HERE]

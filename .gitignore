@@ -21,3 +21,4 @@ uv.lock
 
 # Claude Code
 CLAUDE.md
+.claude/
