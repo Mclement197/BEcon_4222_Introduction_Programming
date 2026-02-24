@@ -217,7 +217,7 @@ You can use the following commands in your terminal to set everything up. Rememb
 
 In Windows, we use powershell to install `uv`.
 
-**Note:**Pay attention to the fact that we are using powershell to install `uv` because it is the way the company that wrote `uv` recommends, but that we are using command prompt for the rest of the course. You can also use powershell for the rest of the course if you prefer, but we will use command prompt in the exercise sessions to make sure everyone is on the same page.
+**Note**: PowerShell is only needed to install `uv` (recommended method). For the rest of the course, we'll use Command Prompt in exercises to keep everyone on the same page. Feel free to use PowerShell if you prefer, but examples will use Command Prompt.
 
 ```powershell
 # Install uv using standalone installer
@@ -333,16 +333,6 @@ You should observe different things happening:
   - the creation of a `uv.lock` file, which "locks" the exact versions of all dependencies
   - your file `pyproject.toml` being updated under "dependencies"`[^1]
 
-::: {.callout-note}
-#### The `.venv` folder structure differs between Windows and Mac
-
-The `.venv` folder contains your Python interpreter, but the internal layout is different depending on your operating system:
-
-- **Windows:** `.venv/Scripts/python.exe`
-- **Mac:** `.venv/bin/python`
-
-This matters when you need to manually select the Python interpreter in VS Code (see Exercise 3.5).
-:::
 
 
 
@@ -376,31 +366,55 @@ The solution to this exercise will be shown during the exercise session. Here is
 
 Once in `Introduction_to_programming/exercises/week_01`, open the `main.py`. The trick now is to **choose the right python interpreter**. Python interpreters are programs that read and execute your Python code. Each environment can have its own interpreter, which ensures you use the correct Python version and packages for your project. Since we defined our Python installation, we need to select the interpreter we chose from our `uv` environment.
 
+::: {.callout-note}
+#### The `.venv` folder structure differs between Windows and Mac
+
+The `.venv` folder contains your Python interpreter, but the internal layout is different depending on your operating system:
+
+- **Windows:** `.venv/Scripts/python.exe`
+- **Mac:** `.venv/bin/python`
+:::
+
 - In VS Code, use CTRL/CMD + SHIFT + P to open the palette. Then write "Select Python Interpreter". There will be a list of available Python interpreters. Chose the one corresponding to Python 3.14.1 in your `venv` (tagged "Workspace" by VS Code).
 
-*Note*: it could be that VSCode does not detect your interpreter right away. In this case, first try to refresh VSCode using CTRL/CMD + SHIFT + P and then "Developer: Reload Window". Otherwise, select "Enter interpreter path" and navigate to the `.venv` folder in your project, then select the Python executable:
+*Note*: it could be that VSCode does not detect your interpreter right away. In this case, first try to refresh VSCode using CTRL/CMD + SHIFT + P and then "Developer: Reload Window".
+
+Otherwise, select "Enter interpreter path" and navigate to the `.venv` folder in your project, then select the Python executable:
 
   - **Windows:** `.venv/Scripts/python.exe`
   - **Mac:** `.venv/bin/python`
 
-::: {.callout-tip collapse="true"}
-#### Solution
+::: {.callout-tip collapse="true" title="Solution"}
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to select the right python interpreter in VS Code:
 
+::: {.panel-tabset}
+
+##### Windows
 ![](../../assets/img/ex_01/select_python_interpreter.png){width="640px"}
+
+##### Mac
+![](../../assets/img/ex_01/select_python_interpreter_macos.png)
 
 :::
 
+:::
 
 - In VS Code, if you have a `.py` file open, check the Python interpreter at the bottom right and make sure you have the right one selected.
 
-::: {.callout-tip collapse="true"}
-#### Solution
+::: {.callout-tip collapse="true" title="Solution"}
 
 The solution to this exercise will be shown during the exercise session. Here is a preview of how to select the right python interpreter in VS Code:
 
+::: {.panel-tabset}
+
+##### Windows
 ![](../../assets/img/ex_01/select_python_interpreter_bottomright.png){width="640px"}
+
+##### Mac
+![](../../assets/img/ex_01/select_python_interpreter_bottomright_macos.png)
+
+:::
 
 :::
 

@@ -50,7 +50,7 @@ Course syllabus, schedule, and administrative information.
 - [Lecture 2b: Version Control](course_materials/week_02/02_versioncontrol.qmd)
 
 **Exercises:**
-- [Exercise 2: First Commands in Git](exercise_sessions/week_02/Ex02_FirstCommitsInGit_v2.qmd)
+- [Exercise 2: First Commands in Git](exercise_sessions/week_02/Ex02_FirstCommitsInGit.qmd)
 
 **Resources:**
 - [Git Cheat Sheet (PDF)](course_materials/week_02/git-cheat-sheet-education.pdf)

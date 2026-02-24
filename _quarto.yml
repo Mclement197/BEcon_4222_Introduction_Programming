@@ -29,7 +29,7 @@ website:
           - text: "Lecture 2b: Version Control"
             file: course_materials/week_02/02_versioncontrol.qmd
           - text: "Exercise 2: First Commands in Git"
-            file: exercise_sessions/week_02/Ex02_FirstCommitsInGit_v2.qmd
+            file: exercise_sessions/week_02/Ex02_FirstCommitsInGit.qmd
           - text: "---"
           - text: "Git Cheat Sheet (PDF)"
             file: course_materials/week_02/git-cheat-sheet-education.pdf

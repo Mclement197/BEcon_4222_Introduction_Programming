@@ -161,7 +161,7 @@ After accepting, you'll see a link to your personal repository. Click on it.
 
 ![](../../assets/img/ex_03/ex03_classroom_welcome.png)
 
-![](../../assets/img/githubclassroom_invitation.png)
+![](../../assets/img/ex_03/githubclassroom_invitation.png)
 
 
 2. Clone the repository in [Introduction_to_programming/exercises/week_03]{.path}. Create the directory if needed:
@@ -390,7 +390,7 @@ Then, solve the conflict in the file `inflation_forecast.py` and push the change
 
 If you finish early, practice creating a repository from scratch.
 
-1. Create a new repository on GitHub with the name `git-intro-example`
+1. Create a new repository on GitHub with the name `git-intro-addrepo`
    - Make sure NOT to add a README or any other file when creating it
 2. Create a local Git repository in your week_03 folder
 3. Add the GitHub repo as a remote
