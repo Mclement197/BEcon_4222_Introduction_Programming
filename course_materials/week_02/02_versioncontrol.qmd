@@ -100,7 +100,7 @@ In the next lecture, we will
 - In demand for any data science job
 
 
-## Git and the Command Line Interface (CLI)
+## Git and the Command Line Interface (CLI) {visibility="hidden"}
 
 #### Git is usually used from a CLI (like a terminal)
 
@@ -123,13 +123,13 @@ In the next lecture, we will
 
 <br>
 
-We will learn the basic commands of Git in a CLI, and we will use the GUI in VSCode
+We will learn the basic commands of Git in a Command-Line Interface (CLI), and we will use the GUI in VSCode
 
 All the commands we will learn are available in the official [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf). Please download the sheet.
 :::
 
 ::: {.column width="40%"}
-![](../../assets/img/lecture_02_versioncontrol/git_cheatsheet.png){fig-alt="Git cheatsheet" width="100%"}
+![](../../assets/img/lecture_02_versioncontrol/git_cheatsheet.png){fig-alt="Git cheatsheet" width="90%"}
 :::
 ::::
 
