@@ -6,13 +6,10 @@ date: "2026-03-06"
 code-line-numbers: false
 format:
   html:
-    # template-partials:
-      #  - ../../style/title-slide.html
     smaller: true
     embed-resources: true
     self-contained: true
     slide-number: c
-    # theme: ../../style/hsgtheme.scss
 highlight-style: dracula
 cache: false
 echo: false
@@ -25,11 +22,47 @@ execute:
 
 ## To do before the exercise session:
 
-1. Create a Github account if you don't have one already.
-2. Authenticate GitHub by following the instructions in the class slides.
+Create a Github account if you don't have one already. Preferably, use the email address you've used to set up your git config.
 
 
-## Exercise 1: Cloning a repository: course repo
+## Exercise 1: Authenticating with GitHub 🗝️
+
+**Try to execute these steps before the exercise session. If you have any problem, we will try to solve it together during the session (if time permits)**
+
+When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
+
+- We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.
+- Using SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.
+
+### Instructions
+
+- Please go to this [website from LMU Munich](https://lmu-osc.github.io/Introduction-RStudio-Git-GitHub/SSH.html) and follow the steps to authenticate with GitHub.<br>*Credits*: Open Science Center at LMU Munich (Mike Croucher & Malika Ihle)
+
+
+### Test your connection
+
+Test your connection using the following code.
+
+```bash
+ssh -T git@github.com
+> Hi ASallin! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+
+
+
+<!------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+------------------------------------------------->
+
+
+
+<div style="margin-top: 8em;"></div>
+
+
+
+## Exercise 2: Cloning a repository: course repo
 
 1. Navigate to your course directory [Introduction_to_programming]{.path} using the terminal. Remember our course structure:
 ```
@@ -49,7 +82,7 @@ Introduction_to_programming/
 ::: {.callout-tip collapse="true" title="Solution"}
 See class slides. Go on the repo and click on **<>Code**. Copy the https-address of the repo.
 
-![You can find the remote URL by going to a repository on GitHub and clicking the Code button](../../assets/img/clone_repo.png)
+![You can find the remote URL by going to a repository on GitHub and clicking the Code button](../../assets/img/clone_repo.png). If you clone a repository for the first time, GitHub will prompt you to authenticate with your GitHub account. Follow the instructions to complete the authentication process on your browser.
 
 Then test that you are in the right directory and clone the repo using the following command:
 
@@ -113,28 +146,110 @@ You can remove the directory [github_course_materials]{.path} if you want, since
 <div style="margin-top: 8em;"></div>
 
 
-## Exercise 2: ## Authenticating with GitHub 🗝️
 
-**Try to execute these steps before the exercise session. If you have any problem, we will try to solve it together during the session (if time permits)**
+## Exercise 3: GitHub Classroom - Inflation Forecasting
 
-When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
-
-- We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.
-- Using SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.
-
-### Instructions
-
-- Please go to this [website from LMU Munich](https://lmu-osc.github.io/Introduction-RStudio-Git-GitHub/SSH.html) and follow the steps to authenticate with GitHub.<br>*Credits*: Open Science Center at LMU Munich (Mike Croucher & Malika Ihle)
+For this exercise, we've prepared a **GitHub Classroom**. A GitHub Classroom is a special type of repository created for a classroom, where each student gets their own copy to complete and submit assignments. It simulates real repositories on GitHub, and works like a normal GitHub repository. We will use it for the group project.
 
 
-### Test your connection
+### Accept invitation and clone
 
-Test your connection using the following code.
+**1. Accept the classroom invitation**
+
+Visit the invitation link: [https://classroom.github.com/a/xqcl3xcb](https://classroom.github.com/a/xqcl3xcb)
+
+After accepting, you'll see a link to your personal repository. Click on it. **If it says something like "repository access issues you nos longer have access to your assignment repository contact your teacher for support", please open your email address and click on the link in the email to accept the invitation. If you don't see an email, check your spam folder. If you still don't see it, please contact us.**
+
+![](../../assets/img/ex_03/ex03_classroom_welcome.png)
+
+![](../../assets/img/ex_03/githubclassroom_invitation.png)
+
+
+2. Clone the repository in [Introduction_to_programming/exercises/week_03]{.path}. Create the directory if needed:
 
 ```bash
-ssh -T git@github.com
-> Hi ASallin! You've successfully authenticated, but GitHub does not provide shell access.
+cd exercises
+mkdir week_03
+cd week_03
+git clone https://github.com/<org>/<your-repo-name>.git
+cd <your-repo-name>
 ```
+
+3. Check the initial state of the repo using `git status`. You should see a text file `trivia.txt` and a README file.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git status
+```
+
+```sh
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+
+The file contains a simple trivia game:
+
+```bash
+Learning Remotes in Git
+================================
+
+Answer Questions A, B, and C below, then push your answers.
+
+...
+```
+
+:::
+
+4. Answer the questions in the text file (give your best guess...), commit and push your changes to GitHub.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git status
+git add trivia.txt
+git commit -m "Add answers to trivia questions"
+git push
+```
+
+The push should give you output like this:
+```sh
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 328 bytes | 328.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/4222-Introduction-to-programming-2026/git-practice-clone-pull-push-ASallin.git
+   2954ce9..989ec79  main -> main
+```
+:::
+
+6. Wait about 30-60 seconds before pulling the changes again 🥁🥁🥁. (A GitHub Action will run automatically and add the answers to your file. This simulates a colleague pushing changes while you work. It won't be triggered if you don't answer.)
+
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+git pull
+```
+
+You should see output like:
+```sh
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 668 bytes | 60.00 KiB/s, done.
+From https://github.com/4222-Introduction-to-programming-2026/git-practice-clone-pull-push-ASallin
+   b8a0f6d..ff186cd  main       -> origin/main
+Updating b8a0f6d..ff186cd
+Fast-forward
+ trivia.txt | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+```
+:::
+
+7. Check what changed in the file `trivia.txt`. You should see that the answers to the questions have been added by the automation. Did you get the weight of the OLMA-sausage right?
 
 
 
@@ -148,296 +263,192 @@ ssh -T git@github.com
 
 <div style="margin-top: 8em;"></div>
 
+## Exercise 4: Economists Always Disagree
 
-## Exercise 2: Cloning a repository on GitHub Classroom
+Economists are famous for disagreeing on everything, especially when it comes to macroeconomists and forecasts... Let's see how this can lead to conflicts in GitHub.
 
-For this exercise, we've prepared a **GitHub Classroom**. A GitHub Classroom is a special type of repository created for a class, where each student gets their own copy to complete and submit assignments. It simulates real repositories on GitHub, and works like a normal GitHub repository. We will use it for the group project.
+**Create groups of 2-3 students and work together. Each student shows what she or he is doing to her or his colleagues.**
 
-### Connect to the repo
-With the following link https://classroom.github.com/a/Gq3_1PtS, accept the invitaton to connect. Once you've accepted the invitation, you should see a link to a repository:
+1. **Student 1**: Create a new repository on GitHub with the name `git-intro-example`. Create a README file as asked by Github. Notice the other options when creating a repository, such as adding a .gitignore file or a license. You can ignore these for now.
 
-![](../../assets/img/ex_03/ex03_classroom_welcome.png)
-
-![](../../assets/img/githubclassroom_invitation.png)
-
-And click on the link to the repository.
-
-### Clone
-1. Clone the repository using either HTTPS or SSH in the directory [Introduction_to_programming/exercises/week03]{.path}. If needed, create the directory:
-
-```
-Introduction_to_programming/
-├── BECON_4222_Introduction_Programming/ # GitHub repo with all course materials
-├── exercises/               # Student's own work
-│   ├── week_01/
-│   ├── week_02/
-│   ├── week_03/ # <- here!
-│   ├── ...
-│   ├── week_12/
-├── group_project/
-│   ├── ...
-```
+In the settings of the repository, make sure to add your colleagues as collaborators, so that they can access the repository and push changes.
 
 ::: {.callout-tip collapse="true" title="Solution"}
-Solution:
+![Create a new repository on GitHub](../../assets/img/ex_03/create_repo.png)
+![Add collaborators to the repository](../../assets/img/ex_03/ex03_collaborators_2.png)
 
+To add collaborators, go to the repository, click on "Settings" (the gear icon), then click on "Collaborators" in the left sidebar. Click on "Add people", search for your colleague's GitHub username, and click "Add" to give them access to the repository.
+
+The person added will receive an email with the invitation. Click on the link "Accept the invitation". If you don't see an email, check your spam folder.
+:::
+
+2. **All students**: Clone the repository in your local directory [Introduction_to_programming/exercises/week_03]{.path}.
+
+::: {.callout-tip collapse="true" title="Solution"}
 ```bash
-cd exercises
-mkdir week_03
 cd week_03
-git clone https://github.com/<org>/<your_repo>.git
-cd <your_repo>
+git clone <URL>
+cd git-intro-example
 git status
 ```
-
-You should see something like this (with your name):
-```sh
-$ ls
-git-practice-clone-pull-push-ASallin/
-```
 :::
 
-2. Check that your repo has been downloaded using `git status`. Observe the content of the remote repository.
+3. **Student 1**: Create a new file called `inflation_forecast.py` in the repository and add the following code:
+
+```python
+def forecast_inflation():
+    return "Inflation will be 2% next year in Switzerland."
+
+# Run the function and print the result
+result = forecast_inflation()
+print(result)
+```
+
+Then add and commit your changes. Finally push your changes.
 
 ::: {.callout-tip collapse="true" title="Solution"}
-The `git status` should show:
-```sh
-On branch main
-Your branch is up to date with 'origin/main'.
-
-nothing to commit, working tree clean
-```
-
-The repository contains a python file and a README.md file.
-:::
-
-
-### Pushing and pulling
-
-3. Open `some_arithmetic.py`. Edit the equation in line 6 to define `a` with your favorite expression. Then push your changes to remote.
-
-::: {.callout-tip collapse="true" title="Solution"}
-
-Personally, I changed the line to
-```
-a = 6 * 6
-```
-
-Then add, commit and push your changes to remote:
 ```bash
+git add inflation_forecast.py
+git commit -m "YOUR COMMIT MESSAGE"
 git status
-git add some_arithmetic.py
-git commit -m "Fill in exercise"
 git push
 ```
 :::
 
+4. **Student 2**: change the README file and add the following line: "This repository contains a simple inflation forecasting model" and the title "## Inflation Forecasting".
 
-### Check changes in remote
+```
+## Inflation Forecasting
+This repository contains a simple inflation forecasting model.
+```
+Then add and commit. Now try to push and observe what happens. Do you get an error message? Why? Explain what is happening. Then proceed to push.
 
-4. After your first push, do nothing for a moment. Something changes on GitHub (your colleague pushed a change). GitHub will automatically add a new line to `some_arithmetic.py`. In this simulated situation, your local files are unchanged but the the remote repository is ahead. After 1 minute, pull again. You should notice the change. Look at git status to follow the difference.
+::: {.callout-tip collapse="true" title="Solution"}
+Open the README file in VSCode, add the following lines and save. Then
+
+```bash
+git add README.md
+git commit -m "YOUR COMMIT MESSAGE"
+git status
+git push
+```
+
+You should get an error message prompting you to pull the changes before pushing.
+
+```bash
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+```
+
+```bash
+git pull
+git push
+```
+:::
+
+5. **Student 1**: pull the changes. All students: observe the commit history and the files changed.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 ```bash
 git pull
-git status
 ```
-
-The pull should show something like this:
-```sh
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (1/1), done.
-remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 390 bytes | 32.00 KiB/s, done.
-From https://github.com/4222-Introduction-to-programming-2026/git-practice-clone-pull-push-ASallin
-   0b58290..7fe4aac  main       -> origin/main
-Updating 0b58290..7fe4aac
-Fast-forward
- some_arithmetic.py | 5 +++++
- 1 file changed, 5 insertions(+)
-```
-
-A test has been added to the file. Now you should have an `some_arithmetic.py` file that looks like this:
-
-```{python}
-# | eval : false
-"""
-Some Arithmetic
-==========================
-"""
-
-a = 6 * 6
-b = 14 * 3
-c = sum([40, 2])
-
-# Print the results
-
-print("Result for a:", a)
-print("Result for b:", b)
-print("Result for c:", c)
-
-# Test
-
-if a == b == c:
-    print("All values are equal to 42!")
-```
-
-Everything is synchronized. Git would send you the following message: "Your branch is up to date with 'origin/main'. Nothing to commit, working tree clean".
 :::
 
-5. Check if you pass the test on python (you don't need to execute the code, just looking at it). Since you now know how to pass the test, change your definition of `a` in `some_arithmetic.py` and push your changes. Observe your commit tree.
+6. Now, let's simulate a real-life economist situation:
+
+   - **Student 1**: create a new branch called "forecast revision". Switch to the branch and change the function in the python file with your own forecast (do not show it to your colleague). Commit and push. Notice that Git might ask you to add arguments to `git push`, such as `-u origin forecast_revision`.
+   - **Student 2**: remain on main, change the inflation forecast in the python file, stage, commit, and push.
 
 ::: {.callout-tip collapse="true" title="Solution"}
+**Student 1**:
+
 ```bash
-git add some_arithmetic.py
-git commit -m "Change the answer to 42"
+git switch -c forecast_revision
+# Edit inflation_forecast.py - change the forecast
+git add inflation_forecast.py
+git commit -m "YOUR COMMIT MESSAGE"
 git push
-```
-:::
-
-6. Let's simulate another situation in which your local version conflicts with the remote version. Change the definition of `b` in the file `some_arithmetic.py` with another number:
-
-```{python}
-# | eval : false
-"""
-Some Arithmetic
-==========================
-"""
-
-a = 5 * 8 + 2
-b = 15 * 3
-c = sum([40, 2])
-
-# Print the results
-
-print("Result for a:", a)
-print("Result for b:", b)
-print("Result for c:", c)
-
-# Test
-
-if a == b == c:
-    print("All values are equal to 42!")
-```
-
-Then add and commit locally, but do not push.
-
-```bash
-git add some_arithmetic.py
-git commit -m "Change the answer of b to 45"
-```
-
-### Reflection
-
-Before running any code, reflect on the situation you are in. What is happening? What could have happened? Use `git status` to understand what is happening.
-
-Solution: the danger is that at this moment, it could be that my colleagues have pushed conflicting changes to the repo.
-
-### Action
-
-Now pull the remote repo again. You should see a conflict: "CONFLICT (content): Merge conflict in `theMeaningOfEverything.py`" Explain why. How do you solve the conflict?
-
-```bash
-<<<<<<< HEAD
-I agree.
-=======
-you are now closer to the TRUTH
->>>>>>> f4b343b02f6bfc29d7fe78f2551a6ba90e2b172d
-```
-
-The conflict must be solved. In this case, you can easily choose between the two lines. In longer code, this requires going through each line. For this exercise, please choose "Accept both changes", and have the following file:
-
-```
-Step 1:
-Aurelien.
-
-Step 2:
-Complete the following sentence: “The answer to everything is 42.”
-
-The answer is close to 42 🤖
-
-I agree.
-you are now closer to the TRUTH
-```
-
-
-
-## Branching and a first merge conflict
-
-### Create a new branch
-
-Create and switch to a new branch called `answer-42`. Check where you are.
-
-Solution:
-```bash
-git checkout -b answer-42
-git branch
-```
-
-You should see `answer-42` marked with *.
-
-
-### Changes on the branch
-
-Open ``theMeaningOfEverything.py``. Find the sentence: "The answer is close to 42 🤖". Replace it with "The answer is equal to 42 🤖".
-
-Save the file and commit with a meaningful commit message.
-
-Solution:
-```bash
-git add `theMeaningOfEverything.py`
-git commit -m "Answer the ultimate question"
-```
-
-
-### Push the branch
-
-Push the branch to GitHub. Open the repository on GitHub. You should now see two branches.
-
-Solution:
-```bash
-git push -u origin answer-42
-```
-
-You can now continue to push on your branch. You notice that the text file on exercise contains the merged conflicts. In some way, you are ahead of main with your branch: "This branch is 1 commit ahead of main".
-
-
-### Conflicting change (more advanced)
-Now merge both branches, from `answer-42` into main.
-
-```
-git checkout main
-git merge answer-42
 git status
 ```
 
-Notice the message: On branch main- Your branch and 'origin/main' have diverged, and have 2 and 1 different commits each, respectively. (use "git pull" if you want to integrate the remote branch with yours).
+When you try to push, you should get an error message like this:
 
-If you try to push, you'll receive the following message:
+```sh
+fatal: The current branch forecast_revision has no upstream branch.
+To push the current branch and set the remote as upstream, use
 
+    git push --set-upstream origin forecast_revision
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
 ```
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. If you want to integrate the remote changes,
-hint: use 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+You have to push using
+
+```bash
+git push --set-upstream origin forecast_revision
 ```
 
-#### Reflection: what has happened?
+because the branch "forecast_revision" does not exist on GitHub yet. This command will create the branch on GitHub and set it as the upstream branch for your local branch.
+:::
 
-#### Action
+7. Now, both students pull the changes from GitHub. You have to find an agreement on the forecast and merge the two branches. To proceed: decide on a common forecast, solve the merge conflict, and push the changes to GitHub. Observe the commit history and the files changed.
 
-As suggested, pull remote main. Now you'll have a conflict to solve (The answer is equal to 42 🤖 <-> The answer is close to 42 🤖). Solve the conflict by chosing "The answer is equal to 42 🤖" and push to remote.
+::: {.callout-tip collapse="true" title="Solution"}
+Either student can pull the changes and solve the conflict. For example, if student 1 pulls the changes, they will have to merge the main branch into their current branch "forecast_revision". If student 2 pulls the changes, they will have to merge the "forecast_revision" branch into main.
+
+Student 1 (who is on the branch "forecast_revision"):
+
+```bash
+git pull
+git switch main
+git pull
+git merge forecast_revision
+```
+
+Or student 2 (who is on the branch "main"):
+```bash
+git pull
+git merge forecast_revision
+```
+
+Then, solve the conflict in the file `inflation_forecast.py` and push the changes to GitHub.
+
+You should see something like this in your Git Graph (WARNING: in the picture below, you'll find the WORST commit messages you could think of. DO NOT REPEAT THIS.)
+
+![](../../assets/img/ex_03/ex03_graph_forecast.png)
+
+:::
+
+8. Now, in the rare case where both students agreed on the forecast, what would have happened? Would there have been a conflict? Why?
+
+<!------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+------------------------------------------------->
 
 
 
-## Bonus Adding your own repository to Github
+<div style="margin-top: 8em;"></div>
 
-1. Create a new repository on GitHub with the name `git-intro-example`
-    - Make sure NOT to add a README or any other file when creating it
-2. Create an empty dir in your week_03 folder.
-2. Ad the just created GitHub repo as a remote
-    - `git remote add origin <URL>`
-3. Push you changes so far to GitHub
+
+## Bonus: Adding your own repository to GitHub
+
+If you finish early, practice creating a repository from scratch.
+
+1. Create a new repository on GitHub with the name `git-intro-addrepo`
+   - Make sure NOT to add a README or any other file when creating it
+2. Create a local Git repository in your week_03 folder
+3. Add the GitHub repo as a remote
+   - `git remote add origin <URL>`
+4. Push your changes to GitHub
    - `git push -u origin main`
 
