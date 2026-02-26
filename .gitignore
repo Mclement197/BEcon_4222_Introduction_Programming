@@ -6,8 +6,9 @@
 
 # Ignore all HTML files everywhere
 *.html
-# But keep HTML files inside _site/
-!_site/**/*.html
+
+# Quarto build output
+_site/
 
 # Virtual environment and Python version
 .venv/
