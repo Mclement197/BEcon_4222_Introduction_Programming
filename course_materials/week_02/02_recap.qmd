@@ -1,8 +1,8 @@
 ---
 title: '4,222 Introduction to Programming'
 subtitle: 'Lecture 2: Summary'
-author: "Dr. Franziska Bender, Dr. Aurélien Sallin"
-date: "2026-02-20"
+author: "Dr. Aurélien Sallin"
+date: "2026-02-27"
 code-line-numbers: false
 format:
   revealjs:
@@ -20,12 +20,14 @@ cache: false
 echo: false
 ---
 
-## Summary: Key Concepts
-
-#### The Terminal
+## The Terminal
 
 - A text-based interface to interact with your computer
 - Mac uses **bash** (Terminal), Windows uses **Command Prompt** or **PowerShell**. In this course, we focus on **bash** and **command prompt** commands.
+- All commands operate relative to your current working directory. Always know where you are!
+- Paths: **absolute** (`C:/Users/Bilbo/Documents/`) vs **relative** (`../Documents/`)
+
+## The Terminal
 
 <table style="width:95%; font-size:0.7em;">
   <thead>
@@ -43,8 +45,7 @@ echo: false
   </tbody>
 </table>
 
-- **Important:** All commands operate relative to your current working directory. Always know where you are!
-- Paths: **absolute** (`C:/Users/Bilbo/Documents/`) vs **relative** (`../Documents/`)
+
 
 ## Using Visual Code
 
