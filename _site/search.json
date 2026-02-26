@@ -297,15 +297,15 @@
     "objectID": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
     "href": "course_materials/week_02/02_versioncontrol.html#goals-for-today",
     "title": "4,222 Introduction to Programming",
-    "section": "",
-    "text": "In this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic commands in Git\n\n\n\nIn the next lecture, we will\n\ncreate a GitHub account\nlearn how to collaborate with a remote repository with Git and GitHub"
+    "section": "Goals for today",
+    "text": "Goals for today\nIn this lecture, we will:\n\nunderstand what is version control and why it is important for programming and data science\nknow basic commands in Git\n\nIn the next lecture, we will\n\ncreate a GitHub account\nlearn how to collaborate with a remote repository on Git and GitHub\n\n\nNote: We might not finish all the materials of week 2 today. If so, we will finish the rest next time."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#prerequisites-for-today",
     "href": "course_materials/week_02/02_versioncontrol.html#prerequisites-for-today",
     "title": "4,222 Introduction to Programming",
     "section": "Prerequisites for today",
-    "text": "Prerequisites for today\n\nYou have installed Git on your computer\nYou have installed VSCode and the Git extension (part of the data science profile)\n\n\nGit feels complicated at first!!!\n\nI am trying to give you a good intuition for how it works and what it does.\nYou will need to practice to get used to it.\nDon’t worry if you don’t understand everything at first, just try to get the general idea and we will practice in the exercises."
+    "text": "Prerequisites for today\n\nYou have installed Git on your computer\nYou have installed VSCode and the Git extension (part of the data science profile)\n\nGit feels complicated at first!!!\n\nI am trying to give you a good intuition for how it works and what it does.\nYou will need to practice to get used to it.\nDon’t worry if you don’t understand everything at first, just try to get the general idea and we will practice in the exercises."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-daily-situation",
@@ -340,7 +340,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#what-is-git-1",
     "title": "4,222 Introduction to Programming",
     "section": "What is Git?",
-    "text": "What is Git?\n\nVersion Control System (VCS)\n\nLooks at the changes in your files\nRecords all changes over time to give you a full history\nSimilar to “track changes” in Microsoft Word\n\n\n\nGit only looks at and tracks the changes in a file"
+    "text": "What is Git?\nVersion Control System (VCS)\n\nLooks at the changes in your files\nRecords all changes over time to give you a full history\nSimilar to “track changes” in Microsoft Word\n\nGit only looks at and tracks the changes in a file"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#why-should-we-learn-git",
@@ -368,14 +368,14 @@
     "href": "course_materials/week_02/02_versioncontrol.html#setting-up-git",
     "title": "4,222 Introduction to Programming",
     "section": "Setting up Git",
-    "text": "Setting up Git\n\nFrom the CLI:\n\nIn VSCode, open a terminal and select Git Bash (Windows) or bash (Linux/MacOS).\n\nOR:\n\nOn Windows, open Git Bash (start menu -&gt; Git Bash). Make sure you’ve installed Git beforehand.\nOn MacOS, open the Terminal app.\nLet’s do this together now!"
+    "text": "Setting up Git\nFrom the CLI:\n\nIn VSCode, open a terminal and select Git Bash (Windows) or bash (Linux/MacOS).\n\nOR:\n\nOn Windows, open Git Bash (start menu -&gt; Git Bash). Make sure you’ve installed Git beforehand.\nOn MacOS, open the Terminal app."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#setting-up-git-1",
     "href": "course_materials/week_02/02_versioncontrol.html#setting-up-git-1",
     "title": "4,222 Introduction to Programming",
     "section": "Setting up Git",
-    "text": "Setting up Git\nRun the following commands in your terminal to correctly configure Git on your computer.\n# Add your name\ngit config --global user.name \"Your Name\"\n\n# Add your email address\ngit config --global user.email \"your.email@unisg.ch\"\n\n# Use modern main branch name\ngit config --global init.defaultBranch main\n\nA detail (you only need to do this once at config, not to remember for the course):\n# For Linux/Mac:\ngit config --global core.autocrlf input\n\n# For Windows:\ngit config --global core.autocrlf true\nWhy? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF \\n, Windows: CRLF \\r\\n). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts."
+    "text": "Setting up Git\nRun the following commands in your terminal to correctly configure Git on your computer.\n# Add your name\ngit config --global user.name \"Your Name\"\n\n# Add your email address\ngit config --global user.email \"your.email@unisg.ch\"\n\n# Use modern main branch name\ngit config --global init.defaultBranch main\nA detail (you only need to do this once at config, not to remember for the course):\n# For Linux/Mac:\ngit config --global core.autocrlf input\n\n# For Windows:\ngit config --global core.autocrlf true\nWhy? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember Data Handling (Linux / macOS: LF \\n, Windows: CRLF \\r\\n). Git may interpret this as code changes. This setting prevents unnecessary diffs and conflicts."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-start-from-a-local-directory",
@@ -403,14 +403,14 @@
     "href": "course_materials/week_02/02_versioncontrol.html#we-add-files-to-the-staging-area",
     "title": "4,222 Introduction to Programming",
     "section": "We add files to the staging area",
-    "text": "We add files to the staging area\n\n\nThe staging area is a list of changes you are about to record.\nIt is not a folder and not a backup.\nYou can stage edits that logically belong together. Example: You edited 5 files but only 2 are ready."
+    "text": "We add files to the staging area\n\n\nThe staging area is a list of changes you are about to record.\nIt is not a folder and not a backup.\nYou can stage edits that logically belong together. Example: you edited 5 files but only 2 are ready."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-commit-the-staged-changes",
     "href": "course_materials/week_02/02_versioncontrol.html#we-commit-the-staged-changes",
     "title": "4,222 Introduction to Programming",
     "section": "We commit the staged changes",
-    "text": "We commit the staged changes\n\n\nUse git commit to record the staged changes and creates a snapshot in time.\nIt adds a message explaining why the change was made.\n! Commits are: permanent, ordered, traceable, attributable to a person"
+    "text": "We commit the staged changes\n\n\nUse git commit to record the staged changes and creates a snapshot in time.\nIt adds a message explaining why the change was made.\n⚠️ Commits are: permanent, ordered, traceable, attributable to a person"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#we-now-have-a-git-repository",
@@ -452,42 +452,42 @@
     "href": "course_materials/week_02/02_versioncontrol.html#add-a-file-to-the-staging-area",
     "title": "4,222 Introduction to Programming",
     "section": "Add a file to the staging area",
-    "text": "Add a file to the staging area\nLet’s write a text file example.txt using our terminal.\necho first steps in git &gt; example.txt # Windowns (cmd)\necho \"first steps in git\" &gt; example.txt # Mac/Linux (bash)\nBoth create the same file content. Verify:\ncat example.txt # Mac/Linux\ntype example.txt # Windows\nAdd example.txt to the staging area. Changes are added to the staging area with git add &lt;path to file or directory&gt;.\ngit add example.txt\n\nYou can use git add . to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)\nYou can also use * to represent any sort of filename e.g. add all .txt files via *.txt"
+    "text": "Add a file to the staging area\nLet’s write a text file example.txt using our terminal.\necho first steps in git &gt; example.txt # Windowns (cmd)\necho \"first steps in git\" &gt; example.txt # Mac/Linux (bash)\nBoth create the same file content. Verify:\ncat example.txt # Mac/Linux\ntype example.txt # Windows\nAdd example.txt to the staging area with git add &lt;path to file or directory&gt;.\ngit add example.txt\n\nYou can also use * to represent any sort of filename e.g. add all .txt files via *.txt\n\n\nNote: You can use git add . to add all unstaged changes in the current directory to the staging area. Be careful: this may include sensitive files (API keys, passwords, etc.)!"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#seeing-changes-git-status",
     "href": "course_materials/week_02/02_versioncontrol.html#seeing-changes-git-status",
     "title": "4,222 Introduction to Programming",
     "section": "Seeing Changes: git status 👀",
-    "text": "Seeing Changes: git status 👀\nYou can see the high-level changes and what is about to happen with git status\ngit status\n# On branch main\n# No commits yet\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\nLet’s change the content of “example.txt”. Save it, then run:\ngit status\n# No commits yet\n#\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\n#\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#         modified:   example.txt"
+    "text": "Seeing Changes: git status 👀\nYou can see the high-level changes and what is about to happen with git status\ngit status\n# On branch main\n# No commits yet\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\nLet’s change the content of example.txt. Save it, then run:\ngit status\n# No commits yet\n#\n# Changes to be committed:\n#   (use \"git rm --cached &lt;file&gt;...\" to unstage)\n#         new file:   example.txt\n#\n# Changes not staged for commit:\n#   (use \"git add &lt;file&gt;...\" to update what will be committed)\n#   (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n#         modified:   example.txt"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#tracking-changes-git-commit",
     "href": "course_materials/week_02/02_versioncontrol.html#tracking-changes-git-commit",
     "title": "4,222 Introduction to Programming",
     "section": "Tracking Changes: git commit",
-    "text": "Tracking Changes: git commit\nAll changes in the staging area are committed with git commit. Every commit needs a message!\nLet’s add and then commit the new change\ngit add example.txt\ngit commit -m \"Creating example.txt\"\n# [main (root-commit) fc0372c] Creating example.txt\n#  1 file changed, 1 insertion(+)\n#  create mode 100644 example.txt\n\ngit status\n# On branch main\n# nothing to commit, working tree clean\nOnce a change is committed it becomes significantly harder to remove it."
+    "text": "Tracking Changes: git commit\nAll changes in the staging area are committed with git commit. Every commit needs a message!\nLet’s add and then commit the new change\ngit add example.txt\ngit commit -m \"Create example.txt\"\n# [main (root-commit) fc0372c] Create example.txt\n#  1 file changed, 1 insertion(+)\n#  create mode 100644 example.txt\n\ngit status\n# On branch main\n# nothing to commit, working tree clean\nOnce a change is committed it becomes significantly harder to remove it."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#commit-messages",
     "href": "course_materials/week_02/02_versioncontrol.html#commit-messages",
     "title": "4,222 Introduction to Programming",
     "section": "Commit messages",
-    "text": "Commit messages\n\n\n\n\n\n\n“Add GDP data cleaning function” ✅\n“Update code” ❌\n“Fix missing values in clean_gdp_data()” 😋\n“small changes” 🤯\n“final final push to main” 😤\n\n\n\n\n\nhttps://xkcd.com/1296/\n\n\n\n\n\nA good commit message: “What & Why”\n\nKeep it short and specific (&lt; 50 characters)\nUse imperative mood: “Add”, “Fix”, “Update” (not “Added”, “Fixed”)"
+    "text": "Commit messages\n\n\n\n\n\nA good commit message: “What & Why”\n\nKeep it short and specific (&lt; 50 characters)\nUse imperative mood: “Add”, “Fix”, “Update” (not “Added”, “Fixed”)\n\n\n\n\n\nhttps://xkcd.com/1296/"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore",
     "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore",
     "title": "4,222 Introduction to Programming",
     "section": "Ignoring the ignorable: .gitignore",
-    "text": "Ignoring the ignorable: .gitignore\n\nBy default, Git will track all the files in your repository.\n\nIf you want it to ignore certain files or filetypes, you have to tell it so explicitly.\nFor instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, .DS_Store files on MacOS.\nYou also want to ignore .venv/: this directory is machine-specific (environment realization). However, you must track pyproject.tomland uv.lock (environment definition).\n\n\n\nYou can do this by using a file called .gitignore\n\nEvery file will be compared against the list in .gitignore and if it matches, Git will ignore the file\n(The .gitignore file itself is tracked just like any other file)"
+    "text": "Ignoring the ignorable: .gitignore\nBy default, Git will track all the files in your repository.You might want to ignore some files.\n\n\n\n\nExamples:\n\noutputs that can be re-generated by your code (e.g., intermediary data sets (csv), pdf reports automatically computed, graphs)\n.DS_Store files on MacOS\nfiles with sensitive information (API keys, passwords)\n\nIgnore .venv/: this directory is machine-specific (environment realization),\nbut track pyproject.toml and uv.lock (environment definition)."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore-1",
     "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-.gitignore-1",
     "title": "4,222 Introduction to Programming",
     "section": "Ignoring the ignorable: .gitignore",
-    "text": "Ignoring the ignorable: .gitignore\n\nClassic example of a .gitignore file\n# Ignore every file called myfile.pdf\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx\nDo not store data on Git -&gt; .gitignore"
+    "text": "Ignoring the ignorable: .gitignore\nIf you want it to ignore certain files or filetypes,you have to tell it so explicitly with a .gitignore file.\n\n\n\n\nEvery file will be compared against the list in .gitignore and if it matches, Git will ignore the file\nThe .gitignore file itself is tracked just like any other file\n\nClassic example of a .gitignore file\n# Ignore every file called myfile.pdf\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx\nAs a rule, do not store data directly on Git -&gt; .gitignore"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-project-becomes-a-series-of-commits",
@@ -508,14 +508,14 @@
     "href": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads",
     "title": "4,222 Introduction to Programming",
     "section": "A note on detached heads",
-    "text": "A note on detached heads\n\n\n\n\n\n\nHEAD is Git’s pointer to your current position in the project.\nIt normally points to a branch that moves forward with commits."
+    "text": "A note on detached heads\n\n\n\n\n\n\n\nHEAD is Git’s pointer to your current position in the project. Think of it as a “you are here” marker.\nNormally, HEAD points to a branch (like main), which moves forward automatically with each new commit.\nWhen you use git checkout &lt;commit-hash&gt; to go back to a previous commit, HEAD detaches from the branch and points directly to that commit. This is called a “detached HEAD” state."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads-1",
     "href": "course_materials/week_02/02_versioncontrol.html#a-note-on-detached-heads-1",
     "title": "4,222 Introduction to Programming",
     "section": "A note on detached heads",
-    "text": "A note on detached heads\n\n\n\n\n\n\nHEAD points to a specific commit, not the main branch! From the commit, you can look around and experiment\nCommits made here won’t be on main. Use git switch main to get back to the main branch."
+    "text": "A note on detached heads\n\n\n\n\n\n\n\nIn the diagram: HEAD now points to commit a3f7b2c directly, while main still points to the latest commit e4d1f9a.\nYou can look around and even experiment, but any new commits you make here won’t belong to any branch and can be lost.\nTo get back to normal: run git switch main. HEAD will re-attach to the main branch."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#what-are-git-branches",
@@ -536,7 +536,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#why-would-you-ever-want-to-branch-and-how-often",
     "title": "4,222 Introduction to Programming",
     "section": "Why would you ever want to branch, and how often?",
-    "text": "Why would you ever want to branch, and how often?\n\n\nWhy branch?\n\nTo experiment: try new ideas without risking the working version of your code\nTo work in parallel: multiple people can work on different features at the same time\nTo isolate changes: keep unfinished work separate from the main branch, e.g., when you are working on a piece of code that is not ready yet.\n\n\n\nHow often?\n\nIn my experience: branch often\nOften it depends on the “merging policy” of your team."
+    "text": "Why would you ever want to branch, and how often?\n\n\nWhy branch?\n\nTo experiment: try new ideas without risking the working version of your code\nTo work in parallel: multiple people can work on different features at the same time\nTo isolate changes: keep unfinished work separate from the main branch, e.g., when you are working on a piece of code that is not ready yet.\n\nHow often?\n\nIn my experience: branch often!\n“Often” depends on the “merging policy” of your team."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#merging",
@@ -564,7 +564,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#merge-conflicts-1",
     "title": "4,222 Introduction to Programming",
     "section": "Merge conflicts ⚔️",
-    "text": "Merge conflicts ⚔️\n\n\n\n\nMerge conflicts occur when there are edits to the same file (and at the same location) on two different branches\n\n\n\n\nWhen combining changes from two branches, there is not always a clear solution.\nIf Git doesn’t know how to merge the two branches, we get a merge conflict\nMerge conflicts have to be manually resolved\nDON’T PANIC\n\n\n\n\nIf you merge your branches / edits before making more changes, you can avoid conflicts"
+    "text": "Merge conflicts ⚔️\n\n\n\nMerge conflicts occur when there are edits to the same file (and at the same location) on two different branches\n\n\n\n\nWhen combining changes from two branches, there is not always a clear solution.\nIf Git doesn’t know how to merge the two branches, we get a merge conflict\nMerge conflicts have to be manually resolved\nDON’T PANIC\n\n\n\n\n\nNote: If you merge your branches / edits before making more changes, you can avoid conflicts."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#illustration-for-merge-conflicts",
@@ -585,7 +585,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#example-of-a-merge-conflict",
     "title": "4,222 Introduction to Programming",
     "section": "Example of a merge conflict",
-    "text": "Example of a merge conflict\n\n\n\n\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n&lt;div id=\"footer\"&gt;contact : email.support@github.com&lt;/div&gt;\n=======\n&lt;div id=\"footer\"&gt;\n please contact us at support@github.com\n&lt;/div&gt;\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch\n\nIn this conflict, the lines between &lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html and ====== are the content from the branch you are currently on.\nThe lines between ======= and &gt;&gt;&gt;&gt;&gt;&gt;&gt; issue-5:index.html are from the feature branch we are merging.\n\n\n\n\n\n\n\n\n\n\n&lt;div id=\"footer\"&gt;\nplease contact us at email.support@github.com\n&lt;/div&gt;\n\nTo resolve the conflict, edit the whole section until it reflects the state you want in the merged result. Remove the conflict markers &lt;&lt;&lt;&lt;&lt;&lt;, ====== and &gt;&gt;&gt;&gt;&gt;&gt;&gt;.\nThen run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.\n\n\n\nExample from Happy Git with R"
+    "text": "Example of a merge conflict\n\n\n\n\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n&lt;div id=\"footer\"&gt;contact : email.support@github.com&lt;/div&gt;\n=======\n&lt;div id=\"footer\"&gt;\n please contact us at support@github.com\n&lt;/div&gt;\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch\n\nIn this conflict, the lines between &lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html and ====== are the content from the branch you are currently on.\nThe lines between ======= and &gt;&gt;&gt;&gt;&gt;&gt;&gt; issue-5:index.html are from the feature branch we are merging.\n\n\n\n\n\n\n\n\n\n&lt;div id=\"footer\"&gt;\nplease contact us at email.support@github.com\n&lt;/div&gt;\n\nTo resolve the conflict, edit the whole section until it reflects the state you want in the merged result. Remove the conflict markers &lt;&lt;&lt;&lt;&lt;&lt;, ====== and &gt;&gt;&gt;&gt;&gt;&gt;&gt;.\nThen run git add index.html and git commit to finalize the merge. CONFLICTS RESOLVED.\n\n\nExample from Happy Git with R"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#abort",
@@ -599,7 +599,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#self-study",
     "title": "4,222 Introduction to Programming",
     "section": "Self-study",
-    "text": "Self-study\nOnce you’ve recovered from the lecture, please read the next three slides.\n\nAdditional Git commands link🔗\nThe anatomy of a Git command 🔍️ link🔗\nStuck in an editor? Breaking free ⛓️‍💥 link🔗"
+    "text": "Self-study\nOnce you’ve recovered from the lecture, please read the following slides.\n\nAdditional Git commands link🔗\nThe anatomy of a Git command 🔍️ link🔗\nStuck in an editor? Breaking free ⛓️‍💥 link🔗\nA note on detached heads link🔗"
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#thanks-for-your-attention",
@@ -620,7 +620,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#self-study-2",
     "title": "4,222 Introduction to Programming",
     "section": "Self-study",
-    "text": "Self-study\nOnce you’ve recovered from the lecture, please read the next three slides."
+    "text": "Self-study\nOnce you’ve recovered from the lecture, please read the following slides."
   },
   {
     "objectID": "course_materials/week_02/02_versioncontrol.html#additional-git-commands",
@@ -648,7 +648,7 @@
     "href": "course_materials/week_02/02_versioncontrol.html#stuck-in-an-editor-heres-how-to-escape",
     "title": "4,222 Introduction to Programming",
     "section": "Stuck in an editor? Here’s how to escape",
-    "text": "Stuck in an editor? Here’s how to escape\n\nIf you’re in vim (the default):\n\nPress Esc (make sure you’re in normal mode)\nType :wq then Enter → save and quit\nOr type :q! then Enter → quit without saving\n\n\n\nIf you’re in nano:\n\nCtrl + O then Enter → save\nCtrl + X → exit\n\n\n\nAvoid this altogether:\ngit config --global core.editor \"code --wait\"\nThis tells Git to use VS Code instead of vim/nano."
+    "text": "Stuck in an editor? Here’s how to escape\nIf you’re in vim (the default):\n\nPress Esc (make sure you’re in normal mode)\nType :wq then Enter → save and quit\nOr type :q! then Enter → quit without saving\n\nIf you’re in nano:\n\nCtrl + O then Enter → save\nCtrl + X → exit\n\nAvoid this altogether:\ngit config --global core.editor \"code --wait\"\nThis tells Git to use VS Code instead of vim/nano."
   },
   {
     "objectID": "index.html",
@@ -1356,5 +1356,54 @@
     "title": "4,222 Introduction to Programming",
     "section": "",
     "text": "In this lecture, we will:\n\nunderstand what is version control to collaborate\nknow basic commands in Git\n\n\n\nIn the next lecture, we will\n\ncreate a GitHub account\nlearn how to collaborate with a remote repository with Git and GitHub"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#on-good-and-bad-commit-messages",
+    "href": "course_materials/week_02/02_versioncontrol.html#on-good-and-bad-commit-messages",
+    "title": "4,222 Introduction to Programming",
+    "section": "On good and bad commit messages",
+    "text": "On good and bad commit messages\n\n\n“Add GDP data cleaning function” ✅ Good!\n“Update code” ❌ Too vague\n“Fix missing values in clean_gdp_data()” 😋\n“small changes” 🤯 Terrible\n“final final push to main” 🤮"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#on-good-and-bad-commit-messages-1",
+    "href": "course_materials/week_02/02_versioncontrol.html#on-good-and-bad-commit-messages-1",
+    "title": "4,222 Introduction to Programming",
+    "section": "On good and bad commit messages",
+    "text": "On good and bad commit messages\n\n“Add GDP data cleaning function” ✅\n“Update code” ❌\n“Fix missing values in clean_gdp_data()” 😋\n“small changes” 🤯\n“final final push to main” 😤"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable",
+    "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable",
+    "title": "4,222 Introduction to Programming",
+    "section": "Ignoring the ignorable",
+    "text": "Ignoring the ignorable\n\n\n\nBy default, Git will track all the files in your repository. In practice, you might want to ignore some files.\n\n\n\n\nExamples of files to ignore:\n\noutputs that can be re-generated by your code (e.g., intermediary data sets (csv), pdf reports automatically computed, graphs)\n.DS_Store files on MacOS\nfiles with sensitive information (API keys, passwords)\n\nIgnore .venv/: this directory is machine-specific (environment realization),\nBut track pyproject.toml and uv.lock (environment definition)."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-1",
+    "href": "course_materials/week_02/02_versioncontrol.html#ignoring-the-ignorable-1",
+    "title": "4,222 Introduction to Programming",
+    "section": "Ignoring the ignorable",
+    "text": "Ignoring the ignorable\n\n\n\nTo ignore certain files or filetypes, you have to instruct Git explicitly with a .gitignore file.\n\n\n\n\nEvery file will be compared against the list in .gitignore and if it matches, Git will ignore the file\nThe .gitignore file itself is tracked just like any other file\nAs a rule, do not store data directly on Git. Use .gitignore to exclude data files.\n\nClassic example of a .gitignore file\n# Ignore every file called myfile.pdf\nmyfile.pdf\n\n# Ignore the file called data_countries.csv in the folder data at the root of your repository\n/data/data_countries.csv\n\n# Ignore all data and generated outputs\n*.csv\n*.xlsx"
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#time-travel-going-back-to-previous-commits",
+    "href": "course_materials/week_02/02_versioncontrol.html#time-travel-going-back-to-previous-commits",
+    "title": "4,222 Introduction to Programming",
+    "section": "Time-travel going back to previous commits",
+    "text": "Time-travel going back to previous commits\n\n\n\n\n\n\nGo to any old commit with git checkout by referencing the hash: git checkout a3f7b2c\ncheckout sends you out of a branch, i.e. “detached HEAD”. You need to explicitly switch to main (or to any other branch)."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#detached-heads",
+    "href": "course_materials/week_02/02_versioncontrol.html#detached-heads",
+    "title": "4,222 Introduction to Programming",
+    "section": "Detached HEADs",
+    "text": "Detached HEADs\n\n\nCheck the self-study slides for more details on detached heads."
+  },
+  {
+    "objectID": "course_materials/week_02/02_versioncontrol.html#foreword",
+    "href": "course_materials/week_02/02_versioncontrol.html#foreword",
+    "title": "4,222 Introduction to Programming",
+    "section": "Foreword",
+    "text": "Foreword\nPrerequisites\n\nYou have installed Git on your computer\nYou have installed VSCode and the Git extension (part of the data science profile)\n\nGit feels complicated at first!!!\n\nI am trying to give you a good intuition for how it works and what it does.\nYou will need to practice to get used to it.\nDon’t worry if you don’t understand everything at first, just try to get the general idea and we will practice in the exercises."
   }
 ]

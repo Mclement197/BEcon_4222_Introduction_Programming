@@ -31,21 +31,23 @@ library(purrr)
 
 ## Goals for today
 
-In this lecture, we will:
+#### In this lecture, we will:
 
-- understand what is **version control** to collaborate
+- understand what is **version control** and why it is important for programming and data science
 - know basic commands in Git
 
-\
-
-In the next lecture, we will
+#### In the next lecture, we will
 
 - create a GitHub account
-- learn how to collaborate with a remote repository with Git and GitHub
+- learn how to collaborate with a remote repository on Git and GitHub
+
+> **Note:** We might not finish all the materials of week 2 today. If so, we will finish the rest next time.
 
 
 
-## Prerequisites for today
+## Foreword
+
+#### Prerequisites
 
 - You have installed Git on your computer
 - You have installed VSCode and the Git extension (part of the data science profile)
@@ -136,15 +138,14 @@ All the commands we will learn are available in the official [Git Cheat Sheet](h
 
 ## Setting up Git
 
-##### From the CLI:
+#### From the CLI:
 
   - In VSCode, open a terminal and select Git Bash (Windows) or bash (Linux/MacOS).
 
-OR:
+#### OR:
 
   - On Windows, open Git Bash (start menu -> Git Bash). Make sure you've installed Git beforehand.
   - On MacOS, open the Terminal app.
-  - Let’s do this together now!
 
 
 ## Setting up Git
@@ -163,7 +164,7 @@ git config --global init.defaultBranch main
 ```
 
 
-#### A detail (you only need to do this once at config, not to remember for the course):
+##### A detail (you only need to do this once at config, not to remember for the course):
 ```bash
 # For Linux/Mac:
 git config --global core.autocrlf input
@@ -180,7 +181,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We start from a local directory
 
-![](../../assets/img/lecture_02_versioncontrol/git_process0.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process0.png){height="360px"}
 
 - A project in Git is called a **repository** (or **repo** for short) and it always corresponds to a directory on your machine. This is usually where you save your project.
 - Git always works locally first (nothing shared).
@@ -188,7 +189,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## Working in your directory as usual
 
-![](../../assets/img/lecture_02_versioncontrol/git_process1.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process1.png){height="360px"}
 
 - The working directory is where you write code, edit files, run scripts, etc.
 - Files here may be untracked, modified or unfinished
@@ -197,32 +198,32 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We select files to be tracked
 
-![](../../assets/img/lecture_02_versioncontrol/git_process2.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process2.png){height="360px"}
 
 - Use `git add` to select the files that you want to include in your project history, that you want to track, and that you want to share with others.
 
 
 ## We *add* files to the staging area
 
-![](../../assets/img/lecture_02_versioncontrol/git_process3.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process3.png){height="360px"}
 
 - The staging area is a **list of changes** you are about to record.
 - It is not a folder and not a backup.
-- You can stage edits that logically belong together. Example: You edited 5 files but only 2 are ready.
+- You can stage edits that logically belong together. Example: you edited 5 files but only 2 are ready.
 
 
 ## We *commit* the staged changes
 
-![](../../assets/img/lecture_02_versioncontrol/git_process4.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process4.png){height="360px"}
 
 - Use `git commit` to record the staged changes and creates a **snapshot in time**.
 - It adds a message explaining why the change was made.
-- ! Commits are: permanent, ordered, traceable, attributable to a person
+- ⚠️ Commits are: permanent, ordered, traceable, attributable to a person
 
 
 ## We now have a Git repository
 
-![](../../assets/img/lecture_02_versioncontrol/git_process5.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process5.png){height="360px"}
 
 - A Git repository is the history of your project.
 - It contains all commits, who changed what, when and why.
@@ -231,7 +232,7 @@ Why? Windows saves linebreaks (enter) differently then Linux/Mac does. Remember 
 
 ## We can then share our repository with others
 
-![](../../assets/img/lecture_02_versioncontrol/git_process6.png){width="640px"}
+![](../../assets/img/lecture_02_versioncontrol/git_process6.png){height="370px"}
 
 - For next week!
 
@@ -268,7 +269,7 @@ Introduction_to_programming/
 │   ├── ...
 ```
 
-We will **initialize a repo** in the exercises folder. You will have to initialize another repo in your group_project folder.
+We will **initialize a repo** in the `exercises` folder. You will have to initialize another repo in your `group_project` folder.
 
 
 ## Initialize a repo
@@ -303,14 +304,15 @@ cat example.txt # Mac/Linux
 type example.txt # Windows
 ```
 
-Add `example.txt` to the staging area. Changes are added to the staging area with `git add <path to file or directory>`.
+Add `example.txt` to the staging area with `git add <path to file or directory>`.
 
 ```bash
 git add example.txt
 ```
 
-- You can use `git add .` to add all unstaged changes in the current directory to the staging area (beware of sensitive files!)
 - You can also use `*` to represent any sort of filename e.g. add all .txt files via `*.txt`
+
+> **Note:** You can use `git add .` to add all unstaged changes in the current directory to the staging area. Be careful: this may include sensitive files (API keys, passwords, etc.)!
 
 
 
@@ -326,7 +328,7 @@ git status
 #         new file:   example.txt
 ```
 
-Let's change the content of "example.txt". Save it, then run:
+Let's change the content of `example.txt`. Save it, then run:
 
 ```bash
 git status
@@ -351,8 +353,8 @@ Let’s add and then commit the new change
 
 ```bash
 git add example.txt
-git commit -m "Creating example.txt"
-# [main (root-commit) fc0372c] Creating example.txt
+git commit -m "Create example.txt"
+# [main (root-commit) fc0372c] Create example.txt
 #  1 file changed, 1 insertion(+)
 #  create mode 100644 example.txt
 
@@ -371,44 +373,61 @@ Modifying a commit is possible, but you should now what you are doing. Typically
 ## Commit messages
 
 :::{.columns style="align-items: flex-start;"}
-::: {.column width="40%"}
+::: {.column width="50%"}
 
 <div style="margin-top: 2em;"></div>
-
-  - "Add GDP data cleaning function" ✅
-  - "Update code" ❌
-  - "Fix missing values in `clean_gdp_data()`" 😋
-  - "small changes" 🤯
-  - "final final push to main" 😤
-
-:::
-::: {.column width="60%"}
-![https://xkcd.com/1296/](../../assets/img/lecture_02_versioncontrol/commit_message.png)
-:::
-:::
 
 #### A good commit message: "What & Why"
 
 - Keep it short and specific (< 50 characters)
 - Use imperative mood: "Add", "Fix", "Update" (not "Added", "Fixed")
+:::
+::: {.column width="50%"}
+![https://xkcd.com/1296/](../../assets/img/lecture_02_versioncontrol/commit_message.png)
+:::
+:::
+
+
+## On good and bad commit messages {.smaller}
+
+::: {.incremental}
+  - "Add GDP data cleaning function" [✅ Good!]{.fragment}
+  - "Update code" [❌ Too vague]{.fragment}
+  - "Fix missing values in `clean_gdp_data()`" [😋]{.fragment}
+  - "small changes" [🤯 Terrible]{.fragment}
+  - "final final push to main" [🤮]{.fragment}
+:::
 
 
 
-## Ignoring the ignorable: `.gitignore`
+## Ignoring the ignorable
 
-#### By default, Git will track all the files in your repository.
+<div style="margin-top: 1em;"></div>
 
-- If you want it to ignore certain files or filetypes, you have to tell it so explicitly.
-- For instance: outputs that can be re-generated by your code, like intermediary data sets (csv), pdf reports that are automatically computed, graphs, `.DS_Store` files on MacOS.
-- You also want to ignore `.venv/`: this directory is machine-specific (*environment realization*). However, you must track `pyproject.toml`and `uv.lock` (*environment definition*).
+##### By default, Git will track all the files in your repository. In practice, you might want to ignore some files.
 
-#### You can do this by using a file called `.gitignore`
+<div style="margin-top: 1em;"></div>
+
+- Examples of files to ignore:
+  - outputs that can be re-generated by your code (e.g., intermediary data sets (csv), pdf reports automatically computed, graphs)
+  - `.DS_Store` files on MacOS
+  - files with sensitive information (API keys, passwords)
+- Ignore `.venv/`: this directory is machine-specific (*environment realization*),
+- But track `pyproject.toml` and `uv.lock` (*environment definition*).
+
+
+## Ignoring the ignorable
+
+<div style="margin-top: 1em;"></div>
+
+##### To ignore certain files or filetypes, you have to instruct Git explicitly with a .gitignore file.
+
+<div style="margin-top: 1em;"></div>
 
 - Every file will be compared against the list in `.gitignore` and if it matches, Git will ignore the file
-- (The `.gitignore` file itself is tracked just like any other file)
+- The `.gitignore` file itself is tracked just like any other file
+- As a rule, do not store data directly on Git. Use `.gitignore` to exclude data files.
 
-
-## Ignoring the ignorable: `.gitignore`
 
 #### Classic example of a `.gitignore` file
 
@@ -423,8 +442,6 @@ myfile.pdf
 *.csv
 *.xlsx
 ```
-
-**Do not store data on Git -> `.gitignore`**
 
 
 <!--
@@ -442,44 +459,34 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 # Branches and merging
 
-## A project becomes a series of commits {.top}
+## A project becomes a series of commits
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_2.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_2.png){height=400px fig-align="center"}
 
-- Git repository is the history of your project and contains all commits.
+- Git repository is the **history** of your project and contains all commits.
 - Each commit is identified with a unique commit id (a hash), which is 40 hexadecimal characters long. The short form typically shown is 7 characters.
 
 
-## Time-travel: `git checkout` for commits {.top}
+## Time-travel going back to previous commits
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_3.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_3.png){height=400px fig-align="center"}
 
-- **Go to any old commit** with `git checkout` by referencing the hash: `git checkout a3f7b2c`
-- This is for **viewing history**, not for switching branches (use `git switch` for branches!)
-- `checkout` sends you **out of a branch**, i.e. **detached HEAD**. You need to explicitly switch to main (or to any other branch).
+- Go to any old commit with `git checkout` by referencing the hash: `git checkout a3f7b2c`
+- `checkout` sends you out of a branch, i.e. "detached HEAD". You need to explicitly switch to main (or to any other branch).
 
 <!-- you can go to any commit, past or future -->
 
 
-## A note on detached heads
+## Detached HEADs
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_3_head.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/detached_head.png){fig-align="center"}
 
-- HEAD is Git's pointer to your current position in the project.
-- It normally points to a branch that moves forward with commits.
-
-
-## A note on detached heads
-
-![](../../assets/img/lecture_02_versioncontrol/git_commit_3_detachedhead.png){width=740px fig-align="center"}
-
-- HEAD points to a specific commit, not the main branch! From the commit, you can look around and experiment
-- Commits made here won't be on main. Use `git switch main` to get back to the main branch.
+- Check the [self-study slides](#a-note-on-detached-heads) for more details on detached heads.
 
 
 ## What are Git branches? 🌳 {.top}
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_4.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_4.png){height=400px fig-align="center"}
 
 - Branches are **alternate realities**: they allow you to have different versions of your code within the same repository next to each other
 - You can switch back and forth between branches
@@ -511,15 +518,15 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 #### How often?
 
-- In my experience: branch often
-- Often it depends on the "merging policy" of your team.
+- In my experience: branch often!
+- "Often" depends on the "merging policy" of your team.
 :::
 
 
 
 ## Merging 🔀
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_5.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_5.png){height=400px fig-align="center"}
 
 - In the end you can merge your changes back into your main branch
 - You can combine two different branches by merging them using `git merge my-branch`
@@ -527,7 +534,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 ## Merging 🔀
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_6.png){width=740px fig-align="center"}
+![](../../assets/img/lecture_02_versioncontrol/git_commit_6.png){height=400px fig-align="center"}
 
 - `git merge <branch>` merges the named branch into your current branch (usually `main`)
 - Merging will create a new "merge" commit
@@ -542,7 +549,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 <div style="margin-top: 1em;"></div>
 
-#### Merge conflicts occur when there are edits to the same file (and at the same location) on two different branches
+##### Merge conflicts occur when there are edits to the same file (and at the same location) on two different branches
 
 <div style="margin-top: 1em;"></div>
 
@@ -553,7 +560,7 @@ A classic example for files to ignore globally are `.DS_Store` files on macOS.
 
 <div style="margin-top: 1em;"></div>
 
-If you merge your branches / edits before making more changes, you can avoid conflicts
+> **Note:** If you merge your branches / edits before making more changes, you can avoid conflicts.
 
 
 
@@ -631,11 +638,12 @@ If, during the merge, you get confused about the state of things or make a mista
 
 ## Self-study
 
-Once you've recovered from the lecture, please read the next three slides.
+Once you've recovered from the lecture, please read the following slides.
 
 - Additional Git commands [link🔗](#additional-git-commands)
 - The anatomy of a Git command 🔍️ [link🔗](#the-anatomy-of-a-git-command)
 - Stuck in an editor? Breaking free ⛓️‍💥 [link🔗](#stuck-in-an-editor-breaking-free)
+- A note on detached heads [link🔗](#a-note-on-detached-heads)
 
 
 ## Thanks for your attention
@@ -656,7 +664,7 @@ Once you've recovered from the lecture, please read the next three slides.
 
 ## Self-study
 
-Once you've recovered from the lecture, please read the next three slides.
+Once you've recovered from the lecture, please read the following slides.
 
 
 
@@ -716,3 +724,25 @@ git config --global core.editor "code --wait"
 ```
 
 This tells Git to use VS Code instead of vim/nano.
+
+
+## A note on detached heads {.smaller}
+
+![](../../assets/img/lecture_02_versioncontrol/git_commit_3_head.png){height=300px fig-align="center"}
+
+::: {style="font-size: 0.8em;"}
+- HEAD is Git's pointer to your current position in the project. Think of it as a "you are here" marker.
+- Normally, HEAD points to a **branch** (like main), which moves forward automatically with each new commit.
+- When you use `git checkout <commit-hash>` to go back to a previous commit, HEAD detaches from the branch and points directly to that commit. This is called a **"detached HEAD"** state.
+:::
+
+
+## A note on detached heads {.smaller}
+
+![](../../assets/img/lecture_02_versioncontrol/git_commit_3_detachedhead.png){height=300px fig-align="center"}
+
+::: {style="font-size: 0.8em;"}
+- In the diagram: HEAD now points to commit `a3f7b2c` directly, while `main` still points to the latest commit `e4d1f9a`.
+- You can look around and even experiment, but any new commits you make here won't belong to any branch and can be lost.
+- To get back to normal: run `git switch main`. HEAD will re-attach to the main branch.
+:::
