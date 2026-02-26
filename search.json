@@ -707,11 +707,18 @@
     "text": "The history Command\nUsed to display the history of commands that you have run.\n  history\nYou can also use the ! to run a command from the history.\n  !100\nThis will run the command that is in the 100th position in the history."
   },
   {
-    "objectID": "course_materials/week_02/02_recap.html#summary-key-concepts",
-    "href": "course_materials/week_02/02_recap.html#summary-key-concepts",
+    "objectID": "course_materials/week_02/02_recap.html#the-terminal",
+    "href": "course_materials/week_02/02_recap.html#the-terminal",
     "title": "4,222 Introduction to Programming",
-    "section": "Summary: Key Concepts",
-    "text": "Summary: Key Concepts\nThe Terminal\n\nA text-based interface to interact with your computer\nMac uses bash (Terminal), Windows uses Command Prompt or PowerShell. In this course, we focus on bash and command prompt commands.\n\n\n\n\n\nAction\n\n\nbash (Mac)\n\n\nCommand Prompt (Windows)\n\n\n\n\n\n\nShow current directory\n\n\npwd\n\n\ncd (without arguments)\n\n\n\n\nList files\n\n\nls\n\n\ndir\n\n\n\n\nNavigate\n\n\ncd &lt;path&gt;\n\n\ncd &lt;path&gt;\n\n\n\n\nCreate directory\n\n\nmkdir\n\n\nmkdir\n\n\n\n\nWrite text to file\n\n\necho “text” &gt; file\n\n\necho text &gt; file\n\n\n\n\nHome shortcut\n\n\n~ (e.g. cd ~/Documents)\n\n\n-\n\n\n\n\nCurrent directory shortcut\n\n\n.\n\n\n.\n\n\n\n\nParent directory shortcut\n\n\n..\n\n\n..\n\n\n\n\n\nImportant: All commands operate relative to your current working directory. Always know where you are!\nPaths: absolute (C:/Users/Bilbo/Documents/) vs relative (../Documents/)"
+    "section": "The Terminal",
+    "text": "The Terminal\n\nA text-based interface to interact with your computer\nMac uses bash (Terminal), Windows uses Command Prompt or PowerShell. In this course, we focus on bash and command prompt commands.\nAll commands operate relative to your current working directory. Always know where you are!\nPaths: absolute (C:/Users/Bilbo/Documents/) vs relative (../Documents/)"
+  },
+  {
+    "objectID": "course_materials/week_02/02_recap.html#the-terminal-1",
+    "href": "course_materials/week_02/02_recap.html#the-terminal-1",
+    "title": "4,222 Introduction to Programming",
+    "section": "The Terminal",
+    "text": "The Terminal\n\n\n\n\nAction\n\n\nbash (Mac)\n\n\nCommand Prompt (Windows)\n\n\n\n\n\n\nShow current directory\n\n\npwd\n\n\ncd (without arguments)\n\n\n\n\nList files\n\n\nls\n\n\ndir\n\n\n\n\nNavigate\n\n\ncd &lt;path&gt;\n\n\ncd &lt;path&gt;\n\n\n\n\nCreate directory\n\n\nmkdir\n\n\nmkdir\n\n\n\n\nWrite text to file\n\n\necho “text” &gt; file\n\n\necho text &gt; file\n\n\n\n\nHome shortcut\n\n\n~ (e.g. cd ~/Documents)\n\n\n-\n\n\n\n\nCurrent directory shortcut\n\n\n.\n\n\n.\n\n\n\n\nParent directory shortcut\n\n\n..\n\n\n.."
   },
   {
     "objectID": "course_materials/week_02/02_recap.html#using-visual-code",
