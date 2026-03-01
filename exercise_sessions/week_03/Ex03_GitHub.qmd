@@ -31,8 +31,10 @@ execute:
 
 When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
 
-- We'll use **SSH keys**: <!--- @Aurelien: do students know what a SSH key is or should we inlcude a brief explanation on that topic? ---> you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.
+- We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.[^ssh]
 - Using SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.
+
+[^ssh]: **What is a SSH key?** SSH stands for *Secure Shell*. It is a protocol that allows secure communication between your computer and another machine (for example, GitHub). When you create an SSH key, a key pair is generated: (i) a private key (kept secret on your computer), and (ii) a public key (which you can safely upload to GitHub). These files are usually stored in a hidden folder called [.ssh]{.path} inside your home directory (e.g., [~/.ssh/]{.path}). By default, you might see files such as [id_ed25519]{.path} (private key) and [id_ed25519.pub]{.path} (public key). The private key must **never** be shared. Anyone who has access to it can authenticate as you and gain access to your repositories. The private key is protected in two ways: 1. it never leaves your computer during authentication, and 2. it is mathematically infeasible to derive the private key from the public key. When you connect to GitHub, GitHub sends a cryptographic challenge. Your computer uses the private key to generate a valid response. GitHub checks this response using your public key. If they match, your identity is verified - without sending your password over the internet.
 
 ### Instructions
 
