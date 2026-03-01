@@ -76,7 +76,7 @@ Introduction_to_programming/
 ├── group_project/
 │   ├── ...
 ```
-2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming). <!--- @Aurelien: do you want students to see all previous commits and all the included folders? I would setup a "mock" project with fewer folders and content and a very simple structure. E.g. one folder called "Code", one "Figures" and one "Papers" or something similar. --->
+2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming). <!--- @Aurelien: do you want students to see all previous commits and all the included folders? I would setup a "mock" project with fewer folders and content and a very simple structure. E.g. one folder called "Code", one "Figures" and one "Papers" or something similar. I am writing this because I am uncertain about the purpose of this action. Students get the material via Canvas/Studynet - so why would they need tho see our work? --->
 3. Explore the repo briefly using `git status` and call for the `log` to see the history of commits.
 
 ::: {.callout-tip collapse="true" title="Solution"}
@@ -114,7 +114,7 @@ git status
 git log --oneline
 ```
 
-Use Git Graph <!-- @Aurelien: how/where? in VSC or the bash? -->  to visualize the history of commits. You should see the different branches from our contributors.
+Use Git Graph in VS Code to visualize the history of commits. You should see the different branches from our contributors.
 
 Finally, the directory should now look like this:
 ```
@@ -175,7 +175,7 @@ git clone https://github.com/<org>/<your-repo-name>.git
 cd <your-repo-name>
 ```
 
-3. Check the initial state of the repo using `git status`. You should see a text file `trivia.txt` and a README file when printing the folder's contents vis `ls`.
+3. Check the initial state of the repo using `git status`. You should see a text file `trivia.txt` and a README file when printing the folder's contents via `ls`.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 ```bash
@@ -371,7 +371,7 @@ git pull
 ```
 :::
 
-6. Now, let's simulate a real-life economist situation:
+Now, let's simulate a real-life economist situation:
 
 **Student 1**: create a new branch called `forecast_revision`. Switch to the branch and change the function in the python file with your own forecast (do not show it to your colleague). Commit and push. Notice that Git might ask you to add arguments to `git push`, such as `-u origin forecast_revision`.
 
