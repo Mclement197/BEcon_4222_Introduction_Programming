@@ -22,7 +22,7 @@ execute:
 
 ## To do before the exercise session:
 
-Create a Github account if you don't have one already. Preferably, use the email address you've used to set up your git config.
+[Create a Github account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github) if you don't have one already. Preferably, use the email address you've used to set up your git config.
 
 
 ## Exercise 1: Authenticating with GitHub 🗝️
@@ -31,8 +31,10 @@ Create a Github account if you don't have one already. Preferably, use the email
 
 When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
 
-- We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.
+- We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.[^ssh]
 - Using SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.
+
+[^ssh]: **What is a SSH key?** SSH stands for *Secure Shell*. It is a protocol that allows secure communication between your computer and another machine (for example, GitHub). When you create an SSH key, a key pair is generated: (i) a private key (kept secret on your computer), and (ii) a public key (which you can safely upload to GitHub). These files are usually stored in a hidden folder called [.ssh]{.path} inside your home directory (e.g., [~/.ssh/]{.path}). By default, you might see files such as [id_ed25519]{.path} (private key) and [id_ed25519.pub]{.path} (public key). The private key must **never** be shared. Anyone who has access to it can authenticate as you and gain access to your repositories. The private key is protected in two ways: 1. it never leaves your computer during authentication, and 2. it is mathematically infeasible to derive the private key from the public key. When you connect to GitHub, GitHub sends a cryptographic challenge. Your computer uses the private key to generate a valid response. GitHub checks this response using your public key. If they match, your identity is verified - without sending your password over the internet.
 
 ### Instructions
 
@@ -76,7 +78,7 @@ Introduction_to_programming/
 ├── group_project/
 │   ├── ...
 ```
-2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming).
+2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming). <!--- @Aurelien: do you want students to see all previous commits and all the included folders? I would setup a "mock" project with fewer folders and content and a very simple structure. E.g. one folder called "Code", one "Figures" and one "Papers" or something similar. I am writing this because I am uncertain about the purpose of this action. Students get the material via Canvas/Studynet - so why would they need tho see our work? --->
 3. Explore the repo briefly using `git status` and call for the `log` to see the history of commits.
 
 ::: {.callout-tip collapse="true" title="Solution"}
@@ -114,7 +116,7 @@ git status
 git log --oneline
 ```
 
-Use Git Graph to visualize the history of commits. You should see the different branches from our contributors.
+Use Git Graph in VS Code to visualize the history of commits. You should see the different branches from our contributors.
 
 Finally, the directory should now look like this:
 ```
@@ -147,7 +149,7 @@ You can remove the directory [github_course_materials]{.path} if you want, since
 
 
 
-## Exercise 3: GitHub Classroom - Inflation Forecasting
+## Exercise 3: GitHub Classroom - your first push and pulls
 
 For this exercise, we've prepared a **GitHub Classroom**. A GitHub Classroom is a special type of repository created for a classroom, where each student gets their own copy to complete and submit assignments. It simulates real repositories on GitHub, and works like a normal GitHub repository. We will use it for the group project.
 
@@ -175,11 +177,12 @@ git clone https://github.com/<org>/<your-repo-name>.git
 cd <your-repo-name>
 ```
 
-3. Check the initial state of the repo using `git status`. You should see a text file `trivia.txt` and a README file.
+3. Check the initial state of the repo using `git status`. You should see a text file `trivia.txt` and a README file when printing the folder's contents via `ls`.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 ```bash
 git status
+ls
 ```
 
 ```sh
@@ -202,7 +205,7 @@ Answer Questions A, B, and C below, then push your answers.
 
 :::
 
-4. Answer the questions in the text file (give your best guess...), commit and push your changes to GitHub.
+4. Answer the questions in the text file (give your best guess...), save, commit and push your changes to GitHub.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 ```bash
@@ -251,6 +254,12 @@ Fast-forward
 
 7. Check what changed in the file `trivia.txt`. You should see that the answers to the questions have been added by the automation. Did you get the weight of the OLMA-sausage right?
 
+::: {.callout-tip collapse="true" title="Solution"}
+```bash
+cat trivia.txt
+```
+:::
+
 
 
 
@@ -267,9 +276,11 @@ Fast-forward
 
 Economists are famous for disagreeing on everything, especially when it comes to macroeconomists and forecasts... Let's see how this can lead to conflicts in GitHub.
 
-**Create groups of 2-3 students and work together. Each student shows what she or he is doing to her or his colleagues.**
+**Create groups of 2 students and work together. Each student shows what they are doing to their colleague.**
 
-1. **Student 1**: Create a new repository on GitHub with the name `git-intro-example`. Create a README file as asked by Github. Notice the other options when creating a repository, such as adding a .gitignore file or a license. You can ignore these for now.
+<!--- @Aurelien: I removed the numbered lists - the indentation was off and didn't look nice. --->
+
+**Student 1**: Create a new repository on GitHub with the name `git-intro-example`. Create a README file as asked by Github. Notice the other options when creating a repository, such as adding a .gitignore file or a license. You can ignore these for now.
 
 In the settings of the repository, make sure to add your colleagues as collaborators, so that they can access the repository and push changes.
 
@@ -282,7 +293,7 @@ To add collaborators, go to the repository, click on "Settings" (the gear icon),
 The person added will receive an email with the invitation. Click on the link "Accept the invitation". If you don't see an email, check your spam folder.
 :::
 
-2. **All students**: Clone the repository in your local directory [Introduction_to_programming/exercises/week_03]{.path}.
+**All students**: Clone the repository in your local directory [Introduction_to_programming/exercises/week_03]{.path}.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 ```bash
@@ -293,7 +304,7 @@ git status
 ```
 :::
 
-3. **Student 1**: Create a new file called `inflation_forecast.py` in the repository and add the following code:
+**Student 1**: Create a new file called `inflation_forecast.py` in the repository and add the following code:
 
 ```python
 def forecast_inflation():
@@ -315,7 +326,7 @@ git push
 ```
 :::
 
-4. **Student 2**: change the README file and add the following line: "This repository contains a simple inflation forecasting model" and the title "## Inflation Forecasting".
+**Student 2**: change the README file and add the following line: "This repository contains a simple inflation forecasting model" and the title "## Inflation Forecasting".
 
 ```
 ## Inflation Forecasting
@@ -354,7 +365,7 @@ git push
 ```
 :::
 
-5. **Student 1**: pull the changes. All students: observe the commit history and the files changed.
+**Student 1**: pull the changes. All students: observe the commit history and the files changed.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 ```bash
@@ -362,10 +373,11 @@ git pull
 ```
 :::
 
-6. Now, let's simulate a real-life economist situation:
+Now, let's simulate a real-life economist situation:
 
-   - **Student 1**: create a new branch called "forecast revision". Switch to the branch and change the function in the python file with your own forecast (do not show it to your colleague). Commit and push. Notice that Git might ask you to add arguments to `git push`, such as `-u origin forecast_revision`.
-   - **Student 2**: remain on main, change the inflation forecast in the python file, stage, commit, and push.
+**Student 1**: create a new branch called `forecast_revision`. Switch to the branch and change the function in the python file with your own forecast (do not show it to your colleague). Commit and push. Notice that Git might ask you to add arguments to `git push`, such as `-u origin forecast_revision`.
+
+**Student 2**: remain on main, change the inflation forecast in the python file, stage, commit, and push.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 **Student 1**:
@@ -397,10 +409,10 @@ You have to push using
 git push --set-upstream origin forecast_revision
 ```
 
-because the branch "forecast_revision" does not exist on GitHub yet. This command will create the branch on GitHub and set it as the upstream branch for your local branch.
+because the branch `forecast_revision` does not exist on GitHub yet. This command will create the branch on GitHub and set it as the upstream branch for your local branch.
 :::
 
-7. Now, both students pull the changes from GitHub. You have to find an agreement on the forecast and merge the two branches. To proceed: decide on a common forecast, solve the merge conflict, and push the changes to GitHub. Observe the commit history and the files changed.
+Now, both students pull the changes from GitHub. You have to find an agreement on the forecast and merge the two branches. To proceed: decide on a common forecast, solve the merge conflict, and push the changes to GitHub. Observe the commit history and the files changed.
 
 ::: {.callout-tip collapse="true" title="Solution"}
 Either student can pull the changes and solve the conflict. For example, if student 1 pulls the changes, they will have to merge the main branch into their current branch "forecast_revision". If student 2 pulls the changes, they will have to merge the "forecast_revision" branch into main.
@@ -428,7 +440,7 @@ You should see something like this in your Git Graph (WARNING: in the picture be
 
 :::
 
-8. Now, in the rare case where both students agreed on the forecast, what would have happened? Would there have been a conflict? Why?
+Now, in the rare case where both students agreed on the forecast, what would have happened? Would there have been a conflict? Why?
 
 <!------------------------------------------------
 --------------------------------------------------
