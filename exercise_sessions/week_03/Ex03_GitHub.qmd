@@ -78,7 +78,7 @@ Introduction_to_programming/
 ├── group_project/
 │   ├── ...
 ```
-2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming). <!--- @Aurelien: do you want students to see all previous commits and all the included folders? I would setup a "mock" project with fewer folders and content and a very simple structure. E.g. one folder called "Code", one "Figures" and one "Papers" or something similar. I am writing this because I am uncertain about the purpose of this action. Students get the material via Canvas/Studynet - so why would they need tho see our work? --->
+2. Clone the course repo in your working directory [Introduction_to_programming]{.path}. The address of the repo is [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://github.com/ASallin/BECON_4222_Introduction_Programming).
 3. Explore the repo briefly using `git status` and call for the `log` to see the history of commits.
 
 ::: {.callout-tip collapse="true" title="Solution"}
@@ -167,7 +167,7 @@ After accepting, you'll see a link to your personal repository. Click on it. **I
 ![](../../assets/img/ex_03/githubclassroom_invitation.png)
 
 
-2. Clone the repository in [Introduction_to_programming/exercises/week_03]{.path}. Create the directory if needed:
+2. Clone the repository in [Introduction_to_programming/exercises/week_03]{.path}. Create the directory if needed. Then clone the repository using the URL provided in GitHub classroom (change `<org>` and `<your-repo-name>` with the actual values).
 
 ```bash
 cd exercises
@@ -278,8 +278,6 @@ Economists are famous for disagreeing on everything, especially when it comes to
 
 **Create groups of 2 students and work together. Each student shows what they are doing to their colleague.**
 
-<!--- @Aurelien: I removed the numbered lists - the indentation was off and didn't look nice. --->
-
 **Student 1**: Create a new repository on GitHub with the name `git-intro-example`. Create a README file as asked by Github. Notice the other options when creating a repository, such as adding a .gitignore file or a license. You can ignore these for now.
 
 In the settings of the repository, make sure to add your colleagues as collaborators, so that they can access the repository and push changes.
@@ -384,6 +382,7 @@ Now, let's simulate a real-life economist situation:
 
 ```bash
 git switch -c forecast_revision
+
 # Edit inflation_forecast.py - change the forecast
 git add inflation_forecast.py
 git commit -m "YOUR COMMIT MESSAGE"
