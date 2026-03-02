@@ -12,9 +12,9 @@ format:
     embed-resources: true
 ---
 
-## Overview
+# Overview
 
-**Goal:** By the end of this exercise, you and your partner will share a GitHub repository, each working on your own branch, with a merged pull request in the history. **This is a typical workflow we would like you to use for your group project in this course, and you can also use it for your other group projects in R or Python or any programming language.**
+**Goal:** By the end of this exercise, you and your partner will share a GitHub repository, each working on your own branch, with a merged pull request (PR) in the history. **This is a typical workflow we would like you to use for your group project in this course, and you can also use it for your other group projects in R or Python or any programming language.**
 
 Work in pairs. Decide who is **Student A** (the repository owner) and who is **Student B** (the collaborator).
 
@@ -23,7 +23,7 @@ Work in pairs. Decide who is **Student A** (the repository owner) and who is **S
 # Phase 1: Create and Link a Repository
 
 :::: {.callout-important}
-## Student A: Create a repository and invite your collaborator
+## **Student A**: Create a repository and invite your collaborator
 
 1. Go to [github.com](https://github.com) and click **New repository**
 2. Name it `collab-exercise-week03`, set visibility to **Public**
@@ -63,7 +63,7 @@ cd collab-exercise-week03
 > **Note:** Using the SSH URL requires a configured SSH key. If SSH is not set up yet, use the HTTPS URL, which works for public repositories without a key.
 
 :::: {.callout-tip}
-## Student B: Accept the invitation and clone
+## **Student B**: Accept the invitation and clone
 
 1. Accept the collaborator invitation (check GitHub notifications, email, and spam)
 2. Clone the repository into [exercises/week_03]{.path}:
@@ -98,7 +98,7 @@ print("File written: gdp_data.csv")
 
 
 :::: {.callout-important}
-## Student A: Create a virtual environment and add the data script
+## **Student A**: Create a virtual environment and add the data script
 
 1. In the repository, create a virtual environment and install `pandas`:
 
@@ -138,7 +138,7 @@ git push
 ::::
 
 :::: {.callout-tip}
-## Student B: Sync the environment and generate the data
+## **Student B**: Sync the environment and generate the data
 
 1. Pull Student A's changes and sync the virtual environment:
 
@@ -168,7 +168,7 @@ git push
 ::::
 
 :::: {.callout-important}
-## Student A: Pull the changes
+## **Student A**: Pull the changes
 
 ```bash
 git pull
@@ -183,7 +183,7 @@ git pull
 # Phase 3: Branch and Pull Request
 
 :::: {.callout-tip}
-## Student B: Create a branch and extend the dataset
+## **Student B**: Create a branch and extend the dataset
 
 1. Create a new branch:
 
@@ -233,7 +233,7 @@ git push -u origin add-population-data
 ::::
 
 :::: {.callout-important}
-## Student A: Review the pull request
+## **Student A**: Review the pull request
 
 1. Open the Pull Request on GitHub and go to the **Files changed** tab. It gives you an overview of all the changes made on the branch that wants to be pulled. Check that only [generate_data.py]{.path} was modified.
 
@@ -250,7 +250,7 @@ git push -u origin add-population-data
 ::::
 
 :::: {.callout-tip}
-## Student B: Address the review
+## **Student B**: Address the review
 
 Add the column to [generate_data.py]{.path}:
 
@@ -274,7 +274,7 @@ git push
 ::::
 
 :::: {.callout-important}
-## Student A: Approve and merge
+## **Student A**: Approve and merge
 
 1. Check the updated **Files changed** tab and verify the formula is correct
 2. Approve and click **Merge pull request**
@@ -289,6 +289,56 @@ git pull
 ```
 
 **Checkpoint:** Student B's changes are in `main`. Both students are in sync. The full collaborative workflow is complete.
+
+
+---
+
+# Ensuring that your feature/working branch is up-to-date with the `main` branch
+
+When working in a team, the `main` branch changes frequently. Before continuing your work (or opening a pull request), you should update **your** feature branch to align with `main`.
+
+There are two safe and common ways to do this.
+
+
+## Option 1: Merge `main` into your feature branch
+
+Make sure you are on your feature / working branch
+
+```bash
+git switch <feature-branch>
+
+# Download newest changes from GitHub. This updates your local copy of main but does not change your branch yet.
+git fetch origin
+
+# Merge main into your branch. Now your branch contains all changes from main
+git merge origin/main
+
+# If there are conflicts, Git will tell you. Fix them, the run:
+git add .
+git commit
+```
+
+
+## Option 2: Rebase your branch onto `main`
+
+This keeps the commit history linear and clean, but is slightly more advanced.
+
+```bash
+git switch <feature-branch>
+
+# Download newest changes from GitHub. This updates your local copy of main but does not change your branch yet.
+git fetch origin
+
+# rebase onto main
+git rebase origin/main
+
+# If there are conflicts, Git will tell you. Fix them, the run:
+git add .
+git rebase --continue
+
+# repeat (Fix -> git add -> git rebase --continue) until until Git says something like "Successfully rebased and updated <feature-branch>."
+```
+
 
 ---
 
