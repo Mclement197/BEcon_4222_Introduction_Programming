@@ -611,6 +611,7 @@ You can start incorporating these features as you become more comfortable with G
 
 ::: {.columns}
 ::: {.column}{width=70%}
+
 #### Create a page in 10mn from a template:
 - Go to [https://github.com/arifszn/gitprofile](https://github.com/arifszn/gitprofile) and fork the repository
 - Enable GitHub Pages (→ Settings) and GitHub Actions (→ Actions)
