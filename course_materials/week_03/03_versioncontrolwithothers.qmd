@@ -31,7 +31,7 @@ library(purrr)
 
 ## Goals for today
 
-At the end of this lecture and exercise session, you will:
+#### At the end of this lecture and exercise session, you will:
 
 - know how to go remote with our repository
 - be able to collaborate using Git
@@ -43,6 +43,14 @@ At the end of this lecture and exercise session, you will:
 
 
 # Recap: Git Basics
+
+## Recap: Git workflow
+
+![](../../assets/img/lecture_03_github/review_process.png){height="360px"}
+
+Fill out the blanks.
+
+
 
 ## Git workflow
 
@@ -60,6 +68,13 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
   - Once we **add** the change to the staging area it is **staged**
   - We can then **commit** all staged changes
 -->
+
+
+## Recap: Git commit history
+
+![](../../assets/img/lecture_03_github/review_commit.png){height="360px"}
+
+Fill out the blanks.
 
 
 ## Recap: Branches and merging
@@ -89,7 +104,6 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
 ![](../../assets/img/lecture_02_versioncontrol/git_story4.png){height="360px"}
 :::
 :::
-<!-- end columns -->
 
 
 
@@ -103,6 +117,8 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
 
 
 ## Remotes 🌐️
+
+#### What is a remote?
 
 - A **remote** is a version of your repository stored on a website like GitHub.
 
@@ -126,7 +142,7 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
 - Backup of your projects (work from different machines, from work to private, or from one firm to another...)
 - Collaboration in groups and also with people you don't know
 - Free and Open-Source Software (FOSS)
-- Visibility as a programmer (your portfolio - GitHub fulfills some signaling function and works as a social network for programmers)
+- Visibility as a programmer (show your portfolio and your "productivity" as a programmer... GitHub fulfills some signaling function and works as a social network for programmers)
 :::
 :::
 
@@ -151,14 +167,14 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
 
 ![](../../assets/img/lecture_02_versioncontrol/git_process7.png){height="360px"}
 
-- `git clone` / `git remote`
-- `git pull` / `git push`
+- **Connect to a remote**: `git clone` / `git remote`
+- **Sync with the remote**: `git pull` / `git push`
 - The main remote is usually called `origin`.
 - Remotes also have branches, just like your local repository.
 
 
 
-## Adding a remote from an existing repository
+## Connect to a remote by adding it from an existing repository
 
 When you want to add an **existing** repository to GitHub, you will have to add the remote yourself
 
@@ -183,7 +199,7 @@ git remote -h
 ```
 
 
-## Cloning a repository
+## Connect to a remote by cloning a repository
 
 - You can download repositories from GitHub (and anywhere else), by **cloning** them
 - For public repositories, `git clone` just works, for private ones you will need to be authenticated
@@ -265,7 +281,7 @@ git push -u <remote> <branch>
 
 ::: {.panel-tabset}
 
-#### `git push` — no upstream branch
+#### `git push` if no upstream branch
 
 You are on branch `test2`, created locally but never pushed. Running `git push`:
 
@@ -276,7 +292,7 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin test2
 ```
 
-#### `git pull` — no tracking info
+#### `git pull` if no tracking info
 
 You are on branch `test3`, which is not yet tracking any remote branch. Running `git pull` from `test3`:
 
@@ -298,7 +314,7 @@ If you wish to set tracking information for this branch you can do so with:
 
 ## Push and pull
 
-![](../../assets/img/lecture_03_github/pushpull_meme.png){height="370px"}
+![](../../assets/img/lecture_03_github/pushpull_meme.png){height="470px" fig-align="center"}
 
 
 
@@ -312,7 +328,13 @@ If you wish to set tracking information for this branch you can do so with:
 
 ## Authenticating with GitHub 🗝️
 
-... set it up once, can be nerve-wracking, done forever, takes about 10 minutes ...
+... set it up once,
+
+...can be nerve-wracking,
+
+...done forever as long as you don't change computer,
+
+... takes about 10 minutes ...
 
 
 ## Authenticating with GitHub 🗝️
@@ -456,15 +478,9 @@ Every week, you can refresh the course content with `git pull`.
 
 ## Create a local repository and link it to GitHub
 
-You have two options to create a local repository and link it to GitHub:
+::: {.panel-tabset}
 
-1. Create a local repository first, then link it to GitHub
-2. Clone the repository from GitHub locally
-
-
-
-
-## Option 1: Create a local repository first
+### Create a local repo first, then link it to GitHub
 
 ::: {.columns}
 ::: {.column}
@@ -478,23 +494,24 @@ git fetch origin
 git switch -c main --track origin/main
 # then work on your local repository and push changes to GitHub
 ```
+
+> **Note**: `git pull origin main` does not work here, because the local repository is not yet linked to the remote. You need to run `git fetch origin` first to get the remote branches, then you can switch to the main branch and pull changes.
 :::
 ::: {.column}
 ![](../../assets/img/lecture_03_github/git_remote_add.png){width=100%}
 :::
 :::
 
-> **Note**: `git pull origin main` does not work here, because the local repository is not yet linked to the remote. You need to run `git fetch origin` first to get the remote branches, then you can switch to the main branch and pull changes.
-
-
-## Option 2: Clone the repository from GitHub locally
+### Clone the repo from GitHub locally
 
 ```bash
 git clone git@github.com:yourusername/git-practice-week03.git
 ```
 
-##### My recommendation: use option 2!
+##### My recommendation: use this option!
 When you clone a repository, the remote is set up for you automatically, and you can start working right away.
+
+:::
 
 
 
@@ -548,30 +565,14 @@ PRs keep the `main` branch clean and give the team a chance to review code befor
 - Many companies require code reviews and using PRs
 
 
-## {.center}
-
-:::: {.columns}
-::: {.column width="50%"}
-![](../../assets/img/lecture_03_github/meme_pr_1.png){width=100% style="margin-bottom: 8px;"}
-
-![](../../assets/img/lecture_03_github/meme_pr_2.png){width=100%}
-:::
-::: {.column width="50%"}
-![](../../assets/img/lecture_03_github/meme_pr_3.png){width=100% style="margin-bottom: 8px;"}
-
-![](../../assets/img/lecture_03_github/meme_pr_4.png){width=100%}
-:::
-::::
-
-
-
-
 
 # Advanced Git and GitHub
 
 ## Advanced Git and GitHub
 
-There are many more features of Git and GitHub that we won't cover in this course, but you can explore them on your own if you're interested.
+There are many more features of Git and GitHub that we won't cover in this course. Explore them on your own if you're interested.
+
+You can start incorporating these features as you become more comfortable with Git and GitHub. Not every project needs them.
 
 #### In Git:
 - **Hooks**: trigger scripts on certain Git events (e.g., pre-commit, post-merge)
@@ -583,7 +584,7 @@ There are many more features of Git and GitHub that we won't cover in this cours
 - **GitHub Actions**: automate workflows (e.g., run tests, deploy code)
 - **Forking**: create your own copy of someone else's repository to experiment with changes without affecting the original
 
-You can start incorporating these features as you become more comfortable with Git and GitHub. Not every project needs them.
+
 
 
 
@@ -592,6 +593,12 @@ You can start incorporating these features as you become more comfortable with G
 - System to track tasks that still need to be done
 - Allows for discussion
 - When an issue is done, it is "closed"
+
+::: Example
+
+Go on [the github page of the `BFS` package  (API wrapper from the Swiss Federal Statistical Office)](https://github.com/lgnbhl/BFS/issues) and look at the different issues.
+
+:::
 
 ## Forking
 
