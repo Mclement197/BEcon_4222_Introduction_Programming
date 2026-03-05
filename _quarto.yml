@@ -33,6 +33,17 @@ website:
           - text: "---"
           - text: "Git Cheat Sheet (PDF)"
             file: course_materials/week_02/git-cheat-sheet-education.pdf
+      - text: "Week 3"
+        menu:
+          - text: "Lecture 3: Version Control with Others"
+            file: course_materials/week_03/03_versioncontrolwithothers.qmd
+          - text: "In-class Exercise 3: Git Collaboration"
+            file: course_materials/week_03/ex03_git_collaboration.qmd
+          - text: "generate_data.py"
+            file: course_materials/week_03/generate_data.py
+          - text: "---"
+          - text: "Exercise 3: GitHub"
+            file: exercise_sessions/week_03/Ex03_GitHub.qmd
       - text: "Admin"
         menu:
           - text: "Syllabus"

@@ -12,6 +12,23 @@ format:
     embed-resources: true
 ---
 
+<style>
+/* Student A: purple */
+div.callout-important {
+  border-left-color: #7c3aed !important;
+}
+div.callout-important > .callout-header {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+}
+/* Student B: orange */
+div.callout-tip {
+  border-left-color: #ea580c !important;
+}
+div.callout-tip > .callout-header {
+  background-color: rgba(234, 88, 12, 0.08) !important;
+}
+</style>
+
 # Overview
 
 **Goal:** By the end of this exercise, you and your partner will share a GitHub repository, each working on your own branch, with a merged pull request (PR) in the history. **This is a typical workflow we would like you to use for your group project in this course, and you can also use it for your other group projects in R or Python or any programming language.**
@@ -23,12 +40,10 @@ Work in pairs. Decide who is **Student A** (the repository owner) and who is **S
 # Phase 1: Create and Link a Repository
 
 ::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
-
-::: {style="width:56px; height:56px; border-radius:50%; border:2px solid #e74c3c; flex-shrink:0; background-image:url('../../assets/img/banner_course.png'); background-size:50%; background-position:25% 35%;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#7c3aed; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+A
 :::
-
 **Student A**
-
 :::
 
 :::: {.callout-important}
@@ -39,7 +54,7 @@ Work in pairs. Decide who is **Student A** (the repository owner) and who is **S
 3. Add a README, but **do not** add a [.gitignore]{.path} file
 4. Click **Create repository** and copy the URL
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 📸 See the GitHub interface
 
 ![Create repository](../../assets/img/lecture_03_github/ex03_create_repo.png)
@@ -47,7 +62,7 @@ Work in pairs. Decide who is **Student A** (the repository owner) and who is **S
 
 5. Invite Student B as a collaborator: **Settings → Collaborators → Add people**
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 📸 See the GitHub interface
 
 ![Add collaborator](../../assets/img/lecture_03_github/ex03_add_collab.png)
@@ -61,7 +76,7 @@ git clone <your repo URL>
 cd collab-exercise-week03
 ```
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 📸 See the GitHub interface
 
 ![Clone repository](../../assets/img/lecture_03_github/ex03_clone_repo.png)
@@ -70,6 +85,13 @@ cd collab-exercise-week03
 ::::
 
 > **Note:** Using the SSH URL requires a configured SSH key. If SSH is not set up yet, use the HTTPS URL, which works for public repositories without a key.
+
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#ea580c; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+B
+:::
+**Student B**
+:::
 
 :::: {.callout-tip}
 ## **Student B**: Accept the invitation and clone
@@ -90,7 +112,7 @@ cd collab-exercise-week03
 
 # Phase 2: Set Up the Environment
 
-In this part, we will set up the environment and generate a dataset using a simple python script. The script `generate_data.py` creates a CSV file with GDP data for a few countries:
+In this part, we will set up the environment and generate a dataset using a simple Python script. The script `generate_data.py` creates a CSV file with GDP data for a few countries:
 
 ```python
 import pandas as pd
@@ -105,6 +127,13 @@ data.to_csv("gdp_data.csv", index=False)
 print("File written: gdp_data.csv")
 ```
 
+
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#7c3aed; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+A
+:::
+**Student A**
+:::
 
 :::: {.callout-important}
 ## **Student A**: Create a virtual environment and add the data script
@@ -146,6 +175,13 @@ git push
 
 ::::
 
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#ea580c; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+B
+:::
+**Student B**
+:::
+
 :::: {.callout-tip}
 ## **Student B**: Sync the environment and generate the data
 
@@ -158,7 +194,7 @@ uv sync
 
 > **Note:** `uv sync` recreates the virtual environment from [uv.lock]{.path}, reproducing the exact same environment that was started by Student A. You don't need to run `uv init` yourself.
 
-2. Run the data generation script, either directly with `uv run` or by running it from the script, choosing the right interpreter (like in the first exercise session):
+2. Run the data generation script, either directly with `uv run` or from VS Code by selecting the right Python interpreter (like in the first exercise session):
 
 ```bash
 uv run python generate_data.py
@@ -176,6 +212,13 @@ git push
 
 ::::
 
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#7c3aed; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+A
+:::
+**Student A**
+:::
+
 :::: {.callout-important}
 ## **Student A**: Pull the changes
 
@@ -190,6 +233,13 @@ git pull
 ---
 
 # Phase 3: Branch and Pull Request
+
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#ea580c; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+B
+:::
+**Student B**
+:::
 
 :::: {.callout-tip}
 ## **Student B**: Create a branch and extend the dataset
@@ -223,7 +273,7 @@ git push -u origin add-population-data
 4. Open a Pull Request on GitHub:
    - GitHub will show a banner: *"add-population-data had recent pushes"*, click **Compare & pull request**
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 📸 See the GitHub interface
 
 ![Compare and pull request](../../assets/img/lecture_03_github/ex03_compareandpull.png)
@@ -233,7 +283,7 @@ git push -u origin add-population-data
    - Write a short description of what you changed and why
    - Click **Create pull request**
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 📸 See the GitHub interface
 
 ![Open pull request](../../assets/img/lecture_03_github/ex03_pullrequest.png)
@@ -241,12 +291,19 @@ git push -u origin add-population-data
 
 ::::
 
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#7c3aed; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+A
+:::
+**Student A**
+:::
+
 :::: {.callout-important}
 ## **Student A**: Review the pull request
 
 1. Open the Pull Request on GitHub and go to the **Files changed** tab. It gives you an overview of all the changes made on the branch that wants to be pulled. Check that only [generate_data.py]{.path} was modified.
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 📸 See the GitHub interface
 
 ![Files changed tab](../../assets/img/lecture_03_github/ex03_pullrequest_2.png)
@@ -258,12 +315,19 @@ git push -u origin add-population-data
 
 ::::
 
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#ea580c; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+B
+:::
+**Student B**
+:::
+
 :::: {.callout-tip}
 ## **Student B**: Address the review
 
 Add the column to [generate_data.py]{.path}:
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 #### 💡 Solution
 
 ```python
@@ -281,6 +345,13 @@ git push
 ```
 
 ::::
+
+::: {style="display:flex; align-items:center; gap:10px; margin-bottom:-12px;"}
+::: {style="width:40px; height:40px; border-radius:50%; background-color:#7c3aed; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.1em;"}
+A
+:::
+**Student A**
+:::
 
 :::: {.callout-important}
 ## **Student A**: Approve and merge
@@ -309,7 +380,7 @@ When working in a team, the `main` branch changes frequently. Before continuing 
 There are two safe and common ways to do this.
 
 ::: {.callout-note}
-*Note*: this part is more advanced and not required for the course. It is however an important workflow to understand and master for any collaborative project.
+This part is more advanced and not required for the course. It is however an important workflow to understand and master for any collaborative project.
 :::
 
 
@@ -326,7 +397,7 @@ git fetch origin
 # Merge main into your branch. Now your branch contains all changes from main
 git merge origin/main
 
-# If there are conflicts, Git will tell you. Fix them, the run:
+# If there are conflicts, Git will tell you. Fix them, then run:
 git add .
 git commit
 ```
@@ -345,11 +416,11 @@ git fetch origin
 # rebase onto main
 git rebase origin/main
 
-# If there are conflicts, Git will tell you. Fix them, the run:
+# If there are conflicts, Git will tell you. Fix them, then run:
 git add .
 git rebase --continue
 
-# repeat (Fix -> git add -> git rebase --continue) until until Git says something like "Successfully rebased and updated <feature-branch>."
+# repeat (Fix -> git add -> git rebase --continue) until Git says something like "Successfully rebased and updated <feature-branch>."
 ```
 
 

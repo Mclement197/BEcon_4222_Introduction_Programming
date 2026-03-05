@@ -170,17 +170,18 @@ The second part (01b) introduces the tools students will use throughout the cour
 
 #v(1em)
 
-== Lecture 2-3: Working Together: Intro to Version Control and Git _A_
+== Lecture 2-3: Working Together: Version Control with Git and GitHub _A_
 
-The lecture introduces version control as a central element of collaborative data work. It covers the main Git concepts such as repositories, commits, staging, branching, and merging. Students learn how to create and configure a local repository and how to connect a project to GitHub. The session discusses branching strategies for small teams, the use of pull requests, and practical conflict resolution. It also addresses project organization with clear folder structures and naming conventions. It then covers Github and how to work with a remote repository.
+Lectures 2 and 3 introduce version control as a central element of collaborative data work. Lecture 2 covers the local Git workflow: repositories, commits, the staging area, branching, merging, and conflict resolution. Students learn to track changes systematically and keep their project organized. Lecture 3 extends this to remote collaboration via GitHub: connecting local repositories to a remote host, synchronizing changes, and contributing via pull requests.
 
-The lecture includes a hands on part in which students create a repository, push and pull changes, work with branches, merge them and resolve conflicts.
+*Exercise week 2*: Students practice the local Git workflow — initializing a repository, staging and committing files, creating branches, and resolving a merge conflict.
 
-*Exercise weeks 2-3*: Students will have time to experiment with git and github.
+*Exercise week 3*: Students work in pairs to practice the full collaborative workflow — cloning a shared repository, working on a branch, and contributing changes via a pull request.
 
 *Sources:*
 - #link("https://simson.io/intro-to-git/")["Introduction to git"] from Jam Simson
 - #link("https://rse-book.github.io/version-control.html")["Git Version Control"], "Research Software Engineering", Matt Bannert
+- #link("https://docs.github.com/en")[GitHub Documentation]
 
 #v(1em)
 

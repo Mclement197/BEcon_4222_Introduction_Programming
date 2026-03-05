@@ -10,6 +10,8 @@ format:
 
 # Welcome to BEcon 4222 - Introduction to Programming
 
+![](assets/img/banner_course.png){width=100%}
+
 This course introduces you to programming fundamentals using Python, with applications in economics and data science.
 
 ## Course Structure
@@ -58,6 +60,24 @@ Course syllabus, schedule, and administrative information.
 **Setup:**
 - Install Git ([instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))
 - Install VSCode extension: **Git Graph**
+:::
+
+:::
+
+::: {.grid}
+
+::: {.g-col-6}
+### 📙 Week 3: Git and GitHub for Collaboration
+
+**Lectures:**
+- [Lecture 3: Version Control with Others](course_materials/week_03/03_versioncontrolwithothers.qmd)
+
+**In-class exercise:**
+- [Exercise 3: Git and GitHub for Collaboration](course_materials/week_03/ex03_git_collaboration.qmd)
+- [generate_data.py](course_materials/week_03/generate_data.py)
+
+**Exercises:**
+- [Exercise 3: GitHub](exercise_sessions/week_03/Ex03_GitHub.qmd)
 :::
 
 :::

@@ -34,10 +34,10 @@ library(purrr)
 #### At the end of this lecture and exercise session, you will:
 
 - know how to go remote with our repository
-- be able to collaborate using Git
+- be able to collaborate using **Git** and **GitHub**
 
 ##### Remember: practice, practice, practice!
-- It feels overwhelming at first, but it gets easier with time and experience.
+- It can feel overwhelming at first, but it gets easier with time and experience.
 - Start working with Git and GitHub as soon as possible, for instance for your group projects in Data Analytics II 😉
 
 
@@ -46,9 +46,9 @@ library(purrr)
 
 ## Recap: Git workflow
 
-![](../../assets/img/lecture_03_github/review_process.png){height="360px"}
+![](../../assets/img/lecture_03_github/review_process.png){height="400px"}
 
-Fill out the blanks.
+#### Fill out the blanks.
 
 
 
@@ -56,10 +56,12 @@ Fill out the blanks.
 
 ![](../../assets/img/lecture_02_versioncontrol/git_process5_gitignore.png){height="360px"}
 
+::: {style="font-size: 0.75em;"}
 - A typical repository contains a mix of files: source code (R scripts, Python scripts, etc.), output files (like quarto documents or csv files), and configuration files (like .gitignore).
 - **Basic workflow:** `git init` → `git add` → `git commit`
 - **Key concepts:** Working directory → Staging area → Repository
-- Use `.gitignore` to exclude files you don't want to track.
+- Use [.gitignore]{.path} to exclude files you don't want to track.
+:::
 
 <!--
 Three levels: changes can be either **unstaged**, **staged** or **commited**.
@@ -72,19 +74,20 @@ Three levels: changes can be either **unstaged**, **staged** or **commited**.
 
 ## Recap: Git commit history
 
-![](../../assets/img/lecture_03_github/review_commit.png){height="360px"}
+![](../../assets/img/lecture_03_github/review_commit.png){height="400px"}
 
-Fill out the blanks.
+#### Fill out the blanks.
 
 
 ## Recap: Branches and merging
 
-![](../../assets/img/lecture_02_versioncontrol/git_commit_6.png){height="360px"}
+![](../../assets/img/lecture_03_github/review_commit_solution.png){height="360px"}
 
+::: {style="font-size: 0.75em;"}
 - **Branches** let you work on features without breaking main code.<br>`git switch -c feature` → make changes → `git commit`
 - **Merging** brings changes from one branch into another.<br>`git switch main` → `git merge feature`
 - **Merge conflicts** happen when changes overlap. Resolve manually, then commit.
-
+:::
 
 
 
@@ -92,16 +95,19 @@ Fill out the blanks.
 
 ## Communicate and collaborate via remotes
 
+##### The main reason to use Git is to **collaborate** with others and **back up your files** online.
+
+<div style="margin-top: 1em;"></div>
+
 ::: {.columns}
-::: {.column}
-- The main reason to use Git is to **collaborate** with others and **back up your files** online.
-- Think of:
+::: {.column width="50%"}
+- Think of projects like:
   - Group project in Data Analytics II in R
   - Group project for Introduction to Programming in Python
   - Any project you want to share with others (e.g., your portfolio, open-source contributions, etc.)
 :::
-::: {.column}
-![](../../assets/img/lecture_02_versioncontrol/git_story4.png){height="360px"}
+::: {.column width="50%"}
+![](../../assets/img/lecture_02_versioncontrol/git_story4.png){height="400px"}
 :::
 :::
 
@@ -167,14 +173,15 @@ Fill out the blanks.
 
 ![](../../assets/img/lecture_02_versioncontrol/git_process7.png){height="360px"}
 
+::: {style="font-size: 0.75em;"}
 - **Connect to a remote**: `git clone` / `git remote`
 - **Sync with the remote**: `git pull` / `git push`
 - The main remote is usually called `origin`.
 - Remotes also have branches, just like your local repository.
+:::
 
 
-
-## Connect to a remote by adding it from an existing repository
+## Connect to a remote by `remote add`ing it from an existing repository
 
 When you want to add an **existing** repository to GitHub, you will have to add the remote yourself
 
@@ -182,9 +189,7 @@ When you want to add an **existing** repository to GitHub, you will have to add 
 git remote add <remote name> <remote URL>
 ```
 
-<br>
-
-It only works if you are not in a repo which has already been linked to a remote.
+Example:
 
 ```bash
 git remote add origin git@github.com:asallin/BECON_4222_Introduction_Programming.git
@@ -192,19 +197,26 @@ git remote add origin git@github.com:asallin/BECON_4222_Introduction_Programming
 
 <br>
 
-To learn about all possible commands for remotes use `-h`
+> *Note 1:* It only works if the remote repo exists and if you are not in a repo which has already been linked to a remote.
 
-```bash
-git remote -h
-```
+> *Note 2:* To learn about all possible commands for remotes use `-h`, like `git remote -h`.
 
 
-## Connect to a remote by cloning a repository
+## Connect to a remote by `git clone`-ing a repository
 
+::: {.columns}
+::: {.column width="60%"}
+<div style="margin-top: 2em;"></div>
 - You can download repositories from GitHub (and anywhere else), by **cloning** them
 - For public repositories, `git clone` just works, for private ones you will need to be authenticated
 - If you use `git clone`, the remote named `origin` is set up for you automatically.
 - `git clone <remote URL>`
+:::
+::: {.column width="40%"}
+![](../../assets/img/lecture_03_github/git_clone_homer.gif){width=100%}
+:::
+:::
+<!-- end columns -->
 
 
 
@@ -265,25 +277,13 @@ git config pull.rebase false
 git push
 ```
 
-#### Push a branch for the first time
-```bash
-# Push a branch to the remote for the first time
-# -u is short for --set-upstream
-git push -u <remote> <branch>
-```
 
+## What if a branch has no upstream when pushing?
 
+#### The "upstream" is the remote branch your local branch is linked to and syncs with.
 
-## `git pull`, `git push` and upstream branches
-
-- It might be that a locally created branch has no **upstream branch**, i.e. it is not tracking any remote branch.
-- In that case, Git will warn you and tell you exactly what to do:
-
-::: {.panel-tabset}
-
-#### `git push` if no upstream branch
-
-You are on branch `test2`, created locally but never pushed. Running `git push`:
+- You are on branch `test2`, created locally but never pushed on remote.
+- Running `git push` from the branch leads to the following message:
 
 ```bash
 fatal: The current branch test2 has no upstream branch.
@@ -292,9 +292,17 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin test2
 ```
 
-#### `git pull` if no tracking info
+- Use `git push -u origin test2` or `git push --set-upstream origin test2` to push the branch and set the upstream at the same time.
+- Both commands are equivalent (`-u` is short for `--set-upstream`)
 
-You are on branch `test3`, which is not yet tracking any remote branch. Running `git pull` from `test3`:
+
+
+## What if a branch has no upstream when pulling?
+
+<div style="margin-top: 2em;"></div>
+
+- You are on branch `test3`, which is not yet tracking any remote branch.
+- Running `git pull` from `test3`:
 
 ```bash
 There is no tracking information for the current branch.
@@ -306,7 +314,6 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/test3 test3
 ```
-:::
 
 > **Note:** The easiest way to avoid both situations: always use `git push -u origin <branch>` the first time you push a new branch.
 
@@ -320,17 +327,11 @@ If you wish to set tracking information for this branch you can do so with:
 
 
 
-
-
-
-
 # Connecting Git and GitHub
 
 ## Authenticating with GitHub 🗝️
 
 ... set it up once,
-
-...can be nerve-wracking,
 
 ...done forever as long as you don't change computer,
 
@@ -341,21 +342,36 @@ If you wish to set tracking information for this branch you can do so with:
 
 #### Authentication when pushing and pulling
 
-- When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. Since August 2021 stronger authentication is required, and there are several secure methods available.
+- When you connect to a GitHub repository, GitHub needs to verify who you are using a username and password. There are several secure methods available.
 - We'll use **SSH keys**: you keep a private key on your computer and upload the matching public key to GitHub; when they match correctly, GitHub grants access.
-- Using SSH keys is more secure than passwords, avoids repeated credential prompts, and is a common, portable method for authenticating to remote services.
+- Using SSH keys is more secure than passwords and avoids repeated credential prompts.
 
 
 #### How to?
 
-- Setting up the authentication with GitHub could be somewhat cumbersome.
+- Setting up the authentication with GitHub could be tedious the first time, but worth it 😒
 - Please go to this [website from LMU Munich](https://lmu-osc.github.io/Introduction-RStudio-Git-GitHub/SSH.html) and follow the steps to authenticate with GitHub.<br>*Credits*: Open Science Center at LMU Munich (Mike Croucher & Malika Ihle)
+
+
+## Short words on SSH Keys
+
+#### What are SSH keys?
+
+- **SSH (Secure Shell)** uses a key pair (a **private key** which stays on your computer and a **public key** which is uploaded to GitHub) to authenticate without a password.
+- When you connect, GitHub checks if your private key matches the public key on file. If yes, access is granted, no password needed.
+
+#### SSH keys are per machine
+
+- Your SSH key is tied to the computer where it was generated. If you switch to a new laptop, you need to generate a new key and add it to GitHub again
+- You can have multiple public keys registered on GitHub (one per machine)
+
+> **Note:** Never share your private key. Not by email, not on GitHub, not anywhere. It belongs to [.gitignore]{.path}.
 
 
 
 ## Test your connection
 
-Test your connection using the following code.
+Once you've set up your SSH key, test your connection using the following code.
 
 ```bash
 ssh -T git@github.com
@@ -370,7 +386,7 @@ ssh -T git@github.com
 
 ## Cloning the course repository
 
-How to clone the course repository will be covered in the exercise session, but here is a quick overview of the steps.
+How to clone the course repository will be covered in the **exercise session**, but here is a quick overview of the steps.
 
 
 
@@ -404,14 +420,14 @@ Go on [https://github.com/ASallin/BECON_4222_Introduction_Programming](https://g
 
 #### 3. Clone the course repository.
 
-The course is public, so cloning via HTTPS will work without a SSH key. However, cloning via the SSH URL requires a configured SSH key.
+The course is public, so cloning via HTTPS will work without a SSH key.
 
-
+#### Using HTTPS (no SSH key needed)
 ```bash
 git clone https://github.com/ASallin/BECON_4222_Introduction_Programming.git
 ```
 
-or
+#### Using SSH
 
 ```bash
 git clone git@github.com:ASallin/BECON_4222_Introduction_Programming.git
@@ -436,7 +452,7 @@ Introduction_to_programming/
 
 Every week, you can refresh the course content with `git pull`.
 
-> **Note**: this is experimental. **The course materials uploaded on Canvas every week are the official version.** If you want to use the GitHub repository, make sure to pull the latest changes before starting to work on the exercises. You can also check the commit history to see what has changed since the last upload on Canvas.
+> **Note**: this is experimental. **The course materials uploaded on Canvas every week are the official version.** If you want to use the GitHub repository, make sure to pull the latest changes before starting to work on the exercises.
 
 
 
@@ -450,13 +466,13 @@ Every week, you can refresh the course content with `git pull`.
 1. On your GitHub account, click **New repository**
 ![](../../assets/img/lecture_03_github/create_remote.png){width=100%}
 
-2. Choose the paramaters:
+2. Choose the parameters:
   - **Name** (e.g., `git-practice-week03`)
   - **Visibility**: Public (anyone can see) or Private (only you and collaborators)
   - **Add a README file**
 :::
 ::: {.column}
-![](../../assets/img/lecture_03_github/create_remote_step2.png){width=100%}
+![](../../assets/img/lecture_03_github/create_remote_step2.png){width=80%}
 :::
 :::
 
@@ -465,56 +481,69 @@ Every week, you can refresh the course content with `git pull`.
 
 ::: {.columns}
 ::: {.column}
-- First thing visitors see when they open your repo
+- First thing visitors and collaborators see when they open your repo
 - Written in Markdown (same syntax as Quarto)
 - Should describe: what the project is, how to install/run it, how to contribute
 - A good README makes your project accessible and professional
 :::
 ::: {.column}
-![](../../assets/img/lecture_03_github/repo_overview.png){width=100%}
+::: {.Example style="font-size: 0.8em;"}
+```markdown
+# GoldenEye Weapon System – Analysis
+
+Economic impact of the GoldenEye satellite on financial markets.
+
+## How to run
+1. Install dependencies: `uv sync`
+2. Run the analysis: `uv run python goldeneye.py`
+
+## Data
+SEVERNAYA station sensor logs, 1995. Source undisclosed.
+```
 :::
 :::
+:::
+
+
 
 
 ## Create a local repository and link it to GitHub
 
-::: {.panel-tabset}
+<div style="margin-top: 2em;"></div>
 
-### Create a local repo first, then link it to GitHub
+#### Two scenarios when connecting a local repository to a remote on GitHub:
 
-::: {.columns}
-::: {.column}
+1. **Scenario 1:** You already have a local repo and want to push it to GitHub
+2. **Scenario 2:** You start from scratch: you create the repo on GitHub and clone it locally
 
-I want to link my GitHub repository `git-practice-week03` to my local repository.
+
+## Scenario 1: You already have a local repo and want to push it to GitHub
+
+<div style="margin-top: 2em;"></div>
+
+You've been working locally and now want to publish your project on GitHub.
+
+1. Create an **empty** repo on GitHub (no README, no [.gitignore]{.path})
+2. Link your local repo to it and push:
 
 ```bash
-git init
 git remote add origin https://github.com/ASallin/git-practice-week03.git
-git fetch origin
-git switch -c main --track origin/main
-# then work on your local repository and push changes to GitHub
+git push -u origin main
 ```
 
-> **Note**: `git pull origin main` does not work here, because the local repository is not yet linked to the remote. You need to run `git fetch origin` first to get the remote branches, then you can switch to the main branch and pull changes.
-:::
-::: {.column}
-![](../../assets/img/lecture_03_github/git_remote_add.png){width=100%}
-:::
-:::
 
-### Clone the repo from GitHub locally
+
+## Scenario 2: You start from scratch: you create the repo on GitHub and clone it locally
+
+<div style="margin-top: 2em;"></div>
+
+Create the repo on GitHub first, then clone it locally:
 
 ```bash
-git clone git@github.com:yourusername/git-practice-week03.git
+git clone https://github.com/ASallin/git-practice-week03.git
 ```
 
-##### My recommendation: use this option!
-When you clone a repository, the remote is set up for you automatically, and you can start working right away.
-
-:::
-
-
-
+- It's that simple 😎
 
 
 
@@ -549,30 +578,38 @@ A **pull request** (PR) is a request to merge changes from one branch into anoth
 
 1. Create a branch and make your changes
 2. Push the branch to GitHub: `git push -u origin my-branch`
-3. On GitHub, open a **Pull Request** from `my-branch` → `main`
+3. On GitHub, open a **Pull Request** from `my-branch` → `main` (you are usually invited to do so)
 4. Collaborators review, comment, request changes
 5. Once approved, **merge** the PR
 
 PRs keep the `main` branch clean and give the team a chance to review code before it's integrated.
 
+I find PRs to be flexible (enough), and very helpful to avoid merge conflicts.
+
+
 
 ## When Should you Start using PRs?
 
-- Maybe your project doesn't need these features yet
+- Maybe your project doesn't need these features yet, but try it
 - Often it makes sense to use pull requests even when collaborating with just a few people
   - To avoid merge conflicts
   - Also for reviewing each others changes
 - Many companies require code reviews and using PRs
 
 
+## A rule of collaboration
 
-# Advanced Git and GitHub
+##### Nobody pushes directly to `main`,  everyone works on a branch and contributes via a pull request.
+
+- Avoids headaches with impossible merge conflicts
+- Keeps a collaborative approach
+- ...
+
+# Advanced Git and GitHub <br>(not exam-relevant📕)
 
 ## Advanced Git and GitHub
 
-There are many more features of Git and GitHub that we won't cover in this course. Explore them on your own if you're interested.
-
-You can start incorporating these features as you become more comfortable with Git and GitHub. Not every project needs them.
+There are many more features of Git and GitHub that we won't cover in this course. You'll learn the rest when you need it (I still discover so many new things in Git).
 
 #### In Git:
 - **Hooks**: trigger scripts on certain Git events (e.g., pre-commit, post-merge)
@@ -586,17 +623,15 @@ You can start incorporating these features as you become more comfortable with G
 
 
 
-
-
 ## Issues
 
 - System to track tasks that still need to be done
 - Allows for discussion
 - When an issue is done, it is "closed"
 
-::: Example
+::: {.Example .absolute bottom=20 style="font-size: 0.8em;"}
 
-Go on [the github page of the `BFS` package  (API wrapper from the Swiss Federal Statistical Office)](https://github.com/lgnbhl/BFS/issues) and look at the different issues.
+Go on [the GitHub page of the `BFS` package (API wrapper from the Swiss Federal Statistical Office)](https://github.com/lgnbhl/BFS/issues) and look at the different issues.
 
 :::
 
@@ -613,48 +648,57 @@ Go on [the github page of the `BFS` package  (API wrapper from the Swiss Federal
 
 - Host your own website there **for free** on GitHub Pages
 - You can create websites for specific projects (i.e. repositories)
-  - \<your_gh_username\>.github.io/\<your_repo_name\>
-- Special repository name: \<your_gh_username\>.github.io to create a personal page (portfolio, blog, etc.)
+  - [\<your_gh_username\>.github.io/\<your_repo_name\>]{.path}
+- Special repository name: [\<your_gh_username\>.github.io]{.path} to create a personal page (portfolio, blog, etc.)
 
+
+::: {.Example .absolute bottom=20 style="font-size: 0.8em;"}
+<div style="margin-top: -2em;"></div>
 ::: {.columns}
-::: {.column}{width=70%}
-
+::: {.column width="70%"}
 #### Create a page in 10mn from a template:
 - Go to [https://github.com/arifszn/gitprofile](https://github.com/arifszn/gitprofile) and fork the repository
 - Enable GitHub Pages (→ Settings) and GitHub Actions (→ Actions)
 - Look at the website at https://\<your-username\>.github.io/gitprofile/
 - Configure `gitprofile.config.ts` to customize your profile page.
 :::
-::: {.column}{width=30%}
+::: {.column width="30%"}
 ![](../../assets/img/lecture_03_github/github_page.png){width=100%}
 :::
 :::
-<!-- end columns -->
+<div style="margin-top: -2em;"></div>
+:::
 
-## GitHub Pages
+
+## GitHub Pages and Quarto Websites
 
 ::: {.columns}
-::: {.column}{width=70%}
-#### Quarto website:
+::: {.column width="50%"}
+#### Quarto website
 - You can also create a Quarto website and host it on GitHub Pages. Check out the [Quarto documentation](https://quarto.org/docs/websites/publishing-to-github/) for more details.
 - Basic and static
 
-#### Examples (you can fork them and start from there)
-- Data scientist profiles: [Silvia Canelòn](https://silviacanelon.com/), [Samantha Csik](https://samanthacsik.github.io/) (great tips on blogs), [full tutorial by Marvin Schmitt](https://marvin-schmitt.com/blog/website-tutorial-quarto/)
-- My personal website: [https://asallin.github.io/](https://asallin.github.io/)
 :::
-::: {.column}{width=30%}
+::: {.column width="50%"}
 ![Example: [https://silviacanelon.com/](https://silviacanelon.com/)](../../assets/img/lecture_03_github/quarto_page.png){width=100%}
 :::
 :::
-<!-- end columns -->
+
+::: {.Example .absolute bottom=0 style="font-size: 0.8em;"}
+- Data scientist profiles: [Silvia Canelòn](https://silviacanelon.com/), [Samantha Csik](https://samanthacsik.github.io/) (great tips on blogs), [full tutorial by Marvin Schmitt](https://marvin-schmitt.com/blog/website-tutorial-quarto/)
+- My personal website: [https://asallin.github.io/](https://asallin.github.io/)
+
+<div style="margin-top: -1em;"></div>
+
+##### You can fork them and start from there
+:::
 
 
 
-# Going Beyond
+# Going Beyond <br>(not exam-relevant 📕)
 
-::: {.absolute bottom=20 style="font-size: 0.7em; color: #6b7280;"}
-Thanks Jan Simson for the inspiration!
+::: {style="font-size: 0.7em; color: #6b7280; margin-top: 8em;"}
+Thanks Jan Simson for the inspiration on this chapter
 :::
 
 ## Visualizing Git repositories
@@ -675,20 +719,42 @@ Several tools exist to visualize `git` repositories. These can be useful to get 
 
 
 
+# Conclusion
 
-# Let's get our hands dirty!
+## What we have covered so far
+
+::: {style="font-size: 0.8em;"}
+#### Week 1 — Getting started
+- Terminal, file paths, naming conventions
+- IDEs and VS Code
+- The importance of virtual environments for Python, with `uv`
+
+#### Week 2 — Local version control with Git
+- Tracking changes: `git add`, `git commit`, [.gitignore]{.path}
+- Branches and merging; resolving conflicts
+
+#### Week 3 — Collaborating with GitHub
+- Connecting local repos to GitHub (clone, push, pull)
+- Pull requests as the standard review workflow
+:::
+
+##### You are now ready for the next step: Python 🐍!
+
+
+
+# Let's get our hands dirty! {background-color="black"}
 
 ## Practical: A Summary exercise {background-color="black"}
 
 #### This is a guided demo exercise to practice the full collaborative workflow using GitHub and pull requests.
 
 - Create teams of 2 people.
+- Open the exercise document [ex03_git_collaboration.qmd]{.path} and follow the instructions.
 - For this exercise to work, you need to have installed Git and set up your GitHub account with SSH keys.
 - If you haven't done that yet, participate actively with the demo.
 
 
-## I need a volunteer! {background-color="black"}
-
+## I need two volunteers! {background-color="black"}
 
 
 
