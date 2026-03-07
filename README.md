@@ -1,8 +1,12 @@
 # 4,222 Introduction to Programming
 
+![](assets/img/banner_course.png)
+
 ## Welcome
 
-Welcome to the course "6,243 Introduction to Programming"! This repository contains all course materials, exercises, and administrative information you'll need throughout the semester.
+Welcome to the course "4,222 Introduction to Programming"! This repository contains all course materials, exercises, and administrative information you'll need throughout the semester.
+
+Website: https://asallin.github.io/BEcon_4222_Introduction_Programming/
 
 ## Course Philosophy
 
