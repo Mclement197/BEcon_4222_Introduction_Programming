@@ -1,0 +1,737 @@
+---
+title: '4,222 Introduction to Programming'
+subtitle: 'Exercise Week 4: Introduction to Python'
+author: "Franziska Bender"
+date: "2026-03-09"
+format: 
+  html:
+    toc: true          # Adds a Table of Contents on the side
+    toc-depth: 4
+    code-fold: false   # Keeps your code visible (set to true to hide it)
+    theme: cosmo       # A clean, built-in professional look
+    embed-resources: true
+    self-contained-math: true
+execute:
+  echo: true           # Shows your code in the output
+  freeze: false
+  error: true
+jupyter: python3       # Tells Quarto to use your Python 3 kernel
+---
+
+<style>
+#title-block-header .subtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+</style>
+
+## Foundations: Variables, Logic & Control Flow
+
+
+### E1: Types and Conversion
+
+```{python}
+a = "15"
+b = 4
+c = 2.5
+d = False
+```
+
+1. What is the type of each variable?
+2. How can you add `a` and `b`
+3. What happens if you convert `d` to an integer?
+
+::: {.callout-tip collapse="true" title="Solution E1.1"}
+```{python}
+print(type(a))
+print(type(b))
+print(type(c))
+print(type(d))
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution E1.2"}
+```{python}
+# Convert string to integer first
+added = int(a) + b
+print(added)
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution E1.3"}
+```{python}
+# Convert boolean to integer
+d_integer = int(d)
+print(d_integer)
+
+# Reverse it
+d_bool = bool(d_integer)
+print(d_bool)
+```
+:::
+
+### E2: Simple List Manipulation
+
+```{python}
+animals = ["cat", "dog", "rabbit", "horse"]
+```
+
+
+1. Print the first animal
+2. Print the last animal
+3. Add 'hamster' to the list
+4. Remove 'rabbit' from the list
+5. Print the length of the list.
+
+::: {.callout-tip collapse="true" title="Solution E2"}
+```{python}
+# 1. Print the first animal
+print(animals[0])
+
+# 2. Print the last animal
+print(animals[-1])
+
+# 3. Add 'hamster' to the list
+animals.append("hamster")
+
+# 4. Remove 'rabbit' from the list
+animals.remove("rabbit")
+
+# 5. Print the length of the list
+print(len(animals))
+
+# (Optional) Print the final list to see the result
+print(animals)
+```
+:::
+
+### E3: Boolean Expressions
+
+For each line predict whether it is `True` or `False` before running it.
+
+```{python}
+#| eval: false
+5 > 3 and 2 < 1
+10 == "10"
+not (4 >= 4)
+"cat" in ["dog", "cat", "bird"]
+```
+
+Then run the code and check.
+
+::: {.callout-tip collapse="true" title="Solution E3"}
+```{python}
+print("line 1:", 5 > 3 and 2 < 1)
+print("line 2:", 10 == "10")
+print("line 3:", not (4 >= 4) )
+print("line 4:", "cat" in ["dog", "cat", "bird"])
+```
+:::
+
+### E4: Basic if Statements
+
+```{python}
+temperature = 18
+```
+
+1. print "Cold" if temperature < 10
+2. print "Mild" if temperature is between 10 and 20 (inclusive)
+3. print "Warm" otherwise
+
+::: {.callout-tip collapse="true" title="Solution E4"}
+```{python}
+temperature = 18
+
+if temperature < 10:
+    print("Cold")
+elif temperature <= 20:
+    print("Mild")
+else:
+    print("Warm")
+```
+:::
+
+
+### E5: Simple Loop
+
+```{python}
+numbers = [4, 7, 1, 9, 2]
+```
+
+1. Loop over the list and print each number
+2. Print only numbers greater than 5
+3. Compute the sum of all numbers using a loop
+
+::: {.callout-tip collapse="true" title="Solution E5"}
+```{python}
+# 1) Print each number
+for n in numbers:
+    print(n)
+
+# 2) Print only numbers greater than 5
+for n in numbers:
+    if n > 5:
+        print(n)
+
+# 3) Compute the sum using a loop
+total = 0
+for n in numbers:
+    total += n
+
+print("Sum:", total)
+```
+:::
+
+### E6: Debug Task
+
+```{python}
+#| eval: false
+age = 20
+
+if age = 18:
+    print("Exactly 18")
+```
+
+- Why does this fail?
+- Fix the error
+
+::: {.callout-tip collapse="true" title="Solution"}
+
+This is one of the most common mistakes in Python! It fails because you are using a single equals sign (`=`) inside the if statement.
+
+- A single equals sign (`=`) is the assignment operator. It tells Python to "store the value 18 inside the variable age". 
+- To check if two things are equal, you must use the equality operator, which is a double equals sign (`==`).
+
+Fixed Code:
+```{python}
+age = 20
+
+# Use == to check for equality
+if age == 18:
+    print("Exactly 18")
+else:
+    print("Not 18")
+```
+
+:::
+
+
+
+
+## Analyzing Data with Lists & Dictionaries
+
+### E7: Lists
+You are given a list of order amounts (in dollars):
+
+```{python}
+orders = [120, 45, 300, 89, 15, 220, 60, 500, 75]
+```
+
+**Basic Inspection:**
+
+1. Print the first order
+2. Print the last order
+3. Print how many orders there are.
+4. Print the highest order
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) First order
+print(orders[0])
+
+# 2) Last order
+print(orders[-1])
+
+# 3) Number of orders
+print(len(orders))
+
+# 4) Highest order using max()
+print(max(orders))
+```
+:::
+
+
+**Filtering**
+
+1. Print all orders above 100.
+2. Count how many orders are below 50.
+3. Create a new list called large_orders that contains only orders above 200.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) Print all orders above 100
+for order in orders:
+    if order > 100:
+        print(order)
+
+# 2) Count how many orders are below 50
+count_below_50 = 0
+for order in orders:
+    if order < 50:
+        count_below_50 += 1
+print(count_below_50)
+
+# 3) Create a list of orders above 200
+large_orders = []
+for order in orders:
+    if order > 200:
+        large_orders.append(order)
+print(large_orders)
+```
+:::
+
+
+**Aggregation**
+
+1. Compute the total revenue using a loop.
+2. Compute the average order value (do not use sum()).
+3. Count how many orders are between 50 and 200 (inclusive).
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) Total revenue using a loop
+total = 0
+for order in orders:
+    total += order
+print(total)
+
+# 2) Average order value (do not use sum())
+count = 0
+total = 0
+for order in orders:
+    total += order
+    count += 1
+avg = total / count
+print(avg)
+
+# 3) Count how many orders are between 50 and 200 inclusive
+count_50_200 = 0
+for order in orders:
+    if 50 <= order <= 200:
+        count_50_200 += 1
+print(count_50_200)
+```
+:::
+
+
+
+
+**Modifying the List**
+
+The store decides to remove all orders below 50.
+
+1. Remove all orders below 50 from the original list.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) build a new list
+filtered_orders = []
+for order in orders:
+    if order >= 50:
+        filtered_orders.append(order)
+
+orders = filtered_orders
+print(orders)
+```
+:::
+
+
+**Challenge**
+
+1. Find the second highest order without using sorted(). Hint: Keep track of the highest value seen so far `max1`, and the second highest seen so far `max2`, loop through the list and update them.
+2. Determine whether there is at least one order above 400. Hint: Use a flag variable like `found_over_400=False`, loop through the list and set flag variable to `True` if you found one. Use `break` to stop early.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) Second highest order without sorted()
+max1 = None
+max2 = None
+
+for order in orders:
+    if (max1 is None) or (order > max1):
+        max2 = max1
+        max1 = order
+    elif (order != max1) and ((max2 is None) or (order > max2)):
+        max2 = order
+
+print("Highest:", max1)
+print("Second highest:", max2)
+
+# 2) At least one order above 400
+found_over_400 = False
+for order in orders:
+    if order > 400:
+        found_over_400 = True
+        break
+
+print(found_over_400)
+```
+:::
+
+
+### E8: Dictionaries
+
+You are given a dictionary containing GDP (in billions USD) for several countries:
+
+```{python}
+gdp = {
+    "USA": 25000,
+    "China": 18000,
+    "Germany": 4000,
+    "Japan": 4200,
+    "India": 3500
+}
+```
+
+
+**Basic Access and Modification**
+
+1. Print the GDP of Germany.
+2. Print how many countries are in the dictionary.
+3. Add a new country: "Brazil" with GDP 2100.
+4. Update Japan’s GDP to 4300.
+5. Remove "India" from the dictionary.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) GDP of Germany
+print(gdp["Germany"])
+
+# 2) Number of countries
+print(len(gdp))
+
+# 3) Add Brazil
+gdp["Brazil"] = 2100
+
+# 4) Update Japan
+gdp["Japan"] = 4300
+
+# 5) Remove India
+del gdp["India"]
+
+print(gdp)
+```
+:::
+
+
+**Looping over the Dictionary**
+
+1. Print all country names
+2. Print all GDP values
+3. Print each country and its GDP in this format: `China : 18000`
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) Print all country names (keys)
+for country in gdp.keys():
+    print(country)
+
+# 2) Print all GDP values
+for value in gdp.values():
+    print(value)
+
+# 3) Print "country: gdp"
+for country, value in gdp.items():
+    print(f"{country}: {value}")
+```
+:::
+
+
+
+**Filtering and Counting**
+
+1. Print all countries with GDP above 5000.
+2. Count how many countries have GDP below 5000.
+3. Create a new dictionary called `large_economies` containing only countries with GDP above 10000.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1) Countries with GDP above 5000
+for country, value in gdp.items():
+    if value > 5000:
+        print(country)
+
+# 2) Count how many countries have GDP below 5000
+count_below_5000 = 0
+for value in gdp.values():
+    if value < 5000:
+        count_below_5000 += 1
+print(count_below_5000)
+
+# 3) New dict with GDP above 10000
+large_economies = {}
+for country, value in gdp.items():
+    if value > 10000:
+        large_economies[country] = value
+
+print(large_economies)
+```
+:::
+
+
+
+**Aggregation**
+
+1. Compute the total GDP of all countries.
+2. Compute the average GDP.
+3. Find the country with the highest GDP.
+
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+
+# 1) Total GDP
+total = 0
+for value in gdp.values():
+    total += value
+print(total)
+
+# 2) Average GDP
+avg = total / len(gdp)
+print(avg)
+
+# 3) Country with highest GDP
+max_country = None
+max_value = None
+
+for country, value in gdp.items():
+    if (max_value is None) or (value > max_value):
+        max_value = value
+        max_country = country
+
+print(max_country, max_value)
+```
+:::
+
+
+## Functions
+
+### E9: Your First Economic Function
+
+In economics, we often need to adjust nominal values for inflation to find the "real" value. The formula to calculate Real GDP is:
+
+$$ Real GDP = \frac{Nominal GDP}{ GDP Deflator}) * 100 $$
+
+
+
+- Define a function called `calculate_real_gdp` that takes two arguments: `nominal_gdp` and `deflator`.
+- Inside the function, calculate the real GDP using the formula above.
+- return the calculated real GDP.
+- Test your function by calling it with a nominal GDP of 15000 and a deflator of 120. Save the result to a variable and print it.
+
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# 1. Define the function
+def calculate_real_gdp(nominal_gdp, deflator):
+    """
+    Calculates Real GDP given Nominal GDP and the GDP Deflator.
+    """
+    # 2. Calculate the real value
+    real_gdp = (nominal_gdp / deflator) * 100
+    
+    # 3. Return the result
+    return real_gdp
+
+# 4. Test the function
+test_nominal = 15000
+test_deflator = 120
+
+# Call the function and save the output
+my_real_gdp = calculate_real_gdp(test_nominal, test_deflator)
+
+print(f"The Real GDP is: {my_real_gdp}")
+
+```
+:::
+
+## Building a Price Index Calculator
+
+
+Measuring inflation is a fundamental task in macroeconomics. To do this, statistical agencies construct a "Price Index" (like the Consumer Price Index), which tracks how the cost of a specific household basket of goods changes over time.
+
+In this exercise, you will act as a data scientist for a statistical agency. Instead of calculating price changes by hand, you will build a simplified, automated Price Index Calculator. By the end of this project, you will have written a modular Python program that can take any basket of goods, verify the data, apply budget weights, and compute the final inflation index.
+
+
+**The Formula**
+
+$$ \text{Index} = \frac{\text{Cost}_{\text{current}}}{\text{Cost}_{\text{baseline}}}\times 100$$
+
+
+**Your Data:**
+
+Run the cell below to load your raw data into Python. We have dictionaries representing average prices for four staple goods in a base year and a current year. We also have an optional dictionary of weights, representing the percentage of their budget a typical household spends on each item.
+
+```{python}
+base = {"bread": 2.0, "milk": 1.5, "eggs": 3.0, "rice": 2.5}
+current = {"bread": 2.4, "milk": 1.8, "eggs": 2.9, "rice": 2.7}
+
+# Optional weights (budget shares). These should sum to 1.0, but don't assume they always will.
+weights = {"bread": 0.35, "milk": 0.25, "eggs": 0.1, "rice": 0.3}
+```
+
+
+#### Task 1: Validate the Basket
+
+When calculating a price index (like the Consumer Price Index), economists must track the cost of a fixed basket of goods over time. If your base year basket contains "apples and bread," but your current year basket contains "apples and smartphones," your inflation measurement will be completely skewed. Before we do any math, we need to make sure the items in our baskets haven't changed.
+
+
+**Your Task:**
+
+Write a function `check_same_items(base_prices, current_prices)`
+
+- It should compare the items (the keys) in both dictionaries.
+- It must return `True` if both dictionaries contain the exact same items, and `False` if the basket definition has changed.
+
+Hints: 
+
+- You only need to compare the keys, not the values.
+- `dict.keys()` gives you all keys.
+- Comparing sets is an easy way (order doesn’t matter). Use `set()` to make something a set.
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+def check_same_items(base_prices, current_prices):
+    set_of_base_items = set(base_prices.keys())
+    set_of_current_items = set(current_prices.keys())
+    return set_of_base_items == set_of_current_items
+
+print(check_same_items(base, current))  # True
+```
+:::
+
+
+
+#### Task 2: Compute Basket Cost
+
+Once we know our basket of goods is consistent, the next step in building a price index is figuring out how much that entire basket costs in a given period.
+
+**Your Task:**
+
+Write a function `basket_cost(prices)` that returns the total cost of buying 1 unit of every item in the basket. This is just the sum of all values in the dictionary.
+
+`prices` is a dictionary where:
+
+- keys are item names (strings)
+- values are prices (numbers)
+- you can use `sum()`
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+def basket_cost(prices):
+    cost = sum(prices.values())
+    return cost
+
+print(basket_cost(base))
+print(basket_cost(current))
+```
+:::
+
+
+
+#### Task 3: Compute weighted basket cost (optional argument)
+
+In our previous step, we assumed consumers buy exactly one unit of every item in the basket. But in reality, a household spends a much larger share of its budget on rent than on coffee! To make an inflation measure realistic, economists apply weights (budget shares or quantities) to prices.
+
+**Your Task:**
+
+Write a function `basket_cost(prices, weights=None)` that calculates the total cost based on whether weights are provided.
+
+- Unweighted basket cost if weights is None (just the sum of all prices)
+- Weighted basket cost if weights is provided using:
+
+$$ \sum_i p_i w_i$$
+
+`weights` is a dictionary mapping items to weights (budget shares) in the beginning of the exercise.
+
+
+Hints: 
+
+- Start with `if weights is None`:  Unweighted case is the same as previously
+- For the weighted case, loop over `prices.items()`.
+- Inside the loop extract the weight for the current item using `weights.get(item)` 
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+def basket_cost(prices, weights=None):
+    # Unweighted
+    if weights is None:
+        return sum(prices.values())
+
+    # Weighted
+    total = 0
+    for item, price in prices.items():
+        w = weights.get(item) 
+        total += price * w
+    return total
+```
+:::
+
+
+
+#### Task 4: Calculate Price Index
+
+We finally have all the pieces required to build our master price index calculator! A price index doesn't just look at raw dollar amounts; it normalizes the total cost of the base year's basket to exactly 100. Every subsequent year is then expressed relative to that base year.
+
+To build this cleanly, we don't want to write one massive block of code. Instead, professional programmers write a "master" function that delegates work to the smaller "helper" functions they already built. This master function will first use our safeguard from Task 1 to check the data, then use our calculator from Task 3 to find the costs, and finally apply the index formula.
+
+
+**Your Task**
+
+Write a function `price_index(base_prices, current_prices, weights=None)` that returns a price index where the base year equals 100.
+
+Your function should:
+
+1. Check that both dictionaries contain the exact same basket items. If they do not match, `print` an error message and `return` `None`.
+2. Compute basket cost for base and current using your `basket_cost(...)` function.
+3. Calculate the final index using the formula: $\text{Index} = (\text{Cost}_{\text{current}}/(\text{Cost}_{\text{baseline}})\times 100$ and return the index.
+
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+def price_index(base_prices, current_prices, weights=None):
+    # Check that both dictionaries contain the same items
+    if not check_same_items(base_prices, current_prices):
+        print("Error: Base and current baskets must contain the same items.")
+        return None
+
+    # compute base cost
+    base_cost = basket_cost(base_prices, weights)
+    if base_cost == 0:
+        print("Error: Base basket cost is 0, cannot compute index.")
+        return None
+    # compute current cost
+    current_cost = basket_cost(current_prices, weights)
+
+    # calculate index
+    index = (current_cost / base_cost) * 100
+
+    return index
+```
+:::
+
+
+
+#### Task 5: Use the full price index calculator
+
+Now use your `price_index()` function with the dictionaries `base`, `current`, and `weights`.
+
+1. Compute the unweighted price index 
+2. Compute the weighted price index
+3. Print both results
+
+::: {.callout-tip collapse="true" title="Solution"}
+```{python}
+# Final example: use the full price index calculator
+
+unweighted_index = price_index(base, current)
+weighted_index = price_index(base, current, weights)
+
+print(f"Unweighted price index: {unweighted_index:.2f}")
+print(f"Weighted price index: {weighted_index:.2f}")
+
+```
+:::
+
+
+

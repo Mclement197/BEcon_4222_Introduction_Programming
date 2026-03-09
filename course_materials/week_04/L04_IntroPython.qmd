@@ -1,0 +1,1391 @@
+---
+title: '4,222 Introduction to Programming'
+subtitle: 'Week 4: Introduction to Python'
+author: "Franziska Bender"
+date: "2026-03-09"
+format: 
+  html:
+    toc: true          # Adds a Table of Contents on the side
+    toc-depth: 4
+    code-fold: false   # Keeps your code visible (set to true to hide it)
+    theme: cosmo       # A clean, built-in professional look
+    embed-resources: true
+execute:
+  echo: true           # Shows your code in the output
+  freeze: false
+  error: true
+jupyter: python3       # Tells Quarto to use your Python 3 kernel
+---
+
+<style>
+#title-block-header .subtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+</style>
+
+
+<style>
+.mermaid .edgeLabel,
+.mermaid .edgeLabel p,
+.mermaid .label {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.mermaid .edgeLabel rect {
+  fill: white;
+  opacity: 1;
+}
+</style>
+
+
+In this session, we will explore the core building blocks of Python for economic analysis. You will learn how to store and organize data, use loops and conditional statements to automate decision-making, and write custom functions for standard calculations.
+
+
+## Python Basics: Variables, Comments, and Printing
+
+Before we look at specific data types, let's cover three fundamental concepts you will see in almost every code block: assigning variables, writing comments, and printing output.
+
+
+**1. Variables and Assignment**
+
+In Python, you use a single equals sign (`=`) to assign a value to a variable name. Think of a variable as a labeled box where you store data to use later.
+
+```{python}
+# Assigning values to variables
+country_name = "Switzerland"
+inflation_rate = 1.2
+```
+
+**Naming Best Practices:** Use descriptive names and separate words with underscores (this is called snake_case). `gdp_growth_2023` is much better than `x`.
+
+
+**2. Comments (#)**
+
+Any line that starts with a hash symbol (`#`) is a comment. Python completely ignores these lines. You use them to leave notes for yourself or your collaborators explaining why the code does what it does.
+
+```{python}
+# This calculates the real interest rate
+nominal_rate = 5.0
+inflation = 2.0
+real_rate = nominal_rate - inflation  # You can also put comments at the end of a line
+```
+
+
+**3. Printing and f-strings**
+
+If you want Python to display a result to the screen, you use the `print()` function.
+
+Often, you will want to combine text and variables in your output. The modern, cleanest way to do this in Python is using f-strings (formatted strings). Simply place an `f` right before the opening quotation mark, and put your variables inside curly braces `{}`.
+
+```{python}
+country = "Japan"
+unemployment = 2.6
+
+# The 'f' tells Python to look for the curly braces and insert the variables
+print(f"The unemployment rate in {country} is currently {unemployment}%.")
+```
+
+
+
+
+## Data Types and Basic Structures
+
+### Data Types
+
+Understanding data types is essential because Python needs to know whether a piece of information is a number it can use in a calculation (like GDP) or text it should just read (like a country's name). If you try to run a mathematical formula on data that Python secretly thinks is text, your code will crash.
+
+1. `int`: (Integer) Whole numbers without decimals. Example: Population count, number of years (2024).
+2. `float`: (Floating Point): Numbers with decimals. Example: Interest rates (0.05)
+3. `str`: (String): Text data. In Python, you wrap these in quotes. Example: 'Switzerland'
+4. `bool`: (Boolean) Binary logic. It is either `True` or `False`
+5. `NoneType`: `None`
+
+If you are ever unsure how Python is classifying a specific variable, you can use the `type()` function to check.
+
+```{python}
+x = 10
+print(type(x))
+```
+
+```{python}
+y = 10.9
+print(type(y))
+```
+
+```{python}
+s1 = 'Hello World'
+print(type(s1))
+```
+
+
+```{python}
+example_bool = True
+print(type(example_bool))
+```
+
+```{python}
+var = None
+print(type(var))
+```
+
+Types determine what operations are allowed (e.g., you can’t add a number to text without converting)
+
+```{python}
+# Adding 'int' and 'str' will raise an error
+1 + "12"
+```
+
+
+A quick note on Error Messages: When you run the code above, Python will print a block of text called a "Traceback". It tells you *where* the error occured and in the bottom line *what* exactly went wrong (in this case, a TypeError and an explanation that Python doesn't know how to add an integer and a string together).
+
+**Type Conversions**
+
+Sometimes you need to change a variable from one data type to another, which you can do using these built-in functions:
+
+- `int()`: converts to integer
+- `float()`: converts to float
+- `str()`: converts to string
+- `bool()`: converts to boolean
+
+```{python}
+a_string = "12"
+a_num = int(a_string)
+print(a_num + 2)
+```
+
+*A quick warning:* Python can only perform a conversion if the underlying data makes logical sense. For example, while int("12") works perfectly, trying to run int("Switzerland") will immediately result in an error.
+
+
+### Basic Data Structures
+
+When you have more than one piece of data, you need a structure to hold them. Python has four "native" containers.
+
+#### A. The list `[]`
+
+A list is an **ordered, mutable collection** of items. Ordered means each item has a fixed position (index). Mutable means you can change the list after creating it.
+
+
+```{python}
+# Creating a list
+countries = ["Argentina", "Brazil", "Switzerland"]
+
+# Accessing by index
+print(countries[0])   # First item
+print(countries[-1])  # Last item
+
+# Lists are mutable
+countries.append("Japan")
+print(countries)
+```
+
+Important: Python uses zero-based indexing. This means it starts counting at `0`, not `1`. So the first item is at index `[0]`, the second is at `[1]`, and so on.
+
+
+
+#### B. The Tuple `()`
+
+A tuple is an **ordered** collection of items, just like a list, so you can use indexing ([0], [-1]) and it preserves order. The key difference is that tuples are immutable: once created, you can’t change, add, or remove elements.
+
+When to use tuples: 
+
+- Use a tuple when the group of values should stay the same (e.g., coordinates, RGB color, a record like (country, year)).
+- Use a list when you plan to modify the collection (append, remove, sort, etc.).
+
+```{python}
+# Creating and Indexing a Tuple
+# Tuples: ordered + immutable
+coords = (47.3769, 8.5417)  # (latitude, longitude)
+
+print(type(coords))
+print(coords[0])   # first item
+print(coords[-1])  # last item
+```
+
+```{python}
+#| eval: false
+# This would raise an error because tuples are immutable:
+"""
+coords[0] = 0
+"""
+```
+
+```{python}
+# Tuple Unpacking
+coords = (47.3769, 8.5417)
+lat, lon = coords  # unpacking
+print(lat)
+print(lon)
+```
+
+
+#### C. The Dictionary `{key:value}`
+
+This is a "mapping" tool. Every item has a label (the key) and a value. Think of it as real dictionary or an address book. You look up the "name" (key) to find the "info" (value). Dictionaries use curly braces `{ }`, colons `:` to separate keys from values, and commas to separate entries.
+
+```{python}
+# Dictionary
+country_data = {
+    "name": "Japan",
+    "unemployment_rate": 2.6,
+    "is_island": True
+}
+
+# Accessing info via the label
+print(country_data["unemployment_rate"]) # Returns 2.6
+```
+
+*Notice that a single dictionary (or list) can hold multiple different data types at the same time. text, numbers, and booleans can all live together.*
+
+#### D. The Set `{}`
+
+A set is an **unordered** collection of **unique** elements.
+
+1. unordered --> no indexing
+2. unique --> duplicates are automatically removed
+
+
+```{python}
+# Set
+currencies = {"USD", "EUR", "USD", "CHF"}
+print(currencies) # Result: {'USD', 'EUR', 'CHF'}
+```
+
+
+```{python}
+s = {}       # This is NOT a set — it is an empty dictionary
+s = set()    # This is an empty set
+```
+
+**Set operations:**
+
+- `&`: Intersection, items in both sets
+- `|`: Union, all items that are either in one or the other set
+- `-`: Items that are in the first set but not in the second
+
+
+```{python}
+A = {"USD", "EUR", "CHF"}
+B = {"EUR", "JPY", "USD"}
+
+print(A & B)  # Intersection
+print(A | B)  # Union
+print(A - B)  # Difference
+```
+
+
+### Working with Lists
+
+How do I actually use lists to solve problems?
+
+#### Indexing and Slicing
+
+  - The first item has index `0`
+  - You can find the last item with index `-1`
+  - Slicing: `list[start : stop]`
+    - The `start` index is [included]{.text-danger}
+    - The `stop` index is [not included]{.text-danger}
+
+```{python}
+# 0. Indexing and slicing
+
+countries = ["USA", "CAN", "MEX", "GBR"]
+
+print(countries[0])  # First Item
+print(countries[2])  # Third Item
+print(countries[-1]) # Last Item
+
+# Get the first three countries (indices 0, 1, and 2)
+# It stops at index 3 and does NOT include it.
+subset = countries[0:3]
+print(subset)
+```
+
+You don't always have to write both the start and stop numbers. If you leave out the start index, Python automatically starts from the very beginning. If you leave out the stop index, Python goes all the way to the end of the list.
+
+```{python}
+# Get the first three countries 
+print(countries[:3])
+
+# Get everything from the third country onwards
+print(countries[2:])
+```
+
+
+
+#### Adding and Removing Data
+
+  - `.append(x)`: Adds an item to the very end of the list.
+  - `.remove(x)`: Finds the first instance of a specific value `x` and deletes it.
+  - `.pop(x)`: Removes item at index `x` from the list (or last item if no index is provided)
+
+```{python}
+countries.append('GER')   # adds 'GER' in the last position
+print(countries)
+```
+
+```{python}
+countries.remove('MEX')   # removes 'MEX' from list
+print(countries)
+```
+
+```{python}
+countries.pop()     # removes last item from list
+print(countries)
+```
+
+These are all *in place:* They change the list, you don't have to reassign, in fact you shouldn't reassign. 
+
+```{python}
+# Create a new list of currencies
+currencies = ["USD", "EUR", "JPY", "GBP"]
+
+# 1. The RIGHT way: Just call the method. 
+# It changes the list directly (in-place).
+currencies.remove("GBP")
+print(f"Correctly updated list: {currencies}")
+```
+
+```{python}
+# 2. The WRONG way:
+# Trying to assign the result back to the variable.
+currencies = currencies.remove("JPY")
+
+# Let's see what happened to our list...
+print(f"Oops! The list is now: {currencies}")
+print(f"The data type is: {type(currencies)}") # The list is completely gone!
+```
+
+
+
+#### Searching and Checking
+
+  - `.count(x)`: Counts how many times a value appears.
+  - `.index(x)`: Tells you the position (index) of a specific value.
+  - The `in` keyword: Returns True or False.
+
+```{python}
+# Where is 'GBR'?
+countries.index("GBR")
+```
+
+```{python}
+# Is 'POR' in the countries list?
+'POR' in countries
+```
+
+#### Sorting and Reversing
+
+  - `.sort()`: Changes the list permanently to be in order (A-Z or 0-9).
+  - `.reverse()`: Flips the current order of the list.
+
+```{python}
+countries.sort()
+print(countries)
+countries.reverse()
+print(countries)
+```
+
+
+#### Basic Stats
+
+  - `len()`: Number of items
+  - `sum()`: The total of all items (requires numeric data)
+  - `min()` and `max()`
+
+
+```{python}
+print(len(countries))
+```
+
+
+```{python}
+prices = [4.2, 3, 6]
+print(len(prices))
+print(sum(prices))
+print(max(prices))
+```
+
+
+
+### Working with Dictionaries
+
+#### Accessing and Retrieving Data
+
+  - In Python dictionaries, you use the Key inside square brackets. `dict['key']` returns the value associated with the key. 
+  - If the key doesn't exist it will return an error. The safer way to do the same is `dict.get("key")` (Returns None if the key is missing—much safer for messy data!). 
+
+
+```{python}
+# Dictionary
+country_data = {
+    "name": "Japan",
+    "unemployment_rate": 2.6,
+    "is_island": True
+}
+
+"""
+country_data['GDP'] # Will return an error because GDP doesn't exist as a key
+"""
+
+print(country_data.get('GDP'))
+print(country_data.keys())
+print(country_data.get('name'))
+
+```
+
+#### Adding and Updating
+
+- Adding: `dict['new key'] = new_value`
+- Updating: `dict['existing key'] = changed_value`
+- Removing: `del dict["key to remove"]`
+
+```{python}
+# Update: The key 'unemployment_rate' already exists
+country_data["unemployment_rate"] = 2.8
+print(country_data['unemployment_rate'])
+```
+```{python}
+# Add: The key 'gdp_billions' does NOT exist yet
+country_data["gdp_billions"] = 4200
+print(country_data['gdp_billions'])
+```
+
+```{python}
+# Permanently remove the 'is_island' key and its value
+del country_data["is_island"]
+print(country_data)
+```
+
+If you need to add or change several pieces of data at the same time, doing it line by line gets tedious. Instead, you can use the `.update()` method and pass it a new dictionary containing all the keys and values you want to add or overwrite.
+
+
+```{python}
+# Update one existing key and add two brand-new keys simultaneously
+country_data.update({
+    "unemployment_rate": 2.5,        # This overwrites the old 2.6
+    "population_millions": 125.1,    # This is a new key
+    "currency": "JPY"                # This is a new key
+})
+
+print(country_data)
+```
+
+
+
+#### Inspecting the 'Architecture'
+
+Sometimes you don't want the data; you want to know what labels are available. These are very common when writing loops.
+
+- `.keys()`: Returns all the labels.
+- `.values()`: Returns all the data points.
+- `.items()`: Returns pairs of (key, value). This is the most common way to "loop" through a dictionary.
+
+```{python}
+print(country_data.keys())
+print(country_data.values())
+print(country_data.items())
+```
+
+*Note:* These commands return special  objects (e.g., `dict_keys`), you can read them like a list, so for inspection it's no problem. But if you want to use them like a normal list (like getting the first item with `[0]`), you need to convert them first using the function `list()`
+
+```{python}
+list(country_data.keys())[0]
+```
+
+
+- `in`: you can also check membership, `in` checks keys not values
+
+```{python}
+print('unemployment_rate' in country_data)  # Returns True
+print(2.6 in country_data)                  # Returns False (because 2.6 is a value, not a key)
+```
+
+#### Nested Dictionaries
+
+A nested dictionary is simply a dictionary where the *value* attached to a key is *another dictionary*.
+
+- Creating them: You place a new set of curly braces `{}` with `key:value` pairs as the value inside the main dictionary. This is how data from web APIs is often structured when you download it.
+- Working with them: To extract a specific data point, you have to "drill down" one level at a time. You look up the first key (e.g., the country), which hands you the inner dictionary. Then, you look up the second key (e.g., the inflation rate) inside that inner dictionary. You can do this by chaining your lookups together, such as `dict.get("Outer_Key").get("Inner_Key")`.
+
+```{python}
+countries = {
+    "Japan": {"inflation": 2.6, "gdp": 4200},
+    "USA": {"inflation": 3.1, "gdp": 25000}
+}
+
+print(countries.keys()) 
+print(countries.get('Japan')) # returns value for 'Japan' (which is a dictionary!)
+print(countries.get('Japan').get('inflation'))
+```
+
+
+
+## Control Flow
+
+How you tell your script to make decisions. Instead of running every line of code from top to bottom, the computer "checks a condition" and only runs certain blocks of code if that condition is met.
+This is the logic behind filtering data, setting dummy variables, or building basic models (e.g., if inflation > 2%, then increase interest rates).
+
+
+
+### Comparison and Logical Operators
+
+To make these decisions, you use these standard "comparators":
+
+**Comparison Operators**
+
+- `==` : Equal to (Note the double equals! Single `=` is for assigning variables).
+- `!=` : Not equal to.
+- `>` / `<` : Greater than / Less than.
+- `>=` / `<=`: Greater or equal / Less or equal
+
+```{python}
+print(2 == 3)
+print(5 == 5)
+print(10 != 3)
+```
+
+Every condition evaluates to `True` or `False`.
+
+**Logical Operators**
+
+- `and` / `or` : To combine multiple conditions.
+
+```{python}
+x = 7
+print(x > 5 and x < 10)     # True
+print(x > 10 or x < -10)    # False
+print(not x > 3)            # False
+```
+
+Use parantheses when combining conditions: 
+
+```{python}
+# Example eligibility rule: 
+# you qualify if you (have a student ID OR are a member) AND you’re over 18.
+age = 17
+student = True
+member = False
+
+eligibility1 = (student or member) and age >= 18
+eligibility2 = student or (member and age >= 18)    # not correct
+
+print(eligibility1)     # False
+print(eligibility2)     # True
+```
+
+
+
+**Check Membership**
+
+- `in` and `not in`: To check membership, for example for lists. Crucial in for loops.
+- `isinstance(object, classinfo)`: checks whether an object is an instance of a specific class (type).
+
+
+```{python}
+currencies = ['USD', 'CHF', 'EUR']
+
+print('USD' in currencies)    # is 'USD' in the list?
+print(isinstance('USD', float)) # is 'USD' a float?
+```
+
+
+### If / Elif / Else
+
+**Basic Syntax:**
+```{python}
+#| eval: false
+if condition1:
+    code to execute
+elif condition2:
+    code to execute
+else: 
+    code to execute
+```
+
+
+
+- `if`: the mandatory starting point. You can only have one if at the top of the chain. If condition1 is true then the code is executed and none of the other conditions are checked. 
+- `elif`: else if, you can state a second (or more) condition. If condition1 is False then it will move to the next condition and check. As soon as one of the conditions is true it will no longer check the rest. 
+- `else`: The Catch-All (else): The else block acts as a safety net. It handles every possible scenario that wasn't specifically covered by the if or elif statements. 
+- The indentation: This is the most important visual cue. Everything indented under a condition "belongs" to that condition. 
+
+
+**First True Wins:** Only one block of code will ever run. Even if condition1 and condition2 are both true, Python will only execute the code under condition1 and then exit the entire structure. Python evaluates the conditions in the order they are written. The first condition that evaluates to True wins.
+
+#### Example 1
+
+Let's model a simple central bank decision tree. We want to check the current inflation rate and assign a status and a policy action based on whether inflation is high (more than 5 percent), on target (more than 2 percent, but not more than 5), or low (less than 2). 
+
+```{mermaid}
+%%| echo: false
+flowchart TB
+    A([Start]) --> B{π> 5.0?}
+    
+    B -- <code>True<code> --> C[High Inflation: <br/> Agressive Rate Hike]
+    B -- <code>False<code> --> D{π >= 2.0?}
+    
+    D -- <code>True<code> --> E[Target Range: <br/> Hold Rates Stable]
+    D -- <code>False<code> --> F[Low Inflation: <br/> Consider Stimulus]
+    
+    C --> G([Print: Status and Recommended Action])
+    E --> G
+    F --> G
+```
+
+```{python}
+# Our data
+inflation_rate = 3.5
+
+# Decision Tree
+if inflation_rate > 5.0:
+    status = "High Inflation"
+    action = "Aggressive Rate Hike"
+
+elif inflation_rate >= 2.0:
+    status = "Target Range"
+    action = "Hold Rates Stable"
+
+else:
+    status = "Low Inflation"
+    action = "Consider Stimulus"
+
+# Print the result
+print(f"Status: {status}. Recommended Action: {action}.")
+```
+
+
+#### Example 2: Multiple if statements Problem
+
+Instead of an `if`, `elif`, `else` chain you could use multiple separate `if` statements, but you *shouldn't*. 
+
+Consider the following example: we want to look at the current inflation rate and assess the risk for hyperinflation. We say that an inflation rate of more than 10 percent would constitute 'High' risk, more than 5 percent is 'Medium Risk'. The Code example shows what can go wrong with multiple `if` statements: 
+
+```{python}
+inflation = 12.0
+
+# WRONG: Using multiple 'if' statements
+if inflation > 10:
+    risk = "High"
+if inflation > 5:
+    risk = "Medium"
+
+print(f"Inflation: {inflation} --> Risk = {risk}")
+
+```
+
+Here inflation is 12%, the first condition checks whether inflation is higher than 10%, which it is, so considers risk to be 'High'. Then the code checks whether inflation is higher than 5%, which it also is, so it considers risk to be 'Medium' and prints the result. The second `if` statement will be executed and the second one overwrites the first one. 
+```{mermaid}
+%%| echo: false
+flowchart TD
+    A([Start: inflation = 12.0]) --> B{π > 10?}
+    B -- <code>True --> C[risk = 'High']
+    B -- <code>False --> D
+    
+    C --> D{π > 5?}
+    
+    D -- <code>True --> E[risk = 'Medium' <br> OVERWRITES previous value!]
+    D -- <code>False --> F([Print Risk Assessment])
+    E --> F
+```
+
+
+
+You *can* use multiple `if` statements and get the correct result by making the conditions mutually exclusive (for example, `if inflation > 10:` followed by `if inflation > 5 and inflation <= 10:`). However, `elif` chains are still preferred for two reasons: 
+
+- Efficiency (Speed): This is the big one. In an if / elif / else chain, as soon as one condition evaluates to True, Python skips the rest of the chain completely. If you have 10 conditions and the first one is true, Python skips the next 9. If you use 10 separate if statements, Python is forced to calculate and evaluate all 10 conditions every single time, even if it already found the answer on line one.
+- Signaling Intent (Readability): When another programmer (or you, six months from now) reads an elif chain, it immediately communicates: "These are mutually exclusive options; only one of these things can happen." When you read a series of independent if statements, the assumption is: "These are separate checks, and multiple things might trigger at the same time."
+
+
+
+#### Example 3: Nested Conditions
+
+Sometimes, a decision depends on a previous decision. You can place an `if` statement inside another `if` (or `elif`/`else`) statement. This is called nesting.
+
+```{python}
+#| eval: false
+if outer_condition: 
+    # if outer_condition is True, check inner_condition
+    if inner_condition: 
+        # if inner_condition is also True: ... 
+    else:
+        # if inner_condition is not True: ...
+else:
+    # if outer_condition is not true, don't even check the inner_condition.
+```
+
+The computer will only check the inner condition if the outer condition evaluates to True. Notice how the indentation increases with each new level. This indentation is crucial, as it tells Python exactly which if and else statements belong together.
+
+Example:
+
+```{python}
+age = 20
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("Entry allowed")
+    else:
+        print("ID required")
+else:
+    print("Too young")
+```
+
+### For Loop
+
+Imagine you have a list of 100 countries and you need to perform the exact same calculation for each one. Writing the same code 100 times line-by-line would be exhausting and prone to typos.
+
+A for loop solves this. It tells Python: "Take this collection of data, look at the very first item, run a block of code on it, and then repeat that process for the next item until you run out of items." It is your primary tool for automating repetitive tasks over a dataset.
+
+**Basic Syntax**
+```{python}
+#| eval: false
+for item in collection:
+    # Do something with item
+```
+
+
+- `item`: A temporary variable name you create. It represents "the current thing the loop is holding."
+- `collection`: The list, tuple, or dictionary you are looping through.
+- The Colon and Indentation: Just like if statements, the code inside the loop must be indented.
+
+Python takes the next element from the collection, assigns it to item, runs the indented block, and repeats.
+
+
+
+#### Example 1: Basic For Loop 
+
+We have a list `gdp_growth_rates` (the collection) and want to print all of the rates separately using a for loop: For every item (let's call them `rate`) in the collection (the list `gdp_growth_rates`) we want to `print(rate)`
+```{python}
+gdp_growth_rates = [2.5, -1.2, 0.5, -2.1, 3.2]
+
+for rate in gdp_growth_rates:
+    print(rate)
+```
+
+
+
+
+
+#### Example 2: Combining Loops and Logic
+
+You can combine loops and logic: Inside of your for loop you can add if/else statements.
+
+
+For example let's say instead of printing all the growth rates we only want to print negative growth rates with a warning. 
+
+```{python}
+# Combining Loops and Logic
+gdp_growth_rates = [2.5, -1.2, 0.5, -2.1, 3.2]
+
+for rate in gdp_growth_rates:
+    if rate < 0:
+        print(f"Warning: Negative growth detected ({rate}%)")
+```
+
+
+
+
+This allows us to do all kinds of calculations based on the items in the collection (the growth rates). For example let's say we want to find the number of recession years and we define a recession as a year with a negative growth rate. 
+
+1. Create a 'counter variable' `recession_years_count = 0` before the loop
+2. Loop through every item in `gdp_growth_rates`, if it's negative you should increase the counter by 1
+
+```{python}
+# Combining Loops and Logic
+gdp_growth_rates = [2.5, -1.2, 0.5, -2.1, 3.2]
+recession_years_count = 0
+
+for rate in gdp_growth_rates:
+    if rate < 0:
+        print(f"Warning: Negative growth detected ({rate}%)")
+        recession_years_count = recession_years_count + 1
+
+print(f"Total years in recession: {recession_years_count}")
+
+
+```
+
+
+::: {.callout-note title="Take-Home Challenges"}
+::: {style="font-size: 0.9em;"}
+
+**Challenge 1: The Accumulator (Calculate the Average)**
+
+- **The Task:** Write a `for` loop that calculates the *average* GDP growth rate across all the years in the list.
+- **The Hint:** You will need a starting variable like `total_growth = 0` before the loop. Inside the loop, add each rate to that total. After the loop finishes, divide that total by the number of items in the list (hint: remember the `len()` function!).
+
+**Challenge 2: The Data Filter (Create a New List)**
+
+- **The Task:** Write a `for` loop that creates a brand new list containing *only* the positive growth rates (years where the economy grew).
+- **The Hint:** Before the loop, create an empty list: `positive_years = []`. Inside the loop, use an `if` statement to check if the rate is greater than 0. If it is, use the `.append()` method to add it to your new list!
+
+*There are much easier ways than a for loop for these specific tasks, but it's good to practice*
+
+:::
+:::
+
+
+
+#### Tracking Position with `enumerate()`
+
+> ***Goal: Passive Recognition.*** *You don't need to memorize this syntax, just understand how to read it.*
+
+Usually, a for loop just hands you the items in a list one by one. But sometimes, you need the data and its exact position in the list. The `enumerate()` function wraps around your list (or anything that is iterable) and hands you two things on every pass: an automatic counter (starting at `0`) and the item itself --> It gives you (index, value) at each iteration
+
+In this example, we have a 5-year inflation forecast in a list `forecasted_inflation`. Let's first use `enumerate()` to print the index and the item to illustrate how the syntax works: 
+
+```{python}
+# A 5-year forecast of inflation rates
+forecasted_inflation = [2.5, 2.2, 2.0, 1.9, 1.9]
+
+# 'i' gets the index (0, 1, 2...)
+# 'rate' gets the actual inflation value
+for i, rate in enumerate(forecasted_inflation):     
+    print(f"{i}: {rate}")
+```
+
+
+The first inflation here is the forecast for the year 2026. A list isn't really great to store the forecasts, a dictionary would we better. We can use a for loop with `enumerate()` to calculate the current year for every item in `forecasted_inflation` and then add the current year and the forecasted rate for that year to a dictionary
+
+```{python}
+# A 5-year forecast of inflation rates
+forecasted_inflation = [2.5, 2.2, 2.0, 1.9, 1.9]
+base_year = 2026
+
+# Create an empty dictionary to store our results
+inflation_dict = {}
+
+# 'i' gets the index (0, 1, 2...)
+# 'rate' gets the actual inflation value
+for i, rate in enumerate(forecasted_inflation):
+    
+    # Calculate the calendar year using the index 'i'
+    current_year = base_year + i 
+    
+    # Add a new key-value pair to our dictionary!
+    inflation_dict[current_year] = rate
+
+print(inflation_dict)
+print(inflation_dict.get(2027))
+```
+
+#### Looping through a dictionary
+
+Looping through a dictionary is slightly different than looping through a list because dictionaries have two parts: keys (the labels) and values (the data).
+
+**1. Looping through Keys (The Default)**
+
+When you write a basic for loop using a dictionary, Python's default behavior is to only look at the keys (the labels). It completely ignores the values (the data) attached to them.
+
+You can either loop through the dictionary directly, or explicitly add `.keys()` to the end of the dictionary name. Both do the exact same thing, but adding `.keys()` is often preferred because it makes your code easier to read.
+
+```{python}
+# Our dictionary of GDP data (in billions)
+country_gdp = {
+    "Japan": 4200, 
+    "Germany": 4400, 
+    "USA": 25000
+}
+
+# Python defaults to the keys (the country names)
+print("--- Default Loop ---")
+for country in country_gdp:
+    print(country)
+
+# This does the exact same thing, but clearly signals your intent!
+print("\n--- Explicit Loop ---")
+for country in country_gdp.keys():
+    print(country)
+```
+
+
+
+**2. Looping through Items**
+
+Most of the time in data analysis, you want both the label and the data at the same time. To get this, we use the `.items()` method.
+
+Just like `enumerate()` handed you two variables on every pass (the index and the item), `.items()` hands you a pair on every pass: the key and the value. Because it hands you two things, you need to provide two temporary variable names in your for loop!
+
+```{python}
+#| eval: false
+for key, value in dict.items():
+    # Do something with key
+    # Do something with value
+```
+
+```{python}
+# Our dictionary of GDP data (in billions)
+country_gdp = {
+    "Japan": 4200, 
+    "Germany": 4400, 
+    "USA": 25000
+}
+
+# We create TWO temporary variables: 'country' for the key, 'gdp' for the value
+for country, gdp in country_gdp.items():
+    print(f"The GDP of {country} is ${gdp} billion.")
+
+```
+
+
+#### Looping a Specific Number of Times with `range()`:
+
+> ***Goal: Passive Recognition.*** *You don't need to memorize this syntax (especially the random part!), just understand how to read it (the looping over a range part).*
+
+
+Up until now, we have looped through existing lists or dictionaries. But sometimes you don't have a dataset yet; you just want the computer to repeat an action a specific number of times, or you want to generate a sequence of years (like 2020 to 2030) for a simulation.
+
+`range(start, stop)` is your best friend here. For example, `range(2020, 2026)` creates a sequence of the years 2020 through 2025. Remember: it includes the start number, but stops right before the stop number! If you only give it one number, like `range(5)`, Python assumes you want to start at 0. It will generate exactly five numbers: 0, 1, 2, 3, 4. 
+
+
+This is useful when you want to do something X times. The example below is a simulation of a repeated gamble:
+We start with a balance of 100, then we gamble and randomly either lose 10$ or win 10$, we do this exactly 5 times and want to keep track of our balance.
+
+1. We start with a base balance of 100.
+2. We use `for i in range(5)`: to tell Python to repeat our gamble exactly 5 times. The variable `i` (you can decide what it's called) just keeps track of which round we are on (0 through 4).
+3. Inside the loop (i.e. in every round), the computer randomly picks either a 10 loss or a 10 win, adds it to our balance, and shows us the result.
+
+
+```{python}
+import random
+balance = 100
+
+# Repeat the "gamble" 5 times
+for i in range(5):
+    print(i)
+    outcome = random.choice([-10, 10]) # Lose 10 or win 10
+    balance = balance + outcome
+    print(f"Current balance: {balance}")
+
+# The loop runs exactly 5 times regardless of the data inside.
+```
+
+
+#### Changing the Rules with `continue` and `break`
+
+> ***Goal: Passive Recognition.*** *You do not need to know exactly when or how to write these from scratch. Remember roughly what their purpose is (stopping vs. skipping) and be able to understand what they are doing when you see them in simple code examples.*
+
+Sometimes, you don't want a loop to run perfectly from start to finish. You might want to stop early if you find what you are looking for, or skip over bad data. `break` and `continue` are small keywords that dramatically change how loops behave. They are almost always placed inside an if statement to trigger when a specific condition is met.
+
+
+**1. The `break` Statement (The Emergency Exit)**
+
+- What it does: `break` immediately stops the loop completely. Python breaks out of the loop and moves on to whatever code comes after it.
+- Why it is useful: Efficiency! If you are searching a massive database for a specific item, and you find it on the 3rd try, there is no reason to force the computer to search the remaining 10,000 items.
+
+
+In this example, we want to find the first number greater than 10. Once we find it (12), we hit break. The loop completely stops, so it never even looks at 5 or 19.
+
+```{python}
+# Example: Stop searching once we find what we need
+numbers = [3, 7, 12, 5, 19]
+
+for n in numbers:
+    if n > 10:
+        print("Found:", n)
+        break
+```
+
+
+**2. The `continue` Statement (The "Skip" Button)**
+
+- What it does: `continue` stops the current iteration, but keeps the loop alive. It tells Python to skip the rest of the code for this specific item and instantly jump back to the top of the loop for the next item.
+- Why it is useful: If you are looping through some data and hit a missing or invalid value (like a negative number where it shouldn't be), you may not want to crash the whole program. You may just want to skip that bad row and continue with the rest of the good data.
+
+
+In this example, we only want to print positive numbers. When the loop hits a negative number (-1 or -5), the continue command triggers, skipping the print(n) step and jumping straight to the next number.
+
+```{python}
+numbers = [3, -1, 7, -5, 10]
+
+for n in numbers:
+    if n < 0:
+        continue
+    print(n)
+```
+
+
+Real-world datasets are rarely perfect. You will often find missing values (like None) or accidental text (like "Fslj") mixed in with your numbers. If you try to do math with a word, your program will crash. We can use continue as a safety shield. In this example, we check the data type of each item. If it is not an integer, we use continue to safely skip it and move on to the next valid number.
+
+
+```{python}
+# A messy dataset with some bad entries
+revenue_data = [150, 200, None, 300, "Fslj", 400]
+
+total_revenue = 0
+
+print("Calculating total revenue...")
+
+for item in revenue_data:
+    # SAFETY CHECK: If the item is not a whole number, skip it!
+    if type(item) is not int:
+        print(f"  -> Skipping invalid data: {item}")
+        continue  
+        
+    # If we make it here, the data is safe to add
+    total_revenue = total_revenue + item
+
+print(f"Total valid revenue: {total_revenue}")
+```
+
+
+
+
+### While Loops: Looping Until a Condition is Met
+
+
+- A `for` loop is used when you know exactly how many times you want to run a code, or when you are iterating through a specific collection (like a list).
+- A `while` loop is used when you don't know how many times it will take; you just want to keep going until a specific condition changes.
+
+A `while` loop checks a condition. If it is `True`, it runs the code. Then it jumps back up and checks again. It repeats this forever until the condition finally evaluates to `False`.
+
+**Basic Syntax**
+```{python}
+#| eval: false
+while condition:
+    # Code to run
+    # (Important: You must change something here 
+    # so the condition eventually becomes False!)
+```
+
+
+Practical Example: Let's say a country has a certain amount of debt, and they are paying it off by $5 billion a year. We want to know how many years it takes to get the debt below a target level.
+
+```{python}
+debt = 100          # Total debt
+target_level = 75   # Debt target
+repayment = 5
+years = 0
+
+# Keep running as long as debt is above the target_level
+while debt > target_level:
+    # We update the variables on every pass...
+    debt = debt - repayment
+    years = years + 1
+    print(f"Year {years}: Debt is now {debt}")
+
+print(f"Goal reached in {years} years.")
+
+```
+
+::: {.callout-warning title="The Infinite Loop Danger"}
+In a `for` loop, Python stops automatically when the list ends. In a `while` loop, if the condition never becomes `False` (for example, if we forgot to subtract the repayment from the debt), the program will run forever. This is called an infinite loop and it will likely crash your computer or VS Code!
+
+You can ensure that the loop won't run infinitely by adding an emergency brake, using the `break` keyword, if some condition is met (e.g. the loop ran a certain number of times already) you can print some warning message, and stop the loop:
+```{python}
+#| eval: false
+# --- THE EMERGENCY BRAKE ---
+    if years >= max_years:
+        print(f"WARNING: Limit of {max_years} years reached! Stopping simulation.")
+        break  # <--- This instantly stops the while loop
+# ---------------------------
+```
+:::
+
+
+
+
+
+### List Comprehensions
+
+> ***Goal: Passive Recognition.*** *You should be able to recognize list comprehensions and have a basic understanding, but you don't have to use them, you can always write a regular for loop instead.*
+
+A list comprehension is a compact way to build a brand new list using a loop in a single line of code. Data scientists love them for two reasons:
+
+1. Readability: Once you get used to the syntax, it’s much easier to read than a 4-line loop.
+2. Efficiency: They are generally faster than standard for loops in Python.
+
+Think of it as a for loop compressed into square brackets:
+
+**Basic Syntax:** `[expression for item in collection]`
+
+- `expression`: what you want to do to the item (the "math" or "action").
+- `item`: The temporary variable name for the current element.
+- `collection`: The source data you are looping through.
+- A list comprehension returns another list (with changed values)
+
+
+
+**Example: Transforming Data**
+
+Let's say you have a list of annual inflation rates in percentages (e.g., 2.5 for 2.5%), and you need to convert them to decimals (e.g., 0.025) for a calculation. Notice how both methods below do the exact same thing:
+
+
+```{python}
+inflation_pct = [2.5, 3.1, 1.8, 5.2]    # original list
+
+# Transforming values with a for loop: 
+inflation_decimals = []             
+for rate in inflation_pct:
+    inflation_decimals.append(rate / 100)
+
+# Transforming values with a list comprehension:
+inflation_decimals = [rate / 100 for rate in inflation_pct]
+```
+
+
+**Example 2: Filtering Data with Conditions**
+
+You can also add an `if` condition to the very end to only include certain items.
+
+**Basic Syntax**: `[expression for item in original_list if condition]`
+
+```{python}
+inflation_pct = [2.5, 3.1, 1.8, 5.2] 
+high_inflation = [rate for rate in inflation_pct if rate > 3.0]
+print(high_inflation)
+```
+
+::: {.callout-tip title="Tip"}
+If the math becomes complicated or the list comprehension becomes too long and hard to read, just write a regular loop! Code should be easy to read first, and clever second.
+:::
+
+
+## Functions
+
+Python uses the `def` keyword (short for define) to create a function. Like if statements and for loops, functions rely on the colon and indentation.
+
+- The Header: `def` This tells Python you are creating a function. The name should be descriptive and use `snake_case` (lowercase with underscores).
+- Parameters (Inputs): These are the variables you "pass" into the function. You can have many parameters, or none at all.
+- The Body: This is where the actual math or logic happens. It must be indented.
+- The `return` statement (output): The `return` keyword tells the function to "hand back" the final result to the main program.
+- Docstring: you document functions inside the code using "Docstrings" (triple quotes `""" ... """`)
+
+
+```{python}
+def function_name(parameters):
+    # The "Body" of the function (Indented)
+    return value
+```
+
+```{python}
+# Example
+def get_growth_rate(present, past):
+    """Calculates the percentage growth rate."""
+    growth = ((present - past) / past)
+    return growth
+
+# Using the function (Calling it)
+gdp_2023 = 550
+gdp_2022 = 500
+
+rate = get_growth_rate(gdp_2023, gdp_2022)
+print(f"The growth rate was {rate*100}%") 
+# Output: The growth rate was 10.0%
+```
+
+
+You don't *need* a return statement, you could for example create a function that just prints something:
+```{python}
+def print_growth_rate(present, past): 
+    growth = ((present - past) / past)
+    print(growth)
+
+print_growth_rate(gdp_2023, gdp_2022)
+```
+
+`print()` just flashes the value on your screen for humans to read. The computer instantly forgets it. `return` actually hands the value back to the program so you can save it into a variable and use it for more math later. Without the `return` doesn't hand anything back:
+
+```{python}
+test = print_growth_rate(gdp_2023,gdp_2022)     # This will print the growth rate
+print(test)            
+```
+
+### Early Exit
+
+When a function hits a `return` statement, it hands back the value and stops immediately. It will not run any code below that line. This is incredibly useful for safety checks.
+
+```{python}
+def get_gdp_per_capita(gdp, population):
+    # Safety check: Prevent division by zero!
+    if population <= 0:
+        print("Warning: Invalid population data.")
+        return None  # Safely return a 'blank' value instead of crashing
+        
+    # If the population is valid, it skips the if-block and runs this:
+    return gdp / population
+
+# Testing the safety check
+bad_data_result = get_gdp_per_capita(5000, 0)
+print(f"The calculation returned: {bad_data_result}")
+```
+
+
+### Default Arguments
+
+Often, you will build a function where one of the inputs has a "standard" or most common value that is used 90% of the time. For example, a standard national tax rate, a standard statistical significance level (like 0.05), or a standard discount.
+
+Instead of forcing the user to type that same standard value every single time they call the function, you can set a **default argument**. This makes your function easy to use for the standard cases, while keeping it flexible enough to handle special cases when needed.
+
+You can set a default value for an argument when you define the function: `def my_function(arg1, arg2=default_value)` When defining your function, parameters without defaults must always come first! Any parameter with a default value must be placed at the very end of the parentheses.
+
+```{python}
+# Example
+def apply_discount(price, discount=0.10):
+    # If the user doesn't provide a discount, it defaults to 10%
+    return price * (1 - discount)
+
+print(apply_discount(100))        # Returns 90.0 (uses default)
+print(apply_discount(100, 0.25))  # Returns 75.0 (overwrites default)
+```
+
+
+
+
+### Returning multiple values
+
+Functions can hand back more than one thing at a time! Just separate them with commas. Python will package them together. You can then "unpack" them directly into separate variables.
+
+- you can return multiple values separated by commas. Python will package them as a Tuple. (See example)
+- You can also return a list, dictionary, etc
+
+```{python}
+def get_stats(data_list):
+    total = sum(data_list)
+    average = sum(data_list) / len(data_list)
+    return total, average # Returns a Tuple: (total, average)
+
+# You can "unpack" them directly into two variables
+my_sum, my_avg = get_stats([10, 20, 30])
+print(my_sum)
+print(my_avg)
+
+```
+
+
+
+### Positional vs. Keyword Arguments
+
+When a function has multiple parameters, you have two ways to pass the data in:
+
+1. **Positional Arguments:** By default, Python assigns values based on the order they appear in the parentheses. When you call the function `function(value1, value2, value3)` it assumes that parameter1=value1, ... 
+2. **Keyword Arguments:** When you call the function you can explicitly name the parameters  using the name=value syntax. `function(parameter1 = value1, parameter2=value2, parameter3 = value3)`. Then the order no longer matters.
+
+
+```{python}
+def get_bond_yield(price, coupon, maturity):
+    return (coupon + (100 - price) / maturity) / ((100 + price) / 2)
+
+# Option A: Positional (Order matters!)
+print(get_bond_yield(95, 5, 10))
+
+# Option B: Keyword (Order doesn't matter, much clearer!)
+print(get_bond_yield(maturity=10, coupon=5, price=95))
+```
+
+It is crucial to understand that there is no inherent difference between these arguments when you are defining the function. The function is built the exact same way every time. "Positional" and "Keyword" simply describe the two different ways you can hand the data to the function when you call it.
+
+
+### Writing good Docstrings
+
+A professional docstring should answer three questions about the function:
+
+1. What does it do? (One-line summary)
+2. What does it need? (Arguments/Parameters)
+3. What does it give back? (Returns)
+
+- First line Rule: Always start with a concise, one-sentence summary of the function’s purpose. It should start with an imperative verb (e.g., "Calculates," "Converts," "Filters").
+- Explicit Types: mention the Data Type for every argument and the return value.
+
+```{python}
+def calculate_elasticity(price_change, quantity_change):
+    """
+    Calculates the Price Elasticity of Demand using the midpoint method.
+
+    Args:
+        price_change (float): The percentage change in price (as a decimal).
+        quantity_change (float): The percentage change in quantity (as a decimal).
+
+    Returns:
+        float: The absolute value of the elasticity coefficient.
+    """
+    return abs(quantity_change / price_change)
+```
+
+
+### Local versus Global Scope
+
+What happens inside a function, stays inside the function
+
+- Local Scope: Variables created inside a function are completely destroyed and forgotten by the computer the moment the function finishes running.
+- Global Scope: Variables created in the main body of your notebook can be read inside a function, but it is very bad practice to try and change them from inside the function.
+
+```{python}
+x = 10 # Global variable
+
+def my_function():
+    x = 5  # This creates a NEW local variable 'x', it doesn't change the global one
+    print(f"Inside: {x}")
+
+my_function()
+print(f"Outside: {x}") 
+
+# Output: 
+# Inside: 5
+# Outside: 10
+```
+
+
+### Lambda Functions 
+
+> ***Goal: Passive Recognition.*** *Lambdas are an advanced concept. You do not need to know how to write these from scratch! It is completely sufficient if you know they exist, can recognize the `lambda` keyword in someone else's code and have a basic understanding of how to read what it is doing.*
+
+A Lambda function is a tiny, one-line function that doesn't need a name (it's an anonymous function)
+
+Basic Syntax: `lambda arguments: expression`
+
+- `lambda`: The keyword that tells Python "I am starting an anonymous function."
+- `arguments`: The inputs (like x or y).
+- `:`: The separator between inputs and the logic.
+- `expression`: The single calculation or action to perform (this is automatically returned).
+
+
+```{python}
+# A simple function to square a number
+square = lambda x: x**2
+print(square(4)) # 16
+```
+
+
+
+```{python}
+# A list of GDP growth rates
+growth_rates = [2.1, -5.4, 1.5, -0.8, 3.2]
+
+# Python's normal sort() would put -5.4 first. 
+# We use a lambda to say: "Sort these by looking at their absolute value instead."
+growth_rates.sort(key=lambda x: abs(x))
+
+print(growth_rates)
+# Output: [-0.8, 1.5, 2.1, 3.2, -5.4] 
+# (-5.4 is at the end because it is the largest magnitude change!)
+```
+
+
+```{python}
+gdp_data = [4.2, -1.5, 0.8, -2.2, 3.1]
+
+# Keep only the negative values (recessions)
+recessions = list(filter(lambda x: x < 0, gdp_data))
+
+print(recessions) 
+# Output: [-1.5, -2.2]
+```
+
+
+
+**The Real Challenge with Lambdas**
+
+The lambda function itself is rarely the confusing part. It is just a tiny, simple math rule.
+
+The difficult part is understanding the "host" function that the lambda is being plugged into. For example, if you don't know that the `sort()` function has a hidden `key=` setting that lets you change how it sorts things, then reading `.sort(key=lambda x: abs(x))` will look like alien math.
+
+For this course it's sufficient to know that lambda functions exist. When you see a confusing lambda in the wild, don't focus on the lambda word. Look at the function wrapping around it (like max(), sort(), or map(),...). Once you understand what the host function needs, the lambda will make perfect sense!
+
+
+
+
+
+
