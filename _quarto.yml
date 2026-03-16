@@ -51,6 +51,13 @@ website:
           - text: "---"
           - text: "Exercise 4: Introduction to Python"
             file: exercise_sessions/week_04/Ex04_IntroPython.qmd
+      - text: "Week 5"
+        menu:
+          - text: "Lecture 5: Python for Data - Part I"
+            file: course_materials/week_05/L05_Pandas_I.qmd
+          - text: "---"
+          - text: "Exercise 5: Python for Data - Part I"
+            file: exercise_sessions/week_05/Ex05_Pandas_I.qmd
       - text: "Admin"
         menu:
           - text: "Syllabus"
