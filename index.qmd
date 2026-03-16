@@ -90,6 +90,22 @@ Course syllabus, schedule, and administrative information.
 - [Exercise 4: Introduction to Python](exercise_sessions/week_04/Ex04_IntroPython.qmd)
 :::
 
+
+::: {.g-col-6}
+### 📊 Week 5: Python for Data - Part I
+
+**Lectures:**
+- [Lecture 5: Pandas I](course_materials/week_05/L05_Pandas_I.qmd)
+- [Lecture data: countries_data.csv](course_materials/week_05/data/countries_data.csv)
+
+**Exercises:**
+- [Exercise 5: Pandas I](exercise_sessions/week_05/Ex05_Pandas_I.qmd)
+- [Exercise data: pwt_data_ex5.csv](exercise_sessions/week_05/data/pwt_data_ex5.csv)
+
+:::
+
+
+
 :::
 
 ## Learning Objectives
