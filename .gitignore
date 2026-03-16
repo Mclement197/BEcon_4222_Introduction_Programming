@@ -12,10 +12,7 @@ _site/
 
 # Virtual environment and Python version
 .venv/
-.python-version
 main.py
-pyproject.toml
-uv.lock
 
 # Machine specifics
 .idea/
