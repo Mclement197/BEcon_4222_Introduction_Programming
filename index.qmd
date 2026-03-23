@@ -104,7 +104,17 @@ Course syllabus, schedule, and administrative information.
 
 :::
 
+::: {.g-col-6}
+### 📈 Week 6: Python for Data - Part II
 
+**Lectures:**
+- [Lecture 6: Pandas II](course_materials/week_06/L06_Pandas_II.qmd)
+- [Lecture data: your_week6_file.csv](course_materials/week_06/data/unrate_data.csv)
+
+**Exercises:**
+- [Exercise 6: Pandas II](exercise_sessions/week_06/Ex06_Pandas_II.qmd)
+- [Exercise data: your_ex6_file.csv](exercise_sessions/week_06/data/firm_data_ex06.csv)
+:::
 
 :::
 

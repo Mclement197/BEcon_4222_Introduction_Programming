@@ -1,0 +1,1435 @@
+---
+title: "Python for Data: Part II"
+author: "Franziska Bender"
+date: "2026-03-23"
+format: 
+  html:
+    toc: true          # Adds a Table of Contents on the side
+    toc-depth: 4
+    code-fold: false   # Keeps your code visible (set to true to hide it)
+    code-annotations: hover
+    theme: cosmo       # A clean, built-in professional look
+    embed-resources: true
+execute:
+  echo: true           # Shows your code in the output
+  freeze: false
+  error: true
+jupyter: python3       # Tells Quarto to use your Python 3 kernel
+---
+
+<style>
+.compact-list p { margin-bottom: 0.2rem; }
+.compact-list ul { margin-top: 0; }
+</style>
+
+
+This class is the second part of our introduction to working with data in Python. In this session, you will learn how to handle missing data, how to work with time series data, and how to create more polished figures. You will also see how to write reusable functions that help you produce clear and consistent visualizations.
+
+Import the libraries that you'll need for this class:
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+## Data for this Lecture
+
+In this class we'll work with monthly unemployment data from [FRED](https://fred.stlouisfed.org/).
+
+- Create a folder `data` in the folder you want to work in (e.g. `week_06`)
+- Download the dataset "unrate_data.csv" and save it in the `data` folder
+- Create a pandas DataFrame `df` by reading the data
+
+```{python}
+df = pd.read_csv("data/unrate_data.csv")
+df.head()
+```
+
+::: {.compact-list}
+Variables: 
+
+- unrate: unemployment rate seasonally adjusted,
+- unrate_nsa: unemployment rate not seasonally adjusted,
+- u_state: The other variables are unemployment rates for different states (seasonally adjusted).
+:::
+
+## Handling Missing Data
+
+In real-world economic datasets, data is rarely complete. You will frequently encounter missing observations due to reporting lags, changes in survey methodology, or data collection errors. Handling this missing data appropriately is a critical step before any analysis. If ignored, missing values can distort statistical summaries, bias regression results, or cause Python functions to fail when calculating metrics or generating plots.
+
+
+In pandas, missing values are typically represented as `NaN` (Not a Number). 
+
+### Detecting Gaps
+
+The first step in any data pipeline is identifying and addressing these gaps to ensure your results are reliable and reproducible. You should always check for missing values immediately after reading your data. The `.info()` method gives a quick overview of non-null counts, but you can be more specific:
+
+-   `df.isna()`: this method returns a Boolean Mask, a table of the exact same shape as your original data, but where every value has been replaced by either True or False:
+    -   `True` if the original value was missing
+    -   `False` if the original value contained valid data
+-   By adding `.sum()` after the call, you can count exactly how many observations are missing in each column. (*Note: This works because Python treats True as 1 and False as 0 during math operations!*)
+
+```{python}
+# Count missing values per column
+df.isna().sum()
+```
+
+**Isolating Missing Rows**
+
+Knowing *how many* values are missing is helpful, but often we need to isolate and inspect the specific rows where data is missing to understand *why*.
+
+`df.isna()` returns the boolean mask for the entire table. A row may have missing values for all variables, or for some or no missing values at all. To filter rows, we need a single True/False value per row. That’s what `.any(axis=1)` does:
+
+
+-   `axis=1` tells pandas to "look horizontally across the columns" for each row (the default is `axis=0`, which looks vertically down columns).
+-   `.any(...)` returns `True` if *at least one* value in that row is missing
+-   `.all(...)` returns `True` if *all* values in that row are missing
+
+Example: Find the rows of the unemployment data (in `df`) that have any missing values
+
+```{python}
+mask = df.isna().any(axis=1)        # one True/False per row
+missing_rows = df[mask]             # keep only rows with any missing values
+missing_rows
+```
+
+Looking at the output above, you should notice that October 2025 is missing its unemployment data. *Why?*
+
+The unemployment rate comes from the BLS Current Population Survey (CPS) (“household survey”). During the Oct 1–Nov 12, 2025 federal shutdown, CPS operations were suspended during the period when October data would have been collected, and BLS says October 2025 CPS data were not collected and were not collected retroactively — so there is no official unemployment rate estimate for October 2025.
+
+
+```{python}
+# View the last few rows to see the gap surrounded by valid data
+df.tail()
+```
+
+### Three Strategies to Deal with Missing Data
+
+Economists generally use one of three approaches to deal with NaN values:
+
+1.  Dropping (`.dropna()`): This removes any row containing a missing value.
+    -   When to use: Use this when the missing data is minimal or when "guessing" a value would compromise your analysis.
+2.  Filling (`.fillna()`, `.ffill()`, `.bfill()`): This replaces NaN with values
+    -   When to use: Common for "sticky" variables like tax rates or policy targets that remain constant until updated.
+3.  Interpolation (`.interpolate()`): This estimates the missing point by "drawing a line" between the values before and after the gap.
+    -   When to use: This is the preferred method for smooth economic indicators like the unemployment rate or GDP.
+
+You can also keep `NaN`s in your dataframe, as long as you are aware of it and keep it in mind when you calculate statistics or run regressions. Pandas will often ignore `NaN`s automatically when calculating for example a mean, but libraries like `statsmodels` or `scikit-learn` will throw an error if you feed them missing data.
+
+#### 1. `dropna()`
+
+By default, calling `df.dropna()` will remove any row that contains at least one missing value (`NaN`). This is useful if you are running a regression and need a complete set of variables for every observation.
+
+```{python}
+# Drop all rows that have at least one missing value
+test_df = df.dropna()
+test_df.tail()
+```
+
+**Important Arguments**
+
+The default of `.dropna()` is to drop all *rows* that contain at least one missing value, i.e. where *any* of the columns has a missing value.
+
+You can fine-tune how aggressively Pandas deletes data. using these parameters:
+
+-   `subset`: Only looks for missing values in specific columns. For example, if you have missing data in a "Notes" column that you don't care about, but you want to keep all rows where the "unrate" is valid, you would use this.
+-   `how`: Defines the condition for dropping.
+    -   `how='any'` (default): Drops the row if any column has a NaN.
+    -   `how='all'`: Only drops the row if all columns are missing.
+-   `axis`: Determines whether to drop rows or columns.
+    -   `axis=0` (default): Drops rows.
+    -   `axis=1`: Drops columns that contain missing values
+
+```{python}
+# Drop all columns that contain missing data
+test_df = df.dropna(axis=1)
+test_df.head()  
+```
+
+#### 2. Filling
+
+The second strategy for handling missing values is Filling. Instead of deleting observations, this approach replaces `NaN` values with specific data points to keep the timeline continuous. For economists, this is particularly useful when dealing with "sticky" variables or when you want to avoid breaking the sequence of a time series.
+
+To explore different ways of filling we create a test dataframe `test_df` with the unemployment rate of florida:
+
+```{python}
+# Create a test dataframe test_df to try different methods
+test_df = df.loc[:,['date', 'u_florida']]
+test_df.tail()      # show tail, that's where the missing value is in this example
+```
+
+-   Forward Fill (`.ffill()`): This takes the last valid observation and carries it forward to fill the gap. It is best for variables that stay constant until a new update, such as interest rates or policy targets.
+
+```{python}
+# 1. Forward Fill: Carry the last known unemployment rate forward
+test_df['unrate_ffill'] = test_df['u_florida'].ffill()
+test_df.tail()
+```
+
+-   Backward Fill (`.bfill()`): This takes the next valid observation and pulls it backward. This is less common but can be used when a value is assumed to be in effect leading up to an event.
+
+```{python}
+# 2. Backward Fill: Use the next known rate to fill previous gaps
+test_df['unrate_bfill'] = test_df['u_florida'].bfill()
+test_df.tail()
+```
+
+-   `.fillna()`: This is the most flexible method, allowing you to replace all NaN values with a specific constant (like `0`) or a calculated value (like the `mean` of the column).
+
+    Warning for Economists: Filling with 0 or the mean can significantly bias your results if the variable (like unemployment) naturally fluctuates over time.
+
+```{python}
+# 3. Custom Fill: Replace all NaNs with a specific constant
+# Useful if you want to treat missing values as a specific baseline
+test_df['unrate_fixed'] = test_df['u_florida'].fillna(5.0)
+test_df.tail()
+```
+
+```{python}
+# 4. Statistical Fill: Replace NaNs with the average of the column
+test_df['unrate_mean'] = test_df['u_florida'].fillna(test_df['u_florida'].mean())
+test_df.tail()
+```
+
+#### 3. `interpolate()`
+
+`.interpolate()` estimates missing values by looking at the surrounding observations and "filling in the gaps" based on a mathematical trend. Pandas allows you to choose the "shape" of the line used to fill the gap via the `method` argument:
+
+-   `method='linear'` (Default): Treats the distance between points as a straight line. This is the most common choice for smooth economic trends like unemployment or GDP.
+-   `method='time'`: Similar to linear, but it accounts for the actual time between observations. This is crucial if your dates are not evenly spaced (e.g., jumping from a Monday to a Friday).
+-   `method='polynomial'` or `'spline'`: These create curved lines. Use these only if you have a strong theoretical reason to believe the data follows a complex curve rather than a steady trend.
+
+```{python}
+# Linear interpolation 
+test_df['unrate_interp'] = test_df['u_florida'].interpolate(method='linear')
+test_df.tail()
+```
+
+## Time Series in Pandas
+
+### Working with dates in pandas `datetime`
+
+What is the datatype of 'date'?
+
+```{python}
+print(df['date'].dtype)
+```
+
+The column 'date' is a string. This is typical when you read data from a .csv file.
+
+::: {.compact-list}
+If dates are strings, pandas will not automatically understand things like:
+
+-   sorting dates correctly
+-   filtering by time ranges
+-   resampling (e.g. monthly to yearly)
+-   extracting year/month/quarter
+-   plotting time series on a proper time axis
+:::
+
+For example, strings are just text, so pandas compares them alphabetically, not as calendar dates.
+
+**What is `datetime`?** <br>
+A datetime object represents a real point in time (date, and optionally time of day). In pandas, dates are usually stored with the type: `datetime64[us]`. <br>
+Once a column is converted to datetime, pandas understands it as time data and gives you powerful time-series tools.
+
+**Converting to datetime** <br>
+We use the `pd.to_datetime()` function to transform our date column.
+
+```{python}
+# 1. Convert the column to datetime
+df['date'] = pd.to_datetime(df['date'])
+
+# 2. Check the info again to see the 'datetime64[us]' type
+print(df['date'].dtype)
+```
+
+*The `[us]` stands for microseconds and indicates the precision of the stored time values. For most of our purposes, the important point is simply that pandas now recognizes the column as dates rather than text.*
+
+
+**Quick note on date formats** <br>
+
+::: {.compact-list}
+Dates stored as strings can be written in many different ways. For example, all of the following are text strings representing dates (first of March 2020):
+
+- `"2020-03-01"`
+- `"03/01/2020"`
+- `"01/02/2020"`
+- `"2020|03|01"`
+:::
+
+`pd.to_datetime()` will often recognize the format automatically. But if the format is unusual or ambiguous, you may need to tell pandas exactly how the date is written using the `format=` argument.
+
+::: {.compact-list}
+For example 
+
+- `"2020-03-01"` corresponds to `"%Y-%m-%d"`
+- `"03/01/2020"` corresponds to `"%m/%d/%Y"`
+- `"01/03/2020"` corresponds to `"%d/%m/%Y"`
+- `"2020|03|01"` corresponds to `"%Y|%m|%d"`
+:::
+
+::: {.compact-list}
+Common format codes:
+
+- `%Y` = 4-digit year (2020) 
+- `%m` = month (01–12)
+- `%d` = day (01–31)
+:::
+
+Here's an example of a format that would not be recognised automatically:
+
+```{python}
+# Create a dataframe with a bad date format for illustration
+df_bad_format = pd.DataFrame({
+    "date_str": ["2020|03|01", "2020|04|01", "2020|05|01"]
+})
+df_bad_format
+```
+
+Let's try to transform "date_str" to `datetime`:, you'll get an Error:
+
+```{python}
+#| echo: false
+from IPython.utils.capture import capture_output
+
+with capture_output():
+    get_ipython().run_line_magic("xmode", "Minimal")
+```
+```{python}
+#| error: true
+df_bad_format["date"] = pd.to_datetime(df_bad_format["date_str"])
+```
+
+You get an Error: pandas doesn't understand this format. But you can let pandas know what the format is using `format = "%Y|%m|%d"` which tells it that the format of the column is a string, first a 4-digit year, separated by `|`, then the month as a number, separated by `|` again, then the day as a number.
+
+```{python}
+df_bad_format["date"] = pd.to_datetime(df_bad_format["date_str"], format="%Y|%m|%d")
+df_bad_format
+```
+
+**Extracting Time Components**
+
+Once a column is in `datetime64` format, you can use the `.dt` accessor to extract specific parts of the date. This is incredibly useful for comparing seasonal trends (e.g., comparing every January) or grouping data by year.
+
+-   `df['date'].dt.year`: Extracts the year (2024, 2025, etc.)
+-   `df['date'].dt.month`: Extracts the month as a number (1-12)
+-   `df['date'].dt.day`: Extracts the day of the month
+-   `df['date'].dt.quarter`: Extracts the fiscal quarter (1-4)
+-   `df['date'].dt.weekday`: 0 for Monday, 6 for Sunday
+-   `.dt.month_name()`: month name (January, February, …)
+
+```{python}
+# Example: Extract year and month
+df["year"] = df["date"].dt.year
+df["month"] = df["date"].dt.month
+df["month_name"] = df["date"].dt.month_name()
+
+# Note: The .dt accessor is used for standard columns. 
+# Later, if we set the date as our DataFrame's Index, we would use: df.index.year
+
+df[["date", "year", "month", "month_name"]].head()
+```
+
+This adds new columns that are often useful for grouping or filtering.
+
+For example: Calculate the average unemployment rate `unrate_nsa` (not seasonally adjusted) for each month and you'll see a clear seasonal pattern:
+
+```{python}
+# Calculate the average unemployment rate for each month
+monthly_avg = df.groupby('month')['unrate_nsa'].mean()
+monthly_avg = monthly_avg.reset_index()
+monthly_avg
+```
+
+
+```{python}
+plt.figure(figsize=(7,4.5))
+# Plot the data (x = the month index, y = the average rates)
+plt.plot(monthly_avg['month'], monthly_avg['unrate_nsa'], marker='o')
+
+# Add some basic labels
+plt.title("Average Non-Seasonally Adjusted Unemployment by Month")
+plt.xlabel("Month")
+plt.ylabel("Unemployment Rate (%)")
+plt.grid(alpha = 0.3)
+# Display the plot
+plt.show()
+```
+
+### Setting date as the index `DateTimeIndex`
+
+For time series, it is very common to use the date column as the index (`.set_index()`). When setting the index, it is best practice to sort immediately (`.sort_index()`).
+
+```{python}
+# Set the date as the index AND sort it chronologically
+df = df.set_index('date').sort_index()
+
+# Preview the first few rows
+df.head() 
+```
+
+::: {.callout-note}
+If you run the cell above twice, you will get a KeyError: None of ['date'] are in the columns. This happens because the first time you run it, the 'date' column is removed from the dataset and becomes the index. The second time you run it, pandas can't find a column named 'date' anymore! You can make 'date' a normal column again using `.reset_index()`.
+:::
+
+
+When the index contains datetime values, pandas uses a special type called a `DateTimeIndex`.
+
+A `DateTimeIndex` makes time-series work much easier. It allows pandas to understand that your rows are ordered in time, which helps with:
+
+-   time-based filtering (e.g. all observations in 2020)
+-   resampling (monthly → yearly averages)
+-   rolling windows (moving averages)
+-   plotting with a proper time axis
+
+```{python}
+print(type(df.index))
+```
+
+**Easy Filtering**
+
+With a `DateTimeIndex`, pandas lets you filter very naturally:
+
+```{python}
+# Select everything from 2015 to the end of 2019
+pre_pandemic = df.loc["2015":"2019"]
+pre_pandemic.head()
+```
+
+When slicing with dates in `.loc[]`, Pandas is smart enough to understand various formats like "2020-01-01", "January 2020", or "2020/01".
+
+```{python}
+# Select a specific window (e.g., the Great Recession)
+great_recession = df.loc["December 2007":"2009-06"]
+great_recession.head()
+```
+
+### Frequency
+
+When your DataFrame has a `DatetimeIndex`, it can store a "frequency" attribute. This tells Pandas that the data isn't just a list of random dates, but a structured sequence with a specific pulse (like the first day of every month).
+
+You can check the frequency of your index using `df.index.freq`. 
+
+```{python}
+# Check the frequency of our unemployment data
+print(df.index.freq)
+```
+
+If this returns `None`, it means Pandas hasn't automatically inferred the frequency yet. You can set it manually using `.asfreq()`.
+
+Pandas uses short codes (aliases) to represent different time intervals. Here are the ones you will encounter most often in economic research:
+
+-   `'D'`: Calendar day
+-   `'B'`: Business day
+-   `'MS'`: Month Start
+-   `'ME'`: Month End
+-   `'QS'`: Quarter Start
+-   `'QE'`: Quarter End
+-   `'YS'`: Year Start
+
+If your data is monthly but the frequency is not set, you can "enforce" it.
+
+```{python}
+df = df.asfreq('MS')
+print(df.index.freq)
+```
+
+
+This is a great way to check for missing observations: if you tell Pandas the data should be monthly (MS) and a month is missing, it will create a new row with NaN for that date, alerting you to the gap.
+
+Example: Try to set the frequency to daily and observe what happens
+
+```{python}
+test = df.copy()
+test = test.asfreq('D')
+test.head()
+```
+
+### Resampling (Changing Frequency)
+
+In economic research, you often need to combine datasets that are released at different intervals. For example, you might have monthly unemployment data but quarterly GDP data. Resampling is the process of changing the frequency of your time series observations.
+
+Basic Syntax: `df['column_name'].resample().aggregation_method()`
+
+::: {.compact-list}
+Resampling only works properly if:
+
+-   the index is a `DateTimeIndex`
+-   the index is sorted
+:::
+
+```{python}
+# Before you resample:
+# Check that the index is correct:
+print(type(df.index))
+
+# Sort the index
+df = df.sort_index()
+```
+
+#### Downsampling (High Frequency to Low Frequency)
+
+Downsampling is when you reduce the frequency of your data (e.g., moving from Monthly to Yearly). Because you are condensing multiple data points into one, you must decide how to represent that period (the "aggregation method").
+
+::: {.compact-list}
+Common aggregation methods:
+
+-   `.mean()`: The average value over the period (standard for unemployment).
+-   `.sum()`: The total value (standard for flows like "Total Exports").
+-   `.last()`: The value at the end of the period (often used for stock prices or debt levels).
+:::
+Example: Annual average unemployment
+
+```{python}
+# Resample from Monthly (MS) to Year Start (YS)
+# We take the mean to get the average unemployment rate for each year
+annual_unrate = df['unrate'].resample('YS').mean()
+annual_unrate.head()
+```
+
+Because we're resampling one column it will return a pandas Series and not a DataFrame (that's why the output looks the way it does). If you want a DataFrame instead just add `.to_frame()` in the end or select the colum with double brackets `[['unrate']]`.
+
+```{python}
+# Option 1: Resample from Monthly (MS) to Year Start (YS) and make it a dataframe
+annual_unrate = df['unrate'].resample('YS').mean().to_frame()
+
+# Option 2: Resample from Monthly (MS) to Year Start (YS) and make it a dataframe
+annual_unrate = df[['unrate']].resample('YS').mean()
+
+annual_unrate.head()
+```
+
+::: {.callout-tip collapse="true" title="Pandas Refresher: Series vs. DataFrame"}
+Think of a **DataFrame** as an entire spreadsheet, and a **Series** as a single column within that spreadsheet. Mechanically, a DataFrame is a two-dimensional table made up of multiple one-dimensional Series that all share the same index (the row labels). This is why extracting a single column from your data (e.g., `df['unrate']`) returns a Series, while extracting multiple columns returns a DataFrame.
+:::
+
+
+You can resample multiple columns, or the entire dataframe. Before you do so check if it makes sense.
+
+Example: Resample the entire dataframe
+
+```{python}
+annual_df = df.drop(columns=['month_name']).resample('YS').mean()
+annual_df.head()
+```
+
+It works, but clearly for the variables year, quarter and month that we created previously it doesn't really make sense. Note that here you don't need `to_frame()` because resampling more than one column or the entire dataframe will return a DataFrame already.
+
+#### Upsampling (Low Frequency to High Frequency)
+
+Upsampling is when you increase the frequency (e.g., moving from Quarterly to Monthly). This creates "empty" rows because Pandas doesn't know what happened between the original data points.
+
+To fill these new rows, we use the same techniques we learned for handling missing data:
+
+-   `.ffill()`: Carry the last known value forward.
+-   `.interpolate()`: Estimate the values between points (creates a smoother line).
+
+```{python}
+monthly_estimate = annual_unrate.resample('MS').interpolate(method='linear')
+monthly_estimate.head(15)
+```
+
+::: {.callout-warning}
+Mechanically, this interpolation works perfectly. However, always think about the economic reality of your data! We took an annual average and placed it on January 1st, then drew a straight line to the next January 1st. In reality, the annual average represents the whole year, not just January. Be very careful when upsampling low-frequency data. You must be just as careful here as you are with missing data. Inappropriate filling or interpolation can introduce severe biases, artificial smoothness (which destroys volatility metrics), or false trends into your regressions. Always think about the economic reality of the variable before you synthesize data to fill the gaps!
+:::
+
+
+### Shifting, Lags, Differences, and Growth Rates
+
+In economics, we rarely care about a single data point in isolation. We want to know how a variable is changing over time. Is unemployment rising or falling compared to last month? How does it compare to the same month last year?
+
+To answer these questions, we use shifting, differencing, and growth rate calculations.
+
+#### Shifting Data (Lags and Leads)
+
+The `.shift()` method allows you to move data up or down along the index. This is essential for creating "lags"—using past values to explain current outcomes.
+
+-   **Lag** (Positive shift): `df.shift(1)` moves data "down," so the value for January now appears next to the February index. This is how you represent "last month's value."
+-   **Lead** (Negative shift): `df.shift(-1)` moves data "up," representing "next month's value."
+
+`.shift()` moves the values relative to the index; it does not change the dates themselves.
+
+Example:
+
+```{python}
+# Create a lag: 'unrate_prev' will show the previous month's value
+df['unrate_prev'] = df['unrate'].shift(1)
+# Create a lead: 'unrate_next' will show the next month's value
+df['unrate_next'] = df['unrate'].shift(-1)
+# Check the first few rows (in the first row unrate_prev will be NaN because there is no 'previous' value for it)
+df[['unrate', 'unrate_prev', 'unrate_next']].head()
+```
+
+#### Calculating Differences
+
+Once you have a lagged value, you can calculate the change in the unemployment rate, the difference between the unemployment rate in one month and the unemployment rate in the previous month.
+
+There's a simpler way that does exactly the same: `.diff()`.
+
+```{python}
+# Calculate difference using the lagged unemployment rate:
+df['unrate_diff'] = df['unrate'] - df['unrate'].shift(1)
+
+# Or use the built-in pandas method:
+df['unrate_diff_alt'] = df['unrate'].diff()
+
+
+df[['unrate_diff', 'unrate_diff_alt']].head()
+```
+
+If you want to create the difference between the current value and the a year (12 months) ago, you can use `.diff(12)`
+
+#### Percent Change (Growth Rates)
+
+For many economic variables (like GDP or CPI), we care about the growth rate. The `.pct_change()` method automates this calculation.
+
+-   Month-over-Month (MoM): `df['unrate'].pct_change(1)`
+-   Year-over-Year (YoY): `df['unrate'].pct_change(12)` (since our data is monthly, a 12-period shift looks back exactly one year).
+
+```{python}
+df['unrate_mom_pct'] = df['unrate'].pct_change(1) * 100
+df['unrate_yoy_pct'] = df['unrate'].pct_change(12) * 100
+df[['unrate', 'unrate_mom_pct', 'unrate_yoy_pct']].head(20)
+```
+
+
+Note: `.pct_change()` returns a decimal (e.g., 0.02). We sometimes multiply by 100 to convert it into a readable percentage (2.0%).
+
+::: {.callout-note title="Percentage Points vs. Percent Change"}
+Be careful when applying `.pct_change()` to variables that are already percentages, like the unemployment rate! If unemployment goes from 4.0% to 5.0%, economists say it rose by "1 percentage point" (which you calculate using `.diff()`). Using `.pct_change()` will tell you it grew by 25%. We usually use `.pct_change()` for levels like GDP or population!
+:::
+
+
+#### Log-Differences
+
+In empirical macroeconomics and finance, you will frequently see researchers use log differences instead of standard percentage changes. The log difference is calculated as the natural logarithm of the current value minus the natural logarithm of the previous value: $\ln(y_t​)−\ln(y_{t−1}​)$. It's an approximation for the growth rate of a variable $y$ that works well as long as the growth rate is small.
+
+To calculate logarithms, we need a new library: NumPy (Numerical Python). NumPy is the foundational math and array library in Python- We will use NumPy's `np.log()` function.
+
+Example: Create a new variable `unrate_log_diff` as the log difference of the unemployment rate `unrate` by taking the logarithm first and then the first difference: 
+```{python}
+# 1. Take the natural log of the column
+# 2. Chain the .diff() method to calculate the period-to-period change
+df['unrate_log_diff'] = np.log(df['unrate']).diff()
+
+# Compare the standard percent change to the log difference
+# Notice how similar the values are for small changes!
+df[['unrate', 'unrate_mom_pct', 'unrate_log_diff']].head()
+
+```
+
+
+### Rolling Windows
+
+Economic data—especially monthly indicators like the unemployment rate—can be "noisy." A single bad month might be an outlier rather than a change in the economic trend. To see the underlying signal, economists use Rolling Windows (also known as Moving Averages).
+
+A rolling window "slides" over your data. For each date, a rolling window looks at the current observation and a fixed number of previous observations, and calculates a statistic (like the mean).
+
+**The `.rolling()` Syntax**
+
+To create a rolling window, we use the `.rolling()` method followed by an aggregation function like `.mean()`.
+
+-   `window`: The number of observations to include in each calculation. For monthly data, a `window=12` gives you a 1-year moving average. (Current month + previous 11 months)
+-   `center`: (Optional) If True, the average is assigned to the middle of the window rather than the end.
+
+Example:
+
+```{python}
+# Calculate a 12-month rolling average
+# This smooths out seasonal "wiggles" to show the yearly trend
+df['unrate_12m_avg'] = df['unrate'].rolling(window=12).mean()
+
+# Check the head - the first 11 rows will be NaN 
+# because there isn't enough data yet to fill a 12-month window.
+df[['unrate', 'unrate_12m_avg']].head(15)
+```
+
+```{python}
+# Create the figure and axis
+plt.figure(figsize=(8, 4))
+
+# Plot the unemployment rate
+plt.plot(df.index, df['unrate'], label = 'Monthly')
+plt.plot(df.index, df['unrate_12m_avg'], label='12-month MA')
+
+# Add essential labels
+plt.title("US Unemployment Rate (1948-2026)", fontsize=16)
+plt.xlabel("Year", fontsize=12)
+
+# Add a grid for readability
+plt.grid(True, alpha=0.3)
+plt.legend()
+
+plt.show()
+```
+
+
+The 12-month moving average effectively smooths out short-term fluctuations. However, this smoothness comes at a cost: moving averages are inherently lagging indicators. Because today's 12-month average includes data from 11 months ago, it reacts very slowly to sudden economic turning points. If the economy suddenly enters a recession and unemployment spikes, the raw monthly data will show it immediately, but the moving average will take several months to fully bend upwards and reflect the new reality.
+
+While `.mean()` is the most common rolling aggregation, Pandas allows you to calculate almost any statistic over a moving window. For instance, you might use `.sum()` for rolling totals, `.max()` to track rolling peaks, or `.std()` to measure rolling volatility (a crucial metric in finance to see how risk changes over time).
+
+
+## Building more polished figures with Matplotlib
+
+So far, we have used basic plots to quickly visualize our data. Now we will build a more polished figure step by step: a clean unemployment-rate chart with custom styling (colors, labels, font sizes), shaded recession periods, and an annotation highlighting the COVID-era peak.
+
+#### Step 1: Start with a clean basic line plot
+
+We begin with a simple line plot of the unemployment rate over time. This is the foundation for the final figure: first we plot the series, then we add a title and axis labels so the chart is easy to read.
+
+```{python}
+plt.figure(figsize=(8, 4))
+plt.plot(df.index, df["unrate"])
+
+plt.title("US Unemployment Rate")
+#plt.xlabel("Date")
+plt.ylabel("Percent")
+
+plt.grid()
+plt.show()
+```
+
+#### Step 2: Improve the styling (colors, lines, fonts, and grid)
+
+You can improve readability and emphasis using standard Matplotlib arguments that control colors, line styles, fonts, and grid lines.
+
+::: {.compact-list}
+In `plt.plot()`you can use:
+
+-   `color`: Use names like 'navy', 'darkred', or 'forestgreen'.
+-   `linestyle`: Use '-' for solid lines, '--' for dashed, or ':' for dotted lines.
+-   `linewidth`: Adjust the thickness to make the trend stand out.
+:::
+
+::: {.compact-list}
+For the title and labels you can use:
+
+-   `fontsize`: Sets the size of the text (e.g., 14, 16).
+-   `fontweight`: Use 'bold', 'light', or 'normal' to emphasize certain text.
+-   `color`: Changes the text color (e.g., 'darkblue' or a Hex code).
+-   `loc`: (Title only) Sets the alignment to 'left', 'center', or 'right'.
+:::
+
+::: {.compact-list}
+In `plt.grid()` you can use:
+
+-   `axis`: Use 'both', 'x', or 'y'. Economists often use axis='y' to help track percentages while keeping the horizontal space clean.
+-   `linestyle`: Just like lines in a plot, grids can be '--' (dashed), ':' (dotted), or '-' (solid).
+-   `alpha`: Controls transparency (0 to 1). A lower alpha (like 0.3) makes the grid subtle so it doesn't distract from the data.
+:::
+
+```{python}
+plt.figure(figsize=(8, 4))
+
+# Plot with styling options
+plt.plot(
+    df.index,
+    df["unrate"],
+    color="navy",
+    linewidth=1.5,
+    linestyle="-"
+)
+
+# Title and axis labels with font sizes
+plt.title("US Unemployment Rate", fontsize=16)
+
+plt.ylabel("Percent", fontsize=12)
+
+plt.xticks(fontsize=12)   # x-axis tick labels (dates)
+plt.yticks(fontsize=10)   # optional: y-axis tick labels
+
+# Add a light dashed grid
+plt.grid(alpha=0.5, linestyle="-")
+
+plt.show()
+```
+
+#### Step 3: Add shaded areas (recessions)
+
+A great way to add context to a time-series plot is to use shaded areas. For example we can highlight recession periods.
+
+::: {.compact-list}
+In matplotlib you can add shaded areas with:
+
+-   `plt.axvspan(xmin, xmax, ...)`: shade a vertical region (between two points on the x-axis)
+-   `plt.axhspan(ymin, ymax, ...)`: shade a horizontal region (between two values on the y-axis)
+:::
+
+```{python}
+plt.figure(figsize=(8, 4))
+
+# Main line
+plt.plot(df.index, df["unrate"], color="navy", linewidth=1.5)
+
+# Recession shading (examples)
+plt.axvspan("1980-01-01", "1980-07-01", color="gray", alpha=0.2)
+plt.axvspan("1981-07-01", "1982-11-01", color="gray", alpha=0.2)
+plt.axvspan("1990-07-01", "1991-03-01", color="gray", alpha=0.2)
+plt.axvspan("2001-03-01", "2001-11-01", color="gray", alpha=0.2)
+plt.axvspan("2007-12-01", "2009-06-01", color="gray", alpha=0.2)
+plt.axvspan("2020-02-01", "2020-04-01", color="gray", alpha=0.2)
+
+# Labels and styling
+plt.title("US Unemployment Rate", fontsize=16)
+plt.ylabel("Percent", fontsize=12)
+plt.xticks(fontsize=12)  
+plt.grid(alpha=0.5, linestyle="-", axis="y")        # only the horizontal grid lines
+
+plt.show()
+
+```
+
+**Optional: store recession dates in a list (cleaner)**
+
+If you want cleaner code, you can store recession periods in a list and loop over them:
+
+```{python}
+recessions = [
+    ("1980-01-01", "1980-07-01"),
+    ("1981-07-01", "1982-11-01"),
+    ("1990-07-01", "1991-03-01"),
+    ("2001-03-01", "2001-11-01"),
+    ("2007-12-01", "2009-06-01"),
+    ("2020-02-01", "2020-04-01"),
+]
+```
+
+```{python}
+plt.figure(figsize=(8, 4))
+plt.plot(df.index, df["unrate"], color="navy", linewidth=1.5)
+
+# Add shaded areas for recession
+for start, end in recessions:
+    plt.axvspan(start, end, color="gray", alpha=0.2)
+
+# Labels and styling
+plt.title("US Unemployment Rate", fontsize=16)
+plt.ylabel("Percent", fontsize=12)
+plt.xticks(fontsize=12)  
+plt.grid(alpha=0.5, linestyle="--", axis="y")        # only the horizontal grid lines
+
+plt.show()
+
+
+```
+
+#### Step 4: Highlight the COVID peak with an annotation
+
+Annotations are useful when you want to guide the reader’s attention to an important feature of a figure — for example, a turning point, an unusually high/low value, or the main takeaway from the chart. They add context directly to the visual, so the message is easier to see. You can add annotations with `plt.annotate()`.
+
+As an example, we will highlight the peak unemployment rate during the COVID period. Before we can annotate it, we need to prepare two pieces of information from the data:
+
+-   the peak value (the highest unemployment rate in a chosen COVID window)
+-   the date of that peak
+
+We can do this by first selecting a time window (for example `"2019-11-01":"2021-12-01"`), then using:
+
+-   `.max()` to get the highest value
+-   `.idxmax()` to get the date where that maximum occurs
+
+```{python}
+# Prepare the data for the annotation
+# 1) Select a window around the COVID period
+covid_window = df.loc["2019-11-01":"2021-12-01", "unrate"]
+
+# 2) Find the peak unemployment rate and its date
+covid_peak_value = covid_window.max()
+covid_peak_date = covid_window.idxmax()
+
+print(covid_peak_date)
+print(covid_peak_value)
+```
+
+We then use `plt.annotate(...)` to add a text label and arrow to the plot. The basic syntax is:
+
+```{python}
+#| eval: false
+# Basic Syntax for annotation, use this in your figure
+plt.annotate(
+    "Text to display",
+    xy=(x_point, y_point),
+    xytext=(x_text, y_text),
+    arrowprops=dict(...)
+)
+```
+
+-   `xy= `: the point we want to highlight (the COVID peak)
+-   `xytext= `: where the annotation text should be placed relative to that point
+-   `arrowprops= `: controls the arrow style (here an arrow pointing to the peak)
+
+We will also use some additional arguments:
+
+-   `textcoords="offset points"`: interprets xytext as an offset in points (so (-50, -10) means move 50 left and 10 down)
+-   `ha=` / `va=`: horizontal and vertical alignment of the text (ha="right" and va="bottom" help position the label neatly)
+-   `fontsize=`: controls the text size
+
+You do **not** need to memorize all of these annotation arguments. In practice, it is very common to start with a basic annotation and then adjust the position/style by trial and error — and this is exactly the kind of thing AI tools can help with a lot (for example, suggesting better offsets, alignment, or arrow styles).
+
+```{python}
+# 3) Create the plot
+plt.figure(figsize=(8, 4))
+plt.plot(df.index, df["unrate"], color="navy", linewidth=1.5)
+
+# Add recession shading
+for start, end in recessions:
+    plt.axvspan(start, end, color="gray", alpha=0.2)
+
+# Add annotation for COVID peak
+plt.annotate(
+    f"COVID peak: {covid_peak_value:.1f}%",
+    xy=(covid_peak_date, covid_peak_value),
+    xytext=(-50, -10),
+    textcoords="offset points",
+    ha="right",     # align text to the right edge
+    va="bottom",    # align text from the bottom
+    fontsize=11,
+    arrowprops=dict(arrowstyle="->", color="black", lw=1.2)
+)
+
+# Labels and styling
+plt.title("US Unemployment Rate", fontsize=16)
+plt.ylabel("Percent", fontsize=12)
+plt.xticks(fontsize=12)
+plt.grid(axis="y", alpha=0.3, linestyle="--")
+
+plt.show()
+```
+
+
+::: {.callout-tip collapse="true" title="Exporting Your Figure for Papers and Presentations"}
+Once you have built a publication-ready chart, you will likely want to save it to include in a thesis, report, or slide deck. You can export your plot using `plt.savefig()`.
+
+**Crucial Warning:** You must call `plt.savefig()` *before* you call `plt.show()`. If you call it after, Matplotlib clears the canvas and will just save a blank white image!
+
+```{python}
+#| eval: false
+# Save a high-resolution PNG to your computer
+plt.savefig(
+    "unemployment_covid_peak.png",
+    dpi=300,                  # High resolution (300 dots per inch is standard for print)
+    bbox_inches="tight"       # Ensures your axis labels and titles don't get cut off
+)
+
+plt.show()
+```
+(Note: You can also change the file extension to .pdf or .svg if you need a vector graphic instead of an image file.)
+
+
+:::
+
+
+
+
+## Turning the plot into a reusable function
+
+So far, we built the unemployment figure step by step for one specific case. In this section, we will turn that code into a reusable function so that others (or future you) can create the same type of figure more easily. The goal is to build a function that plots unemployment over time for a chosen series (for example, the US overall rate or a specific state), with optional arguments to turn recession shading and annotations on or off.
+
+### Put the plotting code into a function
+
+We start by wrapping our existing plotting code in a function. For now, the function will reproduce exactly the same figure as before and only take one argument: the DataFrame df.
+
+This is the first step toward making the code reusable. Once the plot works inside a function, we can add more options (such as choosing a different unemployment series or turning shading/annotations on and off).
+
+```{python}
+#| code-overflow: wrap
+def plot_unemployment(df):
+
+    # Inside the function we paste the code we used before to create the figure (everything that is relevant)
+
+
+    # Data preparation for annotations:
+    covid_window = df.loc["2020-01-01":"2021-12-01", "unrate"]
+    covid_peak_value = covid_window.max()
+    covid_peak_date = covid_window.idxmax()
+
+    # Recession periods
+    recessions = [
+        ("1980-01-01", "1980-07-01"),
+        ("1981-07-01", "1982-11-01"),
+        ("1990-07-01", "1991-03-01"),
+        ("2001-03-01", "2001-11-01"),
+        ("2007-12-01", "2009-06-01"),
+        ("2020-02-01", "2020-04-01"),
+    ]
+
+    # Create the plot
+    plt.figure(figsize=(8, 4))
+    plt.plot(df.index, df["unrate"], color="navy", linewidth=1.5)
+
+    # Add recession shading
+    for start, end in recessions:
+        plt.axvspan(start, end, color="gray", alpha=0.2)
+
+    # Add annotation for COVID peak
+    plt.annotate(
+        f"COVID peak: {covid_peak_value:.1f}%",
+        xy=(covid_peak_date, covid_peak_value),
+        xytext=(-50, -10),
+        textcoords="offset points",
+        ha="right",
+        va="bottom",
+        fontsize=11,
+        arrowprops=dict(arrowstyle="->", color="black", lw=1.2)
+    )
+
+    # Labels and styling
+    plt.title("US Unemployment Rate", fontsize=16)
+    plt.ylabel("Percent", fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.grid(axis="y", alpha=0.3, linestyle="--")
+
+    plt.show()
+
+```
+
+At every step of creating the function you should use it, to see if it actually works the way you intended:
+
+```{python}
+plot_unemployment(df)
+```
+
+### Let the user choose which unemployment series to plot
+
+So far, we were interested in the overall US unemployment rate (unrate). But if we are writing a reusable function, we can make it useful for more cases too — for example, someone else might want to plot the unemployment rate for a specific state such as u_florida.
+
+To make that possible, we will update the function so the user can choose which unemployment series (which column in the DataFrame) should be plotted.
+
+**Add a new argument to the function**
+
+The user should be able to choose the series, so we add an argument `series_name` to the function:
+
+```{python}
+#| eval: false
+def plot_unemployment(df, series_name):
+    
+    # Code to create the figure
+
+```
+
+Now the function expects a second input: the name of the column to plot.
+
+**Replace "unrate" with series_name**
+
+Inside the function, there are three places where we currently use "unrate":
+
+-   when selecting the COVID window
+-   when plotting the line
+-   (indirectly) in the chart title text (US unemployment rate)
+
+We replace the hard-coded column name with `series_name`.
+
+```{python}
+def plot_unemployment(df, series_name):
+
+    # Data preparation for annotations:
+    covid_window = df.loc["2020-01-01":"2021-12-01", series_name]  # <1> 
+    covid_peak_value = covid_window.max()
+    covid_peak_date = covid_window.idxmax()
+
+    # Recession periods
+    recessions = [
+        ("1980-01-01", "1980-07-01"),
+        ("1981-07-01", "1982-11-01"),
+        ("1990-07-01", "1991-03-01"),
+        ("2001-03-01", "2001-11-01"),
+        ("2007-12-01", "2009-06-01"),
+        ("2020-02-01", "2020-04-01"),
+    ]
+
+    # Create the plot
+    plt.figure(figsize=(8, 4))
+    plt.plot(df.index, df[series_name], color="navy", linewidth=1.5)  # <2>
+
+    # Add recession shading
+    for start, end in recessions:
+        plt.axvspan(start, end, color="gray", alpha=0.2)
+
+    # Add annotation for COVID peak
+    plt.annotate(
+        f"COVID peak: {covid_peak_value:.1f}%",
+        xy=(covid_peak_date, covid_peak_value),
+        xytext=(-50, -10),
+        textcoords="offset points",
+        ha="right",
+        va="bottom",
+        fontsize=11,
+        arrowprops=dict(arrowstyle="->", color="black", lw=1.2)
+    )
+
+    # Labels and styling
+    plt.title(f"Unemployment Rate: {series_name}", fontsize=16)  # <3>
+    plt.ylabel("Percent", fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.grid(axis="y", alpha=0.3, linestyle="--")
+
+    plt.show()
+
+```
+
+1. Replace `unrate` with `series_name`
+2. Replace `unrate` with `series_name`
+3. Use f-string so title includes the `series_name` provided by the user.
+
+
+Example:
+
+```{python}
+plot_unemployment(df, "u_alaska")
+```
+
+### Add optional arguments for shading and annotations
+
+Now that the function can plot different unemployment series, we can make it even more flexible. Different users may want slightly different versions of the same figure — for example, some may want the recession shading, while others may prefer a cleaner plot without it. The same is true for the COVID peak annotation.
+
+We can handle this by adding optional arguments to the function, with default values set to True. This means the function will keep the current behavior unless the user explicitly turns something off.
+
+**The general idea: optional arguments with defaults**
+
+```{python}
+#| eval: false
+def my_function(arg1, option=True):
+    if option:
+        print("Option is on")
+```
+
+-   `option=True` means the argument is optional, if the user does not provide it, Python uses the default (True)
+-   inside the function, we can use an if statement to decide whether to run some code
+
+We will use this pattern for:
+
+-   `show_recessions=True`
+-   `show_annotation=True`
+
+```{python}
+def plot_unemployment(df, series_name, 
+                    show_recessions=True, show_annotation=True): # <1>
+
+    # Data preparation for annotations:
+    covid_window = df.loc["2020-01-01":"2021-12-01", series_name]  
+    covid_peak_value = covid_window.max()
+    covid_peak_date = covid_window.idxmax()
+
+    # Recession periods
+    recessions = [                          
+        ("1980-01-01", "1980-07-01"),
+        ("1981-07-01", "1982-11-01"),
+        ("1990-07-01", "1991-03-01"),
+        ("2001-03-01", "2001-11-01"),
+        ("2007-12-01", "2009-06-01"),
+        ("2020-02-01", "2020-04-01"),
+    ]
+
+    # Create the plot
+    plt.figure(figsize=(8, 4))
+    plt.plot(df.index, df[series_name], color="navy", linewidth=1.5)  
+
+
+    # NEW: make recession shading optional
+    if show_recessions:                                             # <2>
+        for start, end in recessions:                              
+            plt.axvspan(start, end, color="gray", alpha=0.2)       
+
+    # NEW: make annotation for Covid Peak optional
+    if show_annotation:                                                         # <3>
+        plt.annotate(                                                         
+            f"COVID peak: {covid_peak_value:.1f}%",               
+            xy=(covid_peak_date, covid_peak_value),                           
+            xytext=(-50, -10),      
+            textcoords="offset points",
+            ha="right",
+            va="bottom",
+            fontsize=11,
+            arrowprops=dict(arrowstyle="->", color="black", lw=1.2)
+        )
+
+    # Labels and styling
+    plt.title(f"Unemployment Rate: {series_name}", fontsize=16)  
+    plt.ylabel("Percent", fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.grid(axis="y", alpha=0.3, linestyle="--")
+
+    plt.show()
+```
+
+1. Add args `show_recessions`, `show_annotation` with default values
+2. Only if `show_recessions` is `True` (Default) include shaded areas recessions
+3. Only if `show_annotation` is `True` include the covid annotation
+
+Example:
+
+```{python}
+# Plot with default:
+plot_unemployment(df, 'unrate')
+```
+
+```{python}
+# Plot without annotation
+plot_unemployment(df, 'unrate', show_annotation=False)
+```
+
+A good rule of thumb is: give your function sensible defaults so it works well right away, and use optional arguments only for things users might reasonably want to change. In other words, users should not have to decide everything every time they call the function — the default version should already produce a good result. Optional arguments are most useful for features like styling, labels, or extra plot elements (such as shading or annotations) that are helpful in some cases but not always needed.
+
+### Make the function more user-friendly (optional `state` argument)
+
+Right now, the function expects the name of the series as an input every time. We could make the function more userfriendly by using a `state` argument (instead of `series_name`), such that:
+
+
+- the user can provide a state (for example, "florida", instead of the name of the series), the function plots that state’s unemployment rate
+- if the user does not provide a state, the function defaults to the overall US unemployment rate (unrate)
+
+To implement this, we: 
+
+- add an argument like `state=None` (default is that no specific state is provided) 
+- if state is None, use "unrate" 
+- otherwise, map the state name (like "florida") to the correct column name (like "u_florida") using a dictionary
+
+```{python}
+
+def plot_unemployment(df, state=None, show_recessions=True, show_annotation=True): 
+
+    # Recession periods
+    recessions = [
+        ("1980-01-01", "1980-07-01"),
+        ("1981-07-01", "1982-11-01"),
+        ("1990-07-01", "1991-03-01"),
+        ("2001-03-01", "2001-11-01"),
+        ("2007-12-01", "2009-06-01"),
+        ("2020-02-01", "2020-04-01"),
+    ]
+
+    # NEW: Map state names to column names in df
+    state_map = {                           # <1>
+        "texas": "u_texas",                 # <1>
+        "alaska": "u_alaska",               # <1>
+        "california": "u_california",       # <1>
+        "new york": "u_new_york",           # <1>
+        "florida": "u_florida",             # <1>
+        "montana": "u_montana",             # <1>
+        "iowa": "u_iowa",                   # <1>
+    }                                       # <1>
+
+    # NEW: Decide which series to plot
+    if state is None:                       # <2>
+        series_name = "unrate"              # <2>
+        title_label = "US"                  # <2>
+    else:                                   # <3>
+        series_name = state_map[state]      # <3>
+        title_label = state                 # <3>
+
+    # Data preparation for annotations:
+    covid_window = df.loc["2020-01-01":"2021-12-01", series_name]  
+    covid_peak_value = covid_window.max()
+    covid_peak_date = covid_window.idxmax()
+    
+    # Create the plot
+    plt.figure(figsize=(8, 4))
+    plt.plot(df.index, df[series_name], color="navy", linewidth=1.5)  
+
+
+    # optional recession shading
+    if show_recessions:
+        for start, end in recessions:
+            plt.axvspan(start, end, color="gray", alpha=0.2)
+
+    # optional annotation for Covid Peak
+    if show_annotation:
+        plt.annotate(
+            f"COVID peak: {covid_peak_value:.1f}%",
+            xy=(covid_peak_date, covid_peak_value),
+            xytext=(-50, -10),
+            textcoords="offset points",
+            ha="right",
+            va="bottom",
+            fontsize=11,
+            arrowprops=dict(arrowstyle="->", color="black", lw=1.2)
+        )
+
+    # Labels and styling
+    plt.title(f"Unemployment Rate: {title_label}", fontsize=16)  
+    plt.ylabel("Percent", fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.grid(axis="y", alpha=0.3, linestyle="--")
+
+    plt.show()
+```
+
+1. Provide a map that translates user input `state` to the name of the series 
+2. If user doesn't provide a `state` (default `None`) plot `unrate` and use `US` in title
+3. If user does provide a `state`, plot that state and use it in title
+
+Example:
+
+```{python}
+plot_unemployment(df, state='texas')
+```
+
+
+### Handling "Bad" Inputs (Defensive Programming)
+
+If you want to create useful tools for others (including your future self), you should think about what happens if a user provides an input that your function doesn't recognize. For example, a user might want to plot the unemployment rate for Minnesota, but that state isn't in our current dataset. If we just run the function as it is, Python will throw a confusing KeyError, and the user might not understand what the problem is or how to fix it.
+
+```{python}
+plot_unemployment(df, state='minnesota')
+```
+
+Instead of letting the code crash, we want to provide the user with clear, helpful information. 
+
+
+To make our function more professional, we will now add a test to check whether the state input the user provides is actually valid. We do this by checking if the input exists as a key in our state_map dictionary.
+
+If the input is not valid, the function will:
+
+- Print a warning message explaining that the state was not found.
+- Provide a list of valid options so the user knows exactly what they can type.
+- Stop immediately using a return statement, so it doesn't try to create a broken plot.
+
+
+
+```{python}
+def plot_unemployment(df, state=None, show_recessions=True, show_annotation=True): 
+    
+    # Recession periods
+    recessions = [
+        ("1980-01-01", "1980-07-01"),
+        ("1981-07-01", "1982-11-01"),
+        ("1990-07-01", "1991-03-01"),
+        ("2001-03-01", "2001-11-01"),
+        ("2007-12-01", "2009-06-01"),
+        ("2020-02-01", "2020-04-01"),
+    ]
+
+    # 1. Map state names to column names in df
+    state_map = {              
+        "texas": "u_texas",
+        "alaska": "u_alaska",
+        "california": "u_california",
+        "new york": "u_new_york",
+        "florida": "u_florida",
+        "montana": "u_montana",
+        "iowa": "u_iowa",
+    }
+
+    # 2. Identify the series or exit if invalid
+    if state is None:
+        series_name = "unrate"
+        title_label = "US"
+    else:
+        # NEW: does the provided input even exist in our data?
+        if state in state_map:                                          # <1>
+            series_name = state_map[state]                              # <1>
+            title_label = state                                         # <1>
+
+        else:                                                           # <2>
+            # NEW: if input is not valid, provide helpful feedback
+            print(f"Error: '{state}' is not in our database.")          # <2>
+            valid_states = list(state_map.keys())                       # <2>
+            print(f"Valid options are: {valid_states}")                 # <2>
+
+            return # This exits the function immediately                # <2>
+
+
+    # 3. Data preparation (This only runs if the function didn't 'return' above)
+    covid_window = df.loc["2020-01-01":"2021-12-01", series_name]  
+    covid_peak_value = covid_window.max()
+    covid_peak_date = covid_window.idxmax()
+    
+    # 4. Create the plot
+    plt.figure(figsize=(10, 5))
+    plt.plot(df.index, df[series_name], color="navy", linewidth=1.5)  
+
+    # Optional: recession shading
+    if show_recessions:
+        # Note: 'recessions' list must be defined for this to work
+        for start, end in recessions:
+            plt.axvspan(start, end, color="gray", alpha=0.2)
+
+    # Optional: annotation for COVID Peak
+    if show_annotation:
+        plt.annotate(
+            f"COVID peak: {covid_peak_value:.1f}%",
+            xy=(covid_peak_date, covid_peak_value),
+            xytext=(-50, -10),
+            textcoords="offset points",
+            ha="right",
+            va="bottom",
+            fontsize=11,
+            arrowprops=dict(arrowstyle="->", color="black", lw=1.2)
+        )
+
+    plt.title(f"Unemployment Rate: {title_label}", fontsize=16)  
+    plt.ylabel("Percent", fontsize=12)
+    plt.grid(axis="y", alpha=0.3, linestyle="--")
+    plt.show()
+
+```
+
+1. Check if the provided input `state` is in the state map, otherwise we can't translate to series
+2. If the input `sate` is not in our map, print an error that explains the problem, also provide useful feedback like valid options for `state` and then use `return` to stop the function.
+
+
+```{python}
+#| eval: false
+# This will work perfectly
+plot_unemployment(df, state='texas')
+```
+
+```{python}
+# This will trigger the warning
+plot_unemployment(df, state='minnesota')
+```
+
+
+::: {.callout-note}
+This is the basic idea behind **defensive programming**, which is a design philosophy where you write code that proactively anticipates and handles user mistakes to prevent crashes. We will learn more about the advanced tools for this, such as formal Input Validation, Exceptions, and Error Handling, in a future class.
+:::
+
+
+### Ideas for Extensions
+
+Ideas for added functionality: 
+
+- Custom Date Ranges: Add optional `start_date` and `end_date` arguments to allow users to zoom in on specific historical periods without manually slicing the DataFrame beforehand.
+- Frequency Switching: Integrate a parameter that uses the `.resample()` method to let users toggle between monthly, quarterly, or annual views of the data.
+- Comparison Mode: Allow the state argument to accept a list of states so the function can plot multiple lines on the same axis for direct comparison.
+- ...
+
+Ideas for added robustness: 
+
+- Flexible Casing: You could expand the state_map dictionary to include both lowercase and capitalized versions of the states as keys to prevent "Texas" from failing while "texas" works.
+- Visual Safety Bounds: Check if the `covid_window` dates actually exist in the current DataFrame's index before trying to slice the data, which prevents errors if you allow users to choose `start_date` and `end_date`
+- Data Type Verification: Before processing, check if the index is actually a DatetimeIndex and print a helpful instruction to use `pd.to_datetime()` if it is not.
+- ...
+
+::: {.callout-note title= "A Guideline"}
+When deciding which features to add, balance analytical power with user simplicity. While you could write one giant function that does everything, it is sometimes better to create separate, specialized functions for different tasks. Whenever you add a new feature, always re-test your safety checks to ensure the tool remains robust.
+:::
+
+
+
+## Looking Ahead: Building Your Data Analysis Toolkit
+
+As you progress through this course, you will eventually create a Class that contains a suite of useful tools for data analysis. The plotting function we just built is an example of the kind of "tool" you might include in that class.
+
+
+**Step-by-Step Recap: From Analysis to Tool**
+
+When building a reusable tool for yourself or others, it is helpful to follow this logical progression:
+
+- Start with a Question: Identify what you want to know, such as "How has the US unemployment rate changed over time?" 
+- Create a Figure/Table: Write the code that helps you answer the question by calculating statistics or plotting trends.
+- Make it a Function: Wrap your code in a function so you can reproduce it with a single command.
+- Add Functionality: Think about how others might want to use it and generalize your inputs.
+- Make it Robust: Anticipate user mistakes by adding validation logic to handle incorrect inputs.
+
+
+
+
+
+
+
+
+
+
+
+
