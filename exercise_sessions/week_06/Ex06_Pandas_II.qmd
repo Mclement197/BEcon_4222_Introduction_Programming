@@ -1,0 +1,733 @@
+---
+title: "Exercise 6: Pandas Part II"
+author: "Franziska Bender"
+date: "2026-03-23"
+format: 
+  html:
+    toc: true          # Adds a Table of Contents on the side
+    toc-depth: 4
+    code-fold: false   # Keeps your code visible (set to true to hide it)
+    code-annotations: hover
+    theme: cosmo       # A clean, built-in professional look
+    embed-resources: true
+execute:
+  echo: true           # Shows your code in the output
+  freeze: false
+  error: true
+jupyter: python3       # Tells Quarto to use your Python 3 kernel
+---
+
+<style>
+/* apply to any table with class="compact" */
+table.compact {
+  font-size: 14px;              /* smaller font */
+  border-collapse: collapse;    /* tight borders */
+  border-top: 2px solid #333;   /* thick top frame */
+  border-bottom: 2px solid #333;/* thick bottom frame */
+}
+
+table.compact th, table.compact td {
+  padding: 3px 8px;             /* smaller row gaps */
+  line-height: 1.25;
+  border-top: 1px solid #ccc;   /* subtle row lines */
+}
+</style>
+
+
+In this exercise, we will practice working with real-world, imperfect data. We will cover how to identify and handle missing observations, use pandas' DatetimeIndex to manage time series, and apply aggregation and resampling techniques. Along the way, we will apply these skills to practical economic scenarios,such as analyzing competitive dynamics in the tech sector, and conclude by building our own reusable Python tools.
+
+**Import Libraries**
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+
+**Data**
+
+- Download the dataset `firm_data_ex06.csv` and save it in a folder `data`.
+
+The data we use in this exercise is from Compustat North America Fundamentals Quarterly. It's a dataset of publicly listed North American companies’ quarterly financial statement fundamentals. It provides comparable items from the income statement, balance sheet, and cash flow statement, along with firm identifiers and reporting dates for time-series analysis. In this exercise we use only a small number of firms and variables. If you want to practice more you have access to the full data through the university. 
+
+
+<table class="compact">
+  <caption style="caption-side: top; color: black; font-weight: 600; text-align: left;">
+    Variables in the Dataset
+  </caption>
+  <thead>
+    <tr><th>Variable Name</th><th>Description</th><th>Context</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ticker</td><td>Stock ticker symbol</td><td>A unique identifier for the firm on a stock exchange (e.g., AAPL, NVDA, F)</td></tr>
+    <tr><td>date</td><td>Observation date</td><td>The end date of the reporting period.</td></tr>
+    <tr><td>gvkey</td><td>Global Company Key </td><td>The unique permanent identifier for the company in the Compustat database.</td></tr>
+    <tr><td>comp_name</td><td>Company Name </td><td>The full legal name of the company.</td></tr>
+    <tr><td>fiscal_year</td><td>Fiscal Year </td><td> </td></tr>
+    <tr><td>fiscal_quarter</td><td> Fiscal Quarter </td><td> </td></tr>
+    <tr><td>assets</td><td>Total Assets </td><td>The total value of everything the firm owns; a common proxy for firm size.</td></tr>
+    <tr><td>net_income</td><td>Net Income </td><td>The profit or loss after all expenses, interest, and taxes have been paid.</td></tr>
+    <tr><td>ebitda</td><td>EBITDA </td><td>Earnings Before Interest, Taxes, Depreciation, and Amortization; measures core operating profit.</td></tr>
+    <tr><td>revenue</td><td>Total revenue </td><td>The income from sales before any expenses are subtracted</td></tr>
+    <tr><td>rd_expense</td><td>R&D Expense </td><td>Spending on Research and Development</td></tr>
+    <tr><td>cap_ex_ytd</td><td>CapEx (YTD) </td><td>Capital Expenditures reported as a Year-To-Date</td></tr>
+    <tr><td>sector_code</td><td>Sector Code </td><td>GICS sector classification code .</td></tr>
+
+  </tbody>
+</table>
+
+<br>
+
+## Exercise 0: Initial Data Exploration
+
+This exercise focuses on loading the dataset and performing a high-level inspection of the sample to understand which variables are in the dataset, and which firms and time periods are included in the analysis.
+
+**Your Tasks:**
+
+1. **Data Loading and Inspection:** Load the file `data/firm_data_ex06.csv` into a DataFrame named df and display the first few rows.
+2. **Firm Identification:** Calculate the total number of unique tickers and print the full names of all companies in the sample.
+3. **Observation Count:** Count how many data points are available for each company to check if the dataset is balanced (i.e., whether we have the exact same number of quarterly observations for every single firm).
+4. **Calendar Range**: Identify the earliest and latest dates in the dataset.
+
+::: {.callout-tip collapse="true" title="Solution 0.1"}
+```{python}
+# Task 1: Data Loading and Inspection
+df = pd.read_csv("data/firm_data_ex06.csv")
+df.head()
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution 0.2"}
+```{python}
+# Task 2: Find number of companies in the dataset
+n_companies = df['ticker'].nunique()
+print(f"Unique Firms in Sample: {n_companies}")
+
+company_names = df['comp_name'].unique().tolist()
+print("Full Company Names:")
+print(company_names)
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution 0.3"}
+```{python}
+# Task 3: Count observations per firm
+# .value_counts() tells us how many rows exist for each unique entry
+print("\nObservations per company:")
+print(df['comp_name'].value_counts())
+```
+:::
+
+
+::: {.callout-tip collapse="true" title="Solution 0.4"}
+```{python}
+# Task 4: Check the calendar range
+# Note: Because the dates are currently loaded as strings, pandas finds the 
+# min/max by sorting them alphabetically. This only works correctly if 
+# the strings are perfectly formatted as YYYY-MM-DD!
+
+print(f"\nData starts on: {df['date'].min()}")
+print(f"Data ends on:   {df['date'].max()}")
+```
+:::
+
+
+
+## Exercise 1: Identifying and Handling Missing Data
+
+In the lecture, we discussed how the 2025 federal shutdown caused a gap in official unemployment statistics. Corporate financial data is often much messier and contains structural missing values (`NaN`s) because different industries/firms follow different reporting standards. This exercise focuses on identifying these gaps and applying appropriate strategies to handle them.
+
+
+
+### Part A: Identifying Gaps
+
+Before fixing data, you must understand where it is broken. We start by quantifying the missing values in our dataset.
+
+**Your Tasks**
+
+1. **Overview:** Use the `.info()` method to get a high-level summary of the dataset. Which columns appear to have the most missing values?
+2. **Quantification:** Calculate the exact number of NaN entries for every variable.
+3. **Identify Affected Firms:** Pinpoint exactly which companies have missing data for a specific variable (e.g., assets). Create a subset of the data containing only the rows where that variable is `NaN`, then extract a list of the unique company names.
+
+::: {.callout-tip collapse="true" title="Solution 1.A.1: Overview"}
+```{python}
+df.info()
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution 1.A.2: Quantification"}
+```{python}
+# .isna() returns True for missing values; .sum() counts those Trues
+missing_counts = df.isna().sum()
+missing_counts
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution 1.A.3: Identify Firms with Missing Values"}
+```{python}
+var_name = 'assets'         # Change variable here to
+missing_rows = df[df[var_name].isna()]
+firms_nan = missing_rows['comp_name'].unique().tolist()
+print(firms_nan)
+```
+:::
+
+### Part B: Strategies for Handling Missing Data
+
+Now that we know where the gaps are we can think about strategies to handle them. There are three strategies we consider:
+
+- Dropping: Removing incomplete rows.
+- Filling: Replacing `NaN` with a constant (like 0 for R&D).
+- Interpolation: Estimating values by "drawing a line" between known points.
+
+**Your Tasks**
+
+1. **The Aggressive Approach:** Create a new DataFrame called `df_dropped` by dropping all rows where there are ANY missing values. How many observations did you lose? How can you drop observations in a less aggressive way?
+
+
+::: {.callout-tip collapse="true" title="Solution 1.B.1: The Aggressive Approach"}
+```{python}
+# Use .dropna() to drop all rows where there are ANY missing 
+df_dropped = df.dropna()
+
+# Find number of observations of dataframe with len(), compare df and df_dropped:
+print(f"Original observations: {len(df)}")
+print(f"Observations after dropna: {len(df_dropped)}")
+print(f"Rows lost: {len(df) - len(df_dropped)}")
+
+```
+
+A less aggressive approach: Only drop if a SPECIFIC crucial variable is missing. For example if we can't do our analysis if 'assets' is missing, but we don't care if 'rd_expense' is then we could use the `subset` argument:
+```{python}
+#| eval: false
+df_dropped_subset = df.dropna(subset=['assets'])
+```
+
+:::
+
+
+
+2. **Economic Logic (Filling)**: For many firms, a missing value in rd_expense means they simply spent $0 on research that quarter. Create a new column called `rd_filled` where all `NaN` values in `rd_expense` are replaced with 0. Check if it worked
+
+::: {.callout-tip collapse="true" title="Solution 1.B.2: Economic Logic (Filling)"}
+```{python}
+# We assume no report equals no spending for this variable, use .fillna()
+df['rd_filled'] = df['rd_expense'].fillna(0)
+
+# Did it work? Filter for observations where rd_expense is missing and check whether rd_filled is 0
+df[df['rd_expense'].isna()][['date', 'rd_expense', 'rd_filled']].head()
+```
+:::
+
+
+
+3. **The "Naive" Interpolation Trap:** For missing values of 'assets' it might be sensible to interpolate linearly. Run the following code to create an interpolated column `'assets_interp'`:
+
+```{python}
+df['assets_interp'] = df['assets'].interpolate(method='linear')
+```
+
+  - Show the first 10 rows of the data for Tesla (ticker:'TSLA') for the variables `['date', 'comp_name', 'assets', 'assets_interp']`
+  - Explain why applying `interpolate()` to the entire DataFrame at once might lead to incorrect data points.
+
+::: {.callout-tip collapse="true" title="Solution 1.B.3: Naive Interpolation"}
+
+```{python}
+# Create assets_interp according to the suggestion:
+df['assets_interp'] = df['assets'].interpolate(method='linear')
+
+# Select the data for tesla, select columns of interest, show first 10 rows
+df[df['ticker']=='TSLA'][['date', 'comp_name', 'assets', 'assets_interp']].head(10)
+```
+
+The first time Tesla reports assets is 2008 Q4, the interpolated values come from another company that appeared before tesla in the data. 
+
+**A cautionary tale**: Applying `interpolate()` to the dataframe like this was a solution suggested by AI, it runs without an error, but it's not correct. AI is very helpful for programming, but it is still crucial to have a good understanding of the code and to come up with ways to check whether it's actually correct. Just because something runs without an error doesn't mean it's doing what was intended. 
+
+:::
+
+
+
+4. **The (almost) Correct Way:** Use the following "Group-Transform" command to interpolate correctly.
+
+    - Group the data by firms (use ticker, gvkey or any firm identifier)
+    - Pick the column we want to change
+    - Use `.transform()`
+    - In `.transform()` We use a lambda function to tell pandas what to do: `lambda x: x.interpolate(method='linear')`. Read this as: "For each group (**x**), calculate the linear interpolation and broadcast it back so it fits our original table."
+    
+
+::: {.callout-tip collapse="true" title="Solution 1.B.4: The (almost) Correct Way"}
+```{python}
+df['assets_interp'] = (
+    df.groupby('ticker')['assets']          # group by firm, pick column
+    .transform(                             # apply .transform
+        lambda x:                           # transform every group x
+        x.interpolate(method='linear')      # by interpolating linearly
+        )
+)
+# Check for Tesla if it worked:
+df[df['ticker']=='TSLA'][['date', 'comp_name', 'assets', 'assets_interp']].head(10)
+```
+:::
+
+- There is one potential issue still with this, can you catch it?
+
+::: {.callout-tip collapse="true" title="The potential issue and how to fix it"}
+
+The dates in this dataframe happen to be sorted already, if they weren't this code would run without an error but might draw a linear trend between two dates that don't follow each other. For interpolation to work correctly we should sort the dataframe by 'date' (or by firms (via ticker for example *and* date)).
+```{python}
+# First step: Sort dataframe by firms and date!
+df = df.sort_values(['ticker', 'date'])
+
+# Then you can interpolate
+df['assets_interp'] = df.groupby('ticker')['assets'].transform(lambda x: x.interpolate(method='linear'))
+```
+:::
+
+
+
+
+
+5. **To Interpolate or Not?** Copy and run the following function in your notebook. It will allow you to quickly visualize the difference between the original data (with gaps) and our interpolated version.
+    - Run `plot_firm_assets('TSLA')`. Looking at the plot, argue whether interpolation is a sensible choice for filling the gaps in Tesla's assets.
+    - Run `plot_firm_assets('GM')`. Looking at the plot, argue again whether interpolation is a sensible choice for filling the gaps. 
+
+```{python}
+
+def plot_firm_assets(ticker_name):
+    """
+    Plots original vs. interpolated assets for a specific ticker.
+    """
+    # 1. Filter for the specific firm
+    firm_data = df[df['ticker'] == ticker_name]
+    
+    # 2. Create the plot
+    plt.figure(figsize=(8, 5))
+    
+    # Plot interpolated data (continuous line)
+    plt.plot(firm_data['date'], firm_data['assets_interp'], 
+             label='Interpolated Assets', color='orange', linestyle='-', marker='o', alpha=0.8)
+    
+    # Plot original data (points with gaps)
+    plt.plot(firm_data['date'], firm_data['assets'], 
+             label='Original Assets', color='blue', marker='o', markersize=4)
+    
+    # 3. Formatting
+    plt.title(f"{ticker_name}: Original vs. Interpolated Assets")
+    plt.xlabel("Date")
+    plt.ylabel("Total Assets (Millions)")
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))
+    plt.grid(True, linestyle=':', alpha=0.6)
+    plt.tight_layout()
+    plt.show()
+
+```
+
+
+::: {.callout-tip collapse="true" title="Example Tesla"}
+```{python}
+plot_firm_assets('TSLA')
+```
+
+Teslas assets show a relatively smooth trajectory, so linear interpolation seems reasonable. The growth trajectory could be exponential, which we could account for by using a different method in `interpolate()`. But the orange interpolated segments are short, meaning we are only "guessing" for a few quarters at a time. The closer the known data points are to each other, the more accurate linear interpolation tends to be. 
+:::
+
+
+
+::: {.callout-tip collapse="true" title="Example General Motors"}
+```{python}
+plot_firm_assets('GM')
+```
+
+In GM's case linear interpolation may not be reasonable. The “missing/odd” asset value in 2009 Q2 lines up with its bankruptcy filing (June 1, 2009) and the rapid sale of most operating assets into a newly created “New GM” (completed July 10, 2009). In other words, this isn’t a normal, smooth evolution of the same balance sheet—it’s a break in the reporting entity and accounting perimeter (assets and liabilities were split between “Old GM”/liquidation and the reorganized company). Because linear interpolation assumes the underlying process is continuous and comparable quarter to quarter, it’s not economically meaningful here: the “true” path wasn’t a gradual transition, it was a discrete restructuring event.
+:::
+
+
+::: {.callout-note title="A Note on how to handle Missing Data"}
+
+Handling missing data is often presented as a "pre-processing" step, something you do once at the beginning to get a "clean" dataset. In reality, the best way to handle a gap depends on your specific research question.
+
+ - Filling or Interpolating is useful when you need a continuous series for visualizations or for metrics where a missing value has a clear economic meaning (e.g., a missing R&D field often means $0 spending).
+- Leaving it as NaN is often the most "honest" approach. In many statistical models, it is better to lose an observation than to feed the model a "guessed" or "fabricated" number that might bias your results.
+
+**Rule of Thumb:** Don't clean just for the sake of having a full table. Clean when you understand the economic logic behind the gap and when you understand that for your particular question a specific method like dropping missing values, filling or interpolating is needed and makes sense. 
+
+:::
+
+
+## Exercise 2: DateTime Index in Panel Data
+
+
+**Your Tasks**
+
+1. **Datetime Conversion**: Check the datatype of 'date' with `.dtype`, convert the date column into a `datetime64` object. Verify the change by printing the column’s data type.
+2. **Setting the Index**: Set this newly converted date column as the DataFrame’s index to create a DatetimeIndex. Use `.sort_index()` to sort the dataframe by its new index, what do you observe? 
+3. **Slicing Historical Windows**: Use the `.loc` accessor to create a subset called `df_gfc` that contains all firms but only for the years 2008 through 2010 (the Great Financial Crisis period). Make sure the index is sorted. (*Hint: You can test whether the index is sorted using `df.index.is_monotonic_increasing`*)
+
+::: {.callout-tip collapse="true" title="Solution 2.1: Datetime Conversion"}
+```{python}
+# 1. Convert to datetime
+print(df['date'].dtype)
+df['date'] = pd.to_datetime(df['date']) 
+print(f"New Data Type: {df['date'].dtype}") 
+```
+:::
+
+::: {.callout-tip collapse="true" title="Solution 2.2: Setting the Index"}
+```{python}
+# 2. Set as index
+df = df.set_index('date') 
+print(f"Index Type: {type(df.index)}") 
+
+
+# Display the first 10 rows of the dataframe sorted by its index
+df.sort_index().head(10)
+```
+
+In the lecture we have seen unemployment rates where we had one observation for every 'date'. Here we are working with panel data. When you set a `DatetimeIndex` on panel data the index is not unique. For every 'date' we have the observations of multiple firms that will each have a row for this date.  
+
+The 'date' column (`'datadate'` in compustat) is the end of the fiscal period (quarter) for that observation. It is common that the fiscal period aligns with the calendar period, i.e. the first quarter is January-March, and the fiscal year ends in December. But this is not the case for all firms, there are many exemptions.
+
+-  Nvidia the 2004 fiscal year ends 2005-01-31. That's why the observation for 2005-01-31 is for the 'fiscal_year' of 2004 and 'fiscal_quarter' of 4. 
+- Apple's fiscal year ends in September, their 2005 fiscal year already starts in September 2004 which is why their date '2005-03-31' corresponds to the second quarter of the fiscal year 2005.
+
+:::
+
+
+
+::: {.callout-tip collapse="true" title="Solution 2.3: Slicing Historical Windows"}
+```{python}
+# First sort the index 
+# Note: DatetimeIndex allows us to slice by year strings directly
+print(f"Is the index sorted? {df.index.is_monotonic_increasing}")
+df = df.sort_index()
+print(f"Is the index sorted? {df.index.is_monotonic_increasing}")
+
+# Slice the Great Financial Crisis window
+# Note: DatetimeIndex allows us to slice by year strings directly
+df_gfc = df.loc["2008":"2010"] 
+
+df_gfc.head()
+```
+
+
+Why sorting is necessary: When you ask pandas for a range (e.g., `.loc["2008":"2010"]`), pandas needs to find the "start" point and the "end" point. If the index is not sorted (for example if your dataframe is sorted by firms) it will raise an error. You can check whether your index is sorted with `df.index.is_monotonic_increasing` which will be `True` if it is and `False` otherwise
+:::
+
+
+
+
+## Exercise 3: Aggregation and Resampling
+
+In this exercise, we will "downsample" our data from a quarterly frequency to an annual frequency. Because we are working with panel data, we must always remember to group by our firm identifier (ticker or gvkey) before resampling; otherwise, pandas will aggregate all companies together (which can be exactly what we want, but not in this exercise).
+
+**Your Tasks**
+
+1. **Annual Revenue:** Calculate the total annual revenue for each firm. (Use `groupby('ticker')` before you resample, and choose an appropriate aggregation method.)
+2. **Advanced Aggregation:** Create an annual dataframe `df_annual` with revenue, net_income and assets. You can do so by resampling, using `.agg()` and specifying in a dictionary which aggregation method you want to use for each of the variables. 
+3. **Handling the MultiIndex:** You will notice that `df_annual` has a "MultiIndex" (rows are nested by Ticker and then Date). 
+    - **Selection:** Use `.loc` to select all annual data for Apple (AAPL) from your new `df_annual` DataFrame.
+    - **Full Reset:** Use `.reset_index()` to turn the entire MultiIndex back into regular columns.
+    - **Partial Reset:** Start again from the MultiIndexed df_annual and use `.reset_index(level=...)` to move only the ticker back to a column while keeping the date as the index.
+
+
+
+
+::: {.callout-tip collapse="true" title="Solution 3.1: Annual Revenue"}
+```{python}
+# 1. Total Annual Revenue
+# We use 'YE' for Year-End to resample
+# aggregation method .sum()
+annual_rev = df.groupby('ticker')['revenue'].resample('YE').sum()
+annual_rev.head()
+```
+:::
+
+
+
+
+::: {.callout-tip collapse="true" title="Solution 3.2: Advanced Aggregation"}
+```{python}
+# Define which math to apply to which column
+df_annual = df.groupby('ticker').resample('YE').agg({
+    'revenue': 'sum',
+    'net_income': 'sum',
+    'assets': 'last'
+})
+df_annual.head()
+```
+
+Why these methods?
+
+In our example, we used `.sum()` for revenue and net_income because these are "Flow" variables—they represent the total amount of money earned or spent throughout the four quarters of the year. Conversely, we used `.last()` for assets because it is a "Stock" variable. A company's assets are a snapshot of what they own at a specific moment; summing the assets from March, June, September, and December would double-count the same buildings and cash, leading to a nonsensical result.
+:::
+
+
+::: {.callout-tip collapse="true" title="Solution 3.3: Handling the MultiIndex"}
+```{python}
+
+# Subtask A: Selection
+# On a MultiIndex (Ticker, Date), .loc picks the first level by default
+aapl_annual = df_annual.loc['AAPL']
+print("Apple Annual Data:")
+aapl_annual.head()
+```
+
+```{python}
+# Subtask B: Full Reset
+# This turns everything into a 'flat' table, ideal for plotting or exporting to CSV
+df_flat = df_annual.reset_index()
+df_flat.head()
+```
+
+```{python}
+# Subtask C: Partial Reset
+# This moves the 'ticker' to a column but keeps the 'date' as the index
+df_partial_reset = df_annual.reset_index(level='ticker')
+
+df_partial_reset.head()
+
+```
+
+
+In economics and finance, we often work with panel data, where we track multiple entities (firms, countries, or individuals) over several time periods. This is mathematically represented as $y_{it}$​, where $y$ is a variable like revenues, $i$ denotes the specific entity (e.g., Apple) and $t$ represents the time (e.g., Q1 2024). A MultiIndex is the way Python’s pandas library handles this two-dimensional relationship within a single table. By using both the entity and the date as the index, the DataFrame effectively "stacks" these dimensions, ensuring that every row is uniquely identified by its "Who" and its "When."
+
+A MultiIndex is sometimes very useful and sometimes very annoying. You can easily go back and forth using `.set_index()` (use a list e.g. `['ticker', 'date'])` to create a MultiIndex),  and `.reset_index()` depending on what's better suited for your analysis. 
+
+
+:::
+
+
+
+## Exercise 4: Analyzing Competitive Dynamics in the Tech Sector
+
+In any competitive industry, market leadership is rarely permanent. Structural breaks—specific moments in time where a new technology or market shift fundamentally changes the landscape—can shift things rapidly, altering the growth trajectories of even the most established firms. In our sample data, we have 5 technology-focused firms:
+
+- NVIDIA CORP: A leader in GPUs and AI hardware. (ticker = 'NVDA')
+- APPLE INC: Consumer electronics and software. (ticker = 'AAPL')
+- ALPHABET INC: Search, advertising, and cloud services (Google). (ticker = 'GOOGL')
+- INTEL CORP: Semiconductor manufacturing and design. (ticker = 'INTC')
+- MICROSOFT CORP: Software, cloud services, and hardware. (ticker = 'MSFT')
+
+
+We will explore how these firms performed with the emergence of Large Language Models (LLMs) by calculating growth rates and visualizing the potential decoupling of market leaders.
+
+
+**Your Tasks:**
+
+1. **Revenue Growth Analysis:** Create a new column called `rev_growth` that represents the year-over-year percentage growth of revenue for each firm.
+2. **Baseline Visualization:** As an example we'll compare nvidia and intel. Create two temporary DataFrames, `nvda` and `intc` with the data for the respective company. Then, generate a baseline plot comparing their revenue growth rates, with a title, labels, and a basic grid. You can do so by calling `plt.plot()` twice, you should use the `label=` argument, and add `plt.legend()` before you show the figure.
+3. **Refining the Aesthetics:** Improve the professional look of your chart.
+    - Add a horizontal line at y=0 using `plt.axhline()`.
+    - Make the grid less dominant (e.g., using `alpha=0.3`).
+    - Change the colors and linestyles to distinguish the firms clearly.
+    - Change the title's fontsize and set its location (`loc`) to the left.
+4. **Adding Context:** Highlight the "AI Era" to tell a clearer story by using `plt.axvspan()` to shade the period from November 2022 (the release of ChatGPT) to the end of the sample. Remember that your x-axis is `datetime`, so your start and end of the span should be `datetime` as well.
+
+
+::: {.callout-tip collapse="true" title="Solution 4.1: Revenue Growth Analysis"}
+```{python}
+# To calculate YoY growth correctly in a panel, we must group by ticker.
+# This prevents 'leaking' data between different firms.
+# A lag of 4 is used for quarterly data to compare the same quarter across years.
+df['rev_growth'] = df.groupby('ticker')['revenue'].pct_change(4) * 100
+
+# Inspecting the result
+df[df['ticker'] == 'NVDA'].head()
+```
+:::
+
+
+
+::: {.callout-tip collapse="true" title="Solution 4.2: Baseline Visualization"}
+```{python}
+# 1. Filter the data
+nvda = df[df['ticker'] == 'NVDA']
+intc = df[df['ticker'] == 'INTC']
+
+# 2. Setup the figure
+plt.figure(figsize=(9, 4.5))
+
+# 3. Plot the growth rates
+plt.plot(nvda.index, nvda['rev_growth'], label='NVIDIA (AI Focus)')
+plt.plot(intc.index, intc['rev_growth'], label='Intel (PC/Server Focus)')
+
+
+# 5. Professional Styling
+plt.title("Tech Sector Dynamics: Revenue Growth in the AI Era")
+plt.ylabel("YoY Revenue Growth (%)")
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+
+It's always best to start with a simple baseline plot to see if the figure is even interesting. Then you can think about how to improve it visually. Here for example we could
+
+- Reduce Visual Noise: The current grid is very dominant; lightening it ensures the focus remains on the data lines.
+- Establish a Baseline: Adding a line at zero would help the reader immediately see when a company is shrinking (negative growth) versus just growing slowly.
+- Visual Hierarchy: Moving the title to the left and increasing its size makes it feel less like a default output and more like a professional publication.
+- Distinct Styles: Using specific colors and different line textures (like dashed lines) helps differentiate the firms even if the chart is printed in black and white.
+
+:::
+
+::: {.callout-tip collapse="true" title="Solution 4.3: Refining the Aesthetics"}
+```{python}
+
+nvda = df[df['ticker'] == 'NVDA']
+intc = df[df['ticker'] == 'INTC']
+
+
+plt.figure(figsize=(9, 4.5))
+
+# New: change color, linestyle, linewidth
+plt.plot(nvda.index, nvda['rev_growth'], label='NVIDIA (AI Focus)', color='#76b900', lw=2)
+plt.plot(intc.index, intc['rev_growth'], label='Intel (PC/Server Focus)', color='#0071c5', lw=2, linestyle='--')
+
+# New: change location and fontsiize of title
+plt.title("Tech Sector Dynamics: Revenue Growth in the AI Era", loc='left', fontsize=14) 
+plt.ylabel("YoY Revenue Growth (%)")
+plt.legend()
+
+# New: Add baseline
+plt.axhline(0, color='black', lw=1, alpha=0.5)
+
+# New: Make grid more subtle
+plt.grid(alpha=0.3)
+
+plt.show()
+
+```
+:::
+
+
+::: {.callout-tip collapse="true" title="Solution 4.4: Adding Context"}
+```{python}
+
+nvda = df[df['ticker'] == 'NVDA']
+intc = df[df['ticker'] == 'INTC']
+
+plt.figure(figsize=(9, 4.5))
+
+plt.plot(nvda.index, nvda['rev_growth'], label='NVIDIA (AI Focus)', color='#76b900', lw=2)
+plt.plot(intc.index, intc['rev_growth'], label='Intel (PC/Server Focus)', color='#0071c5', lw=2, linestyle='--')
+
+# New: Add context AI Era
+ai_start = pd.to_datetime('2022-11-01')
+plt.axvspan(ai_start, df.index.max(), color='grey', alpha=0.15, label='AI Era')
+
+
+plt.title("Tech Sector Dynamics: Revenue Growth in the AI Era", loc='left', fontsize=14)
+plt.ylabel("YoY Revenue Growth (%)")
+plt.legend()
+
+plt.axhline(0, color='black', lw=1, alpha=0.5)
+plt.grid(alpha=0.3)
+
+plt.show()
+
+```
+
+The function `plt.axvspan(xmin, xmax, ...)` creates a vertical rectangle (span) across the axes. You should label it and you can change the appearance with additional arguments, most common are `color` and `alpha`.
+
+Note that we worked with a DateTime index so the x-axis of our figure is composed of internal `datetime64` objects. That's why we need to convert the string '2022-11-01' to datetime first.
+
+:::
+
+
+
+
+## Exercise 5: From Scripts to Reusable Tools
+
+In Exercise 4, we created a visualization for the comparison of two firms to illustrate a competitive shift. We might want to analyze different firms in the same way; instead of copying and pasting the code every time, it is better to wrap our logic into a function. This makes our workflow more efficient, readable, and less prone to errors.
+
+
+**Your Tasks:**
+
+
+1. **Create a Reusable Plotting Function:** Write a function called `compare_growth(df, ticker_1, ticker_2)` that takes the dataframe as well as two stock tickers as arguments and plots the figure created in Exercise 4 for any company. 
+
+::: {.callout-note collapse="true" title="Hints for Task 1"}
+If you are stuck on how to turn your script into a function, follow these steps:
+
+- Define the Function: Start with `def compare_growth(df, ticker_1, ticker_2):`. Remember that everything inside the function must be indented.
+- Copy and Paste: Move your successful plotting code from Exercise 4 into the body of the function.
+- Replace Hard-Coded Values: Look for where you specifically wrote `'NVDA'` or `'INTC'` in your filters and replace them with the arguments `ticker_1` and `ticker_2`.
+- Automate with f-strings: Use f-strings in your title and labels to make them dynamic. For example: `plt.title(f"Growth Comparison: {ticker_1} vs {ticker_2}", ...)` or `label=f"{ticker_1}"`.
+- Call the Function: Don't forget to actually run the function at the end to test it
+:::
+
+
+2. **Discussion**: Enhancement and Robustness: Reflect on your function and answer the following:
+
+(i) Feature Expansion: What are additional features you could add to this function?
+(ii) Robustness: How could you make this function "robust" to errors? 
+
+
+
+::: {.callout-tip collapse="true" title="Solution 5.1: Create a Reusable Plotting Function"}
+```{python}
+def compare_growth(df, ticker_1, ticker_2):
+    # Filter the data
+    firm_a = df[df['ticker'] == ticker_1]   # <1>
+    firm_b = df[df['ticker'] == ticker_2]   # <1>
+
+    # Setup the figure
+    plt.figure(figsize=(9, 4.5))
+
+    # Plot lines with the styling from Ex 4
+    plt.plot(firm_a.index, firm_a['rev_growth'], label=f'{ticker_1}', color='#76b900', lw=2)   # <2>
+    plt.plot(firm_b.index, firm_b['rev_growth'], label=f'{ticker_2}', color='#0071c5', lw=2, linestyle='--') # <2>
+
+    # Add AI Era Shading (using pd.to_datetime for axis compatibility)
+    ai_start = pd.to_datetime('2022-11-01')
+    plt.axvspan(ai_start, df.index.max(), color='gray', alpha=0.15, label='AI Era')
+
+    # Professional Styling
+    plt.axhline(0, color='black', lw=1, alpha=0.5)
+    plt.grid(axis='y', alpha=0.3)
+    plt.title(f"Tech Sector Dynamics: {ticker_1} vs {ticker_2}", loc='left', fontsize=14)   # <3>
+    plt.ylabel("YoY Revenue Growth (%)")
+
+    plt.legend()
+    plt.show()
+```
+
+1. Filter the data using the input provided by the user, `ticker_1` / `ticker_2`.
+2. The labels should adjust automatically depending on the user input, use f-string
+3. The title should also adjust automatically depending on the user input, use f-string
+
+
+```{python}
+# Test the function, use different tickers e.g. apple and google
+compare_growth(df, 'AAPL', 'GOOGL')
+```
+:::
+
+
+::: {.callout-tip collapse="true" title="Solution 5.2: Discussion"}
+
+**(i) Feature Expansion**
+
+- Metric Selection: Add an argument to choose between net_income, revenue, or profit_margins when comparing the companies
+- Flexible Shading: Add a boolean argument (`show_ai_era=True`) to toggle the shading on or off.
+- Benchmarking: Add a line representing the industry average to see if a firm is "beating the market".
+- Company Name Mapping: Use a dictionary (e.g., `names = {'NVDA': 'NVIDIA Corp', ...}`) so the legend / titledisplays the full name instead of the ticker symbol.
+- ...
+
+
+**(ii) Robustness**
+
+- Ticker Verification: Use an if statement to check if the input tickers exist in your dataset. If it doesn't print a helpful message and exit. 
+- Frequency Verification: Ensure the data is actually quarterly. If there is a "hole" in the time series (e.g., a missing year of filings), `pct_change(4)` will return incorrect results.
+- Financial data often contains "fat tails" or one-time accounting adjustments (like a massive legal settlement). You could add a check that warns the user if a growth rate exceeds a certain threshold (e.g., >500%), but plots the figure anyway
+- Overlap Check: Verify that the two firms have overlapping date ranges so the comparison is actually possible on a single timeline.
+- ...
+
+
+Also visually the figure could be improved, for example the legend moves around depending on the data, we could fix the location using `loc=` but have to consider an option that works irrespective of the data.
+
+:::
+
