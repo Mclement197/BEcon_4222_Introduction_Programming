@@ -1,0 +1,1183 @@
+---
+title: "Exercise 7: Classes"
+author: "Franziska Bender"
+date: "2026-04-14"
+format: 
+  html:
+    toc: true          # Adds a Table of Contents on the side
+    toc-depth: 4
+    code-fold: false   # Keeps your code visible (set to true to hide it)
+    code-annotations: hover
+    theme: cosmo       # A clean, built-in professional look
+    embed-resources: true
+execute:
+  echo: true           # Shows your code in the output
+  freeze: false
+  error: true
+jupyter: python3       # Tells Quarto to use your Python 3 kernel
+---
+
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+
+
+## Exercise 0: Warm-Up
+
+
+Let's practice the core concepts of classes with a simple example. A **class** is a blueprint for creating objects. Each object created from a class is called an **instance** and can hold data (stored as **attributes**) and perform actions (defined as **methods**). We will create a `Country` class that stores some basic facts about a country and can report them.
+
+1. Create a class called `Country`. Write the `__init__` method so that it takes three arguments — `name`, `population` (in millions), and `gdp_per_capita` (in USD) — and assigns them as instance attributes.
+2. Add a method `describe(self)` that prints a short summary of the country, for example: "Switzerland: population 8.7 million, GDP per capita $87,000".
+3. Add a method `total_gdp(self)` that returns the total GDP (population times GDP per capita).
+
+
+
+::: {.callout-tip collapse="true" title="Solution: Country Class"}
+```{python}
+class Country:
+
+    def __init__(self, name, population, gdp_per_capita):
+        self.name = name                            #<1>
+        self.population = population
+        self.gdp_per_capita = gdp_per_capita
+
+    def describe(self):                             #<2>
+        """Print a short summary of the country."""
+        print(f"{self.name}: population {self.population} million, "
+              f"GDP per capita ${self.gdp_per_capita:,}")
+
+    def total_gdp(self):                            #<3>
+        """Return total GDP in millions of USD."""
+        return self.population * self.gdp_per_capita
+
+```
+
+1. Each argument is stored as an instance attribute using `self.` — this makes the data accessible to all methods of the class and to anyone who holds a reference to the object.
+2. A method is just a function defined inside the class that always takes `self` as its first argument. `self` refers to the specific instance the method is called on — so `self.name` gives the name of *this* country, not any other.
+3. Methods can compute and return values just like regular functions, but they have access to all the instance's attributes via `self`.
+
+:::
+
+4. Test your code: create two instances for countries of your choice, call `describe()` on each, and print their total GDPs.
+
+::: {.callout-tip collapse="true" title="Test your code"}
+```{python}
+# Create two instances
+switzerland = Country(name='Switzerland', population=8.7, gdp_per_capita=87000)
+germany = Country(name='Germany', population=84.0, gdp_per_capita=54000)
+
+# Call describe() on each
+switzerland.describe()
+germany.describe()
+
+# Compare total GDPs
+print(f"\nTotal GDP — Switzerland: ${switzerland.total_gdp():,.0f} million")
+print(f"Total GDP — Germany:     ${germany.total_gdp():,.0f} million")
+```
+:::
+
+
+
+
+
+## Exercise 1: The Solow Growth Model
+
+Before we write any code, let's review the economics. The Solow model describes how capital accumulation, population growth, and technological progress impact economic growth over time.
+
+A central equation in the Solow model is the law of motion for capital per worker:
+
+$$k_{t+1} = \frac{sAk_t^{\alpha}+(1-\delta)k_t}{1+n}$$
+
+
+- $n$: Population growth rate
+- $s$: Savings rate
+- $\delta$: Depreciation rate
+- $\alpha$: Capital share of output
+- $A$: Total factor productivity
+- $k_t$: Current capital stock per capita
+
+
+
+
+It describes how the capital stock evolves from one period to the next. Output per worker is $Ak_t^\alpha$, so savings generate $sAk_t^\alpha$ in new investment. Tomorrow's capital $k_{t+1}$ is then what remains of today's capital after depreciation, plus this new investment — all divided by $(1+n)$ to adjust downward for population growth, since capital is measured per worker.
+
+Over the course of this exercise you will build a `Solow` class that encapsulates this model economy. You will write methods to simulate the evolution of capital period by period, find the steady state numerically, and finally visualize how economies with different initial capital stocks converge to the same long-run equilibrium.
+
+
+
+### 1.1 Creating the Solow Class
+
+1. Create a class called `Solow`.
+
+2. Write the `__init__` method so that it takes the six parameters above as arguments with the following default values: `n=0.05`, `s=0.25`, `delta=0.1`, `alpha=0.3`, `A=2.0`, and `k=1.0`.
+
+3. Assign each argument to an instance attribute (e.g. `self.n = n`). Note that unlike the other parameters, `k` is the state variable — it will change over time as we simulate the economy, while all other parameters remain fixed.
+
+
+
+::: {.callout-tip collapse="true" title="Solution: Create the Solow Class"}
+```{python}
+class Solow:
+
+    def __init__(self, n=0.05,      # population growth rate
+                       s=0.25,      # savings rate
+                       delta=0.1,   # depreciation rate
+                       alpha=0.3,   # capital share
+                       A=2.0,       # productivity
+                       k=1.0):      # current capital stock
+
+        self.n, self.s, self.delta, self.alpha, self.A = n, s, delta, alpha, A
+        self.k = k
+
+
+```
+
+
+::: {.callout-note collapse="true" title="Tuple unpacking"}
+
+You can assign attributes one by one, which is more explicit and easier to read, or use tuple unpacking to assign all of them in a single line for more compact code — both produce exactly the same result.
+```{python}
+#| eval: false
+
+# Without unpacking (recommended for clarity):
+self.n     = n
+self.s     = s
+self.delta = delta
+self.alpha = alpha
+self.A     = A
+self.k     = k
+
+# With tuple unpacking (more compact, same result):
+self.n, self.s, self.delta, self.alpha, self.A, self.k = n, s, delta, alpha, A, k
+```
+:::
+
+:::
+
+
+4. Test your code: it is a fundamental rule of programming to test your code frequently! Create two instances — one using all default values, and one with a custom parameter — and verify that the attributes were stored correctly.
+
+::: {.callout-tip collapse="true" title="Test your code"}
+```{python}
+# 1. Create an instance with default values and check attribute A
+economy = Solow()
+print(f"Default A: {economy.A}")        # Expected: 2.0
+
+# 2. Create an instance with a custom savings rate and verify it was stored
+economy_high_s = Solow(s=0.4)
+print(f"Custom s: {economy_high_s.s}")  # Expected: 0.4
+print(f"Default n: {economy_high_s.n}") # Expected: 0.05 — other parameters unchanged
+```
+:::
+
+
+### 1.2 Simulating One Period
+
+The law of motion you saw above defines exactly how the economy moves from one period to the next — that is what the `update()` method will implement. Each time it is called, it takes the current capital stock `self.k`, applies the formula, and updates `self.k` to the new value.
+
+1. Create a method `update(self)` that calculates next period's capital stock using the law of motion and updates `self.k` to this new value.
+
+
+::: {.callout-tip collapse="true" title="Solution: add `update()` method"}
+```{python}
+
+class Solow:
+
+    def __init__(self, n=0.05,      # population growth rate
+                       s=0.25,      # savings rate
+                       delta=0.1,   # depreciation rate
+                       alpha=0.3,   # capital share
+                       A=2.0,       # productivity
+                       k=1.0):      # current capital stock
+
+        self.n, self.s, self.delta, self.alpha, self.A = n, s, delta, alpha, A
+        self.k = k
+
+   
+    def update(self):
+        "Update the current state (i.e., the capital stock) to the next period."
+
+        # Unpack parameters to simplify notation
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A          #<1>
+        
+        # Calculate next periods capital stock 
+        k_next = (s * A * self.k**alpha + (1 - delta) * self.k) / (1 + n)
+
+        # Update the capital stock 
+        self.k = k_next
+
+```
+
+1. When a method uses several parameters in a formula, repeatedly writing `self.` can make the expression cluttered and hard to read. Unpacking the attributes into local variables at the top of the method — `n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A` — keeps the formula clean and close to its mathematical notation.
+
+:::
+
+
+2. Test your Code: create a new instance of the class, print the initial capital stock $k_0$, call the `update()` method and print the new capital stock $k_{1}$
+
+::: {.callout-tip collapse="true" title="Test your code"}
+```{python}
+# 1. Create a new instance
+economy = Solow()
+
+# 2. Print initial capital
+print(f"Initial capital: {economy.k}")
+
+# 3. Call the update method
+economy.update()
+
+# 4. Print new capital
+print(f"Capital after one period: {economy.k:.4f}") 
+# Note: The expected output should be roughly 1.3333
+```
+:::
+
+
+### 1.3 Finding the Steady State
+
+A key concept in the Solow model is the steady state, denoted as $k^{*}$. This is the point of equilibrium where the capital stock per worker no longer changes over time, meaning $k_{t+1}​=k_t$​. Once an economy reaches its steady state, it stays there forever (unless a parameter changes).
+
+Our goal is to find the steady state capital stock $k^{*}$ numerically. The idea behind the numerical approach is simple: we repeatedly apply the law of motion, plugging today's capital in to get tomorrow's, then plugging tomorrow's back in to get the day after, and so on. Because the model converges, the change between consecutive periods gets smaller and smaller over time, and once that difference falls below some tolerance threshold we know the economy has effectively reached its steady state.
+
+1. Add a method `find_steady_state(self, tolerance=1e-5)` that finds the steady state numerically. As a starting point, use the economy's current capital stock `self.k`.
+
+    - Start by setting `k_current = self.k` and initialising `difference` to a large number
+    - Use a `while` loop that runs as long as `difference > tolerance`:
+        - Calculate `k_next` using the law of motion formula
+        - Update `difference` as the absolute difference between `k_next` and `k_current` (use `abs()`)
+        - Set `k_current = k_next` to move one period forward
+    - Return `k_current` once the loop ends
+
+
+
+::: {.callout-tip collapse="true" title="Solution: add `find_steady_state()` method"}
+```{python}
+class Solow:
+
+    def __init__(self, n=0.05,      # population growth rate
+                       s=0.25,      # savings rate
+                       delta=0.1,   # depreciation rate
+                       alpha=0.3,   # capital share
+                       A=2.0,       # productivity
+                       k=1.0):      # current capital stock
+
+        self.n, self.s, self.delta, self.alpha, self.A = n, s, delta, alpha, A
+        self.k = k
+
+   
+    def update(self):
+        "Update the current state (i.e., the capital stock) to the next period."
+        # Unpack parameters to simplify notation
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A
+        
+        # Calculate next periods capital stock 
+        k_next = (s * A * self.k**alpha + (1 - delta) * self.k) / (1 + n)
+
+        # Update the capital stock 
+        self.k = k_next
+
+
+    def find_steady_state(self, tolerance=1e-5):
+        """Find the steady state numerically."""
+
+        # 1. Unpack parameters
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A
+        
+        # 2. Set starting value and initial difference
+        k_current = self.k                          #<1>
+        difference = 1000                           #<2>
+        
+        # 3. Simulate forward
+        while difference > tolerance:
+            # Calculate tomorrow's capital
+            k_next = (s * A * k_current**(alpha) + (1 - delta) * k_current) / (1 + n)       #<3>
+            
+            # Update the difference
+            difference = abs(k_next - k_current)                                            #<4>
+                
+            # Move the simulation forward one step
+            k_current = k_next                                                              #<5>
+            
+        return k_current                                                                    #<6>
+
+```
+
+
+1. Start the loop for some initial value of $k$. The initial value doesn't matter as long as it's reasonable (i.e. for example not negative), so starting with the economies current capital makes sense.
+2. We need `difference > tolerance` to be `True` before the first iteration so the loop actually starts. Any value larger than `tolerance` would work — 1000 is simply a conveniently large number that is guaranteed to satisfy this regardless of the tolerance chosen.
+3. Apply the law of motion to get next period's capital
+4. How much did capital change? Once this is tiny (below `tolerance`), we have converged
+5. Move one period forward (i.e. the `k_next` we just calculated is now the `k_current`) and repeat
+6. The loop has ended, meaning we have converged - return the steady state value
+
+
+:::
+
+
+2. Now that `find_steady_state()` works, let's store the result properly as an attribute rather than just returning it. Add `self.steady_state = None` to `__init__` and update the method to store the result as `self.steady_state` instead of returning it. This way the object "knows" its own steady state after the method is called.
+
+
+::: {.callout-tip collapse="true" title="Solution: add `self.steady_state` and adjust `find_steady_state()`"}
+```{python}
+class Solow:
+
+    def __init__(self, n=0.05,      # population growth rate
+                       s=0.25,      # savings rate
+                       delta=0.1,   # depreciation rate
+                       alpha=0.3,   # capital share
+                       A=2.0,       # productivity
+                       k=1.0):      # current capital stock
+
+        self.n, self.s, self.delta, self.alpha, self.A = n, s, delta, alpha, A
+        self.k = k
+
+        self.steady_state = None                #<1>
+   
+    def update(self):
+        "Update the current state (i.e., the capital stock) to the next period."
+        # Unpack parameters to simplify notation
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A
+        
+        # Calculate next periods capital stock 
+        k_next = (s * A * self.k**alpha + (1 - delta) * self.k) / (1 + n)
+
+        # Update the capital stock 
+        self.k = k_next
+
+
+    def find_steady_state(self, tolerance=1e-5):
+        """Find the steady state numerically, set attribute steady_state"""
+
+        # 1. Unpack parameters
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A
+        
+        # 2. Set starting value and initial difference
+        k_current = self.k                          
+        difference = 1000                           
+        
+        # 3. Simulate forward
+        while difference > tolerance:
+            # Calculate tomorrow's capital
+            k_next = (s * A * k_current**(alpha) + (1 - delta) * k_current) / (1 + n)       
+            
+            # Update the difference
+            difference = abs(k_next - k_current)                                            
+                
+            # Move the simulation forward one step
+            k_current = k_next                                                              
+            
+        self.steady_state = k_current                           #<2>                                                        
+
+```
+
+1. The steady state is unknown until we compute it, so we initialise it to `None` — a clear signal that `find_steady_state()` has not been called yet.
+2. Instead of returning the result, we store it as an attribute. The object now "knows" its own steady state and it can be accessed at any point via `economy.steady_state`.
+
+:::
+
+
+3. Test your code: create a new instance of the economy, call `find_steady_state()` and print the `steady_state` attribute.
+
+::: {.callout-tip collapse="true" title="Test your code"}
+```{python}
+# 1. Create a new instance
+economy = Solow(k=2.0)
+
+# 2. Call find_steady_state() and print the steady_state attribute
+economy.find_steady_state()
+print(f"Numerical Steady State: {economy.steady_state:.6f}")
+```
+:::
+
+### 1.4 Simulating the Economy
+
+
+We can now simulate the full path of capital accumulation over time. Rather than re-implementing the law of motion, `generate_sequence` will simply call `self.update()` repeatedly — this is one of the key advantages of organizing code into a class: methods can build on each other.
+
+1. Add a `generate_sequence(self, t)` method that returns a list `path` with the values of $k$ over $t$ periods.
+
+    - Create an empty list `path` and append the initial capital stock as the first element
+    - Use a for loop to run `t` times, calling `self.update()` and appending `self.k` at each step
+    - Return `path` once the loop ends
+
+    Hint: since you don't actually use the loop counter, use `_` as the loop variable (`for _ in range(t):`). This is a Python convention that signals the variable is intentionally unused.
+
+
+
+
+::: {.callout-tip collapse="true" title="Solution: add `generate_sequence` method"}
+```{python}
+class Solow:
+
+    def __init__(self, n=0.05,      # population growth rate
+                       s=0.25,      # savings rate
+                       delta=0.1,   # depreciation rate
+                       alpha=0.3,   # capital share
+                       A=2.0,       # productivity
+                       k=1.0):      # current capital stock
+
+        self.n, self.s, self.delta, self.alpha, self.A = n, s, delta, alpha, A
+        self.k = k
+
+        self.steady_state = None               
+   
+    def update(self):
+        "Update the current state (i.e., the capital stock) to the next period."
+        # Unpack parameters to simplify notation
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A
+        
+        # Calculate next periods capital stock 
+        k_next = (s * A * self.k**alpha + (1 - delta) * self.k) / (1 + n)
+
+        # Update the capital stock 
+        self.k = k_next
+
+
+    def find_steady_state(self, tolerance=1e-5):
+        """Find the steady state numerically, set attribute steady_state"""
+
+        # 1. Unpack parameters
+        n, s, delta, alpha, A = self.n, self.s, self.delta, self.alpha, self.A
+        
+        # 2. Set starting value and initial difference
+        k_current = self.k                          
+        difference = 1000                           
+        
+        # 3. Simulate forward
+        while difference > tolerance:
+            # Calculate tomorrow's capital
+            k_next = (s * A * k_current**(alpha) + (1 - delta) * k_current) / (1 + n)       
+            
+            # Update the difference
+            difference = abs(k_next - k_current)                                            
+                
+            # Move the simulation forward one step
+            k_current = k_next                                                              
+            
+        self.steady_state = k_current                                     
+
+
+
+
+    def generate_sequence(self, t):
+        """Generate and return a time series of capital of length t."""
+        path = []                       #<1>
+        path.append(self.k)             #<2>
+
+        for _ in range(t):              #<3>
+            self.update()               #<4>
+            path.append(self.k)         #<5>
+
+        return path                     #<6>
+    
+
+```
+
+1. An empty list `path` to store the capital stock at each period.
+2. Record the initial capital stock $k_0$ before the loop starts — the path should include the starting point.
+3. `_` is used as the loop variable instead of `i` because the loop counter is never needed inside the loop — this is a Python convention that signals the variable is intentionally unused. The loop runs exactly `t` times.
+4. Call `self.update()` to apply the law of motion and move one period forward — no need to re-implement the formula here.
+5. Record the updated capital stock after each step. After `t` iterations, `path` contains $k_0, k_1, \ldots, k_t$.
+6. Return the complete path.
+
+
+:::
+
+
+2. Test your code: create a new instance, print the initial capital stock, generate a sequence of length 5 and print it. Then print the capital stock again — has it changed? Why?
+
+::: {.callout-tip collapse="true" title="Test your code"}
+```{python}
+# 1. Create a new instance
+economy = Solow()
+
+# 2. Print initial capital stock
+print(f"Initial capital: {economy.k}")
+
+# 3. Generate a sequence of length 5
+path = economy.generate_sequence(5)
+print(path)
+
+# 4. Print capital stock after generating the sequence
+print(f"Capital after generating sequence: {economy.k}")
+```
+
+Yes, `economy.k` has changed — it now holds $k_5$ rather than $k_0$. This is because `generate_sequence` calls `self.update()` internally, which permanently modifies `self.k` at each step. This is an important thing to be aware of: if you need to generate multiple sequences from the same starting point, you should create a new instance each time rather than reusing the same object.
+
+
+:::
+
+
+### 1.5 Visualization
+
+Now that our model can simulate a full path of capital accumulation, we can visualize how the economy evolves over time. A key prediction of the Solow model is convergence: regardless of where an economy starts, it will always move towards the same steady state $k^{*}$.
+
+1. Create two instances of the Solow economy with different initial capital stocks, one below (`k=1.0`) and one above (`k=8.0`)the steady state. 
+2. Generate a sequence of length 60 for each instance 
+3. Find the steady state for one of them (both have the same since they have the same parameters) and save it as `kstar`
+4. Create a figure that plots the two sequences, as well as a horizontal line that indicates the steady state capital stock $k^*$. Your plot should have a legend indicating the starting capital stock of each economy, and labeled axes.
+
+::: {.callout-tip collapse="true" title="Solution: Visualization"}
+```{python}
+# 1. Create two instances with different initial capital stocks
+s1 = Solow(k=1.0)
+s2 = Solow(k=8.0)
+
+# 2. Generate sequences
+path1 = s1.generate_sequence(60)
+path2 = s2.generate_sequence(60)
+
+# 3. Find the steady state (same for both since parameters are identical)
+s1.find_steady_state()
+kstar = s1.steady_state
+
+# 4. Plot
+plt.figure(figsize=(9, 6))
+
+plt.plot(path1, 'o-', lw=2, alpha=0.6, label='Initial capital $k_0 = 1.0$')             #<1>
+plt.plot(path2, 'o-', lw=2, alpha=0.6, label='Initial capital $k_0 = 8.0$')             #<1>
+
+plt.axhline(kstar, color='black', linestyle='--', label=f'Steady state $k^* = {kstar:.2f}$')        #<2>
+
+plt.xlabel('$t$', fontsize=14)
+plt.ylabel('$k_t$', fontsize=14)
+plt.title('Solow Model: Convergence to Steady State', fontsize=16)
+
+plt.legend()                #<3>
+
+plt.grid(True, alpha=0.3)
+plt.show()
+
+```
+
+1. Plot the two simulated paths: `'o-'` draws both dots and a connecting line, `lw=2` sets the line width, `alpha=0.6` makes it slightly transparent, and `label` sets the legend text
+2. `plt.axhline()` draws a horizontal line across the full plot at the height `kstar`. `linestyle='--'` makes it dashed, and `:.2f` in the label formats the number as a float with 2 decimal places; so for example 2.995732 would display as 2.99. 
+3. Displays the legend using the label strings we defined in each `plt.plot()` call and `plt.axhline()`
+
+:::
+
+
+
+
+
+## Exercise 2: Growth Accounting Analyzer
+
+In Exercise 1 you built a class to simulate a theoretical model economy. In this exercise you will use a class to organize a data analysis workflow.
+
+The application is growth accounting — the same framework you worked through in Week 5. The goal is to decompose GDP growth into the contributions of capital, labor, and Total Factor Productivity (TFP) using the Solow residual method, now applied to the full cross-country dataset.
+
+The section below contains a complete script that runs this analysis step by step: it loads the data, computes growth rates, estimates the capital share, calculates TFP growth, builds a summary table, and produces a chart. Read through it carefully before you start coding.
+
+Your task is then to reorganize this script into a class called `GrowthAccountingAnalyzer`. Instead of a linear sequence of operations on a global DataFrame, the class will bundle the data and each step of the pipeline together into a single object.
+
+
+### Growth Accounting - Script
+
+In Week 5 you applied the Solow residual method to two countries — Switzerland and the United States. Here we run the same analysis on the full dataset. Before writing the code, recall the key idea: assuming a Cobb-Douglas production function
+
+$$Y_t = A_t K_t^{\alpha} L_t^{1-\alpha}$$
+
+we can rearrange to isolate TFP growth $g_A$ as the part of GDP growth not explained by capital and labor:
+
+$$g_A = g_Y - [\alpha \, g_K + (1-\alpha) \, g_L]$$
+
+This is called the **Solow residual**. The four variables we need from the dataset are:
+
+| Variable | Description |
+|----------|-------------|
+| `rgdpna` | Real GDP at constant 2021 national prices |
+| `rnna`   | Capital stock at constant 2021 national prices |
+| `emp`    | Number of persons employed |
+| `labsh`  | Labour share of GDP |
+
+---
+
+**Step 1 — Load and sort the data**
+
+Load the data `data/pwt_data_ex7.csv`. Growth rates are computed as changes between consecutive rows, so the data must be in chronological order within each country before we do anything else.
+
+```{python}
+df = pd.read_csv("data/pwt_data_ex7.csv")
+df = df.sort_values(['Country', 'year'])
+df.head()
+```
+
+---
+
+
+**Step 2 — Compute annual growth rates**
+
+`.pct_change()` computes the percentage change relative to the previous row. We call it inside `.groupby('Country')` so that the calculation restarts at the beginning of each country's time series — without grouping, the first observation of every country after the first would be compared against the last observation of the previous country, which makes no sense.
+
+```{python}
+df['g_y'] = df.groupby('Country')['rgdpna'].pct_change()  # GDP growth
+df['g_k'] = df.groupby('Country')['rnna'].pct_change()    # Capital growth
+df['g_l'] = df.groupby('Country')['emp'].pct_change()     # Labour growth
+df[['Country', 'g_y', 'g_k', 'g_l']].head()
+```
+
+Notice that the first row of each country is `NaN`: there is no previous year to compare against, so the growth rate is undefined. This is expected and will be handled automatically when we take country averages later.
+
+---
+
+
+
+**Step 3 — Estimate the capital share $\alpha$**
+
+We treat capital share as constant within a country and estimate it from the data. Since `labsh` (the labour share) is already in the dataset, the capital share for any given year is simply $1 - \texttt{labsh}$. We then average this across all years for each country to get a single representative value of $\alpha$.
+
+The key tool here is `.transform('mean')`. Unlike `.agg('mean')`, which would collapse the DataFrame to one row per country, `.transform('mean')` *broadcasts* the country-level mean back to every row of that country. This keeps the DataFrame at its original length so we can use `alpha` row-by-row in the formula below.
+
+```{python}
+# Annual capital share (one value per row)
+df['one_minus_labsh'] = 1 - df['labsh']
+
+# Country-level mean, broadcast back to every row of that country
+df['alpha'] = df.groupby('Country')['one_minus_labsh'].transform('mean')
+
+df[['Country', 'g_y', 'g_k', 'g_l', 'alpha']].head()
+```
+
+---
+
+
+
+
+**Step 4 — Compute TFP growth (the Solow residual)**
+
+With growth rates and $\alpha$ in hand, the Solow residual formula translates directly into a single line:
+
+```{python}
+df['g_tfp'] = df['g_y'] - (df['alpha'] * df['g_k'] + (1 - df['alpha']) * df['g_l'])
+df[['Country', 'g_y', 'g_k', 'g_l', 'alpha', 'g_tfp']].head()
+```
+
+---
+
+
+
+**Step 5 — Build the country-level summary table**
+
+Year-by-year figures are noisy. We collapse to country-level averages and compute the weighted contributions of capital and labour — how much of GDP growth each factor accounts for on average.
+
+```{python}
+# Average all growth variables across years, for each country
+summary = df.groupby('Country')[['g_y', 'g_k', 'g_l', 'alpha', 'g_tfp']].mean()
+
+# Weighted contributions: raw growth rates scaled by their factor shares
+summary['contrib_k'] = summary['alpha'] * summary['g_k']           # alpha * g_K
+summary['contrib_l'] = (1 - summary['alpha']) * summary['g_l']    # (1-alpha) * g_L
+
+# Reset index so 'Country' becomes a regular column
+summary = summary.reset_index()
+summary.head()
+```
+
+---
+
+
+
+
+**Step 6 — Visualize the decomposition**
+
+We wrap the chart in a function so we can reuse it for any selection of countries without repeating code. The chart is a stacked bar chart: each bar's total height equals average GDP growth, split into the three components.
+
+
+
+```{python}
+def plot_growth_decomposition(countries, summary_df):
+    """Plot the growth decomposition as a stacked bar chart."""
+
+    # Filter the summary table to the requested countries
+    data = summary_df[summary_df['Country'].isin(countries)]
+
+    # Select the three components and rename them for the legend          #<1>
+    plot_data = data.set_index('Country')[['contrib_k', 'contrib_l', 'g_tfp']]
+    plot_data.columns = ['Capital contribution', 'Labour contribution', 'TFP growth']
+
+    # Draw the stacked bar chart                                        
+    plot_data.plot(kind='bar', stacked=True, figsize=(8, 5))
+
+    plt.axhline(0, color='black', linestyle='--', linewidth=0.8)         #<2>
+    plt.ylabel('Average annual growth rate')
+    plt.title('Growth Accounting Decomposition')
+    plt.legend()
+    plt.xticks(rotation=0)    # keep country names horizontal            
+    plt.show()
+
+```
+
+1. We set `Country` as the index so pandas uses it as the x-axis labels, then select and rename the three component columns — these names will appear directly in the legend.
+2. A dashed line at zero makes it easy to see whether a component is positive or negative, which matters especially when components are negative.
+
+
+
+
+
+
+```{python}
+# Test the function
+plot_growth_decomposition(countries=['Switzerland', 'United States'], summary_df = summary)
+
+```
+
+
+---
+
+
+
+You have now completed the full pipeline as a plain script: load → compute growth rates → estimate $\alpha$ → Solow residual → summarize → plot. In the next section, you will reorganize exactly this logic into a **class**, so that the data, the intermediate results, and the methods that produce them all live together in one object.
+
+
+
+
+
+
+### Growth Accounting - Class
+
+
+
+#### 2.1. Create a growth accounting class
+
+This is the foundation of your class. Looking at the script, the first thing that happens is loading and sorting the data — that is what this step translates into class form.
+
+1. Create a class called `GrowthAccountingAnalyzer` and write the `__init__` method. It should take no arguments and initialize a single attribute `self.data = None`.
+
+2. Add a method `read_data(self, filepath)` that reads a CSV file from the given filepath, sorts it by country and year, and stores the result in `self.data`.
+
+
+::: {.callout-tip collapse="true" title="Solution 2.1: Create a growth accounting class"}
+```{python}
+class GrowthAccountingAnalyzer:
+
+    def __init__(self):
+        self.data = None                                        #<1>
+
+    def read_data(self, filepath):
+        """Read data from a CSV file and store it as an attribute."""
+        df = pd.read_csv(filepath)                                  #<2>
+        self.data = df.sort_values(['Country', 'year'])             #<3>
+
+```
+
+
+1. The data has not been loaded yet, so we initialise `data` to `None`
+2. Read the CSV from the provided filepath
+3. Sort by country and year — important for growth rate calculations later — and store the result as an attribute
+
+:::
+
+3. Test your code:
+    - Create an instance and print `analyzer.data` — what do you expect to see, and why?
+    - Call `read_data()` and print the first few rows of `analyzer.data` to confirm the data loaded correctly.
+
+
+::: {.callout-tip collapse="true" title="Test your Code"}
+```{python}
+# 1. Create an instance
+analyzer = GrowthAccountingAnalyzer()
+print(analyzer.data)             # Expected: None — the data hasn't been loaded yet
+```
+
+```{python}
+# 2. Load the data and check again
+analyzer.read_data('data/pwt_data_ex7.csv')
+analyzer.data.head()
+```
+:::
+
+
+#### 2.2 Prepare the Data
+
+
+Add a method `prepare_data(self)` that computes all the variables needed for growth accounting and adds them directly to `self.data`. Looking at the script, this method covers steps 2 through 4. Specifically it should:
+
+1. Calculate the growth rates of GDP, capital and labor (`g_y`, `g_k`, `g_l`) using `.pct_change()`, grouped by country.
+2. Compute the capital share `alpha` as the country-level mean of `1 - labsh`. Use `groupby` and `transform`.
+3. Calculate TFP growth `g_tfp` using the Solow residual formula: $g_A = g_Y - [\alpha g_K + (1-\alpha) g_L]$
+
+
+
+::: {.callout-tip collapse="true" title="Solution 2.2: Add method `prepare_data(self)`"}
+```{python}
+class GrowthAccountingAnalyzer:
+
+    def __init__(self):
+        self.data = None                                        
+
+
+    def read_data(self, filepath):
+        """Read data from a CSV file and store it as an attribute."""
+        df = pd.read_csv(filepath)                                  
+        self.data = df.sort_values(['Country', 'year'])             
+
+
+    def prepare_data(self):
+        """Compute growth rates, capital share and TFP growth."""
+        # 1. Calculate growth rates
+        self.data['g_y'] = self.data.groupby('Country')['rgdpna'].pct_change()
+        self.data['g_k'] = self.data.groupby('Country')['rnna'].pct_change()
+        self.data['g_l'] = self.data.groupby('Country')['emp'].pct_change()
+
+        # 2. Estimate capital share from the data
+        self.data['one_minus_labsh'] = 1 - self.data['labsh']
+        self.data['alpha'] = self.data.groupby('Country')['one_minus_labsh'].transform('mean')
+
+        # 3. Calculate TFP growth
+        self.data['g_tfp'] = self.data['g_y'] - (self.data['alpha'] * self.data['g_k'] 
+                                + (1 - self.data['alpha']) * self.data['g_l'])
+```
+:::
+
+
+4. Test your code: run the full pipeline up to this point and inspect `analyzer.data`. 
+
+::: {.callout-tip collapse="true" title="Test your Code"}
+```{python}
+analyzer = GrowthAccountingAnalyzer()
+analyzer.read_data('data/pwt_data_ex7.csv')
+analyzer.prepare_data()
+analyzer.data.head()
+```
+:::
+
+
+#### 2.3 Create the Country Summary Table
+
+The data in `self.data` has one row per country per year. To compare countries — how much of their growth came from capital accumulation, labor, or TFP — we aggregate it into a single row per country. 
+
+1. Go back to `__init__` and add a second attribute `self.summary = None`. Just like `self.data`, it should exist from the moment the object is created — even before the method that populates it is called.
+
+2. Add a method `create_country_summary(self)` that aggregates the prepared data into a country-level summary table. It should:
+    - Compute the country-level mean of `g_y`, `g_k`, `g_l`, `alpha` and `g_tfp`
+    - Add columns `contrib_k` and `contrib_l` for the weighted contributions of capital and labor to GDP growth: $\alpha g_K$ and $(1-\alpha) g_L$ respectively
+    - Store the result as `self.summary`
+
+
+
+::: {.callout-tip collapse="true" title="Solution 2.3: Create the Country Summary Table"}
+```{python}
+
+class GrowthAccountingAnalyzer:
+
+    def __init__(self):
+        self.data = None    
+        self.summary = None            #<1>                        
+
+
+    def read_data(self, filepath):
+        """Read data from a CSV file and store it as an attribute."""
+        df = pd.read_csv(filepath)                                  
+        self.data = df.sort_values(['Country', 'year'])             
+
+
+    def prepare_data(self):
+        """Compute growth rates, capital share and TFP growth."""
+        # 1. Calculate growth rates
+        self.data['g_y'] = self.data.groupby('Country')['rgdpna'].pct_change()
+        self.data['g_k'] = self.data.groupby('Country')['rnna'].pct_change()
+        self.data['g_l'] = self.data.groupby('Country')['emp'].pct_change()
+
+        # 2. Estimate capital share from the data
+        self.data['one_minus_labsh'] = 1 - self.data['labsh']
+        self.data['alpha'] = self.data.groupby('Country')['one_minus_labsh'].transform('mean')
+
+        # 3. Calculate TFP growth
+        self.data['g_tfp'] = self.data['g_y'] - (self.data['alpha'] * self.data['g_k'] 
+                                + (1 - self.data['alpha']) * self.data['g_l'])
+
+
+    def create_country_summary(self):
+        """Aggregate the data into a country-level summary table."""
+        summary = self.data.groupby('Country')[['g_y', 'g_k', 'g_l', 'alpha', 'g_tfp']].mean()      #<2>
+        summary['contrib_k'] = summary['alpha'] * summary['g_k']                                    #<3>
+        summary['contrib_l'] = (1 - summary['alpha']) * summary['g_l']                              #<3>
+        self.summary = summary.reset_index()                                                        #<4>
+```
+
+1. Initialise `summary` to `None` alongside `data` — the attribute exists from the start, even before `create_country_summary()` is called
+2. Aggregate to country level by taking the mean of all growth variables across years
+3. Compute the weighted contributions of capital and labor: alpha\*g_K and (1-alpha)\*g_L
+4. Reset the index so `Country` becomes a regular column, then store as an attribute
+
+:::
+
+
+3. Test your code: run the full pipeline and display `analyzer.summary`.
+
+
+::: {.callout-tip collapse="true" title="Test your Code"}
+```{python}
+analyzer = GrowthAccountingAnalyzer()
+analyzer.read_data('data/pwt_data_ex7.csv')
+analyzer.prepare_data()
+analyzer.create_country_summary()
+analyzer.summary.head()
+```
+:::
+
+
+
+
+
+#### 2.4 Visualize the Growth Decomposition
+
+The last step is to visualize the results. In the script, you wrapped this chart in a standalone function `plot_growth_decomposition` that needed `summary_df` passed in as an explicit argument. As a method, it can access `self.summary` directly — no argument needed beyond the list of countries to plot.
+
+1. Add a method `plot_growth_decomposition(self, countries)` that takes a list of country names and plots the growth accounting decomposition as a stacked bar chart. The chart should show:
+
+    - A stacked bar for each country with the contributions of capital, labor and TFP
+    - A dashed horizontal line at zero
+    - Labeled axes and a title
+    - A legend identifying each component
+
+
+
+::: {.callout-tip collapse="true" title="Solution 2.4: Visualize the Growth Decomposition"}
+```{python}
+class GrowthAccountingAnalyzer:
+
+    def __init__(self):
+        self.data = None    
+        self.summary = None                                    
+
+
+    def read_data(self, filepath):
+        """Read data from a CSV file and store it as an attribute."""
+        df = pd.read_csv(filepath)                                  
+        self.data = df.sort_values(['Country', 'year'])             
+
+
+    def prepare_data(self):
+        """Compute growth rates, capital share and TFP growth."""
+        # 1. Calculate growth rates
+        self.data['g_y'] = self.data.groupby('Country')['rgdpna'].pct_change()
+        self.data['g_k'] = self.data.groupby('Country')['rnna'].pct_change()
+        self.data['g_l'] = self.data.groupby('Country')['emp'].pct_change()
+
+        # 2. Estimate capital share from the data
+        self.data['one_minus_labsh'] = 1 - self.data['labsh']
+        self.data['alpha'] = self.data.groupby('Country')['one_minus_labsh'].transform('mean')
+
+        # 3. Calculate TFP growth
+        self.data['g_tfp'] = self.data['g_y'] - (self.data['alpha'] * self.data['g_k'] 
+                                + (1 - self.data['alpha']) * self.data['g_l'])
+
+
+    def create_country_summary(self):
+        """Aggregate the data into a country-level summary table."""
+        summary = self.data.groupby('Country')[['g_y', 'g_k', 'g_l', 'alpha', 'g_tfp']].mean()      
+        summary['contrib_k'] = summary['alpha'] * summary['g_k']                                    
+        summary['contrib_l'] = (1 - summary['alpha']) * summary['g_l']                              
+        self.summary = summary.reset_index()                                                        
+
+
+    def plot_growth_decomposition(self, countries):
+        """Plot the growth decomposition as a stacked bar chart."""
+
+        # Filter the summary table to the requested countries
+        data = self.summary[self.summary['Country'].isin(countries)]
+
+        # Select and rename columns for the legend labels
+        plot_data = data.set_index('Country')[['contrib_k', 'contrib_l', 'g_tfp']]
+        plot_data.columns = ['Capital contribution', 'Labour contribution', 'TFP growth']
+
+        # stacked=True handles negative values correctly
+        plot_data.plot(kind='bar', stacked=True, figsize=(8, 5))
+
+        plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
+        plt.ylabel('Average annual growth rate')
+        plt.title('Growth Accounting Decomposition')
+        plt.legend()
+        plt.xticks(rotation=0)   # keep country names horizontal
+        plt.show()
+```
+
+
+:::
+
+
+
+2. Test your code: run the full pipeline and plot the decomposition for Switzerland, Germany and France. Look at the chart: which country has the highest TFP contribution? 
+
+
+::: {.callout-tip collapse="true" title="Test your Code"}
+```{python}
+analyzer = GrowthAccountingAnalyzer()
+analyzer.read_data('data/pwt_data_ex7.csv')
+analyzer.prepare_data()
+analyzer.create_country_summary()
+analyzer.plot_growth_decomposition(countries=['Switzerland', 'Germany', 'France'])
+
+```
+:::
+
+
+
+#### 2.5 Functionality and Robustness
+
+You now have a working class that can load data, run the full growth accounting pipeline, and visualize the results for any selection of countries. Before we call it done, it is worth stepping back and thinking critically about the tool you have built.
+
+Take the `plot_growth_decomposition` method as an example and think about two things:
+
+**1. Functionality** — could you extend the method to make it more useful? Think about what a researcher using this tool might want to do that it currently cannot. Are there arguments you could add to give users more control over what the chart shows?
+
+**2. Robustness** — what could go wrong when someone uses the method? Think about two kinds of problems:
+
+- *Valid but tricky inputs*: a user provides legitimate inputs that nonetheless produce a misleading or broken chart. For example, what happens if a user requests a country that is in the dataset but has a lot of missing values? Or requests only one country?
+- *Invalid inputs*: a user makes a mistake — for example, a typo in a country name, or passes a single string instead of a list. Does the method fail silently, produce a confusing error, or give a clear and helpful message?
+
+Discuss with your neighbor: what would you change or add, and how would you implement it?
+
+
+
+::: {.callout-tip collapse="true" title="Ideas 2.5: Functionality and Robustness"}
+
+**Functionality**
+
+- At the moment the chart shows the growth decomposition averaged over the full sample period for each country. A user might instead be interested in a specific year. Adding an optional `year` argument that filters the data to that year before plotting would make the method much more flexible.
+- Add a `sort_by` argument that lets users sort the bars by a chosen component (e.g. by TFP growth), making it easier to compare across many countries.
+- Add a `top_n` argument that automatically selects the n countries with the highest or lowest TFP growth, so users don't have to specify a long list manually.
+- Add a `save_path` argument that saves the figure to a file if provided, rather than just displaying it.
+- ...
+
+**Robustness**
+
+- If a user passes a country name that does not exist in the data (e.g. a typo like `'Switzeland'`), the method currently produces an empty chart with no error message — it should raise a clear error listing which country names were not found and suggest checking `analyzer.summary['Country'].unique()`.
+- If a user passes a single string instead of a list (e.g. `'Switzerland'` instead of `['Switzerland']`), the method will iterate over individual characters rather than country names — it should detect this and either raise an informative error or convert it to a list automatically.
+- If `prepare_data()` has not been called before `plot_growth_decomposition()`, the columns `g_tfp`, `contrib_k` and `contrib_l` will not exist in `self.data` yet and the method will crash — it should check for this and tell the user which method to call first.
+- If `create_country_summary()` has not been called before `plot_growth_decomposition()`, `self.summary` is still `None` and the method will crash, it should check for this and tell the user which method to call first.
+- ...
+
+:::
+
+
+
+::: {.callout-note collapse="true" title="Note on the Group Project"}
+
+In the group project you will build a class for a data analysis task of your own choice, similar to the `GrowthAccountingAnalyzer` you built here. For the methods that produce output, like figures or tables, you should think carefully about two things, just as we did in this exercise:
+
+**Functionality:** Your main output methods should go beyond the standard output by offering at least one way for users to customize what it produces. As the discussion above shows, there are many ways to do this: optional arguments that filter the data, change what is shown, or control how the output is formatted. Think about what a researcher using your tool might actually want to do with it.
+
+**Robustness:** You should anticipate things that can go wrong and handle them gracefully. This includes invalid inputs (typos, wrong types), missing data, and cases where methods are called in the wrong order. Rather than letting the method crash with an unhelpful error, you should check for these problems explicitly and provide a clear message that tells the user what went wrong and how to fix it.
+
+:::
+
+
+#### 2.6 Making the Class Easier to Use
+
+At the moment a user has to remember to call `read_data()` as a separate step before doing anything else. A more natural design is to load the data at the moment the object is created — that way the analyzer is ready to use immediately after instantiation.
+
+It is also easy to accidentally call `create_country_summary()` before `prepare_data()` has been run, which will produce an unhelpful error. A simple flag attribute can guard against this.
+
+1. Update `__init__` to take a `filepath` argument and call `self.read_data(filepath)` directly, so the data is loaded as soon as the object is created.
+
+2. Add a boolean attribute `self.data_prepared` to `__init__`, initialised to `False`. Set it to `True` at the end of `prepare_data()`. Then add an early exit at the top of `create_country_summary()` that prints a clear message and returns if `prepare_data()` has not been called yet.
+
+
+::: {.callout-tip collapse="true" title="Solution 2.6: Making the Class Easier to Use"}
+```{python}
+class GrowthAccountingAnalyzer:
+
+    def __init__(self, filepath):
+        self.data = None
+        self.summary = None
+        self.data_prepared = False                                           #<1>
+        self.read_data(filepath)                                             #<2>
+
+    def read_data(self, filepath):
+        """Read data from a CSV file and store it as an attribute."""
+        df = pd.read_csv(filepath)                                  
+        self.data = df.sort_values(['Country', 'year'])             
+
+
+    def prepare_data(self):
+        """Compute growth rates, capital share and TFP growth."""
+        # 1. Calculate growth rates
+        self.data['g_y'] = self.data.groupby('Country')['rgdpna'].pct_change()
+        self.data['g_k'] = self.data.groupby('Country')['rnna'].pct_change()
+        self.data['g_l'] = self.data.groupby('Country')['emp'].pct_change()
+
+        # 2. Estimate capital share from the data
+        self.data['one_minus_labsh'] = 1 - self.data['labsh']
+        self.data['alpha'] = self.data.groupby('Country')['one_minus_labsh'].transform('mean')
+
+        # 3. Calculate TFP growth
+        self.data['g_tfp'] = self.data['g_y'] - (self.data['alpha'] * self.data['g_k'] 
+                                + (1 - self.data['alpha']) * self.data['g_l'])
+
+        self.data_prepared = True                                            #<3>
+
+
+    def create_country_summary(self):
+        """Aggregate the data into a country-level summary table."""
+
+        if not self.data_prepared:                                                      #<4>
+            print("Please call prepare_data() before create_country_summary().")        #<4>
+            return                                                                      #<4>
+        
+        summary = self.data.groupby('Country')[['g_y', 'g_k', 'g_l', 'alpha', 'g_tfp']].mean()      
+        summary['contrib_k'] = summary['alpha'] * summary['g_k']                                    
+        summary['contrib_l'] = (1 - summary['alpha']) * summary['g_l']                              
+        self.summary = summary.reset_index()                                                        
+
+
+    def plot_growth_decomposition(self, countries):
+        """Plot the growth decomposition as a stacked bar chart."""
+
+        # Filter the summary table to the requested countries
+        data = self.summary[self.summary['Country'].isin(countries)]
+
+        # Select and rename columns for the legend labels
+        plot_data = data.set_index('Country')[['contrib_k', 'contrib_l', 'g_tfp']]
+        plot_data.columns = ['Capital contribution', 'Labour contribution', 'TFP growth']
+
+        # stacked=True handles negative values correctly
+        plot_data.plot(kind='bar', stacked=True, figsize=(8, 5))
+
+        plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
+        plt.ylabel('Average annual growth rate')
+        plt.title('Growth Accounting Decomposition')
+        plt.legend()
+        plt.xticks(rotation=0)   # keep country names horizontal
+        plt.show()
+```
+
+1. A boolean flag initialised to `False` — it records whether `prepare_data()` has been called yet. This gives other methods a reliable way to check whether the data is ready.
+2. `self.read_data(filepath)` is a method call inside `__init__` — this means that every time a new instance of the class is created, `read_data()` is automatically executed as part of the initialization. You can call any method of the class from within `__init__` this way, which is useful for setup steps that should always happen at the moment an object is created.
+3. Once all the computations are complete, the flag is flipped to `True` — from this point on, methods that depend on the prepared data can safely proceed.
+4. If `prepare_data()` has not been called yet, we print a helpful message telling the user what to do next and immediately exit with `return` — the rest of the method is skipped and `self.summary` stays `None`.
+
+:::
+
+3. Test your code: verify that the error handling works by creating an instance and calling `create_country_summary()` without calling `prepare_data()` first. Then run the full pipeline correctly.
+
+::: {.callout-tip collapse="true" title="Test your Code"}
+```{python}
+# The data is now loaded at instantiation — no separate read_data() call needed
+analyzer = GrowthAccountingAnalyzer('data/pwt_data_ex7.csv')
+
+# Try calling create_country_summary() before prepare_data() — should raise a clear error
+analyzer.create_country_summary()
+```
+
+```{python}
+# Now run the full pipeline correctly
+analyzer = GrowthAccountingAnalyzer('data/pwt_data_ex7.csv')
+analyzer.prepare_data()
+analyzer.create_country_summary()
+analyzer.plot_growth_decomposition(countries=['Switzerland', 'Germany', 'France'])
+```
+:::
+
+
+
+
+
+
+
+
