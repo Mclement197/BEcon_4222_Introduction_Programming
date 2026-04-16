@@ -1,0 +1,203 @@
+---
+title: '4,222 Introduction to Programming'
+subtitle: 'Group Project'
+author: "Dr. Franziska Bender, Dr. Aurélien Sallin"
+date: "2026-02-20"
+code-line-numbers: false
+format:
+  revealjs:
+    template-partials:
+      - ../../assets/style/title-slide.html
+    width: 1280
+    height: 720
+    smaller: true
+    embed-resources: true
+    self-contained: true
+    slide-number: c
+    theme: ../../assets/style/hsgtheme.scss
+highlight-style: dracula
+cache: false
+echo: false
+execute:
+  echo: true
+---
+
+
+
+## Overview
+
+::: {.callout-important}
+These slides provide a high-level overview of the project. For the exact requirements, consult the official handout, which will be published on **April 20th** on Canvas.
+:::
+
+
+**What you will build:** an end-to-end data pipeline on a real economic question of your choice
+
+- Retrieve time series from the **FRED API**
+- Store them in a **relational database** (DuckDB)
+- Design a custom **Python class**:
+  - that you can use to answer your specific question
+  - that can be used by others to answer related questions as well
+- Present findings in a short **analysis brief** + write a **user guide**
+
+**Assessed on three dimensions:** collaboration & Git · database design · analysis & code quality
+
+
+
+## Task 1: Choose a Research Question
+
+- Choose an economic topic/question that genuinely interests you.
+- Use data from the ([FRED database](https://fred.stlouisfed.org))
+- **Keep it simple:** 
+  - The analysis should be mainly descriptive 
+  - The goal is to program: we assess the implementation, not the complexity of the analysis
+
+
+## Task 2: Repository & Environment Setup
+
+Set up your team repository and establish a clean, collaborative workflow
+
+
+- Accept the GitHub Classroom invitation to create your team repository
+- All work goes through Git: use **branches**, open **pull requests** to merge, do not push directly to main, no single commit at the end.
+- We expect meaningful contributions of all team members
+- Set up the Python environment using `uv`, including `pyproject.toml` and `uv.lock`
+- Configure a `.gitignore` and include a `README.md` explaining how to install the environment and run the code
+
+
+## Task 3: Data Collection & Database Design
+
+**1. Retrieve Data from FRED** (Week 8)
+
+  - You will learn how to connect directly to the FRED database using an API.
+  - You will write a Python script to automatically download the time series data for your chosen economic variables.
+
+**2. Design and Build a Database** (Week 9/10)
+
+  - You will learn how to design a relational database structure (an ER diagram).
+  - You will build this database using **DuckDB** and populate it with your downloaded FRED data.
+  - Once the database is built, all subsequent data access must be done through queries to the database,
+
+
+## Task 4 · The Python Class (1/2)
+
+Design a custom Python class to serve as a versatile data analysis tool. It must be able to answer your specific economic question, but also be generalized enough that someone else could use it to explore related questions within the same topic.
+
+
+**Required methods**
+
+- **Data access:** read the data from the database
+- **Preprocessing:** cleaning, filtering, ...
+- **Outputs:** Implement a minimum of **5 distinct, meaningful methods**, (e.g., customizable figures, computed economic metrics, or summary statistics tables)
+
+---
+
+## Task 4 · The Python Class (2/2)
+
+**Code quality expectations**
+
+- **Documentation & Readability:** Your class and all methods must include proper docstrings, and the code should be logically organized and easy to read.
+- **For the Meaningful Output Methods:**
+  - **Customizable:** They must accept arguments so the user can customize.
+  - **User-friendly:** The methods should be easy to use
+  - **Robustness:** Anticipate errors, handle them, provide clear, informative feedback.
+- Robustness and User-friendliness is expected for the class in general
+- **Execution:** The code must run without error. Keep in mind that adding new functionality implies adding additional checks for potential errors that might occur.
+
+
+
+## Task 4 · The Analysis Notebook
+
+**A short brief on your economic question**
+
+- Introduce your question and the data you use
+- Present your findings with clean, well-labeled **figures and tables** (at least 3)
+- All figures and tables must be generated using your Class
+- Close with a short **discussion and conclusion**
+
+> Think of a handout you would bring to a meeting — focused and to the point, not exhaustive
+
+**Render to HTML before submission** so it can be read as a standalone document
+
+---
+
+## Task 4 · The User Guide
+
+**Documentation for your class**
+
+- **Class overview:** what it does and what economic topic it covers
+- **Getting started:** setup instructions and a working example to instantiate the class
+- **Method documentation:** for each method — arguments, outputs, and a short code example
+
+**Render to HTML before submission** so it can be read without running any code
+
+
+
+## Repository Structure
+
+::: {style="font-size: 1.2em;"}
+```text
+project-repo/
+├── .gitignore
+├── README.md
+├── pyproject.toml
+├── uv.lock
+├── data/
+│   ├── build_fred.py    <- script to retrieve data and build the database
+│   ├── er_diagram.png   <- your ER diagram
+│   └── fred.db          <- generated database, committed*
+├── src/
+│   └── your_class.py    <- your Python class
+└── notebooks/
+    ├── analysis.qmd     <- analysis handout
+    ├── analysis.html    <- rendered version
+    ├── user_guide.qmd   <- user guide
+    └── user_guide.html  <- rendered version
+```
+::: 
+
+## Submission & Support
+
+**Submission Details**
+
+- **Deadline:** 20.05.2026 at 23:59 CET. Late submissions will be penalized.
+- **Platform:** Only submissions made through GitHub Classroom will be accepted.
+
+
+**Q&A and Support**
+
+- **Q&A Sessions:** Two sessions will be held during the usual exercise sessions on 08.05.2026 and 15.05.2026. Attendance is highly recommended but not mandatory.
+- **Canvas Forum:** All other questions about the project must be asked on the Canvas forum. We do this to ensure that everyone has access to the exact same information and answers. Please check the forum regularly.
+
+
+
+## Getting Started
+
+**First steps**
+
+- Accept the GitHub Classroom invitation and set up your repository and environment
+- As a group, **agree on an economic question** you want to explore
+- Browse [fred.stlouisfed.org](https://fred.stlouisfed.org) to get a sense of available data and find inspiration
+
+**You can start right away**
+
+- **Do not wait:** You do not need to know the API or database creation to begin
+- Download data manually, explore it, and create some figures/tables
+- Focus first on defining your question and some exploratory data analysis
+
+
+## Development Workflow
+
+1. **Explore** — write code to clean, analyse, and visualise your data. Get some results.
+2. **Refactor** — turn your scripts into functions: a figure becomes a function that creates that figure
+3. **Generalise** — make your functions flexible and useful beyond your specific case. Think about what variations a user might want
+4. **Make it robust** — Anticipate errors that might happen, give informative feedback to future users
+5. **Wrap into a class** — once you've learned about classes, implement your functions as class methods
+6. **Connect to the database** — once you've learned the FRED API and DuckDB, adjust your class to read from the database
+7. **Write up** — reproduce your analysis using the class, write the brief and the user guide
+
+> **Note: Development is iterative!** This is a general roadmap, but expect to loop back and forth between these steps as your project evolves
+
+
+
+
