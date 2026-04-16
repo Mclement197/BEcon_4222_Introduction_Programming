@@ -121,12 +121,14 @@ Course syllabus, schedule, and administrative information.
 ### 📁 Week 7: Classes and Object-Oriented Programming
 
 **Lectures:**
+- [Info Group Project](course_materials/week_07/group_project.qmd)
 - [Lecture 7: Classes](course_materials/week_07/L07_Classes.qmd)
 - [Module example: monetary_policy.py](course_materials/week_07/monetary_policy.py)
 
 **Exercises:**
 - [Exercise 7: Classes](exercise_sessions/week_07/Ex07_Classes.qmd)
 - [Exercise data: pwt_data_ex7.csv](exercise_sessions/week_07/data/pwt_data_ex7.csv)
+
 :::
 
 

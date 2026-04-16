@@ -69,6 +69,8 @@ website:
         menu:
           - text: "Lecture 7: Classes"
             file: course_materials/week_07/L07_Classes.qmd
+          - text: "Info Group Project"
+            file: course_materials/week_07/group_project.qmd
           - text: "---"
           - text: "Exercise 7: Classes"
             file: exercise_sessions/week_07/Ex07_Classes.qmd
